@@ -1,0 +1,50 @@
+<style>
+    td {padding: 2px;}
+</style>
+<h3 style="text-align:center;">Patron Information</h3>
+<div style="text-align:center;margin-bottom:10px;">This information will be used for library purpose only<br/>
+ and is considered confidential as specified by Georgia Code 24-9-46.</div>
+<table border=0>
+<tr><td><b>Name:</b></td><td><b><span ng-if="patron.prefix">{{patron.prefix}} </span>
+{{patron.first_given_name}} {{patron.second_given_name}} {{patron.family_name}} {{patron.suffix}}</b></td></tr>
+<tr><td><b>Barcode:</b></td><td><b>{{patron.card.barcode}}</b></td></tr>
+<tr><td>Date of Birth:</td><td>{{patron.dob | date:'M/d/yyyy'}} <div ng-if="patron.juvenile=='t'">Juvenile)</td></tr>
+<tr><td>Primary Identification Type: </td><td>{{patron.ident_type.name()}}</td></tr>
+<tr><td>Primary Identification: </td><td>{{patron.ident_value}}</td></tr>
+<tr><td>Parent/Guardian: </td><td>{{patron.guardian}}</td></tr>
+<tr><td>Email Address: </td><td>{{patron.email}}</td></tr>
+<tr><td>Daytime Phone: </td><td>{{patron.day_phone}}</td></tr>
+<tr><td>Evening Phone: </td><td>{{patron.evening_phone}}</td></tr>
+<tr><td>Other Phone: </td><td>{{patron.other_phone}}</td></tr>
+<tr><td>Home Library: </td><td>{{patron.home_ou.name()}}</td></tr>
+<tr><td>Patron Type: </td><td>{{patron.profile.name()}}</td></tr>
+<tr><td>Privilege Expiration Date: </td><td>{{patron.expire_date | date:'M/d/yyyy'}}</td></tr>
+<tr><td>Internet Access Level: </td><td>{{patron.net_access_level.name()}}</td></tr>
+<tr><td valign="top">Alert Message: </td><td>{{patron.alert_message}}</td></tr>
+<tr><td valign="top">Address:</td><td>
+    <div ng-repeat="address in patron.addresses">
+      <div>Type: {{address.address_type}}</div> 
+      <div>{{address.street1}}</div>
+      <div ng-if="address.street2">{{address.street2}}</div>
+      <div>{{address.city}}, {{address.state}} &nbsp; {{address.post_code}}</div>
+      <div>County: {{address.county}}</div>
+      <div>Country: {{address.country}}</div>
+      <div>Valid Address?: {{address.valid}}</div>
+      <div>Within City Limits?: {{address.within_city_limits}}<br/> <br/></div>
+    </div>
+</td></tr>
+</table>
+<br/>
+<div style="border:1px dotted black;padding:3px;margin-bottom:5px;">
+<ul><li>I apply for the right to use the Library, agree to comply with all its rules and regulations, and give immediate notice of any change of address.</li>
+<li>I accept financial responsibility for all fines and/or damages to all Library materials, audiovisual materials and equipment beyond normal wear and tear, which is lost or damaged beyond use while checked out on your card. Under Georgia Code (OCGA Annotated Rev. 1985 20-5-53), failure to return items borrowed from a public library is considered a misdemeanor.</li>
+<li><u>If this card is for a juvenile</u>: As the parent or guardian of a child under 18 years, I am willing to allow him/her to borrow materials from the Public Library. I will take responsibility and make good any charges or loss to library materials and pay any fine justly charged. 
+</li>
+</ul>
+<table border=0>
+<tr><td>Name:</td><td>________________________________________________________</td></tr>
+<tr><td>Signature: </td><td>________________________________________________________</td></tr>
+<tr><td>Date: </td><td>___________________</td></tr>
+</table>
+</div>
+Printed at: {{current_location.shortname}} on {{today | date:'short'}}

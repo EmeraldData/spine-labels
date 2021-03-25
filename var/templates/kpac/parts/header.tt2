@@ -1,0 +1,38 @@
+<div class="main_header_wrapper">
+    <div class="logo_wrapper">
+        <a href="[%- mkurl(ctx.kpac_root _ '/home') -%]">
+            <span class="logo_left">&nbsp;</span>
+            <span class="logo_middle"><img src="[% ctx.media_prefix %]/images/kpac/pines-logo-small.png[% ctx.cache_key %]" height="90" alt="[% l('Logo') %]" /></span>
+            <span class="logo_right">&nbsp;</span><br />
+            Kids' Catalog Home Page
+        </a>
+    </div>
+    <div class="header_utils">
+        <!--
+        <a href="javascript:;" class="text_size_btn"><span>Text size</span> &nbsp; <img 
+            alt="[% l('text size') %]" src="[% ctx.media_prefix %]/images/kpac/text_size_btn.png" /></a>
+        -->
+        <!-- 
+	<a href="javascript:window.print()" class="print_btn"><span>[% l('Print') %]</span> &nbsp; <img 
+            alt="[% l('print') %]" src="[% ctx.media_prefix %]/images/kpac/print_btn.png[% ctx.cache_key %]" /></a>
+    	-->
+    </div>
+    <div class="header_menu">
+        <!-- menu rendered in reverse order -->
+        <a href="http://pines.georgialibraries.org/catalog-help">[% l('Help') %]</a> 
+        <a href="http://www.galileo.usg.edu/kids">GALILEO for Kids</a>
+	 <a href="http://gapines.org">Full PINES Catalog</a>
+        <a href="http://pines.georgialibraries.org/pinesLocator/locator.html">Find a Library</a> 
+        [% IF ctx.user %]
+            [% redir = CGI.url('-base' => 1) _ ctx.kpac_root _ '/home' %]
+            <a href="[% mkurl(ctx.logout_page, 
+                {redirect_to => redir.replace('^https:', 'http:')}, 1) %]">[% 
+                    l('Logout ([_1] [_2])', ctx.user.first_given_name, ctx.user.family_name) %]</a>
+        [% ELSE %]
+		    [% redir = CGI.url('-base' => 1) _ ctx.kpac_root _ '/home' %]
+            <a href="[% mkurl(ctx.opac_root _ '/login?redirect_to=' _ redir).replace('^http:', 'https:') %]">Login</a>
+        [% END %]
+    </div>
+    
+    <div class="clear">&nbsp;</div>
+

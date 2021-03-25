@@ -1,0 +1,807 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY19 OCRL Billed</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") AS "Billing Year",
+	SUM("d866c81f917b25056b75f15a27d71af7"."amount") AS "Amount",
+	"8acb8fcc3e1285747714c17c5f17ee3f"."shortname" AS "Short (Policy) Name"
+  FROM	action.circulation AS "2106aa5ee40c73e77f3753067e53619f"
+	INNER JOIN money.billable_xact AS "745a2b00d7091b455f6438ffa049f5d3" ON ("2106aa5ee40c73e77f3753067e53619f"."id" = "745a2b00d7091b455f6438ffa049f5d3"."id")
+	INNER JOIN money.billing AS "d866c81f917b25056b75f15a27d71af7" ON ("745a2b00d7091b455f6438ffa049f5d3"."id" = "d866c81f917b25056b75f15a27d71af7"."xact")
+	INNER JOIN asset.copy AS "3a2c0decc1ca497d37843a4d150b0568" ON ("2106aa5ee40c73e77f3753067e53619f"."target_copy" = "3a2c0decc1ca497d37843a4d150b0568"."id")
+	INNER JOIN asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b" ON ("3a2c0decc1ca497d37843a4d150b0568"."call_number" = "dc11ff6b7cf219fda7fa89a84713f45b"."id")
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")
+  WHERE	date("d866c81f917b25056b75f15a27d71af7"."billing_ts") BETWEEN $_107925$2018-07-01$_107925$ AND $_107925$2019-06-30$_107925$
+	AND "d866c81f917b25056b75f15a27d71af7"."voided" = $_107925$f$_107925$
+	AND "8acb8fcc3e1285747714c17c5f17ee3f"."id" IN ($_107925$198$_107925$,$_107925$199$_107925$,$_107925$200$_107925$,$_107925$201$_107925$,$_107925$202$_107925$)
+  GROUP BY 1, 3
+  ORDER BY EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") ASC, SUM("d866c81f917b25056b75f15a27d71af7"."amount") ASC, "8acb8fcc3e1285747714c17c5f17ee3f"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'id' => 47539,
+          'owner' => 2134611,
+          'create_time' => '2008-06-26 10:42:52.979556-04',
+          'data' => '{"version":2,"core_class":"circ","select":[{"alias":"Billing Year","column":{"colname":"billing_ts","transform":"year_trunc","transform_label":"Year"},"path":"circ-billable_transaction-mbt-billings-mb-billing_ts","relation":"d866c81f917b25056b75f15a27d71af7"},{"alias":"Amount","column":{"colname":"amount","transform":"sum","transform_label":"Sum"},"path":"circ-billable_transaction-mbt-billings-mb-amount","relation":"d866c81f917b25056b75f15a27d71af7"},{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou-shortname","relation":"8acb8fcc3e1285747714c17c5f17ee3f"}],"from":{"path":"circ-target_copy","table":"action.circulation","alias":"2106aa5ee40c73e77f3753067e53619f","join":{"id-mbt-id-2106aa5ee40c73e77f3753067e53619f":{"path":"circ-billable_transaction-mbt-billings","table":"money.billable_xact","key":"id","alias":"745a2b00d7091b455f6438ffa049f5d3","join":{"id-mb-xact-745a2b00d7091b455f6438ffa049f5d3":{"path":"circ-billable_transaction-mbt-billings-mb","table":"money.billing","key":"xact","label":"Circulation -> Billable Transaction :: Billing Line Items","alias":"d866c81f917b25056b75f15a27d71af7","idlclass":"mb","template_path":"circ-billable_transaction.mbt-billings"}}},"target_copy-2106aa5ee40c73e77f3753067e53619f":{"path":"circ-target_copy-acp-call_number","table":"asset.copy","key":"id","alias":"3a2c0decc1ca497d37843a4d150b0568","join":{"call_number-3a2c0decc1ca497d37843a4d150b0568":{"path":"circ-target_copy-acp-call_number-acn-owning_lib","table":"asset.call_number","key":"id","alias":"dc11ff6b7cf219fda7fa89a84713f45b","join":{"owning_lib-dc11ff6b7cf219fda7fa89a84713f45b":{"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Circulation -> Item -> Call Number/Volume :: Owning Library","alias":"8acb8fcc3e1285747714c17c5f17ee3f","idlclass":"aou","template_path":"circ-target_copy.acp-call_number.acn-owning_lib"}}}}}}},"where":[{"alias":"Billing Timestamp","column":{"colname":"billing_ts","transform":"date","transform_label":"Date"},"path":"circ-billable_transaction-mbt-billings-mb-billing_ts","relation":"d866c81f917b25056b75f15a27d71af7","condition":{"between":"::P0"}},{"alias":"Voided?","column":{"colname":"voided","transform":"Bare","transform_label":"Raw Data"},"path":"circ-billable_transaction-mbt-billings-mb-voided","relation":"d866c81f917b25056b75f15a27d71af7","condition":{"=":"f"}},{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou-id","relation":"8acb8fcc3e1285747714c17c5f17ee3f","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"order_by":[{"relation":"d866c81f917b25056b75f15a27d71af7","field":"billing_ts"},{"relation":"d866c81f917b25056b75f15a27d71af7","field":"amount"},{"relation":"8acb8fcc3e1285747714c17c5f17ee3f","field":"shortname"}],"d866c81f917b25056b75f15a27d71af7":{"label":"Circulation -> Billable Transaction :: Billing Line Items","alias":"d866c81f917b25056b75f15a27d71af7","path":"circ-billable_transaction.mbt-billings","reltype":"has_many","idlclass":"mb","table":"money.billing","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"sum","aggregate":"true","params":"undefined","transform_label":"Sum","alias":"Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"billing_ts":{"colname":"billing_ts","transform":"year_trunc","aggregate":"undefined","params":"undefined","transform_label":"Year","alias":"Billing Year","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"billing_ts":{"colname":"billing_ts","transform":"date","transform_label":"Date","alias":"Billing Timestamp","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}},"voided":{"colname":"voided","transform":"Bare","transform_label":"Raw Data","alias":"Voided?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"8acb8fcc3e1285747714c17c5f17ee3f":{"label":"Circulation -> Item -> Call Number/Volume :: Owning Library","alias":"8acb8fcc3e1285747714c17c5f17ee3f","path":"circ-target_copy.acp-call_number.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}',
+          'name' => 'Amount billed BETWEEN DATES by Library',
+          'folder' => 1248,
+          'description' => ''
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'path' => 'circ-billable_transaction-mbt-billings-mb-billing_ts',
+                          'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                          'column' => {
+                                        'transform' => 'year_trunc',
+                                        'colname' => 'billing_ts',
+                                        'transform_label' => 'Year'
+                                      },
+                          'alias' => 'Billing Year'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'column' => {
+                                        'transform' => 'sum',
+                                        'transform_label' => 'Sum',
+                                        'colname' => 'amount'
+                                      },
+                          'path' => 'circ-billable_transaction-mbt-billings-mb-amount',
+                          'relation' => 'd866c81f917b25056b75f15a27d71af7'
+                        },
+                        {
+                          'relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                          'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou-shortname',
+                          'alias' => 'Short (Policy) Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname'
+                                      }
+                        }
+                      ],
+          'version' => 2,
+          'having' => [],
+          'rel_cache' => {
+                           'd866c81f917b25056b75f15a27d71af7' => {
+                                                                   'path' => 'circ-billable_transaction.mbt-billings',
+                                                                   'label' => 'Circulation -> Billable Transaction :: Billing Line Items',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'billing_ts' => {
+                                                                                                                     'colname' => 'billing_ts',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Billing Timestamp',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'op_value' => {}
+                                                                                                                   },
+                                                                                                   'voided' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'value' => 'f',
+                                                                                                                                 'label' => 'False'
+                                                                                                                               },
+                                                                                                                 'op' => '=',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'voided',
+                                                                                                                 'alias' => 'Voided?'
+                                                                                                               }
+                                                                                                 },
+                                                                                 'dis_tab' => {
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Sum',
+                                                                                                              'op_value' => {},
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => 'true',
+                                                                                                              'transform' => 'sum',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'params' => 'undefined',
+                                                                                                              'datatype' => 'money',
+                                                                                                              'alias' => 'Amount'
+                                                                                                            },
+                                                                                                'billing_ts' => {
+                                                                                                                  'transform_label' => 'Year',
+                                                                                                                  'aggregate' => 'undefined',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'transform' => 'year_trunc',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'billing_ts',
+                                                                                                                  'alias' => 'Billing Year'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'money.billing',
+                                                                   'alias' => 'd866c81f917b25056b75f15a27d71af7',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'mb'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'billing_ts',
+                                             'relation' => 'd866c81f917b25056b75f15a27d71af7'
+                                           },
+                                           {
+                                             'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '8acb8fcc3e1285747714c17c5f17ee3f'
+                                           }
+                                         ],
+                           '8acb8fcc3e1285747714c17c5f17ee3f' => {
+                                                                   'label' => 'Circulation -> Item -> Call Number/Volume :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Short (Policy) Name'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'circ-target_copy.acp-call_number.acn-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.org_unit'
+                                                                 }
+                         },
+          'core_class' => 'circ',
+          'order_by' => [],
+          'where' => [
+                       {
+                         'path' => 'circ-billable_transaction-mbt-billings-mb-billing_ts',
+                         'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                         'column' => {
+                                       'colname' => 'billing_ts',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     },
+                         'alias' => 'Billing Timestamp',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        }
+                       },
+                       {
+                         'alias' => 'Voided?',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'column' => {
+                                       'colname' => 'voided',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                         'path' => 'circ-billable_transaction-mbt-billings-mb-voided'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                         'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou-id'
+                       }
+                     ],
+          'from' => {
+                      'alias' => '2106aa5ee40c73e77f3753067e53619f',
+                      'table' => 'action.circulation',
+                      'path' => 'circ-target_copy',
+                      'join' => {
+                                  'target_copy-2106aa5ee40c73e77f3753067e53619f' => {
+                                                                                      'alias' => '3a2c0decc1ca497d37843a4d150b0568',
+                                                                                      'table' => 'asset.copy',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'circ-target_copy-acp-call_number',
+                                                                                      'join' => {
+                                                                                                  'call_number-3a2c0decc1ca497d37843a4d150b0568' => {
+                                                                                                                                                      'path' => 'circ-target_copy-acp-call_number-acn-owning_lib',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'owning_lib-dc11ff6b7cf219fda7fa89a84713f45b' => {
+                                                                                                                                                                                                                     'idlclass' => 'aou',
+                                                                                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                                                                                     'key' => 'id',
+                                                                                                                                                                                                                     'alias' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                                                                                                                                                                                                     'label' => 'Circulation -> Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                                                                                     'template_path' => 'circ-target_copy.acp-call_number.acn-owning_lib',
+                                                                                                                                                                                                                     'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou'
+                                                                                                                                                                                                                   }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'alias' => 'dc11ff6b7cf219fda7fa89a84713f45b'
+                                                                                                                                                    }
+                                                                                                }
+                                                                                    },
+                                  'id-mbt-id-2106aa5ee40c73e77f3753067e53619f' => {
+                                                                                    'join' => {
+                                                                                                'id-mb-xact-745a2b00d7091b455f6438ffa049f5d3' => {
+                                                                                                                                                   'idlclass' => 'mb',
+                                                                                                                                                   'table' => 'money.billing',
+                                                                                                                                                   'key' => 'xact',
+                                                                                                                                                   'alias' => 'd866c81f917b25056b75f15a27d71af7',
+                                                                                                                                                   'template_path' => 'circ-billable_transaction.mbt-billings',
+                                                                                                                                                   'label' => 'Circulation -> Billable Transaction :: Billing Line Items',
+                                                                                                                                                   'path' => 'circ-billable_transaction-mbt-billings-mb'
+                                                                                                                                                 }
+                                                                                              },
+                                                                                    'path' => 'circ-billable_transaction-mbt-billings',
+                                                                                    'key' => 'id',
+                                                                                    'table' => 'money.billable_xact',
+                                                                                    'alias' => '745a2b00d7091b455f6438ffa049f5d3'
+                                                                                  }
+                                }
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'recurrence' => '1 day',
+          'template' => {
+                          'id' => 47539,
+                          'owner' => 2134611,
+                          'create_time' => '2008-06-26 10:42:52.979556-04',
+                          'data' => '{"version":2,"core_class":"circ","select":[{"alias":"Billing Year","column":{"colname":"billing_ts","transform":"year_trunc","transform_label":"Year"},"path":"circ-billable_transaction-mbt-billings-mb-billing_ts","relation":"d866c81f917b25056b75f15a27d71af7"},{"alias":"Amount","column":{"colname":"amount","transform":"sum","transform_label":"Sum"},"path":"circ-billable_transaction-mbt-billings-mb-amount","relation":"d866c81f917b25056b75f15a27d71af7"},{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou-shortname","relation":"8acb8fcc3e1285747714c17c5f17ee3f"}],"from":{"path":"circ-target_copy","table":"action.circulation","alias":"2106aa5ee40c73e77f3753067e53619f","join":{"id-mbt-id-2106aa5ee40c73e77f3753067e53619f":{"path":"circ-billable_transaction-mbt-billings","table":"money.billable_xact","key":"id","alias":"745a2b00d7091b455f6438ffa049f5d3","join":{"id-mb-xact-745a2b00d7091b455f6438ffa049f5d3":{"path":"circ-billable_transaction-mbt-billings-mb","table":"money.billing","key":"xact","label":"Circulation -> Billable Transaction :: Billing Line Items","alias":"d866c81f917b25056b75f15a27d71af7","idlclass":"mb","template_path":"circ-billable_transaction.mbt-billings"}}},"target_copy-2106aa5ee40c73e77f3753067e53619f":{"path":"circ-target_copy-acp-call_number","table":"asset.copy","key":"id","alias":"3a2c0decc1ca497d37843a4d150b0568","join":{"call_number-3a2c0decc1ca497d37843a4d150b0568":{"path":"circ-target_copy-acp-call_number-acn-owning_lib","table":"asset.call_number","key":"id","alias":"dc11ff6b7cf219fda7fa89a84713f45b","join":{"owning_lib-dc11ff6b7cf219fda7fa89a84713f45b":{"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Circulation -> Item -> Call Number/Volume :: Owning Library","alias":"8acb8fcc3e1285747714c17c5f17ee3f","idlclass":"aou","template_path":"circ-target_copy.acp-call_number.acn-owning_lib"}}}}}}},"where":[{"alias":"Billing Timestamp","column":{"colname":"billing_ts","transform":"date","transform_label":"Date"},"path":"circ-billable_transaction-mbt-billings-mb-billing_ts","relation":"d866c81f917b25056b75f15a27d71af7","condition":{"between":"::P0"}},{"alias":"Voided?","column":{"colname":"voided","transform":"Bare","transform_label":"Raw Data"},"path":"circ-billable_transaction-mbt-billings-mb-voided","relation":"d866c81f917b25056b75f15a27d71af7","condition":{"=":"f"}},{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"circ-target_copy-acp-call_number-acn-owning_lib-aou-id","relation":"8acb8fcc3e1285747714c17c5f17ee3f","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"order_by":[{"relation":"d866c81f917b25056b75f15a27d71af7","field":"billing_ts"},{"relation":"d866c81f917b25056b75f15a27d71af7","field":"amount"},{"relation":"8acb8fcc3e1285747714c17c5f17ee3f","field":"shortname"}],"d866c81f917b25056b75f15a27d71af7":{"label":"Circulation -> Billable Transaction :: Billing Line Items","alias":"d866c81f917b25056b75f15a27d71af7","path":"circ-billable_transaction.mbt-billings","reltype":"has_many","idlclass":"mb","table":"money.billing","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"sum","aggregate":"true","params":"undefined","transform_label":"Sum","alias":"Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"billing_ts":{"colname":"billing_ts","transform":"year_trunc","aggregate":"undefined","params":"undefined","transform_label":"Year","alias":"Billing Year","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"billing_ts":{"colname":"billing_ts","transform":"date","transform_label":"Date","alias":"Billing Timestamp","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}},"voided":{"colname":"voided","transform":"Bare","transform_label":"Raw Data","alias":"Voided?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"8acb8fcc3e1285747714c17c5f17ee3f":{"label":"Circulation -> Item -> Call Number/Volume :: Owning Library","alias":"8acb8fcc3e1285747714c17c5f17ee3f","path":"circ-target_copy.acp-call_number.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}',
+                          'name' => 'Amount billed BETWEEN DATES by Library',
+                          'folder' => 1248,
+                          'description' => ''
+                        },
+          'description' => '',
+          'id' => 165099,
+          'owner' => 2134611,
+          'recur' => 0,
+          'name' => 'FY19 OCRL Billed',
+          'create_time' => '2019-08-16 09:08:14.721587-04',
+          'data' => '{"P0":["2018-07-01","2019-06-30"],"P1":["198","199","200","201","202"],"__pivot_label":"","__pivot_data":"2"}',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'path' => 'circ-billable_transaction-mbt-billings-mb-billing_ts',
+                          'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                          'column' => {
+                                        'transform' => 'year_trunc',
+                                        'colname' => 'billing_ts',
+                                        'transform_label' => 'Year'
+                                      },
+                          'alias' => 'Billing Year'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'column' => {
+                                        'transform' => 'sum',
+                                        'transform_label' => 'Sum',
+                                        'colname' => 'amount'
+                                      },
+                          'path' => 'circ-billable_transaction-mbt-billings-mb-amount',
+                          'relation' => 'd866c81f917b25056b75f15a27d71af7'
+                        },
+                        {
+                          'relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                          'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou-shortname',
+                          'alias' => 'Short (Policy) Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname'
+                                      }
+                        }
+                      ],
+          'version' => 2,
+          'having' => [],
+          'rel_cache' => {
+                           'd866c81f917b25056b75f15a27d71af7' => {
+                                                                   'path' => 'circ-billable_transaction.mbt-billings',
+                                                                   'label' => 'Circulation -> Billable Transaction :: Billing Line Items',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'billing_ts' => {
+                                                                                                                     'colname' => 'billing_ts',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Billing Timestamp',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'op_value' => {}
+                                                                                                                   },
+                                                                                                   'voided' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'value' => 'f',
+                                                                                                                                 'label' => 'False'
+                                                                                                                               },
+                                                                                                                 'op' => '=',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'voided',
+                                                                                                                 'alias' => 'Voided?'
+                                                                                                               }
+                                                                                                 },
+                                                                                 'dis_tab' => {
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Sum',
+                                                                                                              'op_value' => {},
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => 'true',
+                                                                                                              'transform' => 'sum',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'params' => 'undefined',
+                                                                                                              'datatype' => 'money',
+                                                                                                              'alias' => 'Amount'
+                                                                                                            },
+                                                                                                'billing_ts' => {
+                                                                                                                  'transform_label' => 'Year',
+                                                                                                                  'aggregate' => 'undefined',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'transform' => 'year_trunc',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'billing_ts',
+                                                                                                                  'alias' => 'Billing Year'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'money.billing',
+                                                                   'alias' => 'd866c81f917b25056b75f15a27d71af7',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'mb'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'billing_ts',
+                                             'relation' => 'd866c81f917b25056b75f15a27d71af7'
+                                           },
+                                           {
+                                             'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '8acb8fcc3e1285747714c17c5f17ee3f'
+                                           }
+                                         ],
+                           '8acb8fcc3e1285747714c17c5f17ee3f' => {
+                                                                   'label' => 'Circulation -> Item -> Call Number/Volume :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Short (Policy) Name'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'circ-target_copy.acp-call_number.acn-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.org_unit'
+                                                                 }
+                         },
+          'core_class' => 'circ',
+          'order_by' => [],
+          'where' => [
+                       {
+                         'path' => 'circ-billable_transaction-mbt-billings-mb-billing_ts',
+                         'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                         'column' => {
+                                       'colname' => 'billing_ts',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     },
+                         'alias' => 'Billing Timestamp',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        }
+                       },
+                       {
+                         'alias' => 'Voided?',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'column' => {
+                                       'colname' => 'voided',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'relation' => 'd866c81f917b25056b75f15a27d71af7',
+                         'path' => 'circ-billable_transaction-mbt-billings-mb-voided'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                         'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou-id'
+                       }
+                     ],
+          'from' => {
+                      'alias' => '2106aa5ee40c73e77f3753067e53619f',
+                      'table' => 'action.circulation',
+                      'path' => 'circ-target_copy',
+                      'join' => {
+                                  'target_copy-2106aa5ee40c73e77f3753067e53619f' => {
+                                                                                      'alias' => '3a2c0decc1ca497d37843a4d150b0568',
+                                                                                      'table' => 'asset.copy',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'circ-target_copy-acp-call_number',
+                                                                                      'join' => {
+                                                                                                  'call_number-3a2c0decc1ca497d37843a4d150b0568' => {
+                                                                                                                                                      'path' => 'circ-target_copy-acp-call_number-acn-owning_lib',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'owning_lib-dc11ff6b7cf219fda7fa89a84713f45b' => {
+                                                                                                                                                                                                                     'idlclass' => 'aou',
+                                                                                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                                                                                     'key' => 'id',
+                                                                                                                                                                                                                     'alias' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                                                                                                                                                                                                     'label' => 'Circulation -> Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                                                                                     'template_path' => 'circ-target_copy.acp-call_number.acn-owning_lib',
+                                                                                                                                                                                                                     'path' => 'circ-target_copy-acp-call_number-acn-owning_lib-aou'
+                                                                                                                                                                                                                   }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'alias' => 'dc11ff6b7cf219fda7fa89a84713f45b'
+                                                                                                                                                    }
+                                                                                                }
+                                                                                    },
+                                  'id-mbt-id-2106aa5ee40c73e77f3753067e53619f' => {
+                                                                                    'join' => {
+                                                                                                'id-mb-xact-745a2b00d7091b455f6438ffa049f5d3' => {
+                                                                                                                                                   'idlclass' => 'mb',
+                                                                                                                                                   'table' => 'money.billing',
+                                                                                                                                                   'key' => 'xact',
+                                                                                                                                                   'alias' => 'd866c81f917b25056b75f15a27d71af7',
+                                                                                                                                                   'template_path' => 'circ-billable_transaction.mbt-billings',
+                                                                                                                                                   'label' => 'Circulation -> Billable Transaction :: Billing Line Items',
+                                                                                                                                                   'path' => 'circ-billable_transaction-mbt-billings-mb'
+                                                                                                                                                 }
+                                                                                              },
+                                                                                    'path' => 'circ-billable_transaction-mbt-billings',
+                                                                                    'key' => 'id',
+                                                                                    'table' => 'money.billable_xact',
+                                                                                    'alias' => '745a2b00d7091b455f6438ffa049f5d3'
+                                                                                  }
+                                }
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-08-16 09:08:14.721587-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_builder' => bless( {
+                                        '_resultset_limit' => 1048575,
+                                        '_relative_time' => '2019-08-16 09:08:14.721587-04',
+                                        '_pivot_data' => '2',
+                                        '_sql' => undef,
+                                        '_params' => {
+                                                       'P0' => [
+                                                                 '2018-07-01',
+                                                                 '2019-06-30'
+                                                               ],
+                                                       '__pivot_data' => '2',
+                                                       '__pivot_label' => '',
+                                                       'P1' => [
+                                                                 '198',
+                                                                 '199',
+                                                                 '200',
+                                                                 '201',
+                                                                 '202'
+                                                               ]
+                                                     },
+                                        '_rels' => {
+                                                     '2106aa5ee40c73e77f3753067e53619f' => bless( {
+                                                                                                    '_table' => 'action.circulation',
+                                                                                                    '_columns' => [],
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_alias' => '2106aa5ee40c73e77f3753067e53619f',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_sql' => 'action.circulation AS "2106aa5ee40c73e77f3753067e53619f"
+	INNER JOIN money.billable_xact AS "745a2b00d7091b455f6438ffa049f5d3" ON ("2106aa5ee40c73e77f3753067e53619f"."id" = "745a2b00d7091b455f6438ffa049f5d3"."id")
+	INNER JOIN money.billing AS "d866c81f917b25056b75f15a27d71af7" ON ("745a2b00d7091b455f6438ffa049f5d3"."id" = "d866c81f917b25056b75f15a27d71af7"."xact")
+	INNER JOIN asset.copy AS "3a2c0decc1ca497d37843a4d150b0568" ON ("2106aa5ee40c73e77f3753067e53619f"."target_copy" = "3a2c0decc1ca497d37843a4d150b0568"."id")
+	INNER JOIN asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b" ON ("3a2c0decc1ca497d37843a4d150b0568"."call_number" = "dc11ff6b7cf219fda7fa89a84713f45b"."id")
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")',
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_alias' => '745a2b00d7091b455f6438ffa049f5d3',
+                                                                                                                                                   '_table' => 'money.billable_xact',
+                                                                                                                                                   '_sql' => 'money.billable_xact AS "745a2b00d7091b455f6438ffa049f5d3"',
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN money.billing AS "d866c81f917b25056b75f15a27d71af7" ON ("745a2b00d7091b455f6438ffa049f5d3"."id" = "d866c81f917b25056b75f15a27d71af7"."xact")',
+                                                                                                                                                                         '_right_rel' => bless( {
+                                                                                                                                                                                                  '_table' => 'money.billing',
+                                                                                                                                                                                                  '_alias' => 'd866c81f917b25056b75f15a27d71af7',
+                                                                                                                                                                                                  '_join' => [],
+                                                                                                                                                                                                  '_sql' => 'money.billing AS "d866c81f917b25056b75f15a27d71af7"',
+                                                                                                                                                                                                  '_columns' => [],
+                                                                                                                                                                                                  '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                                                                  '_join_type' => 'inner',
+                                                                                                                                                                                                  '_is_join' => 1
+                                                                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                         '_right_col' => 'xact',
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                         '_join_type' => 'i',
+                                                                                                                                                                         '_left_col' => 'id'
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_nullable' => undef,
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_columns' => []
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_sql' => '
+	INNER JOIN money.billable_xact AS "745a2b00d7091b455f6438ffa049f5d3" ON ("2106aa5ee40c73e77f3753067e53619f"."id" = "745a2b00d7091b455f6438ffa049f5d3"."id")
+	INNER JOIN money.billing AS "d866c81f917b25056b75f15a27d71af7" ON ("745a2b00d7091b455f6438ffa049f5d3"."id" = "d866c81f917b25056b75f15a27d71af7"."xact")',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'},
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_left_col' => 'id'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_left_col' => 'target_copy',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_sql' => '
+	INNER JOIN asset.copy AS "3a2c0decc1ca497d37843a4d150b0568" ON ("2106aa5ee40c73e77f3753067e53619f"."target_copy" = "3a2c0decc1ca497d37843a4d150b0568"."id")
+	INNER JOIN asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b" ON ("3a2c0decc1ca497d37843a4d150b0568"."call_number" = "dc11ff6b7cf219fda7fa89a84713f45b"."id")
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_nullable' => undef,
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_table' => 'asset.copy',
+                                                                                                                                                   '_alias' => '3a2c0decc1ca497d37843a4d150b0568',
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[1]{'_right_rel'},
+                                                                                                                                                                         '_right_col' => 'id',
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b" ON ("3a2c0decc1ca497d37843a4d150b0568"."call_number" = "dc11ff6b7cf219fda7fa89a84713f45b"."id")
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")',
+                                                                                                                                                                         '_right_rel' => bless( {
+                                                                                                                                                                                                  '_table' => 'asset.call_number',
+                                                                                                                                                                                                  '_alias' => 'dc11ff6b7cf219fda7fa89a84713f45b',
+                                                                                                                                                                                                  '_sql' => 'asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b"',
+                                                                                                                                                                                                  '_join' => [
+                                                                                                                                                                                                               bless( {
+                                                                                                                                                                                                                        '_join_type' => 'i',
+                                                                                                                                                                                                                        '_left_col' => 'owning_lib',
+                                                                                                                                                                                                                        '_right_col' => 'id',
+                                                                                                                                                                                                                        '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                                        '_right_rel' => bless( {
+                                                                                                                                                                                                                                                 '_alias' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                                                                                                                                                                                                                                 '_table' => 'actor.org_unit',
+                                                                                                                                                                                                                                                 '_sql' => 'actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f"',
+                                                                                                                                                                                                                                                 '_join' => [],
+                                                                                                                                                                                                                                                 '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                                                                                                                 '_is_join' => 1,
+                                                                                                                                                                                                                                                 '_join_type' => 'inner',
+                                                                                                                                                                                                                                                 '_columns' => []
+                                                                                                                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                                        '_sql' => '
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")'
+                                                                                                                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                                             ],
+                                                                                                                                                                                                  '_columns' => [],
+                                                                                                                                                                                                  '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                                                                  '_join_type' => 'inner',
+                                                                                                                                                                                                  '_nullable' => undef,
+                                                                                                                                                                                                  '_is_join' => 1
+                                                                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                         '_left_col' => 'call_number',
+                                                                                                                                                                         '_join_type' => 'i'
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_sql' => 'asset.copy AS "3a2c0decc1ca497d37843a4d150b0568"'
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'},
+                                                                                                                          '_right_col' => 'id'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ]
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'dc11ff6b7cf219fda7fa89a84713f45b' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                     '3a2c0decc1ca497d37843a4d150b0568' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[1]{'_right_rel'},
+                                                     '8acb8fcc3e1285747714c17c5f17ee3f' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                     'd866c81f917b25056b75f15a27d71af7' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                     '745a2b00d7091b455f6438ffa049f5d3' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'}{'_join'}[0]{'_right_rel'}
+                                                   }
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'2106aa5ee40c73e77f3753067e53619f'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_sql' => 'EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") ASC',
+                                           '_transform' => 'year_trunc',
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                           '_column' => {
+                                                          'colname' => 'billing_ts',
+                                                          'transform_label' => 'Year',
+                                                          'transform' => 'year_trunc'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'sum',
+                                           '_relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                           '_sql' => 'SUM("d866c81f917b25056b75f15a27d71af7"."amount") ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => {
+                                                          'transform_label' => 'Sum',
+                                                          'colname' => 'amount',
+                                                          'transform' => 'sum'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"8acb8fcc3e1285747714c17c5f17ee3f"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'billing_ts'
+                                                     },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => 'date("d866c81f917b25056b75f15a27d71af7"."billing_ts") BETWEEN $_107925$2018-07-01$_107925$ AND $_107925$2019-06-30$_107925$',
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_transform' => 'GenericTransform',
+                                        '_relation' => 'd866c81f917b25056b75f15a27d71af7'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => '"d866c81f917b25056b75f15a27d71af7"."voided" = $_107925$f$_107925$',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'voided',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_sql' => '"8acb8fcc3e1285747714c17c5f17ee3f"."id" IN ($_107925$198$_107925$,$_107925$199$_107925$,$_107925$200$_107925$,$_107925$201$_107925$,$_107925$202$_107925$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") AS "Billing Year",
+	SUM("d866c81f917b25056b75f15a27d71af7"."amount") AS "Amount",
+	"8acb8fcc3e1285747714c17c5f17ee3f"."shortname" AS "Short (Policy) Name"
+  FROM	action.circulation AS "2106aa5ee40c73e77f3753067e53619f"
+	INNER JOIN money.billable_xact AS "745a2b00d7091b455f6438ffa049f5d3" ON ("2106aa5ee40c73e77f3753067e53619f"."id" = "745a2b00d7091b455f6438ffa049f5d3"."id")
+	INNER JOIN money.billing AS "d866c81f917b25056b75f15a27d71af7" ON ("745a2b00d7091b455f6438ffa049f5d3"."id" = "d866c81f917b25056b75f15a27d71af7"."xact")
+	INNER JOIN asset.copy AS "3a2c0decc1ca497d37843a4d150b0568" ON ("2106aa5ee40c73e77f3753067e53619f"."target_copy" = "3a2c0decc1ca497d37843a4d150b0568"."id")
+	INNER JOIN asset.call_number AS "dc11ff6b7cf219fda7fa89a84713f45b" ON ("3a2c0decc1ca497d37843a4d150b0568"."call_number" = "dc11ff6b7cf219fda7fa89a84713f45b"."id")
+	INNER JOIN actor.org_unit AS "8acb8fcc3e1285747714c17c5f17ee3f" ON ("dc11ff6b7cf219fda7fa89a84713f45b"."owning_lib" = "8acb8fcc3e1285747714c17c5f17ee3f"."id")
+  WHERE	date("d866c81f917b25056b75f15a27d71af7"."billing_ts") BETWEEN $_107925$2018-07-01$_107925$ AND $_107925$2019-06-30$_107925$
+	AND "d866c81f917b25056b75f15a27d71af7"."voided" = $_107925$f$_107925$
+	AND "8acb8fcc3e1285747714c17c5f17ee3f"."id" IN ($_107925$198$_107925$,$_107925$199$_107925$,$_107925$200$_107925$,$_107925$201$_107925$,$_107925$202$_107925$)
+  GROUP BY 1, 3
+  ORDER BY EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") ASC, SUM("d866c81f917b25056b75f15a27d71af7"."amount") ASC, "8acb8fcc3e1285747714c17c5f17ee3f"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => 'EXTRACT(YEAR FROM "d866c81f917b25056b75f15a27d71af7"."billing_ts") AS "Billing Year"',
+                                         '_transform' => 'year_trunc',
+                                         '_relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_alias' => 'Billing Year',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'd866c81f917b25056b75f15a27d71af7',
+                                         '_transform' => 'sum',
+                                         '_sql' => 'SUM("d866c81f917b25056b75f15a27d71af7"."amount") AS "Amount"',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Amount',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"8acb8fcc3e1285747714c17c5f17ee3f"."shortname" AS "Short (Policy) Name"',
+                                         '_relation' => '8acb8fcc3e1285747714c17c5f17ee3f',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

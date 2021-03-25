@@ -1,0 +1,47 @@
+[% 
+PROCESS 'kpac/parts/util.tt2';
+
+# Renders a single 'page' grid
+
+MACRO render_kpac_grid(page_id) BLOCK;
+    page = ctx.kpac_config.pages.page.$page_id;
+    ncols = page.columns || 3; # avoid divide-by-zero
+    name = page.name;
+    idx = 0 %]
+<table cellpadding="0" cellspacing="0" border="0" class="main_category_table">
+    <tr> [% 
+    width = 100 / ncols;
+    FOR cell IN page.cell;
+        IF idx == ncols; 
+            %]</tr><tr>[%  
+            idx = 0; 
+        END;
+        idx = idx + 1;
+
+        IF cell.type == 'topic';
+            tpage_id = cell.content;
+            topic_page = ctx.kpac_config.pages.page.$tpage_id %]
+
+        <td width="[% width %]%"><a href="category?trail=[% tpage_id %]"><img 
+            src="[% kpac_img_path(topic_page.img) %]" alt="" /><span>[% topic_page.name %]</span></a></td>
+
+        [% ELSIF cell.type == 'maintopic'; %]
+
+        <td width="[% width %]%"><a href="[%- ctx.kpac_root -%]/results?query=[%- cell.content -%];nosprop=1;locg=1"><img 
+            src="[% kpac_img_path(cell.img) %]" alt="" /><span>[% cell.name %]</span></a></td>
+
+        [% ELSIF cell.type == 'simplesearch'; %]
+
+        <td width="[% width %]%"><a href="[%- ctx.kpac_root -%]/results?query=[%- cell.content -%];nosprop=1;locg=1;trail=[%- CGI.url_param('trail') -%]"><img 
+            src="[% kpac_img_path(cell.img) %]" alt="" /><span>[% cell.name %]</span></a></td>
+
+        [% ELSIF cell.type == 'link'; %]
+
+        <td width="[% width %]%"><a href="[% cell.content | html %]"><img 
+            src="[% kpac_img_path(cell.img) %]" alt="" /><span>[% cell.name %]</span></a></td>
+
+        [% END %]
+    [% END %]
+    </tr>
+</table>
+[% END %]

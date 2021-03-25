@@ -1,0 +1,39 @@
+[% # SEARCH LIMITS %]
+
+[% oldurl = CGI.request_uri %]
+[% newurl = oldurl %]
+
+[% IF (matches = oldurl.match('/results?')) %]
+     <h3>Results By Age Group:</h3>
+     <ul style="font-size:medium;margin-left:-20px;">
+
+     [% IF (matches = oldurl.match('audience='));
+          newurl = newurl.remove('&fi%3Aaudience=' _ CGI.url_param('fi:audience'));
+     END %]
+
+     [% IF (matches = oldurl.match('audience=a')) %]
+          <li><b>Preschool (0-5 years)</b></li>
+     [% ELSE %]
+          <li><a href="[% newurl %]&fi%3Aaudience=a">Preschool (0-5 years)</a></li>
+     [% END %]
+
+     [% IF (matches = oldurl.match('audience=b')) %]
+          <li><b>Primary (6-8 years)</b></li>
+     [% ELSE %]
+          <li><a href="[% newurl %]&fi%3Aaudience=b">Primary (6-8 years)</a></li>
+     [% END %]
+
+     [% IF (matches = oldurl.match('audience=c')) %]
+          <li><b>Tween (9-13 years)</b></li>
+     [% ELSE %]
+          <li><a href="[% newurl %]&fi%3Aaudience=c">Tween (9-13 years)</a></li>
+     [% END %]
+
+     [% IF (matches = oldurl.match('audience=')) %]
+          <li><a href="[% newurl %]">Show All Age Groups</a></li>
+     [% ELSE %]
+          <li><b>Show All Age Groups</b></li>
+     [% END %]
+     </ul>
+
+[% END %]

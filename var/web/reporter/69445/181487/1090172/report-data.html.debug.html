@@ -1,0 +1,1193 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY 2020 Circulation Count of Large Print  Materials</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"715fac939c0c27334578af4486d51210"."shortname" AS "Circulation Library",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ ID"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN asset.copy AS "c04d21c9fe3de7845ae87a892351d59c" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "c04d21c9fe3de7845ae87a892351d59c"."id")
+	INNER JOIN asset.call_number AS "8e2b33229707683d00a4879c97d184c2" ON ("c04d21c9fe3de7845ae87a892351d59c"."call_number" = "8e2b33229707683d00a4879c97d184c2"."id")
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")
+	INNER JOIN actor.org_unit AS "715fac939c0c27334578af4486d51210" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "715fac939c0c27334578af4486d51210"."id")
+  WHERE	"6535cc17cce2bc4a7afc1398769b7c4a"."item_form" = $_64374$d$_64374$
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_64374$2019-07-01$_64374$ AND $_64374$2020-06-08$_64374$
+  GROUP BY 1
+  ORDER BY "715fac939c0c27334578af4486d51210"."shortname" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'name' => 'Circulation Count of Large Print Materials (converted from XUL)',
+          'folder' => 3590,
+          'id' => 69445,
+          'data' => '{"version":5,"doc_url":"","core_class":"circ","select":[{"alias":"Circulation Library","path":"aou-shortname","field_doc":"","relation":"715fac939c0c27334578af4486d51210","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ ID","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"circ_lib-1b1556a777440479f8596f01727da8aa":{"type":"inner","key":"id","alias":"715fac939c0c27334578af4486d51210","path":"circ-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Circulation :: Circulating Library (inner)"},"target_copy-c04d21c9fe3de7845ae87a892351d59c":{"type":"inner","key":"id","alias":"c04d21c9fe3de7845ae87a892351d59c","path":"circ-target_copy","table":"asset.copy","idlclass":"acp","join":{"call_number-8e2b33229707683d00a4879c97d184c2":{"type":"inner","key":"id","alias":"8e2b33229707683d00a4879c97d184c2","path":"circ-target_copy-call_number","table":"asset.call_number","idlclass":"acn","join":{"record-d3305dbc9fd90da113198381c9f3fe8c":{"type":"inner","key":"id","alias":"d3305dbc9fd90da113198381c9f3fe8c","path":"circ-target_copy-call_number-record","table":"biblio.record_entry","idlclass":"bre","join":{"id-fixed_fields-91e9df6db7fd03ce9f3919a7a9e22bca":{"type":"inner","key":"record","alias":"6535cc17cce2bc4a7afc1398769b7c4a","path":"circ-target_copy-call_number-record-id-fixed_fields","table":"metabib.rec_descriptor","idlclass":"mrd","label":"Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)"}}}}}}}},"label":"Circulation"},"where":[{"alias":"Form","path":"mrd-item_form","field_doc":"","relation":"6535cc17cce2bc4a7afc1398769b7c4a","column":{"colname":"item_form","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"d"}},{"alias":"Checkout Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P0"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Circulation Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library (inner)"},{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":1,"label":"Circ ID","datatype":"id","doc_text":"","transform":{"label":"Count","transform":"count","aggregate":true},"path_label":"Circulation"}],"filter_cols":[{"name":"item_form","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bibliographic Record","from":"acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"acn.bre","jtype":"inner","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Basic Record Descriptor","from":"bre","link":{"name":"fixed_fields","label":"Fixed Field Entry","virtual":true,"type":"link","key":"record","class":"mrd","reltype":"might_have","datatype":"link"},"id":"bre.mrd","jtype":"inner","uplink":{"name":"fixed_fields","label":"Fixed Field Entry","virtual":true,"type":"link","key":"record","class":"mrd","reltype":"might_have","datatype":"link"},"classname":"mrd","struct":{"name":"mrd","label":"Basic Record Descriptor","table":"metabib.rec_descriptor","pkey":"id","pkey_sequence":"metabib.rec_descriptor_id_seq","core_label":"Non-core sources","classname":"mrd"},"table":"metabib.rec_descriptor"}],"index":2,"label":"Form","datatype":"text","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)","value":"d"},{"name":"xact_start","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":3,"label":"Checkout Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Circulation"}]}',
+          'create_time' => '2020-07-08 10:20:48.674399-04',
+          'description' => 'Uses Circulation source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Circulation -> (None) Circulating Library -> Short (Policy) Name as "Circulation Library"
+Circulation -> Circ ID (Count) as "Circulation Count"
+
+Base Filters:
+
+Circulation -> (None) Circulating Item -> (None) Call Number/Volume -> (None) Bib Record -> (None) Fixed Field Entry -> Form (Equals) ("d")
+Circulation -> Checkout Date/Time (Date) (Between)
+
+Form Code:
+
+d = Large Print',
+          'owner' => 402541
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'display_cols' => [
+                              {
+                                'index' => 0,
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'name' => 'circ_lib',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Checkout / Renewal Library',
+                                                          'key' => 'id',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'label' => 'Organizational Unit',
+                                              'id' => 'circ.aou',
+                                              'from' => 'circ',
+                                              'struct' => {
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'name' => 'circ_lib',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'label' => 'Checkout / Renewal Library',
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Circulation Library',
+                                'name' => 'shortname',
+                                'doc_text' => '',
+                                'path_label' => 'Circulation :: Circulating Library (inner)'
+                              },
+                              {
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                 'transform' => 'count',
+                                                 'label' => 'Count'
+                                               },
+                                'label' => 'Circ ID',
+                                'path_label' => 'Circulation',
+                                'index' => 1,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'label' => 'Circulation',
+                                                            'name' => 'circ',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'label' => 'Circulation',
+                                              'jtype' => 'inner'
+                                            }
+                                          ]
+                              }
+                            ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '715fac939c0c27334578af4486d51210',
+                          'alias' => 'Circulation Library',
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'path' => 'circ-id',
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Circ ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'transform' => 'count',
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'doc_text' => '',
+                               'name' => 'item_form',
+                               'label' => 'Form',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'path_label' => 'Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)',
+                               'index' => 2,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'value' => 'd',
+                               'path' => [
+                                           {
+                                             'classname' => 'circ',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'id' => 'circ',
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'circ',
+                                                           'classname' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         }
+                                           },
+                                           {
+                                             'from' => 'circ',
+                                             'id' => 'circ.acp',
+                                             'struct' => {
+                                                           'table' => 'asset.copy',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'classname' => 'acp',
+                                                           'label' => 'Item'
+                                                         },
+                                             'label' => 'Item',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acp',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'name' => 'target_copy',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Circulating Item',
+                                                         'class' => 'acp',
+                                                         'key' => 'id'
+                                                       },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'label' => 'Circulating Item',
+                                                           'key' => 'id',
+                                                           'name' => 'target_copy'
+                                                         },
+                                             'table' => 'asset.copy'
+                                           },
+                                           {
+                                             'struct' => {
+                                                           'name' => 'acn',
+                                                           'classname' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'table' => 'asset.call_number',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'id' => 'acp.acn',
+                                             'from' => 'acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'acn',
+                                                         'label' => 'Call Number/Volume',
+                                                         'key' => 'id',
+                                                         'name' => 'call_number'
+                                                       },
+                                             'classname' => 'acn',
+                                             'jtype' => 'inner',
+                                             'label' => 'Call Number/Volume',
+                                             'table' => 'asset.call_number',
+                                             'uplink' => {
+                                                           'name' => 'call_number',
+                                                           'class' => 'acn',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Call Number/Volume',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'biblio.record_entry',
+                                             'uplink' => {
+                                                           'name' => 'record',
+                                                           'class' => 'bre',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Bib Record',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'link' => {
+                                                         'name' => 'record',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'bre',
+                                                         'key' => 'id',
+                                                         'label' => 'Bib Record',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'classname' => 'bre',
+                                             'jtype' => 'inner',
+                                             'label' => 'Bibliographic Record',
+                                             'id' => 'acn.bre',
+                                             'from' => 'acn',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                           'table' => 'biblio.record_entry',
+                                                           'label' => 'Bibliographic Record',
+                                                           'classname' => 'bre',
+                                                           'name' => 'bre',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         }
+                                           },
+                                           {
+                                             'from' => 'bre',
+                                             'id' => 'bre.mrd',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'metabib.rec_descriptor_id_seq',
+                                                           'table' => 'metabib.rec_descriptor',
+                                                           'pkey' => 'id',
+                                                           'name' => 'mrd',
+                                                           'label' => 'Basic Record Descriptor',
+                                                           'classname' => 'mrd'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Basic Record Descriptor',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'mrd',
+                                                         'key' => 'record',
+                                                         'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                         'name' => 'fixed_fields',
+                                                         'reltype' => 'might_have',
+                                                         'label' => 'Fixed Field Entry'
+                                                       },
+                                             'classname' => 'mrd',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'mrd',
+                                                           'key' => 'record',
+                                                           'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'fixed_fields',
+                                                           'reltype' => 'might_have',
+                                                           'label' => 'Fixed Field Entry'
+                                                         },
+                                             'table' => 'metabib.rec_descriptor'
+                                           }
+                                         ],
+                               'datatype' => 'text'
+                             },
+                             {
+                               'index' => 3,
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'datatype' => 'timestamp',
+                               'path' => [
+                                           {
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'action.circulation',
+                                                           'name' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'classname' => 'circ',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'id' => 'circ',
+                                             'classname' => 'circ',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'transform' => {
+                                                'transform' => 'date',
+                                                'label' => 'Date',
+                                                'aggregate' => undef
+                                              },
+                               'label' => 'Checkout Date/Time',
+                               'path_label' => 'Circulation'
+                             }
+                           ],
+          'version' => 5,
+          'doc_url' => '',
+          'from' => {
+                      'label' => 'Circulation',
+                      'idlclass' => 'circ',
+                      'join' => {
+                                  'target_copy-c04d21c9fe3de7845ae87a892351d59c' => {
+                                                                                      'idlclass' => 'acp',
+                                                                                      'key' => 'id',
+                                                                                      'join' => {
+                                                                                                  'call_number-8e2b33229707683d00a4879c97d184c2' => {
+                                                                                                                                                      'idlclass' => 'acn',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'record-d3305dbc9fd90da113198381c9f3fe8c' => {
+                                                                                                                                                                                                                 'path' => 'circ-target_copy-call_number-record',
+                                                                                                                                                                                                                 'alias' => 'd3305dbc9fd90da113198381c9f3fe8c',
+                                                                                                                                                                                                                 'type' => 'inner',
+                                                                                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                                                                                 'join' => {
+                                                                                                                                                                                                                             'id-fixed_fields-91e9df6db7fd03ce9f3919a7a9e22bca' => {
+                                                                                                                                                                                                                                                                                     'path' => 'circ-target_copy-call_number-record-id-fixed_fields',
+                                                                                                                                                                                                                                                                                     'type' => 'inner',
+                                                                                                                                                                                                                                                                                     'alias' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                                                                                                                                                                                                                                                                                     'table' => 'metabib.rec_descriptor',
+                                                                                                                                                                                                                                                                                     'idlclass' => 'mrd',
+                                                                                                                                                                                                                                                                                     'label' => 'Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)',
+                                                                                                                                                                                                                                                                                     'key' => 'record'
+                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                           },
+                                                                                                                                                                                                                 'key' => 'id',
+                                                                                                                                                                                                                 'idlclass' => 'bre'
+                                                                                                                                                                                                               }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'path' => 'circ-target_copy-call_number',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'alias' => '8e2b33229707683d00a4879c97d184c2'
+                                                                                                                                                    }
+                                                                                                },
+                                                                                      'table' => 'asset.copy',
+                                                                                      'path' => 'circ-target_copy',
+                                                                                      'alias' => 'c04d21c9fe3de7845ae87a892351d59c',
+                                                                                      'type' => 'inner'
+                                                                                    },
+                                  'circ_lib-1b1556a777440479f8596f01727da8aa' => {
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'path' => 'circ-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => '715fac939c0c27334578af4486d51210',
+                                                                                   'key' => 'id',
+                                                                                   'label' => 'Circulation :: Circulating Library (inner)',
+                                                                                   'idlclass' => 'aou'
+                                                                                 }
+                                },
+                      'table' => 'action.circulation',
+                      'path' => 'circ-circ',
+                      'alias' => 'f45381a54504218e39aca33492d29306'
+                    },
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => 'd'
+                                        },
+                         'alias' => 'Form',
+                         'relation' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                         'path' => 'mrd-item_form',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'item_form',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'aggregate' => 0,
+                                       'transform' => 'date'
+                                     },
+                         'path' => 'circ-xact_start',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'alias' => 'Checkout Date/Time',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'circ',
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":["2019-07-01","2020-06-08"],"__pivot_label":"","__pivot_data":"2"}',
+          'recurrence' => '1 day',
+          'folder' => 5379,
+          'id' => 181487,
+          'template' => {
+                          'name' => 'Circulation Count of Large Print Materials (converted from XUL)',
+                          'folder' => 3590,
+                          'id' => 69445,
+                          'data' => '{"version":5,"doc_url":"","core_class":"circ","select":[{"alias":"Circulation Library","path":"aou-shortname","field_doc":"","relation":"715fac939c0c27334578af4486d51210","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ ID","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"circ_lib-1b1556a777440479f8596f01727da8aa":{"type":"inner","key":"id","alias":"715fac939c0c27334578af4486d51210","path":"circ-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Circulation :: Circulating Library (inner)"},"target_copy-c04d21c9fe3de7845ae87a892351d59c":{"type":"inner","key":"id","alias":"c04d21c9fe3de7845ae87a892351d59c","path":"circ-target_copy","table":"asset.copy","idlclass":"acp","join":{"call_number-8e2b33229707683d00a4879c97d184c2":{"type":"inner","key":"id","alias":"8e2b33229707683d00a4879c97d184c2","path":"circ-target_copy-call_number","table":"asset.call_number","idlclass":"acn","join":{"record-d3305dbc9fd90da113198381c9f3fe8c":{"type":"inner","key":"id","alias":"d3305dbc9fd90da113198381c9f3fe8c","path":"circ-target_copy-call_number-record","table":"biblio.record_entry","idlclass":"bre","join":{"id-fixed_fields-91e9df6db7fd03ce9f3919a7a9e22bca":{"type":"inner","key":"record","alias":"6535cc17cce2bc4a7afc1398769b7c4a","path":"circ-target_copy-call_number-record-id-fixed_fields","table":"metabib.rec_descriptor","idlclass":"mrd","label":"Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)"}}}}}}}},"label":"Circulation"},"where":[{"alias":"Form","path":"mrd-item_form","field_doc":"","relation":"6535cc17cce2bc4a7afc1398769b7c4a","column":{"colname":"item_form","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"d"}},{"alias":"Checkout Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P0"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Circulation Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library (inner)"},{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":1,"label":"Circ ID","datatype":"id","doc_text":"","transform":{"label":"Count","transform":"count","aggregate":true},"path_label":"Circulation"}],"filter_cols":[{"name":"item_form","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bibliographic Record","from":"acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"acn.bre","jtype":"inner","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Basic Record Descriptor","from":"bre","link":{"name":"fixed_fields","label":"Fixed Field Entry","virtual":true,"type":"link","key":"record","class":"mrd","reltype":"might_have","datatype":"link"},"id":"bre.mrd","jtype":"inner","uplink":{"name":"fixed_fields","label":"Fixed Field Entry","virtual":true,"type":"link","key":"record","class":"mrd","reltype":"might_have","datatype":"link"},"classname":"mrd","struct":{"name":"mrd","label":"Basic Record Descriptor","table":"metabib.rec_descriptor","pkey":"id","pkey_sequence":"metabib.rec_descriptor_id_seq","core_label":"Non-core sources","classname":"mrd"},"table":"metabib.rec_descriptor"}],"index":2,"label":"Form","datatype":"text","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)","value":"d"},{"name":"xact_start","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":3,"label":"Checkout Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Circulation"}]}',
+                          'create_time' => '2020-07-08 10:20:48.674399-04',
+                          'description' => 'Uses Circulation source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Circulation -> (None) Circulating Library -> Short (Policy) Name as "Circulation Library"
+Circulation -> Circ ID (Count) as "Circulation Count"
+
+Base Filters:
+
+Circulation -> (None) Circulating Item -> (None) Call Number/Volume -> (None) Bib Record -> (None) Fixed Field Entry -> Form (Equals) ("d")
+Circulation -> Checkout Date/Time (Date) (Between)
+
+Form Code:
+
+d = Large Print',
+                          'owner' => 402541
+                        },
+          'create_time' => '2020-07-08 11:52:08.709075-04',
+          'description' => '',
+          'owner' => 402541,
+          'recur' => 0,
+          'name' => 'FY 2020 Circulation Count of Large Print  Materials'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'display_cols' => [
+                              {
+                                'index' => 0,
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'name' => 'circ_lib',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Checkout / Renewal Library',
+                                                          'key' => 'id',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'label' => 'Organizational Unit',
+                                              'id' => 'circ.aou',
+                                              'from' => 'circ',
+                                              'struct' => {
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'name' => 'circ_lib',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'label' => 'Checkout / Renewal Library',
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Circulation Library',
+                                'name' => 'shortname',
+                                'doc_text' => '',
+                                'path_label' => 'Circulation :: Circulating Library (inner)'
+                              },
+                              {
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                 'transform' => 'count',
+                                                 'label' => 'Count'
+                                               },
+                                'label' => 'Circ ID',
+                                'path_label' => 'Circulation',
+                                'index' => 1,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'label' => 'Circulation',
+                                                            'name' => 'circ',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'label' => 'Circulation',
+                                              'jtype' => 'inner'
+                                            }
+                                          ]
+                              }
+                            ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '715fac939c0c27334578af4486d51210',
+                          'alias' => 'Circulation Library',
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'path' => 'circ-id',
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Circ ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'transform' => 'count',
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'doc_text' => '',
+                               'name' => 'item_form',
+                               'label' => 'Form',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'path_label' => 'Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)',
+                               'index' => 2,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'value' => 'd',
+                               'path' => [
+                                           {
+                                             'classname' => 'circ',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'id' => 'circ',
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'circ',
+                                                           'classname' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         }
+                                           },
+                                           {
+                                             'from' => 'circ',
+                                             'id' => 'circ.acp',
+                                             'struct' => {
+                                                           'table' => 'asset.copy',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'classname' => 'acp',
+                                                           'label' => 'Item'
+                                                         },
+                                             'label' => 'Item',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acp',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'name' => 'target_copy',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Circulating Item',
+                                                         'class' => 'acp',
+                                                         'key' => 'id'
+                                                       },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'label' => 'Circulating Item',
+                                                           'key' => 'id',
+                                                           'name' => 'target_copy'
+                                                         },
+                                             'table' => 'asset.copy'
+                                           },
+                                           {
+                                             'struct' => {
+                                                           'name' => 'acn',
+                                                           'classname' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'table' => 'asset.call_number',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'id' => 'acp.acn',
+                                             'from' => 'acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'acn',
+                                                         'label' => 'Call Number/Volume',
+                                                         'key' => 'id',
+                                                         'name' => 'call_number'
+                                                       },
+                                             'classname' => 'acn',
+                                             'jtype' => 'inner',
+                                             'label' => 'Call Number/Volume',
+                                             'table' => 'asset.call_number',
+                                             'uplink' => {
+                                                           'name' => 'call_number',
+                                                           'class' => 'acn',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Call Number/Volume',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'biblio.record_entry',
+                                             'uplink' => {
+                                                           'name' => 'record',
+                                                           'class' => 'bre',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Bib Record',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'link' => {
+                                                         'name' => 'record',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'bre',
+                                                         'key' => 'id',
+                                                         'label' => 'Bib Record',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'classname' => 'bre',
+                                             'jtype' => 'inner',
+                                             'label' => 'Bibliographic Record',
+                                             'id' => 'acn.bre',
+                                             'from' => 'acn',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                           'table' => 'biblio.record_entry',
+                                                           'label' => 'Bibliographic Record',
+                                                           'classname' => 'bre',
+                                                           'name' => 'bre',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         }
+                                           },
+                                           {
+                                             'from' => 'bre',
+                                             'id' => 'bre.mrd',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'metabib.rec_descriptor_id_seq',
+                                                           'table' => 'metabib.rec_descriptor',
+                                                           'pkey' => 'id',
+                                                           'name' => 'mrd',
+                                                           'label' => 'Basic Record Descriptor',
+                                                           'classname' => 'mrd'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Basic Record Descriptor',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'mrd',
+                                                         'key' => 'record',
+                                                         'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                         'name' => 'fixed_fields',
+                                                         'reltype' => 'might_have',
+                                                         'label' => 'Fixed Field Entry'
+                                                       },
+                                             'classname' => 'mrd',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'mrd',
+                                                           'key' => 'record',
+                                                           'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'fixed_fields',
+                                                           'reltype' => 'might_have',
+                                                           'label' => 'Fixed Field Entry'
+                                                         },
+                                             'table' => 'metabib.rec_descriptor'
+                                           }
+                                         ],
+                               'datatype' => 'text'
+                             },
+                             {
+                               'index' => 3,
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'datatype' => 'timestamp',
+                               'path' => [
+                                           {
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'action.circulation',
+                                                           'name' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'classname' => 'circ',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'id' => 'circ',
+                                             'classname' => 'circ',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'transform' => {
+                                                'transform' => 'date',
+                                                'label' => 'Date',
+                                                'aggregate' => undef
+                                              },
+                               'label' => 'Checkout Date/Time',
+                               'path_label' => 'Circulation'
+                             }
+                           ],
+          'version' => 5,
+          'doc_url' => '',
+          'from' => {
+                      'label' => 'Circulation',
+                      'idlclass' => 'circ',
+                      'join' => {
+                                  'target_copy-c04d21c9fe3de7845ae87a892351d59c' => {
+                                                                                      'idlclass' => 'acp',
+                                                                                      'key' => 'id',
+                                                                                      'join' => {
+                                                                                                  'call_number-8e2b33229707683d00a4879c97d184c2' => {
+                                                                                                                                                      'idlclass' => 'acn',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'record-d3305dbc9fd90da113198381c9f3fe8c' => {
+                                                                                                                                                                                                                 'path' => 'circ-target_copy-call_number-record',
+                                                                                                                                                                                                                 'alias' => 'd3305dbc9fd90da113198381c9f3fe8c',
+                                                                                                                                                                                                                 'type' => 'inner',
+                                                                                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                                                                                 'join' => {
+                                                                                                                                                                                                                             'id-fixed_fields-91e9df6db7fd03ce9f3919a7a9e22bca' => {
+                                                                                                                                                                                                                                                                                     'path' => 'circ-target_copy-call_number-record-id-fixed_fields',
+                                                                                                                                                                                                                                                                                     'type' => 'inner',
+                                                                                                                                                                                                                                                                                     'alias' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                                                                                                                                                                                                                                                                                     'table' => 'metabib.rec_descriptor',
+                                                                                                                                                                                                                                                                                     'idlclass' => 'mrd',
+                                                                                                                                                                                                                                                                                     'label' => 'Circulation -> Item -> Call Number/Volume -> Bibliographic Record :: Fixed Field Entry (inner)',
+                                                                                                                                                                                                                                                                                     'key' => 'record'
+                                                                                                                                                                                                                                                                                   }
+                                                                                                                                                                                                                           },
+                                                                                                                                                                                                                 'key' => 'id',
+                                                                                                                                                                                                                 'idlclass' => 'bre'
+                                                                                                                                                                                                               }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'path' => 'circ-target_copy-call_number',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'alias' => '8e2b33229707683d00a4879c97d184c2'
+                                                                                                                                                    }
+                                                                                                },
+                                                                                      'table' => 'asset.copy',
+                                                                                      'path' => 'circ-target_copy',
+                                                                                      'alias' => 'c04d21c9fe3de7845ae87a892351d59c',
+                                                                                      'type' => 'inner'
+                                                                                    },
+                                  'circ_lib-1b1556a777440479f8596f01727da8aa' => {
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'path' => 'circ-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => '715fac939c0c27334578af4486d51210',
+                                                                                   'key' => 'id',
+                                                                                   'label' => 'Circulation :: Circulating Library (inner)',
+                                                                                   'idlclass' => 'aou'
+                                                                                 }
+                                },
+                      'table' => 'action.circulation',
+                      'path' => 'circ-circ',
+                      'alias' => 'f45381a54504218e39aca33492d29306'
+                    },
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => 'd'
+                                        },
+                         'alias' => 'Form',
+                         'relation' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                         'path' => 'mrd-item_form',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'item_form',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'aggregate' => 0,
+                                       'transform' => 'date'
+                                     },
+                         'path' => 'circ-xact_start',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'alias' => 'Checkout Date/Time',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'circ',
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-07-08 11:52:08.709075-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_builder' => bless( {
+                                                               '_rels' => {
+                                                                            '715fac939c0c27334578af4486d51210' => bless( {
+                                                                                                                           '_alias' => '715fac939c0c27334578af4486d51210',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_join' => [],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_sql' => 'actor.org_unit AS "715fac939c0c27334578af4486d51210"',
+                                                                                                                           '_table' => 'actor.org_unit',
+                                                                                                                           '_join_type' => 'inner'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'f45381a54504218e39aca33492d29306' => bless( {
+                                                                                                                           '_alias' => 'f45381a54504218e39aca33492d29306',
+                                                                                                                           '_sql' => 'action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN asset.copy AS "c04d21c9fe3de7845ae87a892351d59c" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "c04d21c9fe3de7845ae87a892351d59c"."id")
+	INNER JOIN asset.call_number AS "8e2b33229707683d00a4879c97d184c2" ON ("c04d21c9fe3de7845ae87a892351d59c"."call_number" = "8e2b33229707683d00a4879c97d184c2"."id")
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")
+	INNER JOIN actor.org_unit AS "715fac939c0c27334578af4486d51210" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "715fac939c0c27334578af4486d51210"."id")',
+                                                                                                                           '_table' => 'action.circulation',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_nullable' => undef,
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_table' => 'asset.copy',
+                                                                                                                                                                          '_sql' => 'asset.copy AS "c04d21c9fe3de7845ae87a892351d59c"',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_sql' => '
+	INNER JOIN asset.call_number AS "8e2b33229707683d00a4879c97d184c2" ON ("c04d21c9fe3de7845ae87a892351d59c"."call_number" = "8e2b33229707683d00a4879c97d184c2"."id")
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")',
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                '_right_rel' => bless( {
+                                                                                                                                                                                                                         '_is_join' => 1,
+                                                                                                                                                                                                                         '_alias' => '8e2b33229707683d00a4879c97d184c2',
+                                                                                                                                                                                                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                         '_columns' => [],
+                                                                                                                                                                                                                         '_join' => [
+                                                                                                                                                                                                                                      bless( {
+                                                                                                                                                                                                                                               '_left_col' => 'record',
+                                                                                                                                                                                                                                               '_right_col' => 'id',
+                                                                                                                                                                                                                                               '_join_type' => 'i',
+                                                                                                                                                                                                                                               '_right_rel' => bless( {
+                                                                                                                                                                                                                                                                        '_sql' => 'biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c"',
+                                                                                                                                                                                                                                                                        '_table' => 'biblio.record_entry',
+                                                                                                                                                                                                                                                                        '_join_type' => 'inner',
+                                                                                                                                                                                                                                                                        '_nullable' => undef,
+                                                                                                                                                                                                                                                                        '_alias' => 'd3305dbc9fd90da113198381c9f3fe8c',
+                                                                                                                                                                                                                                                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                                                                        '_join' => [
+                                                                                                                                                                                                                                                                                     bless( {
+                                                                                                                                                                                                                                                                                              '_sql' => '
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")',
+                                                                                                                                                                                                                                                                                              '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                                                                                                              '_right_rel' => bless( {
+                                                                                                                                                                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                                                                                                                                                                       '_alias' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                                                                                                                                                                                                                                                                                                                       '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                                                                                                                                                                       '_join_type' => 'inner',
+                                                                                                                                                                                                                                                                                                                       '_sql' => 'metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a"',
+                                                                                                                                                                                                                                                                                                                       '_table' => 'metabib.rec_descriptor'
+                                                                                                                                                                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                                                                                                              '_join_type' => 'i',
+                                                                                                                                                                                                                                                                                              '_right_col' => 'record',
+                                                                                                                                                                                                                                                                                              '_left_col' => 'id'
+                                                                                                                                                                                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                                                                                                                   ],
+                                                                                                                                                                                                                                                                        '_columns' => [],
+                                                                                                                                                                                                                                                                        '_is_join' => 1
+                                                                                                                                                                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                                                               '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                                                               '_sql' => '
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")'
+                                                                                                                                                                                                                                             }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                                                                    ],
+                                                                                                                                                                                                                         '_join_type' => 'inner',
+                                                                                                                                                                                                                         '_nullable' => undef,
+                                                                                                                                                                                                                         '_sql' => 'asset.call_number AS "8e2b33229707683d00a4879c97d184c2"',
+                                                                                                                                                                                                                         '_table' => 'asset.call_number'
+                                                                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                '_join_type' => 'i',
+                                                                                                                                                                                                '_left_col' => 'call_number',
+                                                                                                                                                                                                '_right_col' => 'id'
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_alias' => 'c04d21c9fe3de7845ae87a892351d59c'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN asset.copy AS "c04d21c9fe3de7845ae87a892351d59c" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "c04d21c9fe3de7845ae87a892351d59c"."id")
+	INNER JOIN asset.call_number AS "8e2b33229707683d00a4879c97d184c2" ON ("c04d21c9fe3de7845ae87a892351d59c"."call_number" = "8e2b33229707683d00a4879c97d184c2"."id")
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'},
+                                                                                                                                                 '_left_col' => 'target_copy',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "715fac939c0c27334578af4486d51210" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "715fac939c0c27334578af4486d51210"."id")',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'},
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'715fac939c0c27334578af4486d51210'},
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'circ_lib',
+                                                                                                                                                 '_right_col' => 'id'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_nullable' => undef
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '6535cc17cce2bc4a7afc1398769b7c4a' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            'd3305dbc9fd90da113198381c9f3fe8c' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            '8e2b33229707683d00a4879c97d184c2' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            'c04d21c9fe3de7845ae87a892351d59c' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_relative_time' => '2020-07-08 11:52:08.709075-04',
+                                                               '_pivot_data' => '2',
+                                                               '_params' => {
+                                                                              '__pivot_data' => '2',
+                                                                              '__pivot_label' => '',
+                                                                              'P0' => [
+                                                                                        '2019-07-01',
+                                                                                        '2020-06-08'
+                                                                                      ]
+                                                                            },
+                                                               '_resultset_limit' => 1048575,
+                                                               '_sql' => undef
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_condition' => {
+                                                          '=' => 'd'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'item_form'
+                                                     },
+                                        '_relation' => '6535cc17cce2bc4a7afc1398769b7c4a',
+                                        '_sql' => '"6535cc17cce2bc4a7afc1398769b7c4a"."item_form" = $_64374$d$_64374$',
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'xact_start'
+                                                     },
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_sql' => 'date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_64374$2019-07-01$_64374$ AND $_64374$2020-06-08$_64374$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_alias' => 'Circulation Library',
+                                         '_column' => {
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'shortname'
+                                                      },
+                                         '_sql' => '"715fac939c0c27334578af4486d51210"."shortname" AS "Circulation Library"',
+                                         '_relation' => '715fac939c0c27334578af4486d51210',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => 'f45381a54504218e39aca33492d29306',
+                                         '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ ID"',
+                                         '_column' => {
+                                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                        'transform' => 'count',
+                                                        'transform_label' => 'Count',
+                                                        'colname' => 'id'
+                                                      },
+                                         '_alias' => 'Circ ID',
+                                         '_transform' => 'count',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_relation' => '715fac939c0c27334578af4486d51210',
+                                           '_sql' => '"715fac939c0c27334578af4486d51210"."shortname" ASC',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'count',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") ASC',
+                                           '_relation' => 'f45381a54504218e39aca33492d29306'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => [],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"715fac939c0c27334578af4486d51210"."shortname" AS "Circulation Library",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ ID"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN asset.copy AS "c04d21c9fe3de7845ae87a892351d59c" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "c04d21c9fe3de7845ae87a892351d59c"."id")
+	INNER JOIN asset.call_number AS "8e2b33229707683d00a4879c97d184c2" ON ("c04d21c9fe3de7845ae87a892351d59c"."call_number" = "8e2b33229707683d00a4879c97d184c2"."id")
+	INNER JOIN biblio.record_entry AS "d3305dbc9fd90da113198381c9f3fe8c" ON ("8e2b33229707683d00a4879c97d184c2"."record" = "d3305dbc9fd90da113198381c9f3fe8c"."id")
+	INNER JOIN metabib.rec_descriptor AS "6535cc17cce2bc4a7afc1398769b7c4a" ON ("d3305dbc9fd90da113198381c9f3fe8c"."id" = "6535cc17cce2bc4a7afc1398769b7c4a"."record")
+	INNER JOIN actor.org_unit AS "715fac939c0c27334578af4486d51210" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "715fac939c0c27334578af4486d51210"."id")
+  WHERE	"6535cc17cce2bc4a7afc1398769b7c4a"."item_form" = $_64374$d$_64374$
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_64374$2019-07-01$_64374$ AND $_64374$2020-06-08$_64374$
+  GROUP BY 1
+  ORDER BY "715fac939c0c27334578af4486d51210"."shortname" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+'
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

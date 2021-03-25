@@ -1,0 +1,17 @@
+<center><img src="https://pines.georgialibraries.org/dokuwiki/lib/exe/fetch.php?media=logo.png" style="width:150px;"><br/>
+<b>www.gapines.org</b><br/>
+<b>{{current_location.name}}</b></center>
+<h3>Checkout Receipt</h3>
+<div>You checked out the following items:</div>
+<br/>
+<ol>
+<div ng-repeat="checkout in circulations">
+      <li><b>{{checkout.title}}</b><br/>
+      Barcode: {{checkout.copy.barcode}}<br/>
+      Due: {{checkout.circ.due_date | date:"M/d/yyyy"}}
+    </li>
+</div>
+</ol>
+<div style="font-weight:bold;">Total Amount Owed: {{patron_money.balance_owed | currency}}</div>
+<hr/>
+<div>{{current_location.shortname}} {{today | date:'short'}}</div>

@@ -1,0 +1,1699 @@
+<html><head><meta charset='utf-8'><title>DEBUG: test 3 again</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"0dedf4f8c60c2d21e02de82082a7f62b"."shortname" AS "Circulating Library",
+	"016fb9411002aa9643f0ae914dc920e6"."name" AS "Shelving Location",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Total Circulations",
+	"2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" AS "Circulation Modifier"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.org_unit AS "0dedf4f8c60c2d21e02de82082a7f62b" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "0dedf4f8c60c2d21e02de82082a7f62b"."id")
+	INNER JOIN asset.copy AS "2bc58ff2e41a1dbaf4563d6aa271db78" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "2bc58ff2e41a1dbaf4563d6aa271db78"."id")
+	INNER JOIN asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6" ON ("2bc58ff2e41a1dbaf4563d6aa271db78"."location" = "016fb9411002aa9643f0ae914dc920e6"."id")
+  WHERE	"0dedf4f8c60c2d21e02de82082a7f62b"."id" IN ($_50844$394$_50844$)
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN SYMMETRIC $_50844$2021-01-04$_50844$ AND $_50844$2021-01-07$_50844$
+	AND "f45381a54504218e39aca33492d29306"."opac_renewal" = $_50844$f$_50844$
+	AND "f45381a54504218e39aca33492d29306"."phone_renewal" = $_50844$f$_50844$
+	AND "f45381a54504218e39aca33492d29306"."desk_renewal" = $_50844$f$_50844$
+  GROUP BY 1, 2, 4
+  ORDER BY "0dedf4f8c60c2d21e02de82082a7f62b"."shortname" ASC, "016fb9411002aa9643f0ae914dc920e6"."name" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC, "2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 2569,
+          'name' => 'Circulation Count (without Renewals)',
+          'id' => 68834,
+          'create_time' => '2019-10-02 11:55:06.877649-04',
+          'description' => 'Number of initial circulations (not renewals) for a specified date range, broken down by Circulation Modifiers and Shelving Locations.
+---------------------------------------------------------------------
+Uses Circulation source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Circulation -> (Default) Circulating Library -> Short (Policy) Name as "Circulating Library"
+Circulation -> (Default) Circulating Item -> Circulation Modifier
+Circulation -> (Default) Circulating Item -> (Default) Shelving Location -> Name as "Shelving Location"
+Circulation -> Circ ID (Count) as "Total Circulations"
+
+
+Base Filters:
+
+Circulation -> (Default) Circulating Library -> Organizational Unit ID (In list)
+Circulation -> Check Out Date/Time (Date) (Between)
+Circulation -> OPAC Renewal (Equals) (False)
+Circulation -> Phone Renewal (Equals) (False)
+Circulation -> Desk Renewal (Equals) (False)',
+          'owner' => 2923364,
+          'data' => '{"version":5,"doc_url":"","core_class":"circ","select":[{"alias":"Circulating Library","path":"aou-shortname","field_doc":"","relation":"0dedf4f8c60c2d21e02de82082a7f62b","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location","path":"acpl-name","field_doc":"","relation":"016fb9411002aa9643f0ae914dc920e6","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Total Circulations","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}},{"alias":"Circulation Modifier","path":"acp-circ_modifier","field_doc":"","relation":"2bc58ff2e41a1dbaf4563d6aa271db78","column":{"colname":"circ_modifier","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"circ_lib-1b1556a777440479f8596f01727da8aa":{"type":"inner","key":"id","alias":"0dedf4f8c60c2d21e02de82082a7f62b","path":"circ-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Circulation :: Circulating Library"},"target_copy-c04d21c9fe3de7845ae87a892351d59c":{"type":"inner","key":"id","alias":"2bc58ff2e41a1dbaf4563d6aa271db78","path":"circ-target_copy","table":"asset.copy","idlclass":"acp","join":{"location-3df612e3d6add659bf02bc35668c3ed7":{"type":"inner","key":"id","alias":"016fb9411002aa9643f0ae914dc920e6","path":"circ-target_copy-location","table":"asset.copy_location","idlclass":"acpl","label":"Circulation -> Item :: Shelving Location"}},"label":"Circulation :: Circulating Item"}},"label":"Circulation"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"0dedf4f8c60c2d21e02de82082a7f62b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Check Out Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}},{"alias":"OPAC Renewal","path":"circ-opac_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"opac_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Phone Renewal","path":"circ-phone_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"phone_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Desk Renewal","path":"circ-desk_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"desk_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Circulating Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library"},{"name":"name","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Copy/Shelving Location","from":"acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"index":1,"label":"Shelving Location","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation -> Item :: Shelving Location"},{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":2,"label":"Total Circulations","datatype":"id","doc_text":"","transform":{"label":"Count","transform":"count","aggregate":true},"path_label":"Circulation"},{"name":"circ_modifier","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":3,"label":"Circulation Modifier","datatype":"link","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Item"}],"filter_cols":[{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":4,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library"},{"name":"xact_start","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":5,"label":"Check Out Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Circulation"},{"name":"opac_renewal","label":"OPAC Renewal","datatype":"bool","index":2,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"phone_renewal","label":"Phone Renewal","datatype":"bool","index":3,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"desk_renewal","label":"Desk Renewal","datatype":"bool","index":4,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"}]}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'core_class' => 'circ',
+          'from' => {
+                      'alias' => 'f45381a54504218e39aca33492d29306',
+                      'table' => 'action.circulation',
+                      'idlclass' => 'circ',
+                      'label' => 'Circulation',
+                      'path' => 'circ-circ',
+                      'join' => {
+                                  'circ_lib-1b1556a777440479f8596f01727da8aa' => {
+                                                                                   'alias' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'type' => 'inner',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'label' => 'Circulation :: Circulating Library',
+                                                                                   'path' => 'circ-circ_lib',
+                                                                                   'key' => 'id'
+                                                                                 },
+                                  'target_copy-c04d21c9fe3de7845ae87a892351d59c' => {
+                                                                                      'join' => {
+                                                                                                  'location-3df612e3d6add659bf02bc35668c3ed7' => {
+                                                                                                                                                   'alias' => '016fb9411002aa9643f0ae914dc920e6',
+                                                                                                                                                   'table' => 'asset.copy_location',
+                                                                                                                                                   'type' => 'inner',
+                                                                                                                                                   'path' => 'circ-target_copy-location',
+                                                                                                                                                   'label' => 'Circulation -> Item :: Shelving Location',
+                                                                                                                                                   'idlclass' => 'acpl',
+                                                                                                                                                   'key' => 'id'
+                                                                                                                                                 }
+                                                                                                },
+                                                                                      'idlclass' => 'acp',
+                                                                                      'label' => 'Circulation :: Circulating Item',
+                                                                                      'path' => 'circ-target_copy',
+                                                                                      'key' => 'id',
+                                                                                      'table' => 'asset.copy',
+                                                                                      'type' => 'inner',
+                                                                                      'alias' => '2bc58ff2e41a1dbaf4563d6aa271db78'
+                                                                                    }
+                                }
+                    },
+          'select' => [
+                        {
+                          'relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                          'path' => 'aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Circulating Library'
+                        },
+                        {
+                          'path' => 'acpl-name',
+                          'relation' => '016fb9411002aa9643f0ae914dc920e6',
+                          'alias' => 'Shelving Location',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      }
+                        },
+                        {
+                          'path' => 'circ-id',
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Total Circulations',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Count',
+                                        'transform' => 'count',
+                                        'colname' => 'id'
+                                      }
+                        },
+                        {
+                          'alias' => 'Circulation Modifier',
+                          'column' => {
+                                        'colname' => 'circ_modifier',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'path' => 'acp-circ_modifier',
+                          'relation' => '2bc58ff2e41a1dbaf4563d6aa271db78'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'index' => 4,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Circulation :: Circulating Library',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.circulation',
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'classname' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           },
+                                           {
+                                             'id' => 'circ.aou',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'circ_lib',
+                                                         'label' => 'Checkout / Renewal Library',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'class' => 'aou'
+                                                       },
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'table' => 'actor.org_unit',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'classname' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'circ_lib',
+                                                           'key' => 'id',
+                                                           'label' => 'Checkout / Renewal Library',
+                                                           'type' => 'link',
+                                                           'datatype' => 'org_unit',
+                                                           'class' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Organizational Unit',
+                                             'from' => 'circ',
+                                             'classname' => 'aou'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'id'
+                             },
+                             {
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'aggregate' => undef,
+                                                'transform' => 'date'
+                                              },
+                               'name' => 'xact_start',
+                               'index' => 5,
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Circulation',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Check Out Date/Time'
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'classname' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'OPAC Renewal',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'index' => 2,
+                               'datatype' => 'bool',
+                               'path_label' => 'Circulation',
+                               'value' => 'f',
+                               'name' => 'opac_renewal',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              }
+                             },
+                             {
+                               'datatype' => 'bool',
+                               'path_label' => 'Circulation',
+                               'index' => 3,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'label' => 'Circulation',
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'name' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ'
+                                           }
+                                         ],
+                               'label' => 'Phone Renewal',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'phone_renewal',
+                               'value' => 'f'
+                             },
+                             {
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'desk_renewal',
+                               'value' => 'f',
+                               'path_label' => 'Circulation',
+                               'datatype' => 'bool',
+                               'index' => 4,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'label' => 'Circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'name' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Desk Renewal'
+                             }
+                           ],
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'path_label' => 'Circulation :: Circulating Library',
+                                'datatype' => 'text',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'label' => 'Circulation',
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'label' => 'Circulation',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'action.circulation'
+                                            },
+                                            {
+                                              'id' => 'circ.aou',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'circ_lib',
+                                                          'label' => 'Checkout / Renewal Library',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit',
+                                                          'class' => 'aou'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib',
+                                                            'label' => 'Checkout / Renewal Library',
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link',
+                                                            'class' => 'aou'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'aou',
+                                                            'name' => 'aou',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit'
+                                                          },
+                                              'label' => 'Organizational Unit',
+                                              'classname' => 'aou',
+                                              'from' => 'circ'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Circulating Library'
+                              },
+                              {
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'name',
+                                'path_label' => 'Circulation -> Item :: Shelving Location',
+                                'datatype' => 'text',
+                                'index' => 1,
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ',
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'id' => 'circ.acp',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'acp',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'target_copy',
+                                                          'label' => 'Circulating Item'
+                                                        },
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'classname' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'label' => 'Item',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'asset.copy',
+                                                            'name' => 'acp'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'target_copy',
+                                                            'key' => 'id',
+                                                            'label' => 'Circulating Item',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'acp'
+                                                          },
+                                              'label' => 'Item',
+                                              'from' => 'circ',
+                                              'classname' => 'acp'
+                                            },
+                                            {
+                                              'label' => 'Copy/Shelving Location',
+                                              'classname' => 'acpl',
+                                              'from' => 'acp',
+                                              'id' => 'acp.acpl',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'location',
+                                                          'label' => 'Shelving Location',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'class' => 'acpl'
+                                                        },
+                                              'uplink' => {
+                                                            'class' => 'acpl',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Shelving Location',
+                                                            'name' => 'location',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy_location',
+                                              'struct' => {
+                                                            'label' => 'Copy/Shelving Location',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acpl',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acpl',
+                                                            'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                            'table' => 'asset.copy_location'
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Shelving Location'
+                              },
+                              {
+                                'datatype' => 'id',
+                                'path_label' => 'Circulation',
+                                'index' => 2,
+                                'label' => 'Total Circulations',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'classname' => 'circ',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.circulation',
+                                                            'name' => 'circ'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'label' => 'Count',
+                                                 'transform' => 'count',
+                                                 'aggregate' => $VAR1->{'select'}[2]{'column'}{'aggregate'}
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'index' => 3,
+                                'path_label' => 'Circulation :: Circulating Item',
+                                'datatype' => 'link',
+                                'path' => [
+                                            {
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ'
+                                                          },
+                                              'label' => 'Circulation',
+                                              'id' => 'circ'
+                                            },
+                                            {
+                                              'label' => 'Item',
+                                              'classname' => 'acp',
+                                              'from' => 'circ',
+                                              'id' => 'circ.acp',
+                                              'link' => {
+                                                          'label' => 'Circulating Item',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'target_copy',
+                                                          'key' => 'id',
+                                                          'class' => 'acp',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'label' => 'Circulating Item',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'target_copy',
+                                                            'class' => 'acp',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'table' => 'asset.copy',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'classname' => 'acp',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Item'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Circulation Modifier',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'circ_modifier'
+                              }
+                            ],
+          'doc_url' => '',
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'id',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'circ-xact_start',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'aggregate' => 0
+                                     },
+                         'alias' => 'Check Out Date/Time'
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'opac_renewal',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'OPAC Renewal',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'path' => 'circ-opac_renewal'
+                       },
+                       {
+                         'alias' => 'Phone Renewal',
+                         'column' => {
+                                       'colname' => 'phone_renewal',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'path' => 'circ-phone_renewal',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'f45381a54504218e39aca33492d29306'
+                       },
+                       {
+                         'alias' => 'Desk Renewal',
+                         'field_doc' => '',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'desk_renewal'
+                                     },
+                         'path' => 'circ-desk_renewal',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'condition' => {
+                                          '=' => 'f'
+                                        }
+                       }
+                     ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'folder' => 2569,
+                          'name' => 'Circulation Count (without Renewals)',
+                          'id' => 68834,
+                          'create_time' => '2019-10-02 11:55:06.877649-04',
+                          'description' => 'Number of initial circulations (not renewals) for a specified date range, broken down by Circulation Modifiers and Shelving Locations.
+---------------------------------------------------------------------
+Uses Circulation source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Circulation -> (Default) Circulating Library -> Short (Policy) Name as "Circulating Library"
+Circulation -> (Default) Circulating Item -> Circulation Modifier
+Circulation -> (Default) Circulating Item -> (Default) Shelving Location -> Name as "Shelving Location"
+Circulation -> Circ ID (Count) as "Total Circulations"
+
+
+Base Filters:
+
+Circulation -> (Default) Circulating Library -> Organizational Unit ID (In list)
+Circulation -> Check Out Date/Time (Date) (Between)
+Circulation -> OPAC Renewal (Equals) (False)
+Circulation -> Phone Renewal (Equals) (False)
+Circulation -> Desk Renewal (Equals) (False)',
+                          'owner' => 2923364,
+                          'data' => '{"version":5,"doc_url":"","core_class":"circ","select":[{"alias":"Circulating Library","path":"aou-shortname","field_doc":"","relation":"0dedf4f8c60c2d21e02de82082a7f62b","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location","path":"acpl-name","field_doc":"","relation":"016fb9411002aa9643f0ae914dc920e6","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Total Circulations","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}},{"alias":"Circulation Modifier","path":"acp-circ_modifier","field_doc":"","relation":"2bc58ff2e41a1dbaf4563d6aa271db78","column":{"colname":"circ_modifier","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"circ_lib-1b1556a777440479f8596f01727da8aa":{"type":"inner","key":"id","alias":"0dedf4f8c60c2d21e02de82082a7f62b","path":"circ-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Circulation :: Circulating Library"},"target_copy-c04d21c9fe3de7845ae87a892351d59c":{"type":"inner","key":"id","alias":"2bc58ff2e41a1dbaf4563d6aa271db78","path":"circ-target_copy","table":"asset.copy","idlclass":"acp","join":{"location-3df612e3d6add659bf02bc35668c3ed7":{"type":"inner","key":"id","alias":"016fb9411002aa9643f0ae914dc920e6","path":"circ-target_copy-location","table":"asset.copy_location","idlclass":"acpl","label":"Circulation -> Item :: Shelving Location"}},"label":"Circulation :: Circulating Item"}},"label":"Circulation"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"0dedf4f8c60c2d21e02de82082a7f62b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Check Out Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}},{"alias":"OPAC Renewal","path":"circ-opac_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"opac_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Phone Renewal","path":"circ-phone_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"phone_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Desk Renewal","path":"circ-desk_renewal","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"desk_renewal","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Circulating Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library"},{"name":"name","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Copy/Shelving Location","from":"acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"index":1,"label":"Shelving Location","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation -> Item :: Shelving Location"},{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":2,"label":"Total Circulations","datatype":"id","doc_text":"","transform":{"label":"Count","transform":"count","aggregate":true},"path_label":"Circulation"},{"name":"circ_modifier","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Item","from":"circ","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"circ.acp","jtype":"inner","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":3,"label":"Circulation Modifier","datatype":"link","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Item"}],"filter_cols":[{"name":"id","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Organizational Unit","from":"circ","link":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Checkout / Renewal Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":4,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Circulation :: Circulating Library"},{"name":"xact_start","path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"index":5,"label":"Check Out Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Circulation"},{"name":"opac_renewal","label":"OPAC Renewal","datatype":"bool","index":2,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"phone_renewal","label":"Phone Renewal","datatype":"bool","index":3,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"desk_renewal","label":"Desk Renewal","datatype":"bool","index":4,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"}]}'
+                        },
+          'data' => '{"P0":["394"],"P1":["2021-01-04","2021-01-07"],"__pivot_label":"","__pivot_data":"3"}',
+          'description' => '',
+          'owner' => 2923364,
+          'recurrence' => undef,
+          'recur' => 0,
+          'folder' => 5527,
+          'name' => 'test 3 again',
+          'create_time' => '2021-01-08 13:38:08.885494-05',
+          'id' => 189397
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'core_class' => 'circ',
+          'from' => {
+                      'alias' => 'f45381a54504218e39aca33492d29306',
+                      'table' => 'action.circulation',
+                      'idlclass' => 'circ',
+                      'label' => 'Circulation',
+                      'path' => 'circ-circ',
+                      'join' => {
+                                  'circ_lib-1b1556a777440479f8596f01727da8aa' => {
+                                                                                   'alias' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'type' => 'inner',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'label' => 'Circulation :: Circulating Library',
+                                                                                   'path' => 'circ-circ_lib',
+                                                                                   'key' => 'id'
+                                                                                 },
+                                  'target_copy-c04d21c9fe3de7845ae87a892351d59c' => {
+                                                                                      'join' => {
+                                                                                                  'location-3df612e3d6add659bf02bc35668c3ed7' => {
+                                                                                                                                                   'alias' => '016fb9411002aa9643f0ae914dc920e6',
+                                                                                                                                                   'table' => 'asset.copy_location',
+                                                                                                                                                   'type' => 'inner',
+                                                                                                                                                   'path' => 'circ-target_copy-location',
+                                                                                                                                                   'label' => 'Circulation -> Item :: Shelving Location',
+                                                                                                                                                   'idlclass' => 'acpl',
+                                                                                                                                                   'key' => 'id'
+                                                                                                                                                 }
+                                                                                                },
+                                                                                      'idlclass' => 'acp',
+                                                                                      'label' => 'Circulation :: Circulating Item',
+                                                                                      'path' => 'circ-target_copy',
+                                                                                      'key' => 'id',
+                                                                                      'table' => 'asset.copy',
+                                                                                      'type' => 'inner',
+                                                                                      'alias' => '2bc58ff2e41a1dbaf4563d6aa271db78'
+                                                                                    }
+                                }
+                    },
+          'select' => [
+                        {
+                          'relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                          'path' => 'aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Circulating Library'
+                        },
+                        {
+                          'path' => 'acpl-name',
+                          'relation' => '016fb9411002aa9643f0ae914dc920e6',
+                          'alias' => 'Shelving Location',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      }
+                        },
+                        {
+                          'path' => 'circ-id',
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Total Circulations',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Count',
+                                        'transform' => 'count',
+                                        'colname' => 'id'
+                                      }
+                        },
+                        {
+                          'alias' => 'Circulation Modifier',
+                          'column' => {
+                                        'colname' => 'circ_modifier',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'path' => 'acp-circ_modifier',
+                          'relation' => '2bc58ff2e41a1dbaf4563d6aa271db78'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'index' => 4,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Circulation :: Circulating Library',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.circulation',
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'classname' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           },
+                                           {
+                                             'id' => 'circ.aou',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'circ_lib',
+                                                         'label' => 'Checkout / Renewal Library',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'class' => 'aou'
+                                                       },
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'table' => 'actor.org_unit',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'classname' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'circ_lib',
+                                                           'key' => 'id',
+                                                           'label' => 'Checkout / Renewal Library',
+                                                           'type' => 'link',
+                                                           'datatype' => 'org_unit',
+                                                           'class' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Organizational Unit',
+                                             'from' => 'circ',
+                                             'classname' => 'aou'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'id'
+                             },
+                             {
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'aggregate' => undef,
+                                                'transform' => 'date'
+                                              },
+                               'name' => 'xact_start',
+                               'index' => 5,
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Circulation',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Check Out Date/Time'
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'classname' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'label' => 'Circulation'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'OPAC Renewal',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'index' => 2,
+                               'datatype' => 'bool',
+                               'path_label' => 'Circulation',
+                               'value' => 'f',
+                               'name' => 'opac_renewal',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              }
+                             },
+                             {
+                               'datatype' => 'bool',
+                               'path_label' => 'Circulation',
+                               'index' => 3,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'label' => 'Circulation',
+                                             'table' => 'action.circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'name' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'label' => 'Circulation',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ'
+                                           }
+                                         ],
+                               'label' => 'Phone Renewal',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'phone_renewal',
+                               'value' => 'f'
+                             },
+                             {
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'desk_renewal',
+                               'value' => 'f',
+                               'path_label' => 'Circulation',
+                               'datatype' => 'bool',
+                               'index' => 4,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'label' => 'Circulation',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey' => 'id',
+                                                           'name' => 'circ',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'circ',
+                                                           'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Circulation'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'circ'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Desk Renewal'
+                             }
+                           ],
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'path_label' => 'Circulation :: Circulating Library',
+                                'datatype' => 'text',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'label' => 'Circulation',
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'label' => 'Circulation',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'action.circulation'
+                                            },
+                                            {
+                                              'id' => 'circ.aou',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'circ_lib',
+                                                          'label' => 'Checkout / Renewal Library',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit',
+                                                          'class' => 'aou'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib',
+                                                            'label' => 'Checkout / Renewal Library',
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link',
+                                                            'class' => 'aou'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'aou',
+                                                            'name' => 'aou',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit'
+                                                          },
+                                              'label' => 'Organizational Unit',
+                                              'classname' => 'aou',
+                                              'from' => 'circ'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Circulating Library'
+                              },
+                              {
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'name',
+                                'path_label' => 'Circulation -> Item :: Shelving Location',
+                                'datatype' => 'text',
+                                'index' => 1,
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ',
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'id' => 'circ.acp',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'acp',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'target_copy',
+                                                          'label' => 'Circulating Item'
+                                                        },
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'classname' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'label' => 'Item',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'asset.copy',
+                                                            'name' => 'acp'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'target_copy',
+                                                            'key' => 'id',
+                                                            'label' => 'Circulating Item',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'acp'
+                                                          },
+                                              'label' => 'Item',
+                                              'from' => 'circ',
+                                              'classname' => 'acp'
+                                            },
+                                            {
+                                              'label' => 'Copy/Shelving Location',
+                                              'classname' => 'acpl',
+                                              'from' => 'acp',
+                                              'id' => 'acp.acpl',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'location',
+                                                          'label' => 'Shelving Location',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'class' => 'acpl'
+                                                        },
+                                              'uplink' => {
+                                                            'class' => 'acpl',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Shelving Location',
+                                                            'name' => 'location',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy_location',
+                                              'struct' => {
+                                                            'label' => 'Copy/Shelving Location',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acpl',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acpl',
+                                                            'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                            'table' => 'asset.copy_location'
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Shelving Location'
+                              },
+                              {
+                                'datatype' => 'id',
+                                'path_label' => 'Circulation',
+                                'index' => 2,
+                                'label' => 'Total Circulations',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'classname' => 'circ',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.circulation',
+                                                            'name' => 'circ'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'label' => 'Count',
+                                                 'transform' => 'count',
+                                                 'aggregate' => $VAR1->{'select'}[2]{'column'}{'aggregate'}
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'index' => 3,
+                                'path_label' => 'Circulation :: Circulating Item',
+                                'datatype' => 'link',
+                                'path' => [
+                                            {
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'classname' => 'circ',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Circulation',
+                                                            'table' => 'action.circulation',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ'
+                                                          },
+                                              'label' => 'Circulation',
+                                              'id' => 'circ'
+                                            },
+                                            {
+                                              'label' => 'Item',
+                                              'classname' => 'acp',
+                                              'from' => 'circ',
+                                              'id' => 'circ.acp',
+                                              'link' => {
+                                                          'label' => 'Circulating Item',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'target_copy',
+                                                          'key' => 'id',
+                                                          'class' => 'acp',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'label' => 'Circulating Item',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'target_copy',
+                                                            'class' => 'acp',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'table' => 'asset.copy',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'classname' => 'acp',
+                                                            'core' => $VAR1->{'select'}[2]{'column'}{'aggregate'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Item'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Circulation Modifier',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'circ_modifier'
+                              }
+                            ],
+          'doc_url' => '',
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'id',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'circ-xact_start',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'aggregate' => 0
+                                     },
+                         'alias' => 'Check Out Date/Time'
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'opac_renewal',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'OPAC Renewal',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'path' => 'circ-opac_renewal'
+                       },
+                       {
+                         'alias' => 'Phone Renewal',
+                         'column' => {
+                                       'colname' => 'phone_renewal',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'path' => 'circ-phone_renewal',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'f45381a54504218e39aca33492d29306'
+                       },
+                       {
+                         'alias' => 'Desk Renewal',
+                         'field_doc' => '',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'desk_renewal'
+                                     },
+                         'path' => 'circ-desk_renewal',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'condition' => {
+                                          '=' => 'f'
+                                        }
+                       }
+                     ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2021-01-08 13:38:08.885494-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	"0dedf4f8c60c2d21e02de82082a7f62b"."shortname" AS "Circulating Library",
+	"016fb9411002aa9643f0ae914dc920e6"."name" AS "Shelving Location",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Total Circulations",
+	"2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" AS "Circulation Modifier"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.org_unit AS "0dedf4f8c60c2d21e02de82082a7f62b" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "0dedf4f8c60c2d21e02de82082a7f62b"."id")
+	INNER JOIN asset.copy AS "2bc58ff2e41a1dbaf4563d6aa271db78" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "2bc58ff2e41a1dbaf4563d6aa271db78"."id")
+	INNER JOIN asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6" ON ("2bc58ff2e41a1dbaf4563d6aa271db78"."location" = "016fb9411002aa9643f0ae914dc920e6"."id")
+  WHERE	"0dedf4f8c60c2d21e02de82082a7f62b"."id" IN ($_50844$394$_50844$)
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN SYMMETRIC $_50844$2021-01-04$_50844$ AND $_50844$2021-01-07$_50844$
+	AND "f45381a54504218e39aca33492d29306"."opac_renewal" = $_50844$f$_50844$
+	AND "f45381a54504218e39aca33492d29306"."phone_renewal" = $_50844$f$_50844$
+	AND "f45381a54504218e39aca33492d29306"."desk_renewal" = $_50844$f$_50844$
+  GROUP BY 1, 2, 4
+  ORDER BY "0dedf4f8c60c2d21e02de82082a7f62b"."shortname" ASC, "016fb9411002aa9643f0ae914dc920e6"."name" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC, "2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => bless( {
+                                     '_sql' => 'action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.org_unit AS "0dedf4f8c60c2d21e02de82082a7f62b" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "0dedf4f8c60c2d21e02de82082a7f62b"."id")
+	INNER JOIN asset.copy AS "2bc58ff2e41a1dbaf4563d6aa271db78" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "2bc58ff2e41a1dbaf4563d6aa271db78"."id")
+	INNER JOIN asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6" ON ("2bc58ff2e41a1dbaf4563d6aa271db78"."location" = "016fb9411002aa9643f0ae914dc920e6"."id")',
+                                     '_builder' => bless( {
+                                                            '_params' => {
+                                                                           'P0' => [
+                                                                                     '394'
+                                                                                   ],
+                                                                           '__pivot_label' => '',
+                                                                           'P1' => [
+                                                                                     '2021-01-04',
+                                                                                     '2021-01-07'
+                                                                                   ],
+                                                                           '__pivot_data' => '3'
+                                                                         },
+                                                            '_resultset_limit' => 1048575,
+                                                            '_sql' => undef,
+                                                            '_pivot_data' => '3',
+                                                            '_rels' => {
+                                                                         '016fb9411002aa9643f0ae914dc920e6' => bless( {
+                                                                                                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                                                                                                        '_alias' => '016fb9411002aa9643f0ae914dc920e6',
+                                                                                                                        '_join_type' => 'inner',
+                                                                                                                        '_sql' => 'asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6"',
+                                                                                                                        '_is_join' => 1,
+                                                                                                                        '_columns' => [],
+                                                                                                                        '_join' => [],
+                                                                                                                        '_table' => 'asset.copy_location'
+                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                         'f45381a54504218e39aca33492d29306' => $VAR1->{'_from'},
+                                                                         '0dedf4f8c60c2d21e02de82082a7f62b' => bless( {
+                                                                                                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                                                                                                        '_alias' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                                                                                                        '_sql' => 'actor.org_unit AS "0dedf4f8c60c2d21e02de82082a7f62b"',
+                                                                                                                        '_join_type' => 'inner',
+                                                                                                                        '_columns' => [],
+                                                                                                                        '_join' => [],
+                                                                                                                        '_table' => 'actor.org_unit',
+                                                                                                                        '_is_join' => 1
+                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                         '2bc58ff2e41a1dbaf4563d6aa271db78' => bless( {
+                                                                                                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                                                                                                        '_alias' => '2bc58ff2e41a1dbaf4563d6aa271db78',
+                                                                                                                        '_nullable' => undef,
+                                                                                                                        '_sql' => 'asset.copy AS "2bc58ff2e41a1dbaf4563d6aa271db78"',
+                                                                                                                        '_join_type' => 'inner',
+                                                                                                                        '_columns' => [],
+                                                                                                                        '_join' => [
+                                                                                                                                     bless( {
+                                                                                                                                              '_right_rel' => $VAR1->{'_from'}{'_builder'}{'_rels'}{'016fb9411002aa9643f0ae914dc920e6'},
+                                                                                                                                              '_left_col' => 'location',
+                                                                                                                                              '_left_rel' => $VAR1->{'_from'}{'_builder'}{'_rels'}{'2bc58ff2e41a1dbaf4563d6aa271db78'},
+                                                                                                                                              '_right_col' => 'id',
+                                                                                                                                              '_join_type' => 'i',
+                                                                                                                                              '_sql' => '
+	INNER JOIN asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6" ON ("2bc58ff2e41a1dbaf4563d6aa271db78"."location" = "016fb9411002aa9643f0ae914dc920e6"."id")'
+                                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                   ],
+                                                                                                                        '_table' => 'asset.copy',
+                                                                                                                        '_is_join' => 1
+                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                       },
+                                                            '_relative_time' => '2021-01-08 13:38:08.885494-05'
+                                                          }, 'OpenILS::Reporter::SQLBuilder' ),
+                                     '_nullable' => undef,
+                                     '_columns' => [],
+                                     '_join' => [
+                                                  bless( {
+                                                           '_right_rel' => $VAR1->{'_from'}{'_builder'}{'_rels'}{'0dedf4f8c60c2d21e02de82082a7f62b'},
+                                                           '_left_col' => 'circ_lib',
+                                                           '_sql' => '
+	INNER JOIN actor.org_unit AS "0dedf4f8c60c2d21e02de82082a7f62b" ON ("f45381a54504218e39aca33492d29306"."circ_lib" = "0dedf4f8c60c2d21e02de82082a7f62b"."id")',
+                                                           '_join_type' => 'i',
+                                                           '_right_col' => 'id',
+                                                           '_left_rel' => $VAR1->{'_from'}
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                  bless( {
+                                                           '_left_col' => 'target_copy',
+                                                           '_right_col' => 'id',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_sql' => '
+	INNER JOIN asset.copy AS "2bc58ff2e41a1dbaf4563d6aa271db78" ON ("f45381a54504218e39aca33492d29306"."target_copy" = "2bc58ff2e41a1dbaf4563d6aa271db78"."id")
+	INNER JOIN asset.copy_location AS "016fb9411002aa9643f0ae914dc920e6" ON ("2bc58ff2e41a1dbaf4563d6aa271db78"."location" = "016fb9411002aa9643f0ae914dc920e6"."id")',
+                                                           '_join_type' => 'i',
+                                                           '_right_rel' => $VAR1->{'_from'}{'_builder'}{'_rels'}{'2bc58ff2e41a1dbaf4563d6aa271db78'}
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                ],
+                                     '_alias' => 'f45381a54504218e39aca33492d29306',
+                                     '_table' => 'action.circulation'
+                                   }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                 '_builder' => $VAR1->{'_from'}{'_builder'},
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"0dedf4f8c60c2d21e02de82082a7f62b"."shortname" AS "Circulating Library"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                                      },
+                                         '_alias' => 'Circulating Library'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => '016fb9411002aa9643f0ae914dc920e6',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"016fb9411002aa9643f0ae914dc920e6"."name" AS "Shelving Location"',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'name',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'}
+                                                      },
+                                         '_alias' => 'Shelving Location'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'count',
+                                         '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") AS "Total Circulations"',
+                                         '_relation' => 'f45381a54504218e39aca33492d29306',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Total Circulations',
+                                         '_column' => {
+                                                        'transform_label' => 'Count',
+                                                        'transform' => 'count',
+                                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                        'colname' => 'id'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2bc58ff2e41a1dbaf4563d6aa271db78',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" AS "Circulation Modifier"',
+                                         '_alias' => 'Circulation Modifier',
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'circ_modifier'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"0dedf4f8c60c2d21e02de82082a7f62b"."shortname" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"016fb9411002aa9643f0ae914dc920e6"."name" ASC',
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '016fb9411002aa9643f0ae914dc920e6',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_transform' => 'count',
+                                           '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_relation' => 'f45381a54504218e39aca33492d29306'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_relation' => '2bc58ff2e41a1dbaf4563d6aa271db78',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"2bc58ff2e41a1dbaf4563d6aa271db78"."circ_modifier" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_relation' => '0dedf4f8c60c2d21e02de82082a7f62b',
+                                        '_aggregate' => undef,
+                                        '_sql' => '"0dedf4f8c60c2d21e02de82082a7f62b"."id" IN ($_50844$394$_50844$)',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_sql' => 'date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN SYMMETRIC $_50844$2021-01-04$_50844$ AND $_50844$2021-01-07$_50844$',
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date',
+                                                       'colname' => 'xact_start'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'opac_renewal'
+                                                     },
+                                        '_sql' => '"f45381a54504218e39aca33492d29306"."opac_renewal" = $_50844$f$_50844$',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'phone_renewal',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_sql' => '"f45381a54504218e39aca33492d29306"."phone_renewal" = $_50844$f$_50844$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'desk_renewal',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"f45381a54504218e39aca33492d29306"."desk_renewal" = $_50844$f$_50844$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

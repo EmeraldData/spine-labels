@@ -1,0 +1,1222 @@
+<html><head><meta charset='utf-8'><title>DEBUG: acq copies10820</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"05b8c2f16436b79144e2484d28ed4b4b"."barcode" AS "Barcode",
+	"1725125e7b2eae8202d67260a9c3510e"."shortname" AS "Owning Library",
+	"05b8c2f16436b79144e2484d28ed4b4b"."create_date" AS "Creation Date/Time"
+  FROM	acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN actor.org_unit AS "1725125e7b2eae8202d67260a9c3510e" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "1725125e7b2eae8202d67260a9c3510e"."id")
+	INNER JOIN asset.copy AS "05b8c2f16436b79144e2484d28ed4b4b" ON ("488118d5f4356a27222fe6db353b8957"."eg_copy_id" = "05b8c2f16436b79144e2484d28ed4b4b"."id")
+  WHERE	"05b8c2f16436b79144e2484d28ed4b4b"."barcode" LIKE $_76188$%ACQ%$_76188$
+	AND "05b8c2f16436b79144e2484d28ed4b4b"."deleted" = $_76188$f$_76188$
+	AND date("488118d5f4356a27222fe6db353b8957"."recv_time") = $_76188$2020-10-15$_76188$
+  GROUP BY 1, 2, 3
+  ORDER BY "05b8c2f16436b79144e2484d28ed4b4b"."barcode" ASC, "1725125e7b2eae8202d67260a9c3510e"."shortname" ASC, "05b8c2f16436b79144e2484d28ed4b4b"."create_date" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'owner' => 4009295,
+          'description' => 'Copies where the lineitem detail has been received, but the copy was never converted to a "real" copy.',
+          'folder' => 3269,
+          'name' => 'Abandoned ACQ copies',
+          'id' => 69403,
+          'data' => '{"version":5,"core_class":"acqlid","select":[{"alias":"Barcode","path":"acp-barcode","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Owning Library","path":"aou-shortname","field_doc":"","relation":"1725125e7b2eae8202d67260a9c3510e","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Creation Date/Time","path":"acp-create_date","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"create_date","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"488118d5f4356a27222fe6db353b8957","path":"acqlid-acqlid","table":"acq.lineitem_detail","idlclass":"acqlid","join":{"eg_copy_id-b7df08da8516c6304013fb1ac3001c3b":{"type":"inner","key":"id","alias":"05b8c2f16436b79144e2484d28ed4b4b","path":"acqlid-eg_copy_id","table":"asset.copy","idlclass":"acp","label":"Line Item Detail -> Evergreen Copy ID"},"owning_lib-77989a9ad94901e5f1358b65db88a85d":{"type":"inner","key":"id","alias":"1725125e7b2eae8202d67260a9c3510e","path":"acqlid-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Line Item Detail -> Owning Library"}},"label":"Line Item Detail"},"where":[{"alias":"Barcode","path":"acp-barcode","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"like":"ACQ"}},{"alias":"Is Deleted","path":"acp-deleted","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Actual Receive Date","path":"acqlid-recv_time","field_doc":"On/Before","relation":"488118d5f4356a27222fe6db353b8957","column":{"colname":"recv_time","transform":"date","transform_label":"Date","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"barcode","label":"Barcode","datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Owning Library","required":true,"datatype":"text","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Owning Library","from":"acqlid","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqlid.aou","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Line Item Detail -> Owning Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"create_date","label":"Creation Date/Time","datatype":"timestamp","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"barcode","label":"Barcode","datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","operator":{"label":"Contains Matching substring","op":"like"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"ACQ"},{"name":"deleted","label":"Is Deleted","datatype":"bool","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"recv_time","label":"Actual Receive Date","datatype":"timestamp","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"}],"path_label":"Line Item Detail","operator":{"op":"=","label":"Equals"},"transform":{"transform":"date","label":"Date","aggregate":false},"doc_text":"On/Before"}]}',
+          'create_time' => '2020-06-15 11:02:39.837849-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                         'alias' => 'Barcode',
+                         'condition' => {
+                                          'like' => 'ACQ'
+                                        },
+                         'path' => 'acp-barcode',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'colname' => 'barcode',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'acp-deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'relation' => '05b8c2f16436b79144e2484d28ed4b4b'
+                       },
+                       {
+                         'alias' => 'Actual Receive Date',
+                         'relation' => '488118d5f4356a27222fe6db353b8957',
+                         'field_doc' => 'On/Before',
+                         'column' => {
+                                       'colname' => 'recv_time',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     },
+                         'path' => 'acqlid-recv_time',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'acqlid',
+          'select' => [
+                        {
+                          'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                          'alias' => 'Barcode',
+                          'path' => 'acp-barcode',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Owning Library',
+                          'relation' => '1725125e7b2eae8202d67260a9c3510e',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'shortname'
+                                      },
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                          'alias' => 'Creation Date/Time',
+                          'path' => 'acp-create_date',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'create_date'
+                                      },
+                          'field_doc' => ''
+                        }
+                      ],
+          'having' => [],
+          'version' => 5,
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                                'label' => 'Barcode',
+                                'index' => 0,
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqlid',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'label' => 'Line Item Detail'
+                                                          },
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'label' => 'Line Item Detail',
+                                              'table' => 'acq.lineitem_detail'
+                                            },
+                                            {
+                                              'label' => 'Evergreen Copy ID',
+                                              'table' => 'asset.copy',
+                                              'id' => 'acqlid.acp',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'eg_copy_id',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Evergreen Copy ID',
+                                                            'key' => 'id',
+                                                            'class' => 'acp',
+                                                            'type' => 'link'
+                                                          },
+                                              'classname' => 'acp',
+                                              'from' => 'acqlid',
+                                              'struct' => {
+                                                            'classname' => 'acp',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'name' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'table' => 'asset.copy',
+                                                            'label' => 'Item'
+                                                          },
+                                              'link' => {
+                                                          'class' => 'acp',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'name' => 'eg_copy_id',
+                                                          'label' => 'Evergreen Copy ID',
+                                                          'reltype' => 'has_a'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'name' => 'barcode'
+                              },
+                              {
+                                'doc_text' => '',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                'name' => 'shortname',
+                                'path_label' => 'Line Item Detail -> Owning Library',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'datatype' => 'text',
+                                'label' => 'Owning Library',
+                                'index' => 1,
+                                'path' => [
+                                            {
+                                              'label' => 'Line Item Detail',
+                                              'table' => 'acq.lineitem_detail',
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'name' => 'acqlid',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id'
+                                                          }
+                                            },
+                                            {
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'org_unit',
+                                                          'name' => 'owning_lib',
+                                                          'label' => 'Owning Library',
+                                                          'key' => 'id'
+                                                        },
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'label' => 'Owning Library',
+                                                            'datatype' => 'org_unit',
+                                                            'name' => 'owning_lib',
+                                                            'reltype' => 'has_a',
+                                                            'type' => 'link',
+                                                            'class' => 'aou'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'classname' => 'aou',
+                                              'struct' => {
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'actor.org_unit',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'label' => 'Owning Library',
+                                              'table' => 'actor.org_unit',
+                                              'id' => 'acqlid.aou'
+                                            }
+                                          ]
+                              },
+                              {
+                                'name' => 'create_date',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                          },
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'label' => 'Line Item Detail'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'label' => 'Item',
+                                                            'table' => 'asset.copy',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'name' => 'acp',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'}
+                                                          },
+                                              'from' => 'acqlid',
+                                              'classname' => 'acp',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'datatype' => 'link',
+                                                            'name' => 'eg_copy_id',
+                                                            'label' => 'Evergreen Copy ID',
+                                                            'class' => 'acp',
+                                                            'type' => 'link'
+                                                          },
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Evergreen Copy ID',
+                                                          'name' => 'eg_copy_id',
+                                                          'key' => 'id'
+                                                        },
+                                              'id' => 'acqlid.acp',
+                                              'label' => 'Evergreen Copy ID',
+                                              'table' => 'asset.copy'
+                                            }
+                                          ],
+                                'label' => 'Creation Date/Time',
+                                'datatype' => 'timestamp',
+                                'index' => 2,
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'path_label' => 'Line Item Detail -> Evergreen Copy ID'
+                              }
+                            ],
+          'from' => {
+                      'label' => 'Line Item Detail',
+                      'table' => 'acq.lineitem_detail',
+                      'path' => 'acqlid-acqlid',
+                      'idlclass' => 'acqlid',
+                      'join' => {
+                                  'eg_copy_id-b7df08da8516c6304013fb1ac3001c3b' => {
+                                                                                     'alias' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                                                                     'type' => 'inner',
+                                                                                     'idlclass' => 'acp',
+                                                                                     'table' => 'asset.copy',
+                                                                                     'label' => 'Line Item Detail -> Evergreen Copy ID',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'acqlid-eg_copy_id'
+                                                                                   },
+                                  'owning_lib-77989a9ad94901e5f1358b65db88a85d' => {
+                                                                                     'type' => 'inner',
+                                                                                     'alias' => '1725125e7b2eae8202d67260a9c3510e',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'acqlid-owning_lib',
+                                                                                     'label' => 'Line Item Detail -> Owning Library',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'idlclass' => 'aou'
+                                                                                   }
+                                },
+                      'alias' => '488118d5f4356a27222fe6db353b8957'
+                    },
+          'filter_cols' => [
+                             {
+                               'datatype' => 'text',
+                               'label' => 'Barcode',
+                               'index' => 0,
+                               'path' => [
+                                           {
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail',
+                                             'classname' => 'acqlid',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'label' => 'Line Item Detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'acqlid'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'asset.copy',
+                                             'label' => 'Evergreen Copy ID',
+                                             'id' => 'acqlid.acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'class' => 'acp',
+                                                         'datatype' => 'link',
+                                                         'label' => 'Evergreen Copy ID',
+                                                         'name' => 'eg_copy_id',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a'
+                                                       },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'name' => 'eg_copy_id',
+                                                           'label' => 'Evergreen Copy ID',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'type' => 'link',
+                                                           'class' => 'acp'
+                                                         },
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                                           'name' => 'acp',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'table' => 'asset.copy',
+                                                           'label' => 'Item'
+                                                         },
+                                             'from' => 'acqlid',
+                                             'classname' => 'acp'
+                                           }
+                                         ],
+                               'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                               'value' => 'ACQ',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'barcode',
+                               'doc_text' => '',
+                               'operator' => {
+                                               'label' => 'Contains Matching substring',
+                                               'op' => 'like'
+                                             }
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'classname' => 'acqlid',
+                                             'struct' => {
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail'
+                                           },
+                                           {
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'class' => 'acp',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'eg_copy_id',
+                                                         'datatype' => 'link',
+                                                         'label' => 'Evergreen Copy ID'
+                                                       },
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                                           'name' => 'acp',
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'label' => 'Item',
+                                                           'table' => 'asset.copy'
+                                                         },
+                                             'from' => 'acqlid',
+                                             'classname' => 'acp',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'label' => 'Evergreen Copy ID',
+                                                           'name' => 'eg_copy_id',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'acqlid.acp',
+                                             'label' => 'Evergreen Copy ID',
+                                             'table' => 'asset.copy'
+                                           }
+                                         ],
+                               'index' => 1,
+                               'label' => 'Is Deleted',
+                               'datatype' => 'bool',
+                               'value' => 'f',
+                               'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'deleted',
+                               'doc_text' => '',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             }
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail',
+                                             'struct' => {
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'classname' => 'acqlid'
+                                           }
+                                         ],
+                               'label' => 'Actual Receive Date',
+                               'datatype' => 'timestamp',
+                               'index' => 2,
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'date'
+                                              },
+                               'path_label' => 'Line Item Detail',
+                               'name' => 'recv_time',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'doc_text' => 'On/Before'
+                             }
+                           ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 863206,
+          'folder' => 2051,
+          'template' => {
+                          'owner' => 4009295,
+                          'description' => 'Copies where the lineitem detail has been received, but the copy was never converted to a "real" copy.',
+                          'folder' => 3269,
+                          'name' => 'Abandoned ACQ copies',
+                          'id' => 69403,
+                          'data' => '{"version":5,"core_class":"acqlid","select":[{"alias":"Barcode","path":"acp-barcode","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Owning Library","path":"aou-shortname","field_doc":"","relation":"1725125e7b2eae8202d67260a9c3510e","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Creation Date/Time","path":"acp-create_date","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"create_date","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"488118d5f4356a27222fe6db353b8957","path":"acqlid-acqlid","table":"acq.lineitem_detail","idlclass":"acqlid","join":{"eg_copy_id-b7df08da8516c6304013fb1ac3001c3b":{"type":"inner","key":"id","alias":"05b8c2f16436b79144e2484d28ed4b4b","path":"acqlid-eg_copy_id","table":"asset.copy","idlclass":"acp","label":"Line Item Detail -> Evergreen Copy ID"},"owning_lib-77989a9ad94901e5f1358b65db88a85d":{"type":"inner","key":"id","alias":"1725125e7b2eae8202d67260a9c3510e","path":"acqlid-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Line Item Detail -> Owning Library"}},"label":"Line Item Detail"},"where":[{"alias":"Barcode","path":"acp-barcode","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"like":"ACQ"}},{"alias":"Is Deleted","path":"acp-deleted","field_doc":"","relation":"05b8c2f16436b79144e2484d28ed4b4b","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Actual Receive Date","path":"acqlid-recv_time","field_doc":"On/Before","relation":"488118d5f4356a27222fe6db353b8957","column":{"colname":"recv_time","transform":"date","transform_label":"Date","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"barcode","label":"Barcode","datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Owning Library","required":true,"datatype":"text","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Owning Library","from":"acqlid","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqlid.aou","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Line Item Detail -> Owning Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"create_date","label":"Creation Date/Time","datatype":"timestamp","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"barcode","label":"Barcode","datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","operator":{"label":"Contains Matching substring","op":"like"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"ACQ"},{"name":"deleted","label":"Is Deleted","datatype":"bool","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Evergreen Copy ID","from":"acqlid","link":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"acqlid.acp","uplink":{"name":"eg_copy_id","label":"Evergreen Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"path_label":"Line Item Detail -> Evergreen Copy ID","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"f"},{"name":"recv_time","label":"Actual Receive Date","datatype":"timestamp","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"}],"path_label":"Line Item Detail","operator":{"op":"=","label":"Equals"},"transform":{"transform":"date","label":"Date","aggregate":false},"doc_text":"On/Before"}]}',
+                          'create_time' => '2020-06-15 11:02:39.837849-04'
+                        },
+          'name' => 'acq copies10820',
+          'description' => '',
+          'create_time' => '2020-10-08 10:41:32.342859-04',
+          'recur' => 0,
+          'recurrence' => '1 day',
+          'id' => 181530,
+          'data' => '{"P0":"2020-10-15"}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                         'alias' => 'Barcode',
+                         'condition' => {
+                                          'like' => 'ACQ'
+                                        },
+                         'path' => 'acp-barcode',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'colname' => 'barcode',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'acp-deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'relation' => '05b8c2f16436b79144e2484d28ed4b4b'
+                       },
+                       {
+                         'alias' => 'Actual Receive Date',
+                         'relation' => '488118d5f4356a27222fe6db353b8957',
+                         'field_doc' => 'On/Before',
+                         'column' => {
+                                       'colname' => 'recv_time',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     },
+                         'path' => 'acqlid-recv_time',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'acqlid',
+          'select' => [
+                        {
+                          'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                          'alias' => 'Barcode',
+                          'path' => 'acp-barcode',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Owning Library',
+                          'relation' => '1725125e7b2eae8202d67260a9c3510e',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'shortname'
+                                      },
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                          'alias' => 'Creation Date/Time',
+                          'path' => 'acp-create_date',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'create_date'
+                                      },
+                          'field_doc' => ''
+                        }
+                      ],
+          'having' => [],
+          'version' => 5,
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                                'label' => 'Barcode',
+                                'index' => 0,
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqlid',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'label' => 'Line Item Detail'
+                                                          },
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'label' => 'Line Item Detail',
+                                              'table' => 'acq.lineitem_detail'
+                                            },
+                                            {
+                                              'label' => 'Evergreen Copy ID',
+                                              'table' => 'asset.copy',
+                                              'id' => 'acqlid.acp',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'eg_copy_id',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Evergreen Copy ID',
+                                                            'key' => 'id',
+                                                            'class' => 'acp',
+                                                            'type' => 'link'
+                                                          },
+                                              'classname' => 'acp',
+                                              'from' => 'acqlid',
+                                              'struct' => {
+                                                            'classname' => 'acp',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'name' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'table' => 'asset.copy',
+                                                            'label' => 'Item'
+                                                          },
+                                              'link' => {
+                                                          'class' => 'acp',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'name' => 'eg_copy_id',
+                                                          'label' => 'Evergreen Copy ID',
+                                                          'reltype' => 'has_a'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'name' => 'barcode'
+                              },
+                              {
+                                'doc_text' => '',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                'name' => 'shortname',
+                                'path_label' => 'Line Item Detail -> Owning Library',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'datatype' => 'text',
+                                'label' => 'Owning Library',
+                                'index' => 1,
+                                'path' => [
+                                            {
+                                              'label' => 'Line Item Detail',
+                                              'table' => 'acq.lineitem_detail',
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'name' => 'acqlid',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id'
+                                                          }
+                                            },
+                                            {
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'org_unit',
+                                                          'name' => 'owning_lib',
+                                                          'label' => 'Owning Library',
+                                                          'key' => 'id'
+                                                        },
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'label' => 'Owning Library',
+                                                            'datatype' => 'org_unit',
+                                                            'name' => 'owning_lib',
+                                                            'reltype' => 'has_a',
+                                                            'type' => 'link',
+                                                            'class' => 'aou'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'classname' => 'aou',
+                                              'struct' => {
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'actor.org_unit',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'label' => 'Owning Library',
+                                              'table' => 'actor.org_unit',
+                                              'id' => 'acqlid.aou'
+                                            }
+                                          ]
+                              },
+                              {
+                                'name' => 'create_date',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                          },
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'label' => 'Line Item Detail'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'label' => 'Item',
+                                                            'table' => 'asset.copy',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acp',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'name' => 'acp',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'}
+                                                          },
+                                              'from' => 'acqlid',
+                                              'classname' => 'acp',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'datatype' => 'link',
+                                                            'name' => 'eg_copy_id',
+                                                            'label' => 'Evergreen Copy ID',
+                                                            'class' => 'acp',
+                                                            'type' => 'link'
+                                                          },
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Evergreen Copy ID',
+                                                          'name' => 'eg_copy_id',
+                                                          'key' => 'id'
+                                                        },
+                                              'id' => 'acqlid.acp',
+                                              'label' => 'Evergreen Copy ID',
+                                              'table' => 'asset.copy'
+                                            }
+                                          ],
+                                'label' => 'Creation Date/Time',
+                                'datatype' => 'timestamp',
+                                'index' => 2,
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'path_label' => 'Line Item Detail -> Evergreen Copy ID'
+                              }
+                            ],
+          'from' => {
+                      'label' => 'Line Item Detail',
+                      'table' => 'acq.lineitem_detail',
+                      'path' => 'acqlid-acqlid',
+                      'idlclass' => 'acqlid',
+                      'join' => {
+                                  'eg_copy_id-b7df08da8516c6304013fb1ac3001c3b' => {
+                                                                                     'alias' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                                                                     'type' => 'inner',
+                                                                                     'idlclass' => 'acp',
+                                                                                     'table' => 'asset.copy',
+                                                                                     'label' => 'Line Item Detail -> Evergreen Copy ID',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'acqlid-eg_copy_id'
+                                                                                   },
+                                  'owning_lib-77989a9ad94901e5f1358b65db88a85d' => {
+                                                                                     'type' => 'inner',
+                                                                                     'alias' => '1725125e7b2eae8202d67260a9c3510e',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'acqlid-owning_lib',
+                                                                                     'label' => 'Line Item Detail -> Owning Library',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'idlclass' => 'aou'
+                                                                                   }
+                                },
+                      'alias' => '488118d5f4356a27222fe6db353b8957'
+                    },
+          'filter_cols' => [
+                             {
+                               'datatype' => 'text',
+                               'label' => 'Barcode',
+                               'index' => 0,
+                               'path' => [
+                                           {
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail',
+                                             'classname' => 'acqlid',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'label' => 'Line Item Detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'acqlid'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'asset.copy',
+                                             'label' => 'Evergreen Copy ID',
+                                             'id' => 'acqlid.acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'class' => 'acp',
+                                                         'datatype' => 'link',
+                                                         'label' => 'Evergreen Copy ID',
+                                                         'name' => 'eg_copy_id',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a'
+                                                       },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'name' => 'eg_copy_id',
+                                                           'label' => 'Evergreen Copy ID',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'type' => 'link',
+                                                           'class' => 'acp'
+                                                         },
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                                           'name' => 'acp',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'table' => 'asset.copy',
+                                                           'label' => 'Item'
+                                                         },
+                                             'from' => 'acqlid',
+                                             'classname' => 'acp'
+                                           }
+                                         ],
+                               'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                               'value' => 'ACQ',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'barcode',
+                               'doc_text' => '',
+                               'operator' => {
+                                               'label' => 'Contains Matching substring',
+                                               'op' => 'like'
+                                             }
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'classname' => 'acqlid',
+                                             'struct' => {
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail'
+                                           },
+                                           {
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'class' => 'acp',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'eg_copy_id',
+                                                         'datatype' => 'link',
+                                                         'label' => 'Evergreen Copy ID'
+                                                       },
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[1]{'struct'}{'core'},
+                                                           'name' => 'acp',
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'label' => 'Item',
+                                                           'table' => 'asset.copy'
+                                                         },
+                                             'from' => 'acqlid',
+                                             'classname' => 'acp',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'label' => 'Evergreen Copy ID',
+                                                           'name' => 'eg_copy_id',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'acqlid.acp',
+                                             'label' => 'Evergreen Copy ID',
+                                             'table' => 'asset.copy'
+                                           }
+                                         ],
+                               'index' => 1,
+                               'label' => 'Is Deleted',
+                               'datatype' => 'bool',
+                               'value' => 'f',
+                               'path_label' => 'Line Item Detail -> Evergreen Copy ID',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'deleted',
+                               'doc_text' => '',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             }
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'id' => 'acqlid',
+                                             'table' => 'acq.lineitem_detail',
+                                             'label' => 'Line Item Detail',
+                                             'struct' => {
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'name' => 'acqlid',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'classname' => 'acqlid'
+                                           }
+                                         ],
+                               'label' => 'Actual Receive Date',
+                               'datatype' => 'timestamp',
+                               'index' => 2,
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'date'
+                                              },
+                               'path_label' => 'Line Item Detail',
+                               'name' => 'recv_time',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'doc_text' => 'On/Before'
+                             }
+                           ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-10-08 10:41:32.342859-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_builder' => bless( {
+                                                               '_params' => {
+                                                                              'P0' => '2020-10-15'
+                                                                            },
+                                                               '_sql' => undef,
+                                                               '_relative_time' => '2020-10-08 10:41:32.342859-04',
+                                                               '_rels' => {
+                                                                            '488118d5f4356a27222fe6db353b8957' => bless( {
+                                                                                                                           '_sql' => 'acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN actor.org_unit AS "1725125e7b2eae8202d67260a9c3510e" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "1725125e7b2eae8202d67260a9c3510e"."id")
+	INNER JOIN asset.copy AS "05b8c2f16436b79144e2484d28ed4b4b" ON ("488118d5f4356a27222fe6db353b8957"."eg_copy_id" = "05b8c2f16436b79144e2484d28ed4b4b"."id")',
+                                                                                                                           '_table' => 'acq.lineitem_detail',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_alias' => '488118d5f4356a27222fe6db353b8957',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_alias' => '1725125e7b2eae8202d67260a9c3510e',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "1725125e7b2eae8202d67260a9c3510e"',
+                                                                                                                                                                          '_table' => 'actor.org_unit'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "1725125e7b2eae8202d67260a9c3510e" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "1725125e7b2eae8202d67260a9c3510e"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'owning_lib',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'488118d5f4356a27222fe6db353b8957'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'488118d5f4356a27222fe6db353b8957'},
+                                                                                                                                                 '_left_col' => 'eg_copy_id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_table' => 'asset.copy',
+                                                                                                                                                                          '_sql' => 'asset.copy AS "05b8c2f16436b79144e2484d28ed4b4b"',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_alias' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                                                                                                                                                          '_is_join' => 1
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN asset.copy AS "05b8c2f16436b79144e2484d28ed4b4b" ON ("488118d5f4356a27222fe6db353b8957"."eg_copy_id" = "05b8c2f16436b79144e2484d28ed4b4b"."id")'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '05b8c2f16436b79144e2484d28ed4b4b' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'488118d5f4356a27222fe6db353b8957'}{'_join'}[1]{'_right_rel'},
+                                                                            '1725125e7b2eae8202d67260a9c3510e' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'488118d5f4356a27222fe6db353b8957'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_resultset_limit' => 1048575
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_transform' => 'Bare',
+                                        '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          'like' => 'ACQ'
+                                                        },
+                                        '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."barcode" LIKE $_76188$%ACQ%$_76188$',
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'colname' => 'barcode',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."deleted" = $_76188$f$_76188$',
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_relation' => '488118d5f4356a27222fe6db353b8957',
+                                        '_transform' => 'GenericTransform',
+                                        '_column' => {
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date',
+                                                       'colname' => 'recv_time',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_sql' => 'date("488118d5f4356a27222fe6db353b8957"."recv_time") = $_76188$2020-10-15$_76188$',
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          '=' => '::P0'
+                                                        },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_having' => [],
+                 '_sql' => 'SELECT * FROM (SELECT	"05b8c2f16436b79144e2484d28ed4b4b"."barcode" AS "Barcode",
+	"1725125e7b2eae8202d67260a9c3510e"."shortname" AS "Owning Library",
+	"05b8c2f16436b79144e2484d28ed4b4b"."create_date" AS "Creation Date/Time"
+  FROM	acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN actor.org_unit AS "1725125e7b2eae8202d67260a9c3510e" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "1725125e7b2eae8202d67260a9c3510e"."id")
+	INNER JOIN asset.copy AS "05b8c2f16436b79144e2484d28ed4b4b" ON ("488118d5f4356a27222fe6db353b8957"."eg_copy_id" = "05b8c2f16436b79144e2484d28ed4b4b"."id")
+  WHERE	"05b8c2f16436b79144e2484d28ed4b4b"."barcode" LIKE $_76188$%ACQ%$_76188$
+	AND "05b8c2f16436b79144e2484d28ed4b4b"."deleted" = $_76188$f$_76188$
+	AND date("488118d5f4356a27222fe6db353b8957"."recv_time") = $_76188$2020-10-15$_76188$
+  GROUP BY 1, 2, 3
+  ORDER BY "05b8c2f16436b79144e2484d28ed4b4b"."barcode" ASC, "1725125e7b2eae8202d67260a9c3510e"."shortname" ASC, "05b8c2f16436b79144e2484d28ed4b4b"."create_date" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'488118d5f4356a27222fe6db353b8957'},
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."barcode" ASC',
+                                           '_column' => {
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                          'colname' => 'barcode',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_aggregate' => undef,
+                                           '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_sql' => '"1725125e7b2eae8202d67260a9c3510e"."shortname" ASC',
+                                           '_relation' => '1725125e7b2eae8202d67260a9c3510e',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."create_date" ASC',
+                                           '_column' => {
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'colname' => 'create_date',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_select' => [
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."barcode" AS "Barcode"',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Barcode',
+                                         '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_sql' => '"1725125e7b2eae8202d67260a9c3510e"."shortname" AS "Owning Library"',
+                                         '_alias' => 'Owning Library',
+                                         '_transform' => 'Bare',
+                                         '_relation' => '1725125e7b2eae8202d67260a9c3510e'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Creation Date/Time',
+                                         '_relation' => '05b8c2f16436b79144e2484d28ed4b4b',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"05b8c2f16436b79144e2484d28ed4b4b"."create_date" AS "Creation Date/Time"',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

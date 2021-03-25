@@ -1,0 +1,1274 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 OCRL Shelflist</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"9547fadabf916ce4fd3eb232e0902c9c"."name" AS "Copy Status",
+	"286d7899ae25bee8bdd7dcde49f9e0b7"."label" AS "Call #",
+	"df8d81aecbe6b10702cbd762ac04cac9"."title" AS "Title",
+	"df8d81aecbe6b10702cbd762ac04cac9"."author" AS "Author",
+	"df8d81aecbe6b10702cbd762ac04cac9"."pubdate" AS "Pub Yr",
+	date("7d74f3b92b19da5e606d737d339a9679"."create_date") AS "Creation Date",
+	COUNT("ddeeaf1839fe1496b309babab563fea7"."id") AS "# of Circs",
+	"7d74f3b92b19da5e606d737d339a9679"."barcode" AS "Barcode"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	LEFT OUTER JOIN action.circulation AS "ddeeaf1839fe1496b309babab563fea7" ON ("7d74f3b92b19da5e606d737d339a9679"."id" = "ddeeaf1839fe1496b309babab563fea7"."target_copy")
+	INNER JOIN config.copy_status AS "9547fadabf916ce4fd3eb232e0902c9c" ON ("7d74f3b92b19da5e606d737d339a9679"."status" = "9547fadabf916ce4fd3eb232e0902c9c"."id")
+	LEFT OUTER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "7f0e2da56d7bdf7c7434e87c5abaab5c"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")
+  WHERE	"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_128057$f$_128057$
+	AND (("286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib") IS NULL OR "286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_128057$198$_128057$,$_128057$199$_128057$,$_128057$200$_128057$,$_128057$201$_128057$,$_128057$202$_128057$))
+  GROUP BY 1, 2, 3, 4, 5, 6, 8
+  HAVING ((COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id")) IS NULL OR COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id") <= $_128057$100000$_128057$)
+  ORDER BY "9547fadabf916ce4fd3eb232e0902c9c"."name" ASC, "286d7899ae25bee8bdd7dcde49f9e0b7"."label" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."title" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."author" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."pubdate" ASC, date("7d74f3b92b19da5e606d737d339a9679"."create_date") ASC, COUNT("ddeeaf1839fe1496b309babab563fea7"."id") ASC, "7d74f3b92b19da5e606d737d339a9679"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'id' => 51966,
+          'description' => '',
+          'data' => '{"version":2,"core_class":"acp","select":[{"alias":"Copy Status","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acp-status-ccs-name","relation":"9547fadabf916ce4fd3eb232e0902c9c"},{"alias":"Call #","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-label","relation":"286d7899ae25bee8bdd7dcde49f9e0b7"},{"alias":"Title","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-title","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Author","column":{"colname":"author","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-author","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Pub Yr","column":{"colname":"pubdate","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-pubdate","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Creation Date","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"acp-create_date","relation":"7d74f3b92b19da5e606d737d339a9679"},{"alias":"# of Circs","column":{"colname":"id","transform":"count","transform_label":"Count"},"path":"acp-circulations-circ-id","relation":"ddeeaf1839fe1496b309babab563fea7"},{"alias":"Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"acp-barcode","relation":"7d74f3b92b19da5e606d737d339a9679"}],"from":{"path":"acp-status","table":"asset.copy","label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","idlclass":"acp","template_path":"acp","join":{"call_number-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-call_number-acn-record","table":"asset.call_number","key":"id","label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","idlclass":"acn","template_path":"acp-call_number","type":"left","join":{"record-286d7899ae25bee8bdd7dcde49f9e0b7":{"type":"left","path":"acp-call_number-acn-record-bre-simple_record","table":"biblio.record_entry","key":"id","alias":"7f0e2da56d7bdf7c7434e87c5abaab5c","join":{"id-rmsr-id-7f0e2da56d7bdf7c7434e87c5abaab5c":{"type":"left","path":"acp-call_number-acn-record-bre-simple_record-rssr","table":"reporter.super_simple_record","key":"id","label":"Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts ","alias":"df8d81aecbe6b10702cbd762ac04cac9","idlclass":"rssr","template_path":"acp-call_number.acn-record.bre-simple_record"}}}}},"id-circ-target_copy-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-circulations-circ","table":"action.circulation","key":"target_copy","type":"left","label":"Item :: Circulations","alias":"ddeeaf1839fe1496b309babab563fea7","idlclass":"circ","template_path":"acp-circulations"},"status-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-status-ccs","table":"config.copy_status","key":"id","label":"Item :: Copy Status","alias":"9547fadabf916ce4fd3eb232e0902c9c","idlclass":"ccs","template_path":"acp-status"}}},"where":[{"alias":"Is Deleted","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"acp-deleted","relation":"7d74f3b92b19da5e606d737d339a9679","condition":{"=":"f"}},{"alias":"Owning Library","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib","relation":"286d7899ae25bee8bdd7dcde49f9e0b7","condition":{"in":"::P0"}}],"having":[{"alias":"Circ ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"acp-circulations-circ-id","relation":"ddeeaf1839fe1496b309babab563fea7","condition":{"<=":"::P1"}}],"order_by":[],"rel_cache":{"7d74f3b92b19da5e606d737d339a9679":{"label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp","reltype":"","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"create_date":{"colname":"create_date","transform":"date","transform_label":"Date","alias":"Creation Date","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"order_by":[{"relation":"9547fadabf916ce4fd3eb232e0902c9c","field":"name"},{"relation":"286d7899ae25bee8bdd7dcde49f9e0b7","field":"label"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"title"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"author"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"pubdate"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"create_date"},{"relation":"ddeeaf1839fe1496b309babab563fea7","field":"id"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"barcode"}],"286d7899ae25bee8bdd7dcde49f9e0b7":{"label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","path":"acp-call_number","reltype":"has_a","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{"label":{"colname":"label","transform":"Bare","transform_label":"Raw Data","alias":"Call #","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"owning_lib":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"ddeeaf1839fe1496b309babab563fea7":{"label":"Item :: Circulations","alias":"ddeeaf1839fe1496b309babab563fea7","path":"acp-circulations","reltype":"has_many","idlclass":"circ","table":"action.circulation","fields":{"dis_tab":{"id":{"colname":"id","transform":"count","aggregate":"true","params":"undefined","transform_label":"Count","alias":"# of Circs","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Circ ID","datatype":"id","op":"<=","op_label":"Less than or equal to","op_value":{}}}}},"df8d81aecbe6b10702cbd762ac04cac9":{"label":"Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts ","alias":"df8d81aecbe6b10702cbd762ac04cac9","path":"acp-call_number.acn-record.bre-simple_record","reltype":"might_have","idlclass":"rssr","table":"reporter.super_simple_record","fields":{"dis_tab":{"author":{"colname":"author","transform":"Bare","transform_label":"Raw Data","alias":"Author","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"pubdate":{"colname":"pubdate","transform":"Bare","transform_label":"Raw Data","alias":"Pub Yr","datatype":"int","op":"=","op_label":"Equals","op_value":{}},"title":{"colname":"title","transform":"Bare","transform_label":"Raw Data","alias":"Title","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"9547fadabf916ce4fd3eb232e0902c9c":{"label":"Item :: Copy Status","alias":"9547fadabf916ce4fd3eb232e0902c9c","path":"acp-status","reltype":"has_a","idlclass":"ccs","table":"config.copy_status","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","transform_label":"Raw Data","alias":"Copy Status","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+          'create_time' => '2009-08-11 17:55:27-04',
+          'owner' => 2134611,
+          'name' => 'Shelflist by Library with Copy Status by # of Circs',
+          'folder' => 1977
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                             'field' => 'name'
+                                           },
+                                           {
+                                             'field' => 'label',
+                                             'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7'
+                                           },
+                                           {
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                             'field' => 'title'
+                                           },
+                                           {
+                                             'field' => 'author',
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9'
+                                           },
+                                           {
+                                             'field' => 'pubdate',
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9'
+                                           },
+                                           {
+                                             'field' => 'create_date',
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                           },
+                                           {
+                                             'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           '9547fadabf916ce4fd3eb232e0902c9c' => {
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op' => '=',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'alias' => 'Copy Status',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'colname' => 'name',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'transform' => 'Bare'
+                                                                                                          }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'config.copy_status',
+                                                                   'alias' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                                                   'path' => 'acp-status',
+                                                                   'idlclass' => 'ccs',
+                                                                   'label' => 'Item :: Copy Status',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           '286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'acn',
+                                                                   'label' => 'Item :: Call Number/Volume',
+                                                                   'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                   'path' => 'acp-call_number',
+                                                                   'table' => 'asset.call_number',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'label' => {
+                                                                                                             'alias' => 'Call #',
+                                                                                                             'datatype' => 'text',
+                                                                                                             'op' => '=',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'colname' => 'label',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare'
+                                                                                                           }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'owning_lib' => {
+                                                                                                                     'op_value' => {},
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'colname' => 'owning_lib',
+                                                                                                                     'transform_label' => 'Raw Data',
+                                                                                                                     'op_label' => 'In list',
+                                                                                                                     'datatype' => 'org_unit',
+                                                                                                                     'alias' => 'Owning Library',
+                                                                                                                     'op' => 'in'
+                                                                                                                   }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               }
+                                                                 },
+                           'ddeeaf1839fe1496b309babab563fea7' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => '# of Circs',
+                                                                                                          'op' => '=',
+                                                                                                          'params' => 'undefined',
+                                                                                                          'transform' => 'count',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform_label' => 'Count',
+                                                                                                          'colname' => 'id'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {
+                                                                                                      'id' => {
+                                                                                                                'op_value' => {},
+                                                                                                                'transform' => 'count_distinct',
+                                                                                                                'colname' => 'id',
+                                                                                                                'transform_label' => 'Count Distinct',
+                                                                                                                'op_label' => 'Less than or equal to',
+                                                                                                                'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                                'params' => undef,
+                                                                                                                'op' => '<=',
+                                                                                                                'datatype' => 'id',
+                                                                                                                'alias' => 'Circ ID'
+                                                                                                              }
+                                                                                                    }
+                                                                               },
+                                                                   'table' => 'action.circulation',
+                                                                   'path' => 'acp-circulations',
+                                                                   'alias' => 'ddeeaf1839fe1496b309babab563fea7',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'circ',
+                                                                   'label' => 'Item :: Circulations'
+                                                                 },
+                           'df8d81aecbe6b10702cbd762ac04cac9' => {
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'pubdate' => {
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'op' => '=',
+                                                                                                               'datatype' => 'int',
+                                                                                                               'alias' => 'Pub Yr',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'colname' => 'pubdate',
+                                                                                                               'transform_label' => 'Raw Data'
+                                                                                                             },
+                                                                                                'author' => {
+                                                                                                              'op_value' => {},
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'colname' => 'author',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'datatype' => 'text',
+                                                                                                              'alias' => 'Author',
+                                                                                                              'op' => '='
+                                                                                                            },
+                                                                                                'title' => {
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'title',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'alias' => 'Title',
+                                                                                                             'datatype' => 'text',
+                                                                                                             'op' => '='
+                                                                                                           }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'reporter.super_simple_record',
+                                                                   'path' => 'acp-call_number.acn-record.bre-simple_record',
+                                                                   'alias' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                                                   'reltype' => 'might_have',
+                                                                   'idlclass' => 'rssr',
+                                                                   'label' => 'Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts '
+                                                                 },
+                           '7d74f3b92b19da5e606d737d339a9679' => {
+                                                                   'table' => 'asset.copy',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'op' => '=',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'alias' => 'Barcode',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform' => 'Bare'
+                                                                                                             },
+                                                                                                'create_date' => {
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'op' => '=',
+                                                                                                                   'alias' => 'Creation Date',
+                                                                                                                   'datatype' => 'timestamp',
+                                                                                                                   'transform' => 'date',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'colname' => 'create_date',
+                                                                                                                   'transform_label' => 'Date'
+                                                                                                                 }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'op' => '='
+                                                                                                                }
+                                                                                                 }
+                                                                               },
+                                                                   'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                                                   'path' => 'acp',
+                                                                   'idlclass' => 'acp',
+                                                                   'label' => 'Item',
+                                                                   'reltype' => ''
+                                                                 }
+                         },
+          'having' => [
+                        {
+                          'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                          'alias' => 'Circ ID',
+                          'path' => 'acp-circulations-circ-id',
+                          'condition' => {
+                                           '<=' => '::P1'
+                                         },
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'from' => {
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'path' => 'acp-status',
+                      'table' => 'asset.copy',
+                      'join' => {
+                                  'call_number-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                      'path' => 'acp-call_number-acn-record',
+                                                                                      'type' => 'left',
+                                                                                      'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                                      'template_path' => 'acp-call_number',
+                                                                                      'join' => {
+                                                                                                  'record-286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                                                                                                 'join' => {
+                                                                                                                                                             'id-rmsr-id-7f0e2da56d7bdf7c7434e87c5abaab5c' => {
+                                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                                'type' => 'left',
+                                                                                                                                                                                                                'alias' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                                                                                                                                                                                                'path' => 'acp-call_number-acn-record-bre-simple_record-rssr',
+                                                                                                                                                                                                                'table' => 'reporter.super_simple_record',
+                                                                                                                                                                                                                'template_path' => 'acp-call_number.acn-record.bre-simple_record',
+                                                                                                                                                                                                                'idlclass' => 'rssr',
+                                                                                                                                                                                                                'label' => 'Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts '
+                                                                                                                                                                                                              }
+                                                                                                                                                           },
+                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                 'type' => 'left',
+                                                                                                                                                 'alias' => '7f0e2da56d7bdf7c7434e87c5abaab5c',
+                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-simple_record',
+                                                                                                                                                 'key' => 'id'
+                                                                                                                                               }
+                                                                                                },
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acn',
+                                                                                      'label' => 'Item :: Call Number/Volume'
+                                                                                    },
+                                  'id-circ-target_copy-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                              'table' => 'action.circulation',
+                                                                                              'template_path' => 'acp-circulations',
+                                                                                              'type' => 'left',
+                                                                                              'alias' => 'ddeeaf1839fe1496b309babab563fea7',
+                                                                                              'path' => 'acp-circulations-circ',
+                                                                                              'key' => 'target_copy',
+                                                                                              'idlclass' => 'circ',
+                                                                                              'label' => 'Item :: Circulations'
+                                                                                            },
+                                  'status-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                 'key' => 'id',
+                                                                                 'idlclass' => 'ccs',
+                                                                                 'label' => 'Item :: Copy Status',
+                                                                                 'alias' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                                                                 'path' => 'acp-status-ccs',
+                                                                                 'table' => 'config.copy_status',
+                                                                                 'template_path' => 'acp-status'
+                                                                               }
+                                },
+                      'template_path' => 'acp',
+                      'idlclass' => 'acp',
+                      'label' => 'Item'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'deleted',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'path' => 'acp-deleted'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'owning_lib',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'alias' => 'Owning Library',
+                         'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                         'path' => 'acp-call_number-acn-owning_lib',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'acp',
+          'version' => 2,
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                          'alias' => 'Copy Status',
+                          'path' => 'acp-status-ccs-name'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-call_number-acn-label',
+                          'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                          'alias' => 'Call #'
+                        },
+                        {
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-title',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'alias' => 'Title',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'author'
+                                      },
+                          'alias' => 'Author',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-author'
+                        },
+                        {
+                          'alias' => 'Pub Yr',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-pubdate',
+                          'column' => {
+                                        'colname' => 'pubdate',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'colname' => 'create_date',
+                                        'transform' => 'date'
+                                      },
+                          'path' => 'acp-create_date',
+                          'alias' => 'Creation Date',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'count',
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      },
+                          'alias' => '# of Circs',
+                          'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                          'path' => 'acp-circulations-circ-id'
+                        },
+                        {
+                          'path' => 'acp-barcode',
+                          'alias' => 'Barcode',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 2134611,
+          'create_time' => '2020-08-13 14:55:24.633035-04',
+          'description' => '',
+          'template' => {
+                          'id' => 51966,
+                          'description' => '',
+                          'data' => '{"version":2,"core_class":"acp","select":[{"alias":"Copy Status","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acp-status-ccs-name","relation":"9547fadabf916ce4fd3eb232e0902c9c"},{"alias":"Call #","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-label","relation":"286d7899ae25bee8bdd7dcde49f9e0b7"},{"alias":"Title","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-title","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Author","column":{"colname":"author","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-author","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Pub Yr","column":{"colname":"pubdate","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-simple_record-rssr-pubdate","relation":"df8d81aecbe6b10702cbd762ac04cac9"},{"alias":"Creation Date","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"acp-create_date","relation":"7d74f3b92b19da5e606d737d339a9679"},{"alias":"# of Circs","column":{"colname":"id","transform":"count","transform_label":"Count"},"path":"acp-circulations-circ-id","relation":"ddeeaf1839fe1496b309babab563fea7"},{"alias":"Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"acp-barcode","relation":"7d74f3b92b19da5e606d737d339a9679"}],"from":{"path":"acp-status","table":"asset.copy","label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","idlclass":"acp","template_path":"acp","join":{"call_number-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-call_number-acn-record","table":"asset.call_number","key":"id","label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","idlclass":"acn","template_path":"acp-call_number","type":"left","join":{"record-286d7899ae25bee8bdd7dcde49f9e0b7":{"type":"left","path":"acp-call_number-acn-record-bre-simple_record","table":"biblio.record_entry","key":"id","alias":"7f0e2da56d7bdf7c7434e87c5abaab5c","join":{"id-rmsr-id-7f0e2da56d7bdf7c7434e87c5abaab5c":{"type":"left","path":"acp-call_number-acn-record-bre-simple_record-rssr","table":"reporter.super_simple_record","key":"id","label":"Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts ","alias":"df8d81aecbe6b10702cbd762ac04cac9","idlclass":"rssr","template_path":"acp-call_number.acn-record.bre-simple_record"}}}}},"id-circ-target_copy-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-circulations-circ","table":"action.circulation","key":"target_copy","type":"left","label":"Item :: Circulations","alias":"ddeeaf1839fe1496b309babab563fea7","idlclass":"circ","template_path":"acp-circulations"},"status-7d74f3b92b19da5e606d737d339a9679":{"path":"acp-status-ccs","table":"config.copy_status","key":"id","label":"Item :: Copy Status","alias":"9547fadabf916ce4fd3eb232e0902c9c","idlclass":"ccs","template_path":"acp-status"}}},"where":[{"alias":"Is Deleted","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"acp-deleted","relation":"7d74f3b92b19da5e606d737d339a9679","condition":{"=":"f"}},{"alias":"Owning Library","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib","relation":"286d7899ae25bee8bdd7dcde49f9e0b7","condition":{"in":"::P0"}}],"having":[{"alias":"Circ ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"acp-circulations-circ-id","relation":"ddeeaf1839fe1496b309babab563fea7","condition":{"<=":"::P1"}}],"order_by":[],"rel_cache":{"7d74f3b92b19da5e606d737d339a9679":{"label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp","reltype":"","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"create_date":{"colname":"create_date","transform":"date","transform_label":"Date","alias":"Creation Date","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"order_by":[{"relation":"9547fadabf916ce4fd3eb232e0902c9c","field":"name"},{"relation":"286d7899ae25bee8bdd7dcde49f9e0b7","field":"label"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"title"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"author"},{"relation":"df8d81aecbe6b10702cbd762ac04cac9","field":"pubdate"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"create_date"},{"relation":"ddeeaf1839fe1496b309babab563fea7","field":"id"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"barcode"}],"286d7899ae25bee8bdd7dcde49f9e0b7":{"label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","path":"acp-call_number","reltype":"has_a","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{"label":{"colname":"label","transform":"Bare","transform_label":"Raw Data","alias":"Call #","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"owning_lib":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"ddeeaf1839fe1496b309babab563fea7":{"label":"Item :: Circulations","alias":"ddeeaf1839fe1496b309babab563fea7","path":"acp-circulations","reltype":"has_many","idlclass":"circ","table":"action.circulation","fields":{"dis_tab":{"id":{"colname":"id","transform":"count","aggregate":"true","params":"undefined","transform_label":"Count","alias":"# of Circs","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Circ ID","datatype":"id","op":"<=","op_label":"Less than or equal to","op_value":{}}}}},"df8d81aecbe6b10702cbd762ac04cac9":{"label":"Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts ","alias":"df8d81aecbe6b10702cbd762ac04cac9","path":"acp-call_number.acn-record.bre-simple_record","reltype":"might_have","idlclass":"rssr","table":"reporter.super_simple_record","fields":{"dis_tab":{"author":{"colname":"author","transform":"Bare","transform_label":"Raw Data","alias":"Author","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"pubdate":{"colname":"pubdate","transform":"Bare","transform_label":"Raw Data","alias":"Pub Yr","datatype":"int","op":"=","op_label":"Equals","op_value":{}},"title":{"colname":"title","transform":"Bare","transform_label":"Raw Data","alias":"Title","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"9547fadabf916ce4fd3eb232e0902c9c":{"label":"Item :: Copy Status","alias":"9547fadabf916ce4fd3eb232e0902c9c","path":"acp-status","reltype":"has_a","idlclass":"ccs","table":"config.copy_status","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","transform_label":"Raw Data","alias":"Copy Status","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+                          'create_time' => '2009-08-11 17:55:27-04',
+                          'owner' => 2134611,
+                          'name' => 'Shelflist by Library with Copy Status by # of Circs',
+                          'folder' => 1977
+                        },
+          'id' => 181518,
+          'name' => 'FY20 OCRL Shelflist',
+          'recur' => 0,
+          'data' => '{"P0":["198","199","200","201","202"],"P1":"100000","__pivot_label":"","__pivot_data":"7"}',
+          'recurrence' => '1 day',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                             'field' => 'name'
+                                           },
+                                           {
+                                             'field' => 'label',
+                                             'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7'
+                                           },
+                                           {
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                             'field' => 'title'
+                                           },
+                                           {
+                                             'field' => 'author',
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9'
+                                           },
+                                           {
+                                             'field' => 'pubdate',
+                                             'relation' => 'df8d81aecbe6b10702cbd762ac04cac9'
+                                           },
+                                           {
+                                             'field' => 'create_date',
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                           },
+                                           {
+                                             'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           '9547fadabf916ce4fd3eb232e0902c9c' => {
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op' => '=',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'alias' => 'Copy Status',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'colname' => 'name',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'transform' => 'Bare'
+                                                                                                          }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'config.copy_status',
+                                                                   'alias' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                                                   'path' => 'acp-status',
+                                                                   'idlclass' => 'ccs',
+                                                                   'label' => 'Item :: Copy Status',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           '286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'acn',
+                                                                   'label' => 'Item :: Call Number/Volume',
+                                                                   'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                   'path' => 'acp-call_number',
+                                                                   'table' => 'asset.call_number',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'label' => {
+                                                                                                             'alias' => 'Call #',
+                                                                                                             'datatype' => 'text',
+                                                                                                             'op' => '=',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'colname' => 'label',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare'
+                                                                                                           }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'owning_lib' => {
+                                                                                                                     'op_value' => {},
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'colname' => 'owning_lib',
+                                                                                                                     'transform_label' => 'Raw Data',
+                                                                                                                     'op_label' => 'In list',
+                                                                                                                     'datatype' => 'org_unit',
+                                                                                                                     'alias' => 'Owning Library',
+                                                                                                                     'op' => 'in'
+                                                                                                                   }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               }
+                                                                 },
+                           'ddeeaf1839fe1496b309babab563fea7' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => '# of Circs',
+                                                                                                          'op' => '=',
+                                                                                                          'params' => 'undefined',
+                                                                                                          'transform' => 'count',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform_label' => 'Count',
+                                                                                                          'colname' => 'id'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {
+                                                                                                      'id' => {
+                                                                                                                'op_value' => {},
+                                                                                                                'transform' => 'count_distinct',
+                                                                                                                'colname' => 'id',
+                                                                                                                'transform_label' => 'Count Distinct',
+                                                                                                                'op_label' => 'Less than or equal to',
+                                                                                                                'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                                'params' => undef,
+                                                                                                                'op' => '<=',
+                                                                                                                'datatype' => 'id',
+                                                                                                                'alias' => 'Circ ID'
+                                                                                                              }
+                                                                                                    }
+                                                                               },
+                                                                   'table' => 'action.circulation',
+                                                                   'path' => 'acp-circulations',
+                                                                   'alias' => 'ddeeaf1839fe1496b309babab563fea7',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'circ',
+                                                                   'label' => 'Item :: Circulations'
+                                                                 },
+                           'df8d81aecbe6b10702cbd762ac04cac9' => {
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'pubdate' => {
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'op' => '=',
+                                                                                                               'datatype' => 'int',
+                                                                                                               'alias' => 'Pub Yr',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'colname' => 'pubdate',
+                                                                                                               'transform_label' => 'Raw Data'
+                                                                                                             },
+                                                                                                'author' => {
+                                                                                                              'op_value' => {},
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'colname' => 'author',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'datatype' => 'text',
+                                                                                                              'alias' => 'Author',
+                                                                                                              'op' => '='
+                                                                                                            },
+                                                                                                'title' => {
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'title',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'alias' => 'Title',
+                                                                                                             'datatype' => 'text',
+                                                                                                             'op' => '='
+                                                                                                           }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'reporter.super_simple_record',
+                                                                   'path' => 'acp-call_number.acn-record.bre-simple_record',
+                                                                   'alias' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                                                   'reltype' => 'might_have',
+                                                                   'idlclass' => 'rssr',
+                                                                   'label' => 'Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts '
+                                                                 },
+                           '7d74f3b92b19da5e606d737d339a9679' => {
+                                                                   'table' => 'asset.copy',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'op' => '=',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'alias' => 'Barcode',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform' => 'Bare'
+                                                                                                             },
+                                                                                                'create_date' => {
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'op' => '=',
+                                                                                                                   'alias' => 'Creation Date',
+                                                                                                                   'datatype' => 'timestamp',
+                                                                                                                   'transform' => 'date',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'colname' => 'create_date',
+                                                                                                                   'transform_label' => 'Date'
+                                                                                                                 }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'op' => '='
+                                                                                                                }
+                                                                                                 }
+                                                                               },
+                                                                   'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                                                   'path' => 'acp',
+                                                                   'idlclass' => 'acp',
+                                                                   'label' => 'Item',
+                                                                   'reltype' => ''
+                                                                 }
+                         },
+          'having' => [
+                        {
+                          'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                          'alias' => 'Circ ID',
+                          'path' => 'acp-circulations-circ-id',
+                          'condition' => {
+                                           '<=' => '::P1'
+                                         },
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'from' => {
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'path' => 'acp-status',
+                      'table' => 'asset.copy',
+                      'join' => {
+                                  'call_number-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                      'path' => 'acp-call_number-acn-record',
+                                                                                      'type' => 'left',
+                                                                                      'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                                      'template_path' => 'acp-call_number',
+                                                                                      'join' => {
+                                                                                                  'record-286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                                                                                                 'join' => {
+                                                                                                                                                             'id-rmsr-id-7f0e2da56d7bdf7c7434e87c5abaab5c' => {
+                                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                                'type' => 'left',
+                                                                                                                                                                                                                'alias' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                                                                                                                                                                                                'path' => 'acp-call_number-acn-record-bre-simple_record-rssr',
+                                                                                                                                                                                                                'table' => 'reporter.super_simple_record',
+                                                                                                                                                                                                                'template_path' => 'acp-call_number.acn-record.bre-simple_record',
+                                                                                                                                                                                                                'idlclass' => 'rssr',
+                                                                                                                                                                                                                'label' => 'Item -> Call Number/Volume -> Bibliographic Record :: Simple Record Extracts '
+                                                                                                                                                                                                              }
+                                                                                                                                                           },
+                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                 'type' => 'left',
+                                                                                                                                                 'alias' => '7f0e2da56d7bdf7c7434e87c5abaab5c',
+                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-simple_record',
+                                                                                                                                                 'key' => 'id'
+                                                                                                                                               }
+                                                                                                },
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acn',
+                                                                                      'label' => 'Item :: Call Number/Volume'
+                                                                                    },
+                                  'id-circ-target_copy-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                              'table' => 'action.circulation',
+                                                                                              'template_path' => 'acp-circulations',
+                                                                                              'type' => 'left',
+                                                                                              'alias' => 'ddeeaf1839fe1496b309babab563fea7',
+                                                                                              'path' => 'acp-circulations-circ',
+                                                                                              'key' => 'target_copy',
+                                                                                              'idlclass' => 'circ',
+                                                                                              'label' => 'Item :: Circulations'
+                                                                                            },
+                                  'status-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                 'key' => 'id',
+                                                                                 'idlclass' => 'ccs',
+                                                                                 'label' => 'Item :: Copy Status',
+                                                                                 'alias' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                                                                 'path' => 'acp-status-ccs',
+                                                                                 'table' => 'config.copy_status',
+                                                                                 'template_path' => 'acp-status'
+                                                                               }
+                                },
+                      'template_path' => 'acp',
+                      'idlclass' => 'acp',
+                      'label' => 'Item'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'deleted',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'path' => 'acp-deleted'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'owning_lib',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'alias' => 'Owning Library',
+                         'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                         'path' => 'acp-call_number-acn-owning_lib',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       }
+                     ],
+          'core_class' => 'acp',
+          'version' => 2,
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                          'alias' => 'Copy Status',
+                          'path' => 'acp-status-ccs-name'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-call_number-acn-label',
+                          'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                          'alias' => 'Call #'
+                        },
+                        {
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-title',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'alias' => 'Title',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'author'
+                                      },
+                          'alias' => 'Author',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-author'
+                        },
+                        {
+                          'alias' => 'Pub Yr',
+                          'relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-pubdate',
+                          'column' => {
+                                        'colname' => 'pubdate',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'colname' => 'create_date',
+                                        'transform' => 'date'
+                                      },
+                          'path' => 'acp-create_date',
+                          'alias' => 'Creation Date',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'count',
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      },
+                          'alias' => '# of Circs',
+                          'relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                          'path' => 'acp-circulations-circ-id'
+                        },
+                        {
+                          'path' => 'acp-barcode',
+                          'alias' => 'Barcode',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-13 14:55:24.633035-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [
+                                bless( {
+                                         '_transform' => 'count_distinct',
+                                         '_aggregate' => undef,
+                                         '_builder' => bless( {
+                                                                '_pivot_data' => '7',
+                                                                '_params' => {
+                                                                               '__pivot_label' => '',
+                                                                               'P1' => '100000',
+                                                                               '__pivot_data' => '7',
+                                                                               'P0' => [
+                                                                                         '198',
+                                                                                         '199',
+                                                                                         '200',
+                                                                                         '201',
+                                                                                         '202'
+                                                                                       ]
+                                                                             },
+                                                                '_rels' => {
+                                                                             '7f0e2da56d7bdf7c7434e87c5abaab5c' => bless( {
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_sql' => '
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7f0e2da56d7bdf7c7434e87c5abaab5c'},
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_join_type' => 'left',
+                                                                                                                                                                           '_nullable' => 'l',
+                                                                                                                                                                           '_sql' => 'reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9"',
+                                                                                                                                                                           '_table' => 'reporter.super_simple_record',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_alias' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                                                                                                                                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_join' => []
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_join_type' => 'left',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_col' => 'id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                       ],
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                            '_alias' => '7f0e2da56d7bdf7c7434e87c5abaab5c',
+                                                                                                                            '_nullable' => 'l',
+                                                                                                                            '_join_type' => 'left',
+                                                                                                                            '_table' => 'biblio.record_entry',
+                                                                                                                            '_sql' => 'biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c"'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '9547fadabf916ce4fd3eb232e0902c9c' => bless( {
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [],
+                                                                                                                            '_alias' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                                                                                                            '_join_type' => 'inner',
+                                                                                                                            '_table' => 'config.copy_status',
+                                                                                                                            '_sql' => 'config.copy_status AS "9547fadabf916ce4fd3eb232e0902c9c"'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             'ddeeaf1839fe1496b309babab563fea7' => bless( {
+                                                                                                                            '_sql' => 'action.circulation AS "ddeeaf1839fe1496b309babab563fea7"',
+                                                                                                                            '_table' => 'action.circulation',
+                                                                                                                            '_join_type' => 'left',
+                                                                                                                            '_nullable' => 'l',
+                                                                                                                            '_alias' => 'ddeeaf1839fe1496b309babab563fea7',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [],
+                                                                                                                            '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                            '_is_join' => 1
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '286d7899ae25bee8bdd7dcde49f9e0b7' => bless( {
+                                                                                                                            '_alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_join_type' => 'left',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_col' => 'record',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'286d7899ae25bee8bdd7dcde49f9e0b7'},
+                                                                                                                                                  '_sql' => '
+	LEFT OUTER JOIN biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "7f0e2da56d7bdf7c7434e87c5abaab5c"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")',
+                                                                                                                                                  '_right_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7f0e2da56d7bdf7c7434e87c5abaab5c'}
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                       ],
+                                                                                                                            '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_sql' => 'asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7"',
+                                                                                                                            '_table' => 'asset.call_number',
+                                                                                                                            '_join_type' => 'left',
+                                                                                                                            '_nullable' => 'l'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '7d74f3b92b19da5e606d737d339a9679' => bless( {
+                                                                                                                            '_nullable' => undef,
+                                                                                                                            '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                                                                                                            '_table' => 'asset.copy',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'ddeeaf1839fe1496b309babab563fea7'},
+                                                                                                                                                  '_left_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                  '_sql' => '
+	LEFT OUTER JOIN action.circulation AS "ddeeaf1839fe1496b309babab563fea7" ON ("7d74f3b92b19da5e606d737d339a9679"."id" = "ddeeaf1839fe1496b309babab563fea7"."target_copy")',
+                                                                                                                                                  '_right_col' => 'target_copy',
+                                                                                                                                                  '_left_col' => 'id',
+                                                                                                                                                  '_join_type' => 'left'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::left' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_left_col' => 'status',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_right_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'9547fadabf916ce4fd3eb232e0902c9c'},
+                                                                                                                                                  '_left_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                  '_sql' => '
+	INNER JOIN config.copy_status AS "9547fadabf916ce4fd3eb232e0902c9c" ON ("7d74f3b92b19da5e606d737d339a9679"."status" = "9547fadabf916ce4fd3eb232e0902c9c"."id")'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_join_type' => 'left',
+                                                                                                                                                  '_left_col' => 'call_number',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_sql' => '
+	LEFT OUTER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "7f0e2da56d7bdf7c7434e87c5abaab5c"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                  '_right_rel' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'286d7899ae25bee8bdd7dcde49f9e0b7'}
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                       ],
+                                                                                                                            '_sql' => 'asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	LEFT OUTER JOIN action.circulation AS "ddeeaf1839fe1496b309babab563fea7" ON ("7d74f3b92b19da5e606d737d339a9679"."id" = "ddeeaf1839fe1496b309babab563fea7"."target_copy")
+	INNER JOIN config.copy_status AS "9547fadabf916ce4fd3eb232e0902c9c" ON ("7d74f3b92b19da5e606d737d339a9679"."status" = "9547fadabf916ce4fd3eb232e0902c9c"."id")
+	LEFT OUTER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "7f0e2da56d7bdf7c7434e87c5abaab5c"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")',
+                                                                                                                            '_alias' => '7d74f3b92b19da5e606d737d339a9679'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             'df8d81aecbe6b10702cbd762ac04cac9' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7f0e2da56d7bdf7c7434e87c5abaab5c'}{'_join'}[0]{'_right_rel'}
+                                                                           },
+                                                                '_relative_time' => '2020-08-13 14:55:24.633035-04',
+                                                                '_resultset_limit' => 1048575,
+                                                                '_sql' => undef
+                                                              }, 'OpenILS::Reporter::SQLBuilder' ),
+                                         '_relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                                         '_sql' => '((COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id")) IS NULL OR COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id") <= $_128057$100000$_128057$)',
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count Distinct',
+                                                        'transform' => 'count_distinct'
+                                                      },
+                                         '_condition' => {
+                                                           '<=' => '::P1'
+                                                         }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Having' )
+                              ],
+                 '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"9547fadabf916ce4fd3eb232e0902c9c"."name" AS "Copy Status",
+	"286d7899ae25bee8bdd7dcde49f9e0b7"."label" AS "Call #",
+	"df8d81aecbe6b10702cbd762ac04cac9"."title" AS "Title",
+	"df8d81aecbe6b10702cbd762ac04cac9"."author" AS "Author",
+	"df8d81aecbe6b10702cbd762ac04cac9"."pubdate" AS "Pub Yr",
+	date("7d74f3b92b19da5e606d737d339a9679"."create_date") AS "Creation Date",
+	COUNT("ddeeaf1839fe1496b309babab563fea7"."id") AS "# of Circs",
+	"7d74f3b92b19da5e606d737d339a9679"."barcode" AS "Barcode"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	LEFT OUTER JOIN action.circulation AS "ddeeaf1839fe1496b309babab563fea7" ON ("7d74f3b92b19da5e606d737d339a9679"."id" = "ddeeaf1839fe1496b309babab563fea7"."target_copy")
+	INNER JOIN config.copy_status AS "9547fadabf916ce4fd3eb232e0902c9c" ON ("7d74f3b92b19da5e606d737d339a9679"."status" = "9547fadabf916ce4fd3eb232e0902c9c"."id")
+	LEFT OUTER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "7f0e2da56d7bdf7c7434e87c5abaab5c" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "7f0e2da56d7bdf7c7434e87c5abaab5c"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "df8d81aecbe6b10702cbd762ac04cac9" ON ("7f0e2da56d7bdf7c7434e87c5abaab5c"."id" = "df8d81aecbe6b10702cbd762ac04cac9"."id")
+  WHERE	"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_128057$f$_128057$
+	AND (("286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib") IS NULL OR "286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_128057$198$_128057$,$_128057$199$_128057$,$_128057$200$_128057$,$_128057$201$_128057$,$_128057$202$_128057$))
+  GROUP BY 1, 2, 3, 4, 5, 6, 8
+  HAVING ((COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id")) IS NULL OR COUNT(DISTINCT "ddeeaf1839fe1496b309babab563fea7"."id") <= $_128057$100000$_128057$)
+  ORDER BY "9547fadabf916ce4fd3eb232e0902c9c"."name" ASC, "286d7899ae25bee8bdd7dcde49f9e0b7"."label" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."title" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."author" ASC, "df8d81aecbe6b10702cbd762ac04cac9"."pubdate" ASC, date("7d74f3b92b19da5e606d737d339a9679"."create_date") ASC, COUNT("ddeeaf1839fe1496b309babab563fea7"."id") ASC, "7d74f3b92b19da5e606d737d339a9679"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                        '_sql' => '"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_128057$f$_128057$',
+                                        '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare',
+                                        '_sql' => '(("286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib") IS NULL OR "286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_128057$198$_128057$,$_128057$199$_128057$,$_128057$200$_128057$,$_128057$201$_128057$,$_128057$202$_128057$))',
+                                        '_relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'owning_lib',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_builder' => $VAR1->{'_having'}[0]{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_select' => [
+                                bless( {
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'colname' => 'name',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Copy Status',
+                                         '_relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                         '_sql' => '"9547fadabf916ce4fd3eb232e0902c9c"."name" AS "Copy Status"',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                         '_sql' => '"286d7899ae25bee8bdd7dcde49f9e0b7"."label" AS "Call #"',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'label',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Call #',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                         '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."title" AS "Title"',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'title',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Title',
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                         '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."author" AS "Author"',
+                                         '_column' => {
+                                                        'colname' => 'author',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Author',
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."pubdate" AS "Pub Yr"',
+                                         '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'pubdate',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Pub Yr',
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'GenericTransform',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                         '_sql' => 'date("7d74f3b92b19da5e606d737d339a9679"."create_date") AS "Creation Date"',
+                                         '_column' => {
+                                                        'transform' => 'date',
+                                                        'colname' => 'create_date',
+                                                        'transform_label' => 'Date'
+                                                      },
+                                         '_alias' => 'Creation Date'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_alias' => '# of Circs',
+                                         '_column' => {
+                                                        'transform' => 'count',
+                                                        'transform_label' => 'Count',
+                                                        'colname' => 'id'
+                                                      },
+                                         '_relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                                         '_sql' => 'COUNT("ddeeaf1839fe1496b309babab563fea7"."id") AS "# of Circs"',
+                                         '_transform' => 'count',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                         '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                         '_sql' => '"7d74f3b92b19da5e606d737d339a9679"."barcode" AS "Barcode"',
+                                         '_column' => {
+                                                        'colname' => 'barcode',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Barcode',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_having'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_relation' => '9547fadabf916ce4fd3eb232e0902c9c',
+                                           '_sql' => '"9547fadabf916ce4fd3eb232e0902c9c"."name" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"286d7899ae25bee8bdd7dcde49f9e0b7"."label" ASC',
+                                           '_relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."title" ASC',
+                                           '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                           '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."author" ASC',
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_sql' => '"df8d81aecbe6b10702cbd762ac04cac9"."pubdate" ASC',
+                                           '_relation' => 'df8d81aecbe6b10702cbd762ac04cac9',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'GenericTransform',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'},
+                                           '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                           '_sql' => 'date("7d74f3b92b19da5e606d737d339a9679"."create_date") ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_relation' => 'ddeeaf1839fe1496b309babab563fea7',
+                                           '_sql' => 'COUNT("ddeeaf1839fe1496b309babab563fea7"."id") ASC',
+                                           '_transform' => 'count',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_having'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[7]{'_column'},
+                                           '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                           '_sql' => '"7d74f3b92b19da5e606d737d339a9679"."barcode" ASC',
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

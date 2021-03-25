@@ -1,0 +1,1563 @@
+<html><head><meta charset='utf-8'><title>DEBUG: test credit neva</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"504533f8a4a788833c2f40f3cf5f2171"."shortname" AS "Patron Home Library",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" AS "Payment Date/Time",
+	"a31388d01eba407b1f74addc1ad2b7f0"."barcode" AS "Barcode",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" AS "First Name",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" AS "Middle Name",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" AS "Last Name",
+	"d7af93687c0abb22bf067973a80c81d1"."id" AS "Payment ID",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" AS "Payment Amount",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" AS "Credit Card Processor"
+  FROM	money.credit_card_payment AS "b27fa2c9836b0e0aca9dd6e1a27ac044"
+	LEFT OUTER JOIN money.payment_view AS "d7af93687c0abb22bf067973a80c81d1" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."id" = "d7af93687c0abb22bf067973a80c81d1"."id")
+	INNER JOIN money.billable_xact AS "a831241ea25f2b262a675ef5dc435f48" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."xact" = "a831241ea25f2b262a675ef5dc435f48"."id")
+	INNER JOIN actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7" ON ("a831241ea25f2b262a675ef5dc435f48"."usr" = "dca3e5ab916243d3d0b06e5ccebc2bb7"."id")
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")
+  WHERE	"504533f8a4a788833c2f40f3cf5f2171"."id" IN ($_66075$164$_66075$)
+	AND "b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" is not NULL
+	AND "b27fa2c9836b0e0aca9dd6e1a27ac044"."cash_drawer" is NULL
+	AND date("b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts") BETWEEN $_66075$2020-06-08$_66075$ AND $_66075$2020-06-08$_66075$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+  ORDER BY "504533f8a4a788833c2f40f3cf5f2171"."shortname" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" ASC, "a31388d01eba407b1f74addc1ad2b7f0"."barcode" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" ASC, "d7af93687c0abb22bf067973a80c81d1"."id" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'create_time' => '2015-11-11 05:28:00.24785-05',
+          'id' => 63787,
+          'owner' => 3983472,
+          'description' => 'Uses Credit Card Payment source.
+
+Displayed Fields:
+
+Credit Card Payment -> xact -> User -> Home Library -> Short (Policy) Name as "Patron Home Library"
+Credit Card Payment -> payment_ts as "Payment Date/Time"
+Credit Card Payment -> xact -> User -> Current Library Card -> Barcode
+Credit Card Payment -> xact -> User -> First Name
+Credit Card Payment -> xact -> User -> Middle Name
+Credit Card Payment -> xact -> User -> Last Name
+Credit Card Payment -> Payment -> Payment ID
+Credit Card Payment -> amount as "Payment Amount"
+Credit Card Payment -> cc_processor as "Credit Card Processor"
+
+
+Base Filters:
+
+Credit Card Payment -> payment_ts (Date) (Between)
+Credit Card Payment -> cc_processor (Is not NULL)
+Credit Card Payment -> cash_drawer (Is NULL)
+Credit Card Payment -> xact -> User -> Home Library -> Organizational Unit ID (In list)',
+          'name' => 'Patron Credit Card Payment Report',
+          'data' => '{"version":4,"doc_url":"","core_class":"mccp","select":[{"alias":"Patron Home Library","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-home_ou-aou-shortname","relation":"504533f8a4a788833c2f40f3cf5f2171"},{"alias":"Payment Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-payment_ts","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"},{"alias":"Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-card-ac-barcode","relation":"a31388d01eba407b1f74addc1ad2b7f0"},{"alias":"First Name","field_doc":"","column":{"colname":"first_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-first_given_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Middle Name","field_doc":"","column":{"colname":"second_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-second_given_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Last Name","field_doc":"","column":{"colname":"family_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-family_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Payment ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-payment-mp-id","relation":"d7af93687c0abb22bf067973a80c81d1"},{"alias":"Payment Amount","field_doc":"","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-amount","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"},{"alias":"Credit Card Processor","field_doc":"","column":{"colname":"cc_processor","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cc_processor","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"}],"from":{"path":"mccp-payment","table":"money.credit_card_payment","alias":"b27fa2c9836b0e0aca9dd6e1a27ac044","join":{"xact-3b2cc5761109daac80c07dbd76522dd1":{"key":"id","path":"mccp-xact-mbt-usr","table":"money.billable_xact","alias":"a831241ea25f2b262a675ef5dc435f48","join":{"usr-a831241ea25f2b262a675ef5dc435f48":{"key":"id","path":"mccp-xact-mbt-usr-au","table":"actor.usr","alias":"dca3e5ab916243d3d0b06e5ccebc2bb7","join":{"home_ou-4fe9e6e12e671d3e5b77eea9ef2b9c82":{"key":"id","path":"mccp-xact-mbt-usr-au-home_ou-aou","table":"actor.org_unit","label":"Credit Card Payment -> Billable Transaction -> ILS User :: Home Library","alias":"504533f8a4a788833c2f40f3cf5f2171","idlclass":"aou","template_path":"mccp-xact.mbt-usr.au-home_ou"},"card-4fe9e6e12e671d3e5b77eea9ef2b9c82":{"key":"id","path":"mccp-xact-mbt-usr-au-card-ac","table":"actor.card","label":"Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card","alias":"a31388d01eba407b1f74addc1ad2b7f0","idlclass":"ac","template_path":"mccp-xact.mbt-usr.au-card"}},"label":"Credit Card Payment -> Billable Transaction :: User","idlclass":"au","template_path":"mccp-xact.mbt-usr"}}},"id-mp-id-b27fa2c9836b0e0aca9dd6e1a27ac044":{"key":"id","type":"left","path":"mccp-payment-mp","table":"money.payment_view","label":"Credit Card Payment :: payment","alias":"d7af93687c0abb22bf067973a80c81d1","idlclass":"mp","template_path":"mccp-payment"}},"label":"Credit Card Payment","idlclass":"mccp","template_path":"mccp"},"where":[{"alias":"Organizational Unit ID","field_doc":"Patron Home Library","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-home_ou-aou-id","relation":"504533f8a4a788833c2f40f3cf5f2171","condition":{"in":"::P0"}},{"alias":"cc_processor","field_doc":"","column":{"colname":"cc_processor","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cc_processor","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"is not":null}},{"alias":"cash_drawer","field_doc":"","column":{"colname":"cash_drawer","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cash_drawer","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"is":null}},{"alias":"payment_ts","field_doc":"Payment Date/Time","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mccp-payment_ts","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"504533f8a4a788833c2f40f3cf5f2171":{"label":"Credit Card Payment -> Billable Transaction -> ILS User :: Home Library","alias":"504533f8a4a788833c2f40f3cf5f2171","path":"mccp-xact.mbt-usr.au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Patron Home Library","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","field_doc":"Patron Home Library","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"504533f8a4a788833c2f40f3cf5f2171","field":"shortname"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"payment_ts"},{"relation":"a31388d01eba407b1f74addc1ad2b7f0","field":"barcode"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"first_given_name"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"second_given_name"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"family_name"},{"relation":"d7af93687c0abb22bf067973a80c81d1","field":"id"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"amount"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"cc_processor"}],"a31388d01eba407b1f74addc1ad2b7f0":{"label":"Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card","alias":"a31388d01eba407b1f74addc1ad2b7f0","path":"mccp-xact.mbt-usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Barcode","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"dca3e5ab916243d3d0b06e5ccebc2bb7":{"label":"Credit Card Payment -> Billable Transaction :: User","alias":"dca3e5ab916243d3d0b06e5ccebc2bb7","path":"mccp-xact.mbt-usr","join":"","reltype":"has_a","idlclass":"au","table":"actor.usr","fields":{"dis_tab":{"first_given_name":{"colname":"first_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"First Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"second_given_name":{"colname":"second_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Middle Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"family_name":{"colname":"family_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Last Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"b27fa2c9836b0e0aca9dd6e1a27ac044":{"label":"Credit Card Payment","alias":"b27fa2c9836b0e0aca9dd6e1a27ac044","path":"mccp","join":"","reltype":"","idlclass":"mccp","table":"money.credit_card_payment","fields":{"dis_tab":{"payment_ts":{"colname":"payment_ts","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Date/Time","field_doc":"","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"amount":{"colname":"amount","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Amount","field_doc":"","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"cc_processor":{"colname":"cc_processor","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Credit Card Processor","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"cc_processor":{"colname":"cc_processor","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"cc_processor","field_doc":"","join":"","datatype":"text","op":"is not","op_label":"Is not NULL","op_value":{}},"cash_drawer":{"colname":"cash_drawer","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"cash_drawer","field_doc":"","join":"","datatype":"link","op":"is","op_label":"Is NULL","op_value":{}},"payment_ts":{"colname":"payment_ts","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"payment_ts","field_doc":"Payment Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}},"d7af93687c0abb22bf067973a80c81d1":{"label":"Credit Card Payment :: payment","alias":"d7af93687c0abb22bf067973a80c81d1","path":"mccp-payment","join":"","reltype":"might_have","idlclass":"mp","table":"money.payment_view","fields":{"dis_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment ID","field_doc":"","join":"","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+          'folder' => 2787
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'version' => 4,
+          'from' => {
+                      'path' => 'mccp-payment',
+                      'template_path' => 'mccp',
+                      'alias' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                      'join' => {
+                                  'xact-3b2cc5761109daac80c07dbd76522dd1' => {
+                                                                               'alias' => 'a831241ea25f2b262a675ef5dc435f48',
+                                                                               'join' => {
+                                                                                           'usr-a831241ea25f2b262a675ef5dc435f48' => {
+                                                                                                                                       'alias' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'home_ou-4fe9e6e12e671d3e5b77eea9ef2b9c82' => {
+                                                                                                                                                                                                   'alias' => '504533f8a4a788833c2f40f3cf5f2171',
+                                                                                                                                                                                                   'template_path' => 'mccp-xact.mbt-usr.au-home_ou',
+                                                                                                                                                                                                   'key' => 'id',
+                                                                                                                                                                                                   'path' => 'mccp-xact-mbt-usr-au-home_ou-aou',
+                                                                                                                                                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Home Library',
+                                                                                                                                                                                                   'idlclass' => 'aou',
+                                                                                                                                                                                                   'table' => 'actor.org_unit'
+                                                                                                                                                                                                 },
+                                                                                                                                                   'card-4fe9e6e12e671d3e5b77eea9ef2b9c82' => {
+                                                                                                                                                                                                'path' => 'mccp-xact-mbt-usr-au-card-ac',
+                                                                                                                                                                                                'template_path' => 'mccp-xact.mbt-usr.au-card',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'alias' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card'
+                                                                                                                                                                                              }
+                                                                                                                                                 },
+                                                                                                                                       'path' => 'mccp-xact-mbt-usr-au',
+                                                                                                                                       'label' => 'Credit Card Payment -> Billable Transaction :: User',
+                                                                                                                                       'idlclass' => 'au',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'template_path' => 'mccp-xact.mbt-usr',
+                                                                                                                                       'table' => 'actor.usr'
+                                                                                                                                     }
+                                                                                         },
+                                                                               'path' => 'mccp-xact-mbt-usr',
+                                                                               'key' => 'id',
+                                                                               'table' => 'money.billable_xact'
+                                                                             },
+                                  'id-mp-id-b27fa2c9836b0e0aca9dd6e1a27ac044' => {
+                                                                                   'label' => 'Credit Card Payment :: payment',
+                                                                                   'type' => 'left',
+                                                                                   'idlclass' => 'mp',
+                                                                                   'alias' => 'd7af93687c0abb22bf067973a80c81d1',
+                                                                                   'path' => 'mccp-payment-mp',
+                                                                                   'table' => 'money.payment_view',
+                                                                                   'template_path' => 'mccp-payment',
+                                                                                   'key' => 'id'
+                                                                                 }
+                                },
+                      'table' => 'money.credit_card_payment',
+                      'idlclass' => 'mccp',
+                      'label' => 'Credit Card Payment'
+                    },
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'alias' => 'Organizational Unit ID',
+                         'path' => 'mccp-xact-mbt-usr-au-home_ou-aou-id',
+                         'field_doc' => 'Patron Home Library'
+                       },
+                       {
+                         'path' => 'mccp-cc_processor',
+                         'field_doc' => '',
+                         'alias' => 'cc_processor',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'cc_processor'
+                                     },
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                         'condition' => {
+                                          'is not' => undef
+                                        }
+                       },
+                       {
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'cash_drawer'
+                                     },
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'field_doc' => '',
+                         'path' => 'mccp-cash_drawer',
+                         'alias' => 'cash_drawer'
+                       },
+                       {
+                         'alias' => 'payment_ts',
+                         'path' => 'mccp-payment_ts',
+                         'field_doc' => 'Payment Date/Time',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Date',
+                                       'colname' => 'payment_ts',
+                                       'transform' => 'date'
+                                     },
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                       }
+                     ],
+          'order_by' => [],
+          'doc_url' => '',
+          'rel_cache' => {
+                           'a31388d01eba407b1f74addc1ad2b7f0' => {
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'ac',
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                   'path' => 'mccp-xact.mbt-usr.au-card',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'op_value' => {},
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'field_doc' => '',
+                                                                                                               'op' => '=',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'alias' => 'Barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'aggregate' => undef,
+                                                                                                               'transform' => 'Bare'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'alias' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                                                   'join' => ''
+                                                                 },
+                           'dca3e5ab916243d3d0b06e5ccebc2bb7' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.usr',
+                                                                   'alias' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                                                   'join' => '',
+                                                                   'path' => 'mccp-xact.mbt-usr',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'family_name' => {
+                                                                                                                   'op_value' => {},
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'colname' => 'family_name',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'op' => '=',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'alias' => 'Last Name',
+                                                                                                                   'params' => undef,
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => '',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'aggregate' => undef
+                                                                                                                 },
+                                                                                                'first_given_name' => {
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'datatype' => 'text',
+                                                                                                                        'join' => '',
+                                                                                                                        'params' => undef,
+                                                                                                                        'alias' => 'First Name',
+                                                                                                                        'op_label' => 'Equals',
+                                                                                                                        'op' => '=',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'colname' => 'first_given_name',
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'op_value' => {}
+                                                                                                                      },
+                                                                                                'second_given_name' => {
+                                                                                                                         'op' => '=',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'params' => undef,
+                                                                                                                         'alias' => 'Middle Name',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'join' => '',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'op_value' => {},
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'colname' => 'second_given_name',
+                                                                                                                         'field_doc' => ''
+                                                                                                                       }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction :: User',
+                                                                   'idlclass' => 'au'
+                                                                 },
+                           'd7af93687c0abb22bf067973a80c81d1' => {
+                                                                   'reltype' => 'might_have',
+                                                                   'table' => 'money.payment_view',
+                                                                   'path' => 'mccp-payment',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'field_doc' => '',
+                                                                                                          'colname' => 'id',
+                                                                                                          'transform_label' => 'Raw Data',
+                                                                                                          'op_value' => {},
+                                                                                                          'aggregate' => undef,
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'join' => '',
+                                                                                                          'params' => undef,
+                                                                                                          'alias' => 'Payment ID',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'op' => '='
+                                                                                                        }
+                                                                                              }
+                                                                               },
+                                                                   'alias' => 'd7af93687c0abb22bf067973a80c81d1',
+                                                                   'join' => '',
+                                                                   'idlclass' => 'mp',
+                                                                   'label' => 'Credit Card Payment :: payment'
+                                                                 },
+                           '504533f8a4a788833c2f40f3cf5f2171' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Home Library',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'op' => '=',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'join' => '',
+                                                                                                                 'params' => undef,
+                                                                                                                 'alias' => 'Patron Home Library'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'op' => 'in',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'join' => '',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'params' => undef,
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'field_doc' => 'Patron Home Library',
+                                                                                                             'colname' => 'id'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'mccp-xact.mbt-usr.au-home_ou',
+                                                                   'join' => '',
+                                                                   'alias' => '504533f8a4a788833c2f40f3cf5f2171'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'payment_ts',
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                                           },
+                                           {
+                                             'field' => 'barcode',
+                                             'relation' => 'a31388d01eba407b1f74addc1ad2b7f0'
+                                           },
+                                           {
+                                             'field' => 'first_given_name',
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                                           },
+                                           {
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                             'field' => 'second_given_name'
+                                           },
+                                           {
+                                             'field' => 'family_name',
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                                           },
+                                           {
+                                             'relation' => 'd7af93687c0abb22bf067973a80c81d1',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'cc_processor',
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                                           }
+                                         ],
+                           'b27fa2c9836b0e0aca9dd6e1a27ac044' => {
+                                                                   'reltype' => '',
+                                                                   'table' => 'money.credit_card_payment',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'cc_processor' => {
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'aggregate' => undef,
+                                                                                                                       'alias' => 'cc_processor',
+                                                                                                                       'params' => undef,
+                                                                                                                       'datatype' => 'text',
+                                                                                                                       'join' => '',
+                                                                                                                       'op_label' => 'Is not NULL',
+                                                                                                                       'op' => 'is not',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'colname' => 'cc_processor',
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op_value' => {}
+                                                                                                                     },
+                                                                                                   'cash_drawer' => {
+                                                                                                                      'op' => 'is',
+                                                                                                                      'op_label' => 'Is NULL',
+                                                                                                                      'join' => '',
+                                                                                                                      'datatype' => 'link',
+                                                                                                                      'alias' => 'cash_drawer',
+                                                                                                                      'params' => undef,
+                                                                                                                      'aggregate' => undef,
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'colname' => 'cash_drawer',
+                                                                                                                      'field_doc' => ''
+                                                                                                                    },
+                                                                                                   'payment_ts' => {
+                                                                                                                     'field_doc' => 'Payment Date/Time',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'join' => '',
+                                                                                                                     'params' => undef,
+                                                                                                                     'alias' => 'payment_ts',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'op' => 'between'
+                                                                                                                   }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'payment_ts' => {
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'join' => '',
+                                                                                                                  'alias' => 'Payment Date/Time',
+                                                                                                                  'params' => undef,
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'op' => '='
+                                                                                                                },
+                                                                                                'cc_processor' => {
+                                                                                                                    'op' => '=',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'alias' => 'Credit Card Processor',
+                                                                                                                    'params' => undef,
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'join' => '',
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'op_value' => {},
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'colname' => 'cc_processor',
+                                                                                                                    'field_doc' => ''
+                                                                                                                  },
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'op_value' => {},
+                                                                                                              'field_doc' => '',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => undef,
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'join' => '',
+                                                                                                              'datatype' => 'money',
+                                                                                                              'params' => undef,
+                                                                                                              'alias' => 'Payment Amount'
+                                                                                                            }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'mccp',
+                                                                   'join' => '',
+                                                                   'alias' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                                                   'idlclass' => 'mccp',
+                                                                   'label' => 'Credit Card Payment'
+                                                                 }
+                         },
+          'having' => [],
+          'core_class' => 'mccp',
+          'select' => [
+                        {
+                          'alias' => 'Patron Home Library',
+                          'path' => 'mccp-xact-mbt-usr-au-home_ou-aou-shortname',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'relation' => '504533f8a4a788833c2f40f3cf5f2171'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'payment_ts',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-payment_ts',
+                          'field_doc' => '',
+                          'alias' => 'Payment Date/Time'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                          'field_doc' => '',
+                          'path' => 'mccp-xact-mbt-usr-au-card-ac-barcode',
+                          'alias' => 'Barcode'
+                        },
+                        {
+                          'alias' => 'First Name',
+                          'path' => 'mccp-xact-mbt-usr-au-first_given_name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'first_given_name'
+                                      },
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                        },
+                        {
+                          'path' => 'mccp-xact-mbt-usr-au-second_given_name',
+                          'field_doc' => '',
+                          'alias' => 'Middle Name',
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'second_given_name'
+                                      }
+                        },
+                        {
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'family_name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-xact-mbt-usr-au-family_name',
+                          'field_doc' => '',
+                          'alias' => 'Last Name'
+                        },
+                        {
+                          'relation' => 'd7af93687c0abb22bf067973a80c81d1',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-payment-mp-id',
+                          'field_doc' => '',
+                          'alias' => 'Payment ID'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'amount',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mccp-amount',
+                          'alias' => 'Payment Amount'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'cc_processor',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Credit Card Processor',
+                          'field_doc' => '',
+                          'path' => 'mccp-cc_processor'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'name' => 'test credit neva',
+          'template' => {
+                          'create_time' => '2015-11-11 05:28:00.24785-05',
+                          'id' => 63787,
+                          'owner' => 3983472,
+                          'description' => 'Uses Credit Card Payment source.
+
+Displayed Fields:
+
+Credit Card Payment -> xact -> User -> Home Library -> Short (Policy) Name as "Patron Home Library"
+Credit Card Payment -> payment_ts as "Payment Date/Time"
+Credit Card Payment -> xact -> User -> Current Library Card -> Barcode
+Credit Card Payment -> xact -> User -> First Name
+Credit Card Payment -> xact -> User -> Middle Name
+Credit Card Payment -> xact -> User -> Last Name
+Credit Card Payment -> Payment -> Payment ID
+Credit Card Payment -> amount as "Payment Amount"
+Credit Card Payment -> cc_processor as "Credit Card Processor"
+
+
+Base Filters:
+
+Credit Card Payment -> payment_ts (Date) (Between)
+Credit Card Payment -> cc_processor (Is not NULL)
+Credit Card Payment -> cash_drawer (Is NULL)
+Credit Card Payment -> xact -> User -> Home Library -> Organizational Unit ID (In list)',
+                          'name' => 'Patron Credit Card Payment Report',
+                          'data' => '{"version":4,"doc_url":"","core_class":"mccp","select":[{"alias":"Patron Home Library","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-home_ou-aou-shortname","relation":"504533f8a4a788833c2f40f3cf5f2171"},{"alias":"Payment Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-payment_ts","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"},{"alias":"Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-card-ac-barcode","relation":"a31388d01eba407b1f74addc1ad2b7f0"},{"alias":"First Name","field_doc":"","column":{"colname":"first_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-first_given_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Middle Name","field_doc":"","column":{"colname":"second_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-second_given_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Last Name","field_doc":"","column":{"colname":"family_name","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-family_name","relation":"dca3e5ab916243d3d0b06e5ccebc2bb7"},{"alias":"Payment ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-payment-mp-id","relation":"d7af93687c0abb22bf067973a80c81d1"},{"alias":"Payment Amount","field_doc":"","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-amount","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"},{"alias":"Credit Card Processor","field_doc":"","column":{"colname":"cc_processor","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cc_processor","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044"}],"from":{"path":"mccp-payment","table":"money.credit_card_payment","alias":"b27fa2c9836b0e0aca9dd6e1a27ac044","join":{"xact-3b2cc5761109daac80c07dbd76522dd1":{"key":"id","path":"mccp-xact-mbt-usr","table":"money.billable_xact","alias":"a831241ea25f2b262a675ef5dc435f48","join":{"usr-a831241ea25f2b262a675ef5dc435f48":{"key":"id","path":"mccp-xact-mbt-usr-au","table":"actor.usr","alias":"dca3e5ab916243d3d0b06e5ccebc2bb7","join":{"home_ou-4fe9e6e12e671d3e5b77eea9ef2b9c82":{"key":"id","path":"mccp-xact-mbt-usr-au-home_ou-aou","table":"actor.org_unit","label":"Credit Card Payment -> Billable Transaction -> ILS User :: Home Library","alias":"504533f8a4a788833c2f40f3cf5f2171","idlclass":"aou","template_path":"mccp-xact.mbt-usr.au-home_ou"},"card-4fe9e6e12e671d3e5b77eea9ef2b9c82":{"key":"id","path":"mccp-xact-mbt-usr-au-card-ac","table":"actor.card","label":"Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card","alias":"a31388d01eba407b1f74addc1ad2b7f0","idlclass":"ac","template_path":"mccp-xact.mbt-usr.au-card"}},"label":"Credit Card Payment -> Billable Transaction :: User","idlclass":"au","template_path":"mccp-xact.mbt-usr"}}},"id-mp-id-b27fa2c9836b0e0aca9dd6e1a27ac044":{"key":"id","type":"left","path":"mccp-payment-mp","table":"money.payment_view","label":"Credit Card Payment :: payment","alias":"d7af93687c0abb22bf067973a80c81d1","idlclass":"mp","template_path":"mccp-payment"}},"label":"Credit Card Payment","idlclass":"mccp","template_path":"mccp"},"where":[{"alias":"Organizational Unit ID","field_doc":"Patron Home Library","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-xact-mbt-usr-au-home_ou-aou-id","relation":"504533f8a4a788833c2f40f3cf5f2171","condition":{"in":"::P0"}},{"alias":"cc_processor","field_doc":"","column":{"colname":"cc_processor","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cc_processor","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"is not":null}},{"alias":"cash_drawer","field_doc":"","column":{"colname":"cash_drawer","transform":"Bare","transform_label":"Raw Data"},"path":"mccp-cash_drawer","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"is":null}},{"alias":"payment_ts","field_doc":"Payment Date/Time","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mccp-payment_ts","relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"504533f8a4a788833c2f40f3cf5f2171":{"label":"Credit Card Payment -> Billable Transaction -> ILS User :: Home Library","alias":"504533f8a4a788833c2f40f3cf5f2171","path":"mccp-xact.mbt-usr.au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Patron Home Library","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","field_doc":"Patron Home Library","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"504533f8a4a788833c2f40f3cf5f2171","field":"shortname"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"payment_ts"},{"relation":"a31388d01eba407b1f74addc1ad2b7f0","field":"barcode"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"first_given_name"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"second_given_name"},{"relation":"dca3e5ab916243d3d0b06e5ccebc2bb7","field":"family_name"},{"relation":"d7af93687c0abb22bf067973a80c81d1","field":"id"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"amount"},{"relation":"b27fa2c9836b0e0aca9dd6e1a27ac044","field":"cc_processor"}],"a31388d01eba407b1f74addc1ad2b7f0":{"label":"Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card","alias":"a31388d01eba407b1f74addc1ad2b7f0","path":"mccp-xact.mbt-usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Barcode","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"dca3e5ab916243d3d0b06e5ccebc2bb7":{"label":"Credit Card Payment -> Billable Transaction :: User","alias":"dca3e5ab916243d3d0b06e5ccebc2bb7","path":"mccp-xact.mbt-usr","join":"","reltype":"has_a","idlclass":"au","table":"actor.usr","fields":{"dis_tab":{"first_given_name":{"colname":"first_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"First Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"second_given_name":{"colname":"second_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Middle Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"family_name":{"colname":"family_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Last Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"b27fa2c9836b0e0aca9dd6e1a27ac044":{"label":"Credit Card Payment","alias":"b27fa2c9836b0e0aca9dd6e1a27ac044","path":"mccp","join":"","reltype":"","idlclass":"mccp","table":"money.credit_card_payment","fields":{"dis_tab":{"payment_ts":{"colname":"payment_ts","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Date/Time","field_doc":"","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"amount":{"colname":"amount","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Amount","field_doc":"","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"cc_processor":{"colname":"cc_processor","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Credit Card Processor","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"cc_processor":{"colname":"cc_processor","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"cc_processor","field_doc":"","join":"","datatype":"text","op":"is not","op_label":"Is not NULL","op_value":{}},"cash_drawer":{"colname":"cash_drawer","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"cash_drawer","field_doc":"","join":"","datatype":"link","op":"is","op_label":"Is NULL","op_value":{}},"payment_ts":{"colname":"payment_ts","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"payment_ts","field_doc":"Payment Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}},"d7af93687c0abb22bf067973a80c81d1":{"label":"Credit Card Payment :: payment","alias":"d7af93687c0abb22bf067973a80c81d1","path":"mccp-payment","join":"","reltype":"might_have","idlclass":"mp","table":"money.payment_view","fields":{"dis_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment ID","field_doc":"","join":"","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+                          'folder' => 2787
+                        },
+          'owner' => 148221,
+          'recur' => 0,
+          'create_time' => '2020-06-08 11:55:24.072154-04',
+          'recurrence' => undef,
+          'folder' => 5139,
+          'data' => '{"P0":["164"],"P1":["2020-06-08","2020-06-08"]}',
+          'description' => '',
+          'id' => 176705
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'version' => 4,
+          'from' => {
+                      'path' => 'mccp-payment',
+                      'template_path' => 'mccp',
+                      'alias' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                      'join' => {
+                                  'xact-3b2cc5761109daac80c07dbd76522dd1' => {
+                                                                               'alias' => 'a831241ea25f2b262a675ef5dc435f48',
+                                                                               'join' => {
+                                                                                           'usr-a831241ea25f2b262a675ef5dc435f48' => {
+                                                                                                                                       'alias' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'home_ou-4fe9e6e12e671d3e5b77eea9ef2b9c82' => {
+                                                                                                                                                                                                   'alias' => '504533f8a4a788833c2f40f3cf5f2171',
+                                                                                                                                                                                                   'template_path' => 'mccp-xact.mbt-usr.au-home_ou',
+                                                                                                                                                                                                   'key' => 'id',
+                                                                                                                                                                                                   'path' => 'mccp-xact-mbt-usr-au-home_ou-aou',
+                                                                                                                                                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Home Library',
+                                                                                                                                                                                                   'idlclass' => 'aou',
+                                                                                                                                                                                                   'table' => 'actor.org_unit'
+                                                                                                                                                                                                 },
+                                                                                                                                                   'card-4fe9e6e12e671d3e5b77eea9ef2b9c82' => {
+                                                                                                                                                                                                'path' => 'mccp-xact-mbt-usr-au-card-ac',
+                                                                                                                                                                                                'template_path' => 'mccp-xact.mbt-usr.au-card',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'alias' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card'
+                                                                                                                                                                                              }
+                                                                                                                                                 },
+                                                                                                                                       'path' => 'mccp-xact-mbt-usr-au',
+                                                                                                                                       'label' => 'Credit Card Payment -> Billable Transaction :: User',
+                                                                                                                                       'idlclass' => 'au',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'template_path' => 'mccp-xact.mbt-usr',
+                                                                                                                                       'table' => 'actor.usr'
+                                                                                                                                     }
+                                                                                         },
+                                                                               'path' => 'mccp-xact-mbt-usr',
+                                                                               'key' => 'id',
+                                                                               'table' => 'money.billable_xact'
+                                                                             },
+                                  'id-mp-id-b27fa2c9836b0e0aca9dd6e1a27ac044' => {
+                                                                                   'label' => 'Credit Card Payment :: payment',
+                                                                                   'type' => 'left',
+                                                                                   'idlclass' => 'mp',
+                                                                                   'alias' => 'd7af93687c0abb22bf067973a80c81d1',
+                                                                                   'path' => 'mccp-payment-mp',
+                                                                                   'table' => 'money.payment_view',
+                                                                                   'template_path' => 'mccp-payment',
+                                                                                   'key' => 'id'
+                                                                                 }
+                                },
+                      'table' => 'money.credit_card_payment',
+                      'idlclass' => 'mccp',
+                      'label' => 'Credit Card Payment'
+                    },
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'alias' => 'Organizational Unit ID',
+                         'path' => 'mccp-xact-mbt-usr-au-home_ou-aou-id',
+                         'field_doc' => 'Patron Home Library'
+                       },
+                       {
+                         'path' => 'mccp-cc_processor',
+                         'field_doc' => '',
+                         'alias' => 'cc_processor',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'cc_processor'
+                                     },
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                         'condition' => {
+                                          'is not' => undef
+                                        }
+                       },
+                       {
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'cash_drawer'
+                                     },
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'field_doc' => '',
+                         'path' => 'mccp-cash_drawer',
+                         'alias' => 'cash_drawer'
+                       },
+                       {
+                         'alias' => 'payment_ts',
+                         'path' => 'mccp-payment_ts',
+                         'field_doc' => 'Payment Date/Time',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Date',
+                                       'colname' => 'payment_ts',
+                                       'transform' => 'date'
+                                     },
+                         'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                       }
+                     ],
+          'order_by' => [],
+          'doc_url' => '',
+          'rel_cache' => {
+                           'a31388d01eba407b1f74addc1ad2b7f0' => {
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'ac',
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                   'path' => 'mccp-xact.mbt-usr.au-card',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'op_value' => {},
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'field_doc' => '',
+                                                                                                               'op' => '=',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'alias' => 'Barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'aggregate' => undef,
+                                                                                                               'transform' => 'Bare'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'alias' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                                                   'join' => ''
+                                                                 },
+                           'dca3e5ab916243d3d0b06e5ccebc2bb7' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.usr',
+                                                                   'alias' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                                                   'join' => '',
+                                                                   'path' => 'mccp-xact.mbt-usr',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'family_name' => {
+                                                                                                                   'op_value' => {},
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'colname' => 'family_name',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'op' => '=',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'alias' => 'Last Name',
+                                                                                                                   'params' => undef,
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => '',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'aggregate' => undef
+                                                                                                                 },
+                                                                                                'first_given_name' => {
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'datatype' => 'text',
+                                                                                                                        'join' => '',
+                                                                                                                        'params' => undef,
+                                                                                                                        'alias' => 'First Name',
+                                                                                                                        'op_label' => 'Equals',
+                                                                                                                        'op' => '=',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'colname' => 'first_given_name',
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'op_value' => {}
+                                                                                                                      },
+                                                                                                'second_given_name' => {
+                                                                                                                         'op' => '=',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'params' => undef,
+                                                                                                                         'alias' => 'Middle Name',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'join' => '',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'op_value' => {},
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'colname' => 'second_given_name',
+                                                                                                                         'field_doc' => ''
+                                                                                                                       }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction :: User',
+                                                                   'idlclass' => 'au'
+                                                                 },
+                           'd7af93687c0abb22bf067973a80c81d1' => {
+                                                                   'reltype' => 'might_have',
+                                                                   'table' => 'money.payment_view',
+                                                                   'path' => 'mccp-payment',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'field_doc' => '',
+                                                                                                          'colname' => 'id',
+                                                                                                          'transform_label' => 'Raw Data',
+                                                                                                          'op_value' => {},
+                                                                                                          'aggregate' => undef,
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'join' => '',
+                                                                                                          'params' => undef,
+                                                                                                          'alias' => 'Payment ID',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'op' => '='
+                                                                                                        }
+                                                                                              }
+                                                                               },
+                                                                   'alias' => 'd7af93687c0abb22bf067973a80c81d1',
+                                                                   'join' => '',
+                                                                   'idlclass' => 'mp',
+                                                                   'label' => 'Credit Card Payment :: payment'
+                                                                 },
+                           '504533f8a4a788833c2f40f3cf5f2171' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Credit Card Payment -> Billable Transaction -> ILS User :: Home Library',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'op' => '=',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'join' => '',
+                                                                                                                 'params' => undef,
+                                                                                                                 'alias' => 'Patron Home Library'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'op' => 'in',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'join' => '',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'params' => undef,
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'field_doc' => 'Patron Home Library',
+                                                                                                             'colname' => 'id'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'mccp-xact.mbt-usr.au-home_ou',
+                                                                   'join' => '',
+                                                                   'alias' => '504533f8a4a788833c2f40f3cf5f2171'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'payment_ts',
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                                           },
+                                           {
+                                             'field' => 'barcode',
+                                             'relation' => 'a31388d01eba407b1f74addc1ad2b7f0'
+                                           },
+                                           {
+                                             'field' => 'first_given_name',
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                                           },
+                                           {
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                             'field' => 'second_given_name'
+                                           },
+                                           {
+                                             'field' => 'family_name',
+                                             'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                                           },
+                                           {
+                                             'relation' => 'd7af93687c0abb22bf067973a80c81d1',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'cc_processor',
+                                             'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044'
+                                           }
+                                         ],
+                           'b27fa2c9836b0e0aca9dd6e1a27ac044' => {
+                                                                   'reltype' => '',
+                                                                   'table' => 'money.credit_card_payment',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'cc_processor' => {
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'aggregate' => undef,
+                                                                                                                       'alias' => 'cc_processor',
+                                                                                                                       'params' => undef,
+                                                                                                                       'datatype' => 'text',
+                                                                                                                       'join' => '',
+                                                                                                                       'op_label' => 'Is not NULL',
+                                                                                                                       'op' => 'is not',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'colname' => 'cc_processor',
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op_value' => {}
+                                                                                                                     },
+                                                                                                   'cash_drawer' => {
+                                                                                                                      'op' => 'is',
+                                                                                                                      'op_label' => 'Is NULL',
+                                                                                                                      'join' => '',
+                                                                                                                      'datatype' => 'link',
+                                                                                                                      'alias' => 'cash_drawer',
+                                                                                                                      'params' => undef,
+                                                                                                                      'aggregate' => undef,
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'colname' => 'cash_drawer',
+                                                                                                                      'field_doc' => ''
+                                                                                                                    },
+                                                                                                   'payment_ts' => {
+                                                                                                                     'field_doc' => 'Payment Date/Time',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'join' => '',
+                                                                                                                     'params' => undef,
+                                                                                                                     'alias' => 'payment_ts',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'op' => 'between'
+                                                                                                                   }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'payment_ts' => {
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'join' => '',
+                                                                                                                  'alias' => 'Payment Date/Time',
+                                                                                                                  'params' => undef,
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'op' => '='
+                                                                                                                },
+                                                                                                'cc_processor' => {
+                                                                                                                    'op' => '=',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'alias' => 'Credit Card Processor',
+                                                                                                                    'params' => undef,
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'join' => '',
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'op_value' => {},
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'colname' => 'cc_processor',
+                                                                                                                    'field_doc' => ''
+                                                                                                                  },
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'op_value' => {},
+                                                                                                              'field_doc' => '',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => undef,
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'join' => '',
+                                                                                                              'datatype' => 'money',
+                                                                                                              'params' => undef,
+                                                                                                              'alias' => 'Payment Amount'
+                                                                                                            }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'mccp',
+                                                                   'join' => '',
+                                                                   'alias' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                                                   'idlclass' => 'mccp',
+                                                                   'label' => 'Credit Card Payment'
+                                                                 }
+                         },
+          'having' => [],
+          'core_class' => 'mccp',
+          'select' => [
+                        {
+                          'alias' => 'Patron Home Library',
+                          'path' => 'mccp-xact-mbt-usr-au-home_ou-aou-shortname',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'relation' => '504533f8a4a788833c2f40f3cf5f2171'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'payment_ts',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-payment_ts',
+                          'field_doc' => '',
+                          'alias' => 'Payment Date/Time'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                          'field_doc' => '',
+                          'path' => 'mccp-xact-mbt-usr-au-card-ac-barcode',
+                          'alias' => 'Barcode'
+                        },
+                        {
+                          'alias' => 'First Name',
+                          'path' => 'mccp-xact-mbt-usr-au-first_given_name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'first_given_name'
+                                      },
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7'
+                        },
+                        {
+                          'path' => 'mccp-xact-mbt-usr-au-second_given_name',
+                          'field_doc' => '',
+                          'alias' => 'Middle Name',
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'second_given_name'
+                                      }
+                        },
+                        {
+                          'relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'family_name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-xact-mbt-usr-au-family_name',
+                          'field_doc' => '',
+                          'alias' => 'Last Name'
+                        },
+                        {
+                          'relation' => 'd7af93687c0abb22bf067973a80c81d1',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'mccp-payment-mp-id',
+                          'field_doc' => '',
+                          'alias' => 'Payment ID'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'amount',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mccp-amount',
+                          'alias' => 'Payment Amount'
+                        },
+                        {
+                          'relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'cc_processor',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Credit Card Processor',
+                          'field_doc' => '',
+                          'path' => 'mccp-cc_processor'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-06-08 11:55:24.072154-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_builder' => bless( {
+                                        '_relative_time' => '2020-06-08 11:55:24.072154-04',
+                                        '_rels' => {
+                                                     'a831241ea25f2b262a675ef5dc435f48' => bless( {
+                                                                                                    '_alias' => 'a831241ea25f2b262a675ef5dc435f48',
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_table' => 'actor.usr',
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_left_col' => 'card',
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                         '_join_type' => 'i',
+                                                                                                                                                                         '_right_col' => 'id',
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")',
+                                                                                                                                                                         '_right_rel' => bless( {
+                                                                                                                                                                                                  '_join' => [],
+                                                                                                                                                                                                  '_table' => 'actor.card',
+                                                                                                                                                                                                  '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                                                                  '_columns' => [],
+                                                                                                                                                                                                  '_is_join' => 1,
+                                                                                                                                                                                                  '_sql' => 'actor.card AS "a31388d01eba407b1f74addc1ad2b7f0"',
+                                                                                                                                                                                                  '_alias' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                                                                                                                                                                                  '_join_type' => 'inner'
+                                                                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_right_col' => 'id',
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")',
+                                                                                                                                                                         '_right_rel' => bless( {
+                                                                                                                                                                                                  '_join' => [],
+                                                                                                                                                                                                  '_table' => 'actor.org_unit',
+                                                                                                                                                                                                  '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                                                                  '_columns' => [],
+                                                                                                                                                                                                  '_is_join' => 1,
+                                                                                                                                                                                                  '_sql' => 'actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171"',
+                                                                                                                                                                                                  '_alias' => '504533f8a4a788833c2f40f3cf5f2171',
+                                                                                                                                                                                                  '_join_type' => 'inner'
+                                                                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                         '_left_col' => 'home_ou',
+                                                                                                                                                                         '_join_type' => 'i'
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_sql' => 'actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7"',
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_alias' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                                                                                                                                   '_nullable' => undef
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7" ON ("a831241ea25f2b262a675ef5dc435f48"."usr" = "dca3e5ab916243d3d0b06e5ccebc2bb7"."id")
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'},
+                                                                                                                          '_left_col' => 'usr'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_table' => 'money.billable_xact',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_sql' => 'money.billable_xact AS "a831241ea25f2b262a675ef5dc435f48"',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => []
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'a31388d01eba407b1f74addc1ad2b7f0' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                     'dca3e5ab916243d3d0b06e5ccebc2bb7' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}{'_join'}[0]{'_right_rel'},
+                                                     '504533f8a4a788833c2f40f3cf5f2171' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}{'_join'}[0]{'_right_rel'}{'_join'}[1]{'_right_rel'},
+                                                     'd7af93687c0abb22bf067973a80c81d1' => bless( {
+                                                                                                    '_nullable' => 'l',
+                                                                                                    '_alias' => 'd7af93687c0abb22bf067973a80c81d1',
+                                                                                                    '_join_type' => 'left',
+                                                                                                    '_columns' => [],
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_sql' => 'money.payment_view AS "d7af93687c0abb22bf067973a80c81d1"',
+                                                                                                    '_join' => [],
+                                                                                                    '_table' => 'money.payment_view'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'b27fa2c9836b0e0aca9dd6e1a27ac044' => bless( {
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_sql' => '
+	LEFT OUTER JOIN money.payment_view AS "d7af93687c0abb22bf067973a80c81d1" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."id" = "d7af93687c0abb22bf067973a80c81d1"."id")',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'d7af93687c0abb22bf067973a80c81d1'},
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'b27fa2c9836b0e0aca9dd6e1a27ac044'},
+                                                                                                                          '_left_col' => 'id',
+                                                                                                                          '_join_type' => 'left'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::left' ),
+                                                                                                                 bless( {
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'b27fa2c9836b0e0aca9dd6e1a27ac044'},
+                                                                                                                          '_left_col' => 'xact',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_sql' => '
+	INNER JOIN money.billable_xact AS "a831241ea25f2b262a675ef5dc435f48" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."xact" = "a831241ea25f2b262a675ef5dc435f48"."id")
+	INNER JOIN actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7" ON ("a831241ea25f2b262a675ef5dc435f48"."usr" = "dca3e5ab916243d3d0b06e5ccebc2bb7"."id")
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'a831241ea25f2b262a675ef5dc435f48'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_alias' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                                                                                    '_table' => 'money.credit_card_payment',
+                                                                                                    '_sql' => 'money.credit_card_payment AS "b27fa2c9836b0e0aca9dd6e1a27ac044"
+	LEFT OUTER JOIN money.payment_view AS "d7af93687c0abb22bf067973a80c81d1" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."id" = "d7af93687c0abb22bf067973a80c81d1"."id")
+	INNER JOIN money.billable_xact AS "a831241ea25f2b262a675ef5dc435f48" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."xact" = "a831241ea25f2b262a675ef5dc435f48"."id")
+	INNER JOIN actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7" ON ("a831241ea25f2b262a675ef5dc435f48"."usr" = "dca3e5ab916243d3d0b06e5ccebc2bb7"."id")
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")',
+                                                                                                    '_columns' => [],
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_builder' => $VAR1->{'_builder'}
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_sql' => undef,
+                                        '_params' => {
+                                                       'P1' => [
+                                                                 '2020-06-08',
+                                                                 '2020-06-08'
+                                                               ],
+                                                       'P0' => [
+                                                                 '164'
+                                                               ]
+                                                     },
+                                        '_resultset_limit' => 1048575
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'shortname'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                                           '_sql' => '"504533f8a4a788833c2f40f3cf5f2171"."shortname" ASC',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'payment_ts',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" ASC',
+                                           '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'barcode',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"a31388d01eba407b1f74addc1ad2b7f0"."barcode" ASC',
+                                           '_relation' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" ASC',
+                                           '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'first_given_name',
+                                                          'transform_label' => 'Raw Data'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                           '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'second_given_name',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'family_name',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                           '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"d7af93687c0abb22bf067973a80c81d1"."id" ASC',
+                                           '_relation' => 'd7af93687c0abb22bf067973a80c81d1',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'id'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'amount',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" ASC',
+                                           '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                           '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'cc_processor',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_aggregate' => undef,
+                                        '_sql' => '"504533f8a4a788833c2f40f3cf5f2171"."id" IN ($_66075$164$_66075$)',
+                                        '_relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" is not NULL',
+                                        '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'cc_processor'
+                                                     },
+                                        '_condition' => {
+                                                          'is not' => undef
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'cash_drawer',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_aggregate' => undef,
+                                        '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                        '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."cash_drawer" is NULL',
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'colname' => 'payment_ts',
+                                                       'transform_label' => 'Date'
+                                                     },
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_aggregate' => undef,
+                                        '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                        '_sql' => 'date("b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts") BETWEEN $_66075$2020-06-08$_66075$ AND $_66075$2020-06-08$_66075$',
+                                        '_transform' => 'GenericTransform',
+                                        '_builder' => $VAR1->{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"504533f8a4a788833c2f40f3cf5f2171"."shortname" AS "Patron Home Library",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" AS "Payment Date/Time",
+	"a31388d01eba407b1f74addc1ad2b7f0"."barcode" AS "Barcode",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" AS "First Name",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" AS "Middle Name",
+	"dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" AS "Last Name",
+	"d7af93687c0abb22bf067973a80c81d1"."id" AS "Payment ID",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" AS "Payment Amount",
+	"b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" AS "Credit Card Processor"
+  FROM	money.credit_card_payment AS "b27fa2c9836b0e0aca9dd6e1a27ac044"
+	LEFT OUTER JOIN money.payment_view AS "d7af93687c0abb22bf067973a80c81d1" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."id" = "d7af93687c0abb22bf067973a80c81d1"."id")
+	INNER JOIN money.billable_xact AS "a831241ea25f2b262a675ef5dc435f48" ON ("b27fa2c9836b0e0aca9dd6e1a27ac044"."xact" = "a831241ea25f2b262a675ef5dc435f48"."id")
+	INNER JOIN actor.usr AS "dca3e5ab916243d3d0b06e5ccebc2bb7" ON ("a831241ea25f2b262a675ef5dc435f48"."usr" = "dca3e5ab916243d3d0b06e5ccebc2bb7"."id")
+	INNER JOIN actor.card AS "a31388d01eba407b1f74addc1ad2b7f0" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."card" = "a31388d01eba407b1f74addc1ad2b7f0"."id")
+	INNER JOIN actor.org_unit AS "504533f8a4a788833c2f40f3cf5f2171" ON ("dca3e5ab916243d3d0b06e5ccebc2bb7"."home_ou" = "504533f8a4a788833c2f40f3cf5f2171"."id")
+  WHERE	"504533f8a4a788833c2f40f3cf5f2171"."id" IN ($_66075$164$_66075$)
+	AND "b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" is not NULL
+	AND "b27fa2c9836b0e0aca9dd6e1a27ac044"."cash_drawer" is NULL
+	AND date("b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts") BETWEEN $_66075$2020-06-08$_66075$ AND $_66075$2020-06-08$_66075$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+  ORDER BY "504533f8a4a788833c2f40f3cf5f2171"."shortname" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" ASC, "a31388d01eba407b1f74addc1ad2b7f0"."barcode" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" ASC, "dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" ASC, "d7af93687c0abb22bf067973a80c81d1"."id" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" ASC, "b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'b27fa2c9836b0e0aca9dd6e1a27ac044'},
+                 '_select' => [
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"504533f8a4a788833c2f40f3cf5f2171"."shortname" AS "Patron Home Library"',
+                                         '_relation' => '504533f8a4a788833c2f40f3cf5f2171',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Patron Home Library',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_alias' => 'Payment Date/Time',
+                                         '_aggregate' => undef,
+                                         '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                         '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."payment_ts" AS "Payment Date/Time"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Barcode',
+                                         '_sql' => '"a31388d01eba407b1f74addc1ad2b7f0"."barcode" AS "Barcode"',
+                                         '_relation' => 'a31388d01eba407b1f74addc1ad2b7f0',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'},
+                                         '_alias' => 'First Name',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."first_given_name" AS "First Name"',
+                                         '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[4]{'_column'},
+                                         '_alias' => 'Middle Name',
+                                         '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."second_given_name" AS "Middle Name"',
+                                         '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[5]{'_column'},
+                                         '_alias' => 'Last Name',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"dca3e5ab916243d3d0b06e5ccebc2bb7"."family_name" AS "Last Name"',
+                                         '_relation' => 'dca3e5ab916243d3d0b06e5ccebc2bb7',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Payment ID',
+                                         '_column' => $VAR1->{'_order_by'}[6]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"d7af93687c0abb22bf067973a80c81d1"."id" AS "Payment ID"',
+                                         '_relation' => 'd7af93687c0abb22bf067973a80c81d1'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Payment Amount',
+                                         '_column' => $VAR1->{'_order_by'}[7]{'_column'},
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                         '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."amount" AS "Payment Amount"',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Credit Card Processor',
+                                         '_column' => $VAR1->{'_order_by'}[8]{'_column'},
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'b27fa2c9836b0e0aca9dd6e1a27ac044',
+                                         '_sql' => '"b27fa2c9836b0e0aca9dd6e1a27ac044"."cc_processor" AS "Credit Card Processor"',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

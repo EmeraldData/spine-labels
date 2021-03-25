@@ -1,0 +1,21 @@
+{
+    "COPY_LOOKUP_NO_RESPONSE": "\u017d\u00e1dn\u00e1 odpov\u011b\u010f p\u0159i hled\u00e1n\u00ed exempl\u00e1\u0159e podle \u010d\u00e1rov\u00e9ho k\u00f3du",
+    "AUTO_th_call_number": "Signatura",
+    "FOR": "pro",
+    "AUTO_th_copy_location": "Um\u00edst\u011bn\u00ed",
+    "AUTO_owning_lib_selector": "Zobraz seznam rezervac\u00ed pro knihovnu:",
+    "AUTO_interval_in_days": "Generuj seznam pro v\u00edce dn\u016f od: ",
+    "AUTO_th_title_or_name": "N\u00e1zev nebo jm\u00e9no",
+    "AUTO_th_barcode": "\u010c\u00e1rov\u00fd k\u00f3d",
+    "PULL_LIST_NO_RESPONSE": "P\u0159i pokusu o na\u010dten\u00ed seznamu rezervac\u00ed server neodpov\u00edd\u00e1!",
+    "COPY_MISSING": "Neo\u010dek\u00e1van\u00e1 chyba: O exempl\u00e1\u0159i nejsou k dispozici \u017e\u00e1dn\u00e9 informace: ",
+    "AUTO_ATTR_VALUE_fetch": "Z\u00edskat",
+    "PULL_LIST_ERROR": "P\u0159i pokusu o vytvo\u0159en\u00ed seznamu rezervac\u00ed nastala chyba ",
+    "AT": "v",
+    "AUTO_ATTR_VALUE_print": "Tisk",
+    "AUTO_th_pickup_lib": "Knihovna pro vyzvednut\u00ed rezervace",
+    "AUTO_th_resv_details": "Detaily rezervace zdroj\u016f",
+    "COPY_LOOKUP_ERROR": "P\u0159i vyhled\u00e1v\u00e1n\u00ed exempl\u00e1\u0159e podle \u010d\u00e1rov\u00e9ho k\u00f3du do\u0161lo k chyb\u011b ",
+    "AUTO_no_results": "\u017d\u00e1dn\u00e9 v\u00fdsledky",
+    "AUTO_pull_list_title": "Seznam rezervovan\u00fdch zdroj\u016f"
+}

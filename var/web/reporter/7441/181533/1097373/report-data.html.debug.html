@@ -1,0 +1,575 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 AUP NGRL LIST OF ITEMS ADDED  W PRICES</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"93a33d246f9fc5d840a6330d99d2e850"."shortname" AS "Owning Library",
+	"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Item Barcode",
+	"ffcaba321e8cae3469a746eab807d7ff"."price" AS "Price"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_5948$354$_5948$,$_5948$356$_5948$,$_5948$355$_5948$)
+	AND date("ffcaba321e8cae3469a746eab807d7ff"."create_date") BETWEEN SYMMETRIC $_5948$2019-07-01$_5948$ AND $_5948$2020-06-30$_5948$
+  GROUP BY 1, 2, 3
+  ORDER BY "93a33d246f9fc5d840a6330d99d2e850"."shortname" ASC, "ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC, "ffcaba321e8cae3469a746eab807d7ff"."price" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'name' => 'Audits - List of new items with prices, filtered by owning library and creation date range.',
+          'create_time' => '2008-06-20 15:07:42.330913-04',
+          'folder' => 1234,
+          'owner' => 1,
+          'data' => '{"version":2,"core_class":"rocit","select":[{"alias":"Owning Library","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-shortname","relation":"93a33d246f9fc5d840a6330d99d2e850"},{"alias":"Item Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-barcode","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Price","column":{"colname":"price","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-price","relation":"ffcaba321e8cae3469a746eab807d7ff"}],"from":{"path":"rocit","table":"reporter.classic_item_list","alias":"ffcaba321e8cae3469a746eab807d7ff","join":{"owning_lib-fbff8dd11a0d5df575245396e57d64f5":{"path":"rocit-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","idlclass":"aou","template_path":"rocit-owning_lib"}},"label":"Classic Item List","idlclass":"rocit","template_path":"rocit"},"where":[{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-id","relation":"93a33d246f9fc5d840a6330d99d2e850","condition":{"in":"::P0"}},{"alias":"Create Date","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"rocit-create_date","relation":"ffcaba321e8cae3469a746eab807d7ff","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"93a33d246f9fc5d840a6330d99d2e850":{"label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"93a33d246f9fc5d840a6330d99d2e850","field":"shortname"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"barcode"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"price"}],"ffcaba321e8cae3469a746eab807d7ff":{"label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit","reltype":"","idlclass":"rocit","table":"reporter.classic_item_list","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Item Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"price":{"colname":"price","transform":"Bare","transform_label":"Raw Data","alias":"Price","datatype":"money","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"create_date":{"colname":"create_date","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Create Date","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}}}}',
+          'description' => 'Filters: Owning Library (in list), Creation Date (Between).
+
+Display: Owning Library, Item Barcode, Price',
+          'id' => 7441
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'from' => {
+                      'path' => 'rocit',
+                      'table' => 'reporter.classic_item_list',
+                      'template_path' => 'rocit',
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'idlclass' => 'rocit',
+                      'label' => 'Classic Item List',
+                      'join' => {
+                                  'owning_lib-fbff8dd11a0d5df575245396e57d64f5' => {
+                                                                                     'path' => 'rocit-owning_lib-aou',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'template_path' => 'rocit-owning_lib',
+                                                                                     'label' => 'Classic Item List :: Owning Lib',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'key' => 'id'
+                                                                                   }
+                                }
+                    },
+          'core_class' => 'rocit',
+          'having' => [],
+          'where' => [
+                       {
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'rocit-owning_lib-aou-id'
+                       },
+                       {
+                         'alias' => 'Create Date',
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'path' => 'rocit-create_date',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '93a33d246f9fc5d840a6330d99d2e850'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'barcode'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'price'
+                                           }
+                                         ],
+                           'ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                   'path' => 'rocit',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'price' => {
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => '=',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Price',
+                                                                                                             'colname' => 'price',
+                                                                                                             'datatype' => 'money',
+                                                                                                             'transform' => 'Bare'
+                                                                                                           },
+                                                                                                'barcode' => {
+                                                                                                               'datatype' => 'text',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'alias' => 'Item Barcode',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_label' => 'Equals'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'create_date' => {
+                                                                                                                      'transform_label' => 'Date',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'between',
+                                                                                                                      'params' => 'undefined',
+                                                                                                                      'op_label' => 'Between',
+                                                                                                                      'transform' => 'date',
+                                                                                                                      'aggregate' => 'undefined',
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'alias' => 'Create Date',
+                                                                                                                      'colname' => 'create_date'
+                                                                                                                    }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'reporter.classic_item_list',
+                                                                   'reltype' => '',
+                                                                   'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                   'idlclass' => 'rocit',
+                                                                   'label' => 'Classic Item List'
+                                                                 },
+                           '93a33d246f9fc5d840a6330d99d2e850' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'colname' => 'id',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'op_label' => 'In list'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Owning Library',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text'
+                                                                                                               }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'rocit-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                   'label' => 'Classic Item List :: Owning Lib'
+                                                                 }
+                         },
+          'order_by' => [],
+          'version' => 2,
+          'select' => [
+                        {
+                          'alias' => 'Owning Library',
+                          'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                          'path' => 'rocit-owning_lib-aou-shortname',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item Barcode',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      }
+                        },
+                        {
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'alias' => 'Price',
+                          'path' => 'rocit-price',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'price'
+                                      }
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'description' => '',
+          'recurrence' => '1 day',
+          'template' => {
+                          'name' => 'Audits - List of new items with prices, filtered by owning library and creation date range.',
+                          'create_time' => '2008-06-20 15:07:42.330913-04',
+                          'folder' => 1234,
+                          'owner' => 1,
+                          'data' => '{"version":2,"core_class":"rocit","select":[{"alias":"Owning Library","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-shortname","relation":"93a33d246f9fc5d840a6330d99d2e850"},{"alias":"Item Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-barcode","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Price","column":{"colname":"price","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-price","relation":"ffcaba321e8cae3469a746eab807d7ff"}],"from":{"path":"rocit","table":"reporter.classic_item_list","alias":"ffcaba321e8cae3469a746eab807d7ff","join":{"owning_lib-fbff8dd11a0d5df575245396e57d64f5":{"path":"rocit-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","idlclass":"aou","template_path":"rocit-owning_lib"}},"label":"Classic Item List","idlclass":"rocit","template_path":"rocit"},"where":[{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-id","relation":"93a33d246f9fc5d840a6330d99d2e850","condition":{"in":"::P0"}},{"alias":"Create Date","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"rocit-create_date","relation":"ffcaba321e8cae3469a746eab807d7ff","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"93a33d246f9fc5d840a6330d99d2e850":{"label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"93a33d246f9fc5d840a6330d99d2e850","field":"shortname"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"barcode"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"price"}],"ffcaba321e8cae3469a746eab807d7ff":{"label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit","reltype":"","idlclass":"rocit","table":"reporter.classic_item_list","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Item Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"price":{"colname":"price","transform":"Bare","transform_label":"Raw Data","alias":"Price","datatype":"money","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"create_date":{"colname":"create_date","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Create Date","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}}}}',
+                          'description' => 'Filters: Owning Library (in list), Creation Date (Between).
+
+Display: Owning Library, Item Barcode, Price',
+                          'id' => 7441
+                        },
+          'id' => 181533,
+          'folder' => 1172,
+          'owner' => 110965,
+          'data' => '{"P0":["354","356","355"],"P1":["2019-07-01","2020-06-30"]}',
+          'recur' => 0,
+          'name' => 'FY20 AUP NGRL LIST OF ITEMS ADDED  W PRICES',
+          'create_time' => '2020-10-16 16:42:01.609031-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'from' => {
+                      'path' => 'rocit',
+                      'table' => 'reporter.classic_item_list',
+                      'template_path' => 'rocit',
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'idlclass' => 'rocit',
+                      'label' => 'Classic Item List',
+                      'join' => {
+                                  'owning_lib-fbff8dd11a0d5df575245396e57d64f5' => {
+                                                                                     'path' => 'rocit-owning_lib-aou',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'template_path' => 'rocit-owning_lib',
+                                                                                     'label' => 'Classic Item List :: Owning Lib',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'key' => 'id'
+                                                                                   }
+                                }
+                    },
+          'core_class' => 'rocit',
+          'having' => [],
+          'where' => [
+                       {
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'rocit-owning_lib-aou-id'
+                       },
+                       {
+                         'alias' => 'Create Date',
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'path' => 'rocit-create_date',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '93a33d246f9fc5d840a6330d99d2e850'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'barcode'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'price'
+                                           }
+                                         ],
+                           'ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                   'path' => 'rocit',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'price' => {
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => '=',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Price',
+                                                                                                             'colname' => 'price',
+                                                                                                             'datatype' => 'money',
+                                                                                                             'transform' => 'Bare'
+                                                                                                           },
+                                                                                                'barcode' => {
+                                                                                                               'datatype' => 'text',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'alias' => 'Item Barcode',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {},
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_label' => 'Equals'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'create_date' => {
+                                                                                                                      'transform_label' => 'Date',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'between',
+                                                                                                                      'params' => 'undefined',
+                                                                                                                      'op_label' => 'Between',
+                                                                                                                      'transform' => 'date',
+                                                                                                                      'aggregate' => 'undefined',
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'alias' => 'Create Date',
+                                                                                                                      'colname' => 'create_date'
+                                                                                                                    }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'reporter.classic_item_list',
+                                                                   'reltype' => '',
+                                                                   'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                   'idlclass' => 'rocit',
+                                                                   'label' => 'Classic Item List'
+                                                                 },
+                           '93a33d246f9fc5d840a6330d99d2e850' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'colname' => 'id',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'op_label' => 'In list'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Owning Library',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text'
+                                                                                                               }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'rocit-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                   'label' => 'Classic Item List :: Owning Lib'
+                                                                 }
+                         },
+          'order_by' => [],
+          'version' => 2,
+          'select' => [
+                        {
+                          'alias' => 'Owning Library',
+                          'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                          'path' => 'rocit-owning_lib-aou-shortname',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item Barcode',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      }
+                        },
+                        {
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'alias' => 'Price',
+                          'path' => 'rocit-price',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'price'
+                                      }
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-10-16 16:42:01.609031-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_builder' => bless( {
+                                        '_sql' => undef,
+                                        '_resultset_limit' => 1048575,
+                                        '_rels' => {
+                                                     '93a33d246f9fc5d840a6330d99d2e850' => bless( {
+                                                                                                    '_join' => [],
+                                                                                                    '_alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_sql' => 'actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850"',
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_table' => 'actor.org_unit',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_columns' => []
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'ffcaba321e8cae3469a746eab807d7ff' => bless( {
+                                                                                                    '_table' => 'reporter.classic_item_list',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_sql' => 'reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")',
+                                                                                                    '_alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'93a33d246f9fc5d840a6330d99d2e850'},
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                                                                                                                          '_left_col' => 'owning_lib',
+                                                                                                                          '_right_col' => 'id'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ]
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_params' => {
+                                                       'P1' => [
+                                                                 '2019-07-01',
+                                                                 '2020-06-30'
+                                                               ],
+                                                       'P0' => [
+                                                                 '354',
+                                                                 '356',
+                                                                 '355'
+                                                               ]
+                                                     },
+                                        '_relative_time' => '2020-10-16 16:42:01.609031-04'
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                 '_where' => [
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_5948$354$_5948$,$_5948$356$_5948$,$_5948$355$_5948$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_column' => {
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date',
+                                                       'colname' => 'create_date'
+                                                     },
+                                        '_aggregate' => undef,
+                                        '_sql' => 'date("ffcaba321e8cae3469a746eab807d7ff"."create_date") BETWEEN SYMMETRIC $_5948$2019-07-01$_5948$ AND $_5948$2020-06-30$_5948$',
+                                        '_transform' => 'GenericTransform'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"93a33d246f9fc5d840a6330d99d2e850"."shortname" AS "Owning Library",
+	"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Item Barcode",
+	"ffcaba321e8cae3469a746eab807d7ff"."price" AS "Price"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_5948$354$_5948$,$_5948$356$_5948$,$_5948$355$_5948$)
+	AND date("ffcaba321e8cae3469a746eab807d7ff"."create_date") BETWEEN SYMMETRIC $_5948$2019-07-01$_5948$ AND $_5948$2020-06-30$_5948$
+  GROUP BY 1, 2, 3
+  ORDER BY "93a33d246f9fc5d840a6330d99d2e850"."shortname" ASC, "ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC, "ffcaba321e8cae3469a746eab807d7ff"."price" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Owning Library',
+                                         '_relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'shortname'
+                                                      },
+                                         '_sql' => '"93a33d246f9fc5d840a6330d99d2e850"."shortname" AS "Owning Library"',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_alias' => 'Item Barcode',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Item Barcode"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'barcode'
+                                                      },
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."price" AS "Price"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'price'
+                                                      },
+                                         '_aggregate' => undef,
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_alias' => 'Price'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_sql' => '"93a33d246f9fc5d840a6330d99d2e850"."shortname" ASC',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_relation' => '93a33d246f9fc5d840a6330d99d2e850'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC',
+                                           '_transform' => 'Bare',
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."price" ASC',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

@@ -1,0 +1,435 @@
+<html><head><meta charset='utf-8'><title>DEBUG: NewPatronsProfile</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name",
+	(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || '-' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,'0')) AS "Month Added",
+	"8e63ade376e23b50ac9c1c66ba1697ec"."name" AS "Profile Group",
+	COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"
+  FROM	actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")
+	INNER JOIN permission.grp_tree AS "8e63ade376e23b50ac9c1c66ba1697ec" ON ("8bcc25c96aa5a71f7a76309077753e67"."profile" = "8e63ade376e23b50ac9c1c66ba1697ec"."id")
+  WHERE	(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || '-' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,'0')) IN ((EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$)::text,2,$_4110$0$_4110$)))
+	AND "b312819df8fe889b50f70ea9fa054e72"."id" IN ($_4110$355$_4110$,$_4110$356$_4110$,$_4110$354$_4110$)
+  GROUP BY 1, 2, 3
+  ORDER BY "b312819df8fe889b50f70ea9fa054e72"."shortname" ASC, (EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || '-' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,'0')) ASC, "8e63ade376e23b50ac9c1c66ba1697ec"."name" ASC, COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'id' => 17,
+          'create_time' => '2006-10-09 03:40:35.015169-04',
+          'name' => 'Monthly New Users by Profile Group',
+          'folder' => 5,
+          'data' => '{"select":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-create_date","alias":"Month Added","column":{"transform":"month_trunc","colname":"create_date"}},{"relation":"8e63ade376e23b50ac9c1c66ba1697ec","path":"au-profile-pgt-name","alias":"Profile Group","column":{"transform":"Bare","colname":"name"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"actor.usr","path":"au","alias":"8bcc25c96aa5a71f7a76309077753e67","join":{"home_ou":{"key":"id","table":"actor.org_unit","path":"au-home_ou-aou","alias":"b312819df8fe889b50f70ea9fa054e72"},"profile":{"key":"id","table":"permission.grp_tree","path":"au-profile-pgt","alias":"8e63ade376e23b50ac9c1c66ba1697ec"}}},"where":[{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-create_date","column":{"transform":"month_trunc","colname":"create_date"},"condition":{"in":"::P0"}},{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P1"}}],"having":[],"order_by":[]}',
+          'owner' => 1,
+          'description' => 'Count of New Users at selected libraries by month, broken down by Profile Group.'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'from' => {
+                      'table' => 'actor.usr',
+                      'alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                      'join' => {
+                                  'home_ou' => {
+                                                 'path' => 'au-home_ou-aou',
+                                                 'key' => 'id',
+                                                 'alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                 'table' => 'actor.org_unit'
+                                               },
+                                  'profile' => {
+                                                 'key' => 'id',
+                                                 'path' => 'au-profile-pgt',
+                                                 'table' => 'permission.grp_tree',
+                                                 'alias' => '8e63ade376e23b50ac9c1c66ba1697ec'
+                                               }
+                                },
+                      'path' => 'au'
+                    },
+          'order_by' => [],
+          'select' => [
+                        {
+                          'alias' => 'Library Short (Policy) Name',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'au-home_ou-aou-shortname',
+                          'relation' => 'b312819df8fe889b50f70ea9fa054e72'
+                        },
+                        {
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'path' => 'au-create_date',
+                          'column' => {
+                                        'colname' => 'create_date',
+                                        'transform' => 'month_trunc'
+                                      },
+                          'alias' => 'Month Added'
+                        },
+                        {
+                          'relation' => '8e63ade376e23b50ac9c1c66ba1697ec',
+                          'path' => 'au-profile-pgt-name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      },
+                          'alias' => 'Profile Group'
+                        },
+                        {
+                          'path' => 'au-id',
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'alias' => 'Count',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'count'
+                                      }
+                        }
+                      ],
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform' => 'month_trunc'
+                                     },
+                         'path' => 'au-create_date',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67'
+                       },
+                       {
+                         'path' => 'au-home_ou-aou-id',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'id' => 17,
+                          'create_time' => '2006-10-09 03:40:35.015169-04',
+                          'name' => 'Monthly New Users by Profile Group',
+                          'folder' => 5,
+                          'data' => '{"select":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-create_date","alias":"Month Added","column":{"transform":"month_trunc","colname":"create_date"}},{"relation":"8e63ade376e23b50ac9c1c66ba1697ec","path":"au-profile-pgt-name","alias":"Profile Group","column":{"transform":"Bare","colname":"name"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"actor.usr","path":"au","alias":"8bcc25c96aa5a71f7a76309077753e67","join":{"home_ou":{"key":"id","table":"actor.org_unit","path":"au-home_ou-aou","alias":"b312819df8fe889b50f70ea9fa054e72"},"profile":{"key":"id","table":"permission.grp_tree","path":"au-profile-pgt","alias":"8e63ade376e23b50ac9c1c66ba1697ec"}}},"where":[{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-create_date","column":{"transform":"month_trunc","colname":"create_date"},"condition":{"in":"::P0"}},{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P1"}}],"having":[],"order_by":[]}',
+                          'owner' => 1,
+                          'description' => 'Count of New Users at selected libraries by month, broken down by Profile Group.'
+                        },
+          'data' => '{"P0":[{"transform":"relative_month","params":["-1"]},{"transform":"relative_month","params":["-2"]},{"transform":"relative_month","params":["-3"]}],"P1":["355","356","354"],"__pivot_label":"1","__pivot_data":"4"}',
+          'folder' => 2319,
+          'name' => 'NewPatronsProfile',
+          'create_time' => '2013-10-04 14:07:03.866102-04',
+          'id' => 84684,
+          'recurrence' => '1 day',
+          'recur' => 1,
+          'owner' => 425410,
+          'description' => ''
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'from' => {
+                      'table' => 'actor.usr',
+                      'alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                      'join' => {
+                                  'home_ou' => {
+                                                 'path' => 'au-home_ou-aou',
+                                                 'key' => 'id',
+                                                 'alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                 'table' => 'actor.org_unit'
+                                               },
+                                  'profile' => {
+                                                 'key' => 'id',
+                                                 'path' => 'au-profile-pgt',
+                                                 'table' => 'permission.grp_tree',
+                                                 'alias' => '8e63ade376e23b50ac9c1c66ba1697ec'
+                                               }
+                                },
+                      'path' => 'au'
+                    },
+          'order_by' => [],
+          'select' => [
+                        {
+                          'alias' => 'Library Short (Policy) Name',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'au-home_ou-aou-shortname',
+                          'relation' => 'b312819df8fe889b50f70ea9fa054e72'
+                        },
+                        {
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'path' => 'au-create_date',
+                          'column' => {
+                                        'colname' => 'create_date',
+                                        'transform' => 'month_trunc'
+                                      },
+                          'alias' => 'Month Added'
+                        },
+                        {
+                          'relation' => '8e63ade376e23b50ac9c1c66ba1697ec',
+                          'path' => 'au-profile-pgt-name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      },
+                          'alias' => 'Profile Group'
+                        },
+                        {
+                          'path' => 'au-id',
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'alias' => 'Count',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'count'
+                                      }
+                        }
+                      ],
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform' => 'month_trunc'
+                                     },
+                         'path' => 'au-create_date',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67'
+                       },
+                       {
+                         'path' => 'au-home_ou-aou-id',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-11-16 14:07:03.866102-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [],
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'month_trunc',
+                                        '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                        '_builder' => bless( {
+                                                               '_params' => {
+                                                                              'P1' => [
+                                                                                        '355',
+                                                                                        '356',
+                                                                                        '354'
+                                                                                      ],
+                                                                              '__pivot_label' => '1',
+                                                                              'P0' => [
+                                                                                        {
+                                                                                          'transform' => 'relative_month',
+                                                                                          'params' => [
+                                                                                                        '-1'
+                                                                                                      ]
+                                                                                        },
+                                                                                        {
+                                                                                          'transform' => 'relative_month',
+                                                                                          'params' => [
+                                                                                                        '-2'
+                                                                                                      ]
+                                                                                        },
+                                                                                        {
+                                                                                          'transform' => 'relative_month',
+                                                                                          'params' => [
+                                                                                                        '-3'
+                                                                                                      ]
+                                                                                        }
+                                                                                      ],
+                                                                              '__pivot_data' => '4'
+                                                                            },
+                                                               '_resultset_limit' => 1048575,
+                                                               '_sql' => undef,
+                                                               '_pivot_data' => '4',
+                                                               '_pivot_label' => '1',
+                                                               '_relative_time' => '2020-11-16 14:07:03.866102-05',
+                                                               '_rels' => {
+                                                                            'b312819df8fe889b50f70ea9fa054e72' => bless( {
+                                                                                                                           '_alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_join' => [],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_table' => 'actor.org_unit',
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_sql' => 'actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72"'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '8bcc25c96aa5a71f7a76309077753e67' => bless( {
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'home_ou',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'8bcc25c96aa5a71f7a76309077753e67'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'b312819df8fe889b50f70ea9fa054e72'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_alias' => '8e63ade376e23b50ac9c1c66ba1697ec',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_table' => 'permission.grp_tree',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_sql' => 'permission.grp_tree AS "8e63ade376e23b50ac9c1c66ba1697ec"',
+                                                                                                                                                                          '_join_type' => 'inner'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_col' => 'profile',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'8bcc25c96aa5a71f7a76309077753e67'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN permission.grp_tree AS "8e63ade376e23b50ac9c1c66ba1697ec" ON ("8bcc25c96aa5a71f7a76309077753e67"."profile" = "8e63ade376e23b50ac9c1c66ba1697ec"."id")',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                                                                                                                           '_sql' => 'actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")
+	INNER JOIN permission.grp_tree AS "8e63ade376e23b50ac9c1c66ba1697ec" ON ("8bcc25c96aa5a71f7a76309077753e67"."profile" = "8e63ade376e23b50ac9c1c66ba1697ec"."id")',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '8e63ade376e23b50ac9c1c66ba1697ec' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'8bcc25c96aa5a71f7a76309077753e67'}{'_join'}[1]{'_right_rel'}
+                                                                          }
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef,
+                                        '_sql' => '(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) IN ((EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$)::text,2,$_4110$0$_4110$)))',
+                                        '_column' => {
+                                                       'transform' => 'month_trunc',
+                                                       'colname' => 'create_date'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                        '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."id" IN ($_4110$355$_4110$,$_4110$356$_4110$,$_4110$354$_4110$)',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'shortname'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."shortname" ASC',
+                                           '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'create_date',
+                                                          'transform' => 'month_trunc'
+                                                        },
+                                           '_transform' => 'month_trunc',
+                                           '_sql' => '(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '8bcc25c96aa5a71f7a76309077753e67'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'name'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '8e63ade376e23b50ac9c1c66ba1697ec',
+                                           '_sql' => '"8e63ade376e23b50ac9c1c66ba1697ec"."name" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'transform' => 'count',
+                                                          'colname' => 'id'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                           '_sql' => 'COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC',
+                                           '_transform' => 'count'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name",
+	(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) AS "Month Added",
+	"8e63ade376e23b50ac9c1c66ba1697ec"."name" AS "Profile Group",
+	COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"
+  FROM	actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")
+	INNER JOIN permission.grp_tree AS "8e63ade376e23b50ac9c1c66ba1697ec" ON ("8bcc25c96aa5a71f7a76309077753e67"."profile" = "8e63ade376e23b50ac9c1c66ba1697ec"."id")
+  WHERE	(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) IN ((EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-1 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-2 months$_4110$)::text,2,$_4110$0$_4110$)),(EXTRACT(YEAR FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$) || $_4110$-$_4110$ || LPAD(EXTRACT(MONTH FROM $_4110$2020-11-16 14:07:03.866102-05$_4110$::TIMESTAMPTZ + $_4110$-3 months$_4110$)::text,2,$_4110$0$_4110$)))
+	AND "b312819df8fe889b50f70ea9fa054e72"."id" IN ($_4110$355$_4110$,$_4110$356$_4110$,$_4110$354$_4110$)
+  GROUP BY 1, 2, 3
+  ORDER BY "b312819df8fe889b50f70ea9fa054e72"."shortname" ASC, (EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) ASC, "8e63ade376e23b50ac9c1c66ba1697ec"."name" ASC, COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'8bcc25c96aa5a71f7a76309077753e67'},
+                 '_select' => [
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name"',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Library Short (Policy) Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Month Added',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'month_trunc',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                         '_sql' => '(EXTRACT(YEAR FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "8bcc25c96aa5a71f7a76309077753e67"."create_date")::text,2,\'0\')) AS "Month Added"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Profile Group',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '8e63ade376e23b50ac9c1c66ba1697ec',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"8e63ade376e23b50ac9c1c66ba1697ec"."name" AS "Profile Group"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Count',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'},
+                                         '_transform' => 'count',
+                                         '_sql' => 'COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '8bcc25c96aa5a71f7a76309077753e67'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

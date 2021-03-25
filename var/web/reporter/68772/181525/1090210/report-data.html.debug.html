@@ -1,0 +1,1283 @@
+<html><head><meta charset='utf-8'><title>DEBUG: Patrons with Circ</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"af74c49fe41f4e509e403ca1d45bd1f2"."shortname" AS "Home Library",
+	"a57570a19fec886cd55a9e913be22ad7"."barcode" AS "Barcode",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ Count"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.usr AS "66d162b787aaa3d016fbc5f1d4e89ffb" ON ("f45381a54504218e39aca33492d29306"."usr" = "66d162b787aaa3d016fbc5f1d4e89ffb"."id")
+	INNER JOIN actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."home_ou" = "af74c49fe41f4e509e403ca1d45bd1f2"."id")
+	INNER JOIN actor.card AS "a57570a19fec886cd55a9e913be22ad7" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."card" = "a57570a19fec886cd55a9e913be22ad7"."id")
+  WHERE	"af74c49fe41f4e509e403ca1d45bd1f2"."id" IN ($_41826$354$_41826$,$_41826$356$_41826$,$_41826$355$_41826$)
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_41826$2019-07-01$_41826$ AND $_41826$2020-06-30$_41826$
+  GROUP BY 1, 2
+  ORDER BY "af74c49fe41f4e509e403ca1d45bd1f2"."shortname" ASC, "a57570a19fec886cd55a9e913be22ad7"."barcode" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 2384,
+          'name' => 'Patron Barcodes With Circulation Activity by Home Library Within a Date Range',
+          'id' => 68772,
+          'create_time' => '2019-09-10 13:52:38.516845-04',
+          'data' => '{"version":5,"core_class":"circ","select":[{"alias":"Home Library","path":"aou-shortname","field_doc":"","relation":"af74c49fe41f4e509e403ca1d45bd1f2","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"ac-barcode","field_doc":"","relation":"a57570a19fec886cd55a9e913be22ad7","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ Count","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"usr-66d162b787aaa3d016fbc5f1d4e89ffb":{"type":"inner","key":"id","alias":"66d162b787aaa3d016fbc5f1d4e89ffb","path":"circ-usr","table":"actor.usr","idlclass":"au","join":{"home_ou-8e7f2cd4fbecf3e91eb3b4bc4119dc9c":{"type":"inner","key":"id","alias":"af74c49fe41f4e509e403ca1d45bd1f2","path":"circ-usr-home_ou","table":"actor.org_unit","idlclass":"aou","label":"Circulation -> Patron (inner) -> Home Library (inner)"},"card-b354c5921fee8f9ba5b7827b27fbb8c9":{"type":"inner","key":"id","alias":"a57570a19fec886cd55a9e913be22ad7","path":"circ-usr-card","table":"actor.card","idlclass":"ac","label":"Circulation -> Patron (inner) -> Current Library Card (inner)"}}}},"label":"Circulation"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"af74c49fe41f4e509e403ca1d45bd1f2","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Checkout Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"shortname","label":"Home Library","required":true,"datatype":"text","index":0,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Home Library","from":"circ.au","link":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.au.aou","jtype":"inner","uplink":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Circulation -> Patron (inner) -> Home Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"barcode","label":"Barcode","datatype":"text","index":1,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"circ.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"circ.au.ac","jtype":"inner","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Circulation -> Patron (inner) -> Current Library Card (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Circ Count","datatype":"id","index":2,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","transform":{"label":"Count","transform":"count","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":0,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Home Library","from":"circ.au","link":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.au.aou","jtype":"inner","uplink":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Circulation -> Patron (inner) -> Home Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"xact_start","label":"Checkout Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"label":"Between","op":"between"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""}]}',
+          'description' => 'Uses Circulation source.
+
+Display Fields:
+
+Circulation -> Patron -> Home Library -> Short (Policy) Name as "Home Library"
+Circulation -> Patron -> Current Library Card -> Barcode
+Circulation -> Circ ID (Count)
+
+Filters:
+
+Circulation -> Patron -> Home Library -> Organizational Unit ID (In list)
+Circulation -> Checkout Date/Time (Date) (Between)
+Circulation -> Circ ID (Count) (Greater than or equal to) ("1")',
+          'owner' => 2554624
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                           'classname' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'classname' => 'circ'
+                                           },
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Patron',
+                                             'classname' => 'au',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'name' => 'usr',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'class' => 'au',
+                                                         'label' => 'Patron'
+                                                       },
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources',
+                                                           'classname' => 'au',
+                                                           'label' => 'ILS User',
+                                                           'name' => 'au',
+                                                           'table' => 'actor.usr',
+                                                           'pkey_sequence' => 'actor.usr_id_seq',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                         },
+                                             'from' => 'circ',
+                                             'id' => 'circ.au',
+                                             'uplink' => {
+                                                           'name' => 'usr',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'au',
+                                                           'key' => 'id',
+                                                           'label' => 'Patron',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'table' => 'actor.usr'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'name' => 'home_ou',
+                                                           'class' => 'aou',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Home Library'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'jtype' => 'inner',
+                                             'label' => 'Home Library',
+                                             'classname' => 'aou',
+                                             'link' => {
+                                                         'name' => 'home_ou',
+                                                         'label' => 'Home Library',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'aou',
+                                                         'key' => 'id',
+                                                         'type' => 'link',
+                                                         'datatype' => 'org_unit'
+                                                       },
+                                             'from' => 'circ.au',
+                                             'id' => 'circ.au.aou',
+                                             'struct' => {
+                                                           'table' => 'actor.org_unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'classname' => 'aou',
+                                                           'label' => 'Organizational Unit'
+                                                         }
+                                           }
+                                         ],
+                               'datatype' => 'org_unit',
+                               'index' => 0,
+                               'selector' => 'shortname',
+                               'path_label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                               'doc_text' => '',
+                               'name' => 'id',
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              }
+                             },
+                             {
+                               'index' => 1,
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'action.circulation',
+                                                           'label' => 'Circulation',
+                                                           'classname' => 'circ',
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.circulation'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'label' => 'Checkout Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Date',
+                                                'transform' => 'date'
+                                              },
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'path_label' => 'Circulation'
+                             }
+                           ],
+          'display_cols' => [
+                              {
+                                'path_label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'label' => 'Home Library',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'required' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'name' => 'circ',
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'table' => 'action.circulation'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Patron',
+                                                            'key' => 'id',
+                                                            'name' => 'usr',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'struct' => {
+                                                            'table' => 'actor.usr',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'au',
+                                                            'label' => 'ILS User',
+                                                            'name' => 'au'
+                                                          },
+                                              'from' => 'circ',
+                                              'id' => 'circ.au',
+                                              'jtype' => 'inner',
+                                              'label' => 'Patron',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'au',
+                                                          'label' => 'Patron',
+                                                          'name' => 'usr'
+                                                        },
+                                              'classname' => 'au'
+                                            },
+                                            {
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit',
+                                                            'name' => 'home_ou',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'label' => 'Home Library'
+                                                          },
+                                              'link' => {
+                                                          'name' => 'home_ou',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Home Library',
+                                                          'key' => 'id',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'classname' => 'aou',
+                                              'label' => 'Home Library',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'classname' => 'aou'
+                                                          },
+                                              'id' => 'circ.au.aou',
+                                              'from' => 'circ.au'
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'index' => 0
+                              },
+                              {
+                                'path_label' => 'Circulation -> Patron (inner) -> Current Library Card (inner)',
+                                'name' => 'barcode',
+                                'doc_text' => '',
+                                'label' => 'Barcode',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ',
+                                                            'classname' => 'circ',
+                                                            'label' => 'Circulation'
+                                                          },
+                                              'table' => 'action.circulation',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ'
+                                            },
+                                            {
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'name' => 'usr',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'au',
+                                                            'label' => 'Patron',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'id' => 'circ.au',
+                                              'from' => 'circ',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'au',
+                                                            'label' => 'ILS User',
+                                                            'name' => 'au',
+                                                            'table' => 'actor.usr',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'actor.usr_id_seq'
+                                                          },
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'Patron',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'au',
+                                                          'key' => 'id',
+                                                          'name' => 'usr'
+                                                        },
+                                              'classname' => 'au',
+                                              'label' => 'Patron',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'ac',
+                                                            'label' => 'Current Library Card',
+                                                            'name' => 'card',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'actor.card',
+                                              'from' => 'circ.au',
+                                              'id' => 'circ.au.ac',
+                                              'struct' => {
+                                                            'classname' => 'ac',
+                                                            'label' => 'Library Card',
+                                                            'name' => 'ac',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.card',
+                                                            'pkey_sequence' => 'actor.card_id_seq',
+                                                            'core_label' => 'Non-core sources'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Current Library Card',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'ac',
+                                                          'label' => 'Current Library Card',
+                                                          'name' => 'card',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'classname' => 'ac'
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'index' => 1
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'struct' => {
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'action.circulation'
+                                                          },
+                                              'table' => 'action.circulation'
+                                            }
+                                          ],
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                 'label' => 'Count',
+                                                 'transform' => 'count'
+                                               },
+                                'label' => 'Circ Count',
+                                'path_label' => 'Circulation'
+                              }
+                            ],
+          'select' => [
+                        {
+                          'path' => 'aou-shortname',
+                          'relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                          'alias' => 'Home Library',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Barcode',
+                          'relation' => 'a57570a19fec886cd55a9e913be22ad7',
+                          'path' => 'ac-barcode'
+                        },
+                        {
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Circ Count',
+                          'path' => 'circ-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'version' => 5,
+          'having' => [],
+          'where' => [
+                       {
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'aou-id',
+                         'relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'circ-xact_start',
+                         'alias' => 'Checkout Date/Time',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'field_doc' => '',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'date',
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'join' => {
+                                  'usr-66d162b787aaa3d016fbc5f1d4e89ffb' => {
+                                                                              'path' => 'circ-usr',
+                                                                              'type' => 'inner',
+                                                                              'alias' => '66d162b787aaa3d016fbc5f1d4e89ffb',
+                                                                              'join' => {
+                                                                                          'home_ou-8e7f2cd4fbecf3e91eb3b4bc4119dc9c' => {
+                                                                                                                                          'label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'idlclass' => 'aou',
+                                                                                                                                          'alias' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                                                                                                                          'type' => 'inner',
+                                                                                                                                          'path' => 'circ-usr-home_ou',
+                                                                                                                                          'table' => 'actor.org_unit'
+                                                                                                                                        },
+                                                                                          'card-b354c5921fee8f9ba5b7827b27fbb8c9' => {
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => 'a57570a19fec886cd55a9e913be22ad7',
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'path' => 'circ-usr-card',
+                                                                                                                                       'label' => 'Circulation -> Patron (inner) -> Current Library Card (inner)',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'idlclass' => 'ac'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'table' => 'actor.usr',
+                                                                              'idlclass' => 'au',
+                                                                              'key' => 'id'
+                                                                            }
+                                },
+                      'table' => 'action.circulation',
+                      'alias' => 'f45381a54504218e39aca33492d29306',
+                      'path' => 'circ-circ',
+                      'label' => 'Circulation',
+                      'idlclass' => 'circ'
+                    },
+          'core_class' => 'circ'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'folder' => 2438,
+          'data' => '{"P0":["354","356","355"],"P1":["2019-07-01","2020-06-30"],"__pivot_label":"","__pivot_data":"3"}',
+          'recurrence' => '1 day',
+          'recur' => 0,
+          'name' => 'Patrons with Circ',
+          'owner' => 3825300,
+          'description' => '',
+          'create_time' => '2020-09-02 16:48:23.923025-04',
+          'template' => {
+                          'folder' => 2384,
+                          'name' => 'Patron Barcodes With Circulation Activity by Home Library Within a Date Range',
+                          'id' => 68772,
+                          'create_time' => '2019-09-10 13:52:38.516845-04',
+                          'data' => '{"version":5,"core_class":"circ","select":[{"alias":"Home Library","path":"aou-shortname","field_doc":"","relation":"af74c49fe41f4e509e403ca1d45bd1f2","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"ac-barcode","field_doc":"","relation":"a57570a19fec886cd55a9e913be22ad7","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ Count","path":"circ-id","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"f45381a54504218e39aca33492d29306","path":"circ-circ","table":"action.circulation","idlclass":"circ","join":{"usr-66d162b787aaa3d016fbc5f1d4e89ffb":{"type":"inner","key":"id","alias":"66d162b787aaa3d016fbc5f1d4e89ffb","path":"circ-usr","table":"actor.usr","idlclass":"au","join":{"home_ou-8e7f2cd4fbecf3e91eb3b4bc4119dc9c":{"type":"inner","key":"id","alias":"af74c49fe41f4e509e403ca1d45bd1f2","path":"circ-usr-home_ou","table":"actor.org_unit","idlclass":"aou","label":"Circulation -> Patron (inner) -> Home Library (inner)"},"card-b354c5921fee8f9ba5b7827b27fbb8c9":{"type":"inner","key":"id","alias":"a57570a19fec886cd55a9e913be22ad7","path":"circ-usr-card","table":"actor.card","idlclass":"ac","label":"Circulation -> Patron (inner) -> Current Library Card (inner)"}}}},"label":"Circulation"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"af74c49fe41f4e509e403ca1d45bd1f2","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Checkout Date/Time","path":"circ-xact_start","field_doc":"","relation":"f45381a54504218e39aca33492d29306","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"shortname","label":"Home Library","required":true,"datatype":"text","index":0,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Home Library","from":"circ.au","link":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.au.aou","jtype":"inner","uplink":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Circulation -> Patron (inner) -> Home Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"barcode","label":"Barcode","datatype":"text","index":1,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"circ.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"circ.au.ac","jtype":"inner","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Circulation -> Patron (inner) -> Current Library Card (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Circ Count","datatype":"id","index":2,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","transform":{"label":"Count","transform":"count","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":0,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"},{"label":"Patron","from":"circ","link":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"circ.au","jtype":"inner","uplink":{"name":"usr","label":"Patron","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Home Library","from":"circ.au","link":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"circ.au.aou","jtype":"inner","uplink":{"name":"home_ou","label":"Home Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Circulation -> Patron (inner) -> Home Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"xact_start","label":"Checkout Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Circulation","id":"circ","jtype":"inner","classname":"circ","struct":{"name":"circ","label":"Circulation","table":"action.circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"circ"},"table":"action.circulation"}],"path_label":"Circulation","operator":{"label":"Between","op":"between"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""}]}',
+                          'description' => 'Uses Circulation source.
+
+Display Fields:
+
+Circulation -> Patron -> Home Library -> Short (Policy) Name as "Home Library"
+Circulation -> Patron -> Current Library Card -> Barcode
+Circulation -> Circ ID (Count)
+
+Filters:
+
+Circulation -> Patron -> Home Library -> Organizational Unit ID (In list)
+Circulation -> Checkout Date/Time (Date) (Between)
+Circulation -> Circ ID (Count) (Greater than or equal to) ("1")',
+                          'owner' => 2554624
+                        },
+          'id' => 181525
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'path' => [
+                                           {
+                                             'id' => 'circ',
+                                             'struct' => {
+                                                           'table' => 'action.circulation',
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                           'classname' => 'circ',
+                                                           'label' => 'Circulation',
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.circulation',
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'classname' => 'circ'
+                                           },
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Patron',
+                                             'classname' => 'au',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'name' => 'usr',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'class' => 'au',
+                                                         'label' => 'Patron'
+                                                       },
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources',
+                                                           'classname' => 'au',
+                                                           'label' => 'ILS User',
+                                                           'name' => 'au',
+                                                           'table' => 'actor.usr',
+                                                           'pkey_sequence' => 'actor.usr_id_seq',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                         },
+                                             'from' => 'circ',
+                                             'id' => 'circ.au',
+                                             'uplink' => {
+                                                           'name' => 'usr',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'au',
+                                                           'key' => 'id',
+                                                           'label' => 'Patron',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'table' => 'actor.usr'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'name' => 'home_ou',
+                                                           'class' => 'aou',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'label' => 'Home Library'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'jtype' => 'inner',
+                                             'label' => 'Home Library',
+                                             'classname' => 'aou',
+                                             'link' => {
+                                                         'name' => 'home_ou',
+                                                         'label' => 'Home Library',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'aou',
+                                                         'key' => 'id',
+                                                         'type' => 'link',
+                                                         'datatype' => 'org_unit'
+                                                       },
+                                             'from' => 'circ.au',
+                                             'id' => 'circ.au.aou',
+                                             'struct' => {
+                                                           'table' => 'actor.org_unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'classname' => 'aou',
+                                                           'label' => 'Organizational Unit'
+                                                         }
+                                           }
+                                         ],
+                               'datatype' => 'org_unit',
+                               'index' => 0,
+                               'selector' => 'shortname',
+                               'path_label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                               'doc_text' => '',
+                               'name' => 'id',
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              }
+                             },
+                             {
+                               'index' => 1,
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulation',
+                                             'classname' => 'circ',
+                                             'id' => 'circ',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'action.circulation',
+                                                           'label' => 'Circulation',
+                                                           'classname' => 'circ',
+                                                           'name' => 'circ',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.circulation'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'label' => 'Checkout Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Date',
+                                                'transform' => 'date'
+                                              },
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'path_label' => 'Circulation'
+                             }
+                           ],
+          'display_cols' => [
+                              {
+                                'path_label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'label' => 'Home Library',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'required' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'path' => [
+                                            {
+                                              'table' => 'action.circulation',
+                                              'struct' => {
+                                                            'name' => 'circ',
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'table' => 'action.circulation'
+                                                          },
+                                              'id' => 'circ',
+                                              'classname' => 'circ',
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Patron',
+                                                            'key' => 'id',
+                                                            'name' => 'usr',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'struct' => {
+                                                            'table' => 'actor.usr',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'au',
+                                                            'label' => 'ILS User',
+                                                            'name' => 'au'
+                                                          },
+                                              'from' => 'circ',
+                                              'id' => 'circ.au',
+                                              'jtype' => 'inner',
+                                              'label' => 'Patron',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'au',
+                                                          'label' => 'Patron',
+                                                          'name' => 'usr'
+                                                        },
+                                              'classname' => 'au'
+                                            },
+                                            {
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit',
+                                                            'name' => 'home_ou',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'label' => 'Home Library'
+                                                          },
+                                              'link' => {
+                                                          'name' => 'home_ou',
+                                                          'class' => 'aou',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Home Library',
+                                                          'key' => 'id',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'classname' => 'aou',
+                                              'label' => 'Home Library',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'classname' => 'aou'
+                                                          },
+                                              'id' => 'circ.au.aou',
+                                              'from' => 'circ.au'
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'index' => 0
+                              },
+                              {
+                                'path_label' => 'Circulation -> Patron (inner) -> Current Library Card (inner)',
+                                'name' => 'barcode',
+                                'doc_text' => '',
+                                'label' => 'Barcode',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'action.circulation',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'circ',
+                                                            'classname' => 'circ',
+                                                            'label' => 'Circulation'
+                                                          },
+                                              'table' => 'action.circulation',
+                                              'id' => 'circ',
+                                              'label' => 'Circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'circ'
+                                            },
+                                            {
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'name' => 'usr',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'au',
+                                                            'label' => 'Patron',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'id' => 'circ.au',
+                                              'from' => 'circ',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'au',
+                                                            'label' => 'ILS User',
+                                                            'name' => 'au',
+                                                            'table' => 'actor.usr',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'actor.usr_id_seq'
+                                                          },
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'Patron',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'au',
+                                                          'key' => 'id',
+                                                          'name' => 'usr'
+                                                        },
+                                              'classname' => 'au',
+                                              'label' => 'Patron',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'ac',
+                                                            'label' => 'Current Library Card',
+                                                            'name' => 'card',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'actor.card',
+                                              'from' => 'circ.au',
+                                              'id' => 'circ.au.ac',
+                                              'struct' => {
+                                                            'classname' => 'ac',
+                                                            'label' => 'Library Card',
+                                                            'name' => 'ac',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.card',
+                                                            'pkey_sequence' => 'actor.card_id_seq',
+                                                            'core_label' => 'Non-core sources'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Current Library Card',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'ac',
+                                                          'label' => 'Current Library Card',
+                                                          'name' => 'card',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'classname' => 'ac'
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'index' => 1
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Circulation',
+                                              'classname' => 'circ',
+                                              'id' => 'circ',
+                                              'struct' => {
+                                                            'label' => 'Circulation',
+                                                            'classname' => 'circ',
+                                                            'name' => 'circ',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'action.circulation'
+                                                          },
+                                              'table' => 'action.circulation'
+                                            }
+                                          ],
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                 'label' => 'Count',
+                                                 'transform' => 'count'
+                                               },
+                                'label' => 'Circ Count',
+                                'path_label' => 'Circulation'
+                              }
+                            ],
+          'select' => [
+                        {
+                          'path' => 'aou-shortname',
+                          'relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                          'alias' => 'Home Library',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Barcode',
+                          'relation' => 'a57570a19fec886cd55a9e913be22ad7',
+                          'path' => 'ac-barcode'
+                        },
+                        {
+                          'relation' => 'f45381a54504218e39aca33492d29306',
+                          'alias' => 'Circ Count',
+                          'path' => 'circ-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'transform_label' => 'Count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'version' => 5,
+          'having' => [],
+          'where' => [
+                       {
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'aou-id',
+                         'relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'circ-xact_start',
+                         'alias' => 'Checkout Date/Time',
+                         'relation' => 'f45381a54504218e39aca33492d29306',
+                         'field_doc' => '',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'date',
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'join' => {
+                                  'usr-66d162b787aaa3d016fbc5f1d4e89ffb' => {
+                                                                              'path' => 'circ-usr',
+                                                                              'type' => 'inner',
+                                                                              'alias' => '66d162b787aaa3d016fbc5f1d4e89ffb',
+                                                                              'join' => {
+                                                                                          'home_ou-8e7f2cd4fbecf3e91eb3b4bc4119dc9c' => {
+                                                                                                                                          'label' => 'Circulation -> Patron (inner) -> Home Library (inner)',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'idlclass' => 'aou',
+                                                                                                                                          'alias' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                                                                                                                          'type' => 'inner',
+                                                                                                                                          'path' => 'circ-usr-home_ou',
+                                                                                                                                          'table' => 'actor.org_unit'
+                                                                                                                                        },
+                                                                                          'card-b354c5921fee8f9ba5b7827b27fbb8c9' => {
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => 'a57570a19fec886cd55a9e913be22ad7',
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'path' => 'circ-usr-card',
+                                                                                                                                       'label' => 'Circulation -> Patron (inner) -> Current Library Card (inner)',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'idlclass' => 'ac'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'table' => 'actor.usr',
+                                                                              'idlclass' => 'au',
+                                                                              'key' => 'id'
+                                                                            }
+                                },
+                      'table' => 'action.circulation',
+                      'alias' => 'f45381a54504218e39aca33492d29306',
+                      'path' => 'circ-circ',
+                      'label' => 'Circulation',
+                      'idlclass' => 'circ'
+                    },
+          'core_class' => 'circ'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-09-02 16:48:23.923025-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [],
+                 '_builder' => bless( {
+                                        '_params' => {
+                                                       'P0' => [
+                                                                 '354',
+                                                                 '356',
+                                                                 '355'
+                                                               ],
+                                                       '__pivot_data' => '3',
+                                                       '__pivot_label' => '',
+                                                       'P1' => [
+                                                                 '2019-07-01',
+                                                                 '2020-06-30'
+                                                               ]
+                                                     },
+                                        '_pivot_data' => '3',
+                                        '_relative_time' => '2020-09-02 16:48:23.923025-04',
+                                        '_rels' => {
+                                                     '66d162b787aaa3d016fbc5f1d4e89ffb' => bless( {
+                                                                                                    '_table' => 'actor.usr',
+                                                                                                    '_sql' => 'actor.usr AS "66d162b787aaa3d016fbc5f1d4e89ffb"',
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'66d162b787aaa3d016fbc5f1d4e89ffb'},
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."home_ou" = "af74c49fe41f4e509e403ca1d45bd1f2"."id")',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_table' => 'actor.org_unit',
+                                                                                                                                                   '_sql' => 'actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2"',
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_join' => [],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_alias' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                                                                                                                                   '_is_join' => 1
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'home_ou'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'card',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_join' => [],
+                                                                                                                                                   '_alias' => 'a57570a19fec886cd55a9e913be22ad7',
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_table' => 'actor.card',
+                                                                                                                                                   '_sql' => 'actor.card AS "a57570a19fec886cd55a9e913be22ad7"',
+                                                                                                                                                   '_join_type' => 'inner'
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.card AS "a57570a19fec886cd55a9e913be22ad7" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."card" = "a57570a19fec886cd55a9e913be22ad7"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'66d162b787aaa3d016fbc5f1d4e89ffb'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_columns' => [],
+                                                                                                    '_alias' => '66d162b787aaa3d016fbc5f1d4e89ffb',
+                                                                                                    '_is_join' => 1
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'af74c49fe41f4e509e403ca1d45bd1f2' => $VAR1->{'_builder'}{'_rels'}{'66d162b787aaa3d016fbc5f1d4e89ffb'}{'_join'}[0]{'_right_rel'},
+                                                     'a57570a19fec886cd55a9e913be22ad7' => $VAR1->{'_builder'}{'_rels'}{'66d162b787aaa3d016fbc5f1d4e89ffb'}{'_join'}[1]{'_right_rel'},
+                                                     'f45381a54504218e39aca33492d29306' => bless( {
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_alias' => 'f45381a54504218e39aca33492d29306',
+                                                                                                    '_sql' => 'action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.usr AS "66d162b787aaa3d016fbc5f1d4e89ffb" ON ("f45381a54504218e39aca33492d29306"."usr" = "66d162b787aaa3d016fbc5f1d4e89ffb"."id")
+	INNER JOIN actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."home_ou" = "af74c49fe41f4e509e403ca1d45bd1f2"."id")
+	INNER JOIN actor.card AS "a57570a19fec886cd55a9e913be22ad7" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."card" = "a57570a19fec886cd55a9e913be22ad7"."id")',
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_left_col' => 'usr',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.usr AS "66d162b787aaa3d016fbc5f1d4e89ffb" ON ("f45381a54504218e39aca33492d29306"."usr" = "66d162b787aaa3d016fbc5f1d4e89ffb"."id")
+	INNER JOIN actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."home_ou" = "af74c49fe41f4e509e403ca1d45bd1f2"."id")
+	INNER JOIN actor.card AS "a57570a19fec886cd55a9e913be22ad7" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."card" = "a57570a19fec886cd55a9e913be22ad7"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'},
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'66d162b787aaa3d016fbc5f1d4e89ffb'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_table' => 'action.circulation',
+                                                                                                    '_builder' => $VAR1->{'_builder'}
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_sql' => undef,
+                                        '_resultset_limit' => 1048575
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_sql' => 'SELECT * FROM (SELECT	"af74c49fe41f4e509e403ca1d45bd1f2"."shortname" AS "Home Library",
+	"a57570a19fec886cd55a9e913be22ad7"."barcode" AS "Barcode",
+	COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ Count"
+  FROM	action.circulation AS "f45381a54504218e39aca33492d29306"
+	INNER JOIN actor.usr AS "66d162b787aaa3d016fbc5f1d4e89ffb" ON ("f45381a54504218e39aca33492d29306"."usr" = "66d162b787aaa3d016fbc5f1d4e89ffb"."id")
+	INNER JOIN actor.org_unit AS "af74c49fe41f4e509e403ca1d45bd1f2" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."home_ou" = "af74c49fe41f4e509e403ca1d45bd1f2"."id")
+	INNER JOIN actor.card AS "a57570a19fec886cd55a9e913be22ad7" ON ("66d162b787aaa3d016fbc5f1d4e89ffb"."card" = "a57570a19fec886cd55a9e913be22ad7"."id")
+  WHERE	"af74c49fe41f4e509e403ca1d45bd1f2"."id" IN ($_41826$354$_41826$,$_41826$356$_41826$,$_41826$355$_41826$)
+	AND date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_41826$2019-07-01$_41826$ AND $_41826$2020-06-30$_41826$
+  GROUP BY 1, 2
+  ORDER BY "af74c49fe41f4e509e403ca1d45bd1f2"."shortname" ASC, "a57570a19fec886cd55a9e913be22ad7"."barcode" ASC, COUNT("f45381a54504218e39aca33492d29306"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                        '_sql' => '"af74c49fe41f4e509e403ca1d45bd1f2"."id" IN ($_41826$354$_41826$,$_41826$356$_41826$,$_41826$355$_41826$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_relation' => 'f45381a54504218e39aca33492d29306',
+                                        '_sql' => 'date("f45381a54504218e39aca33492d29306"."xact_start") BETWEEN $_41826$2019-07-01$_41826$ AND $_41826$2020-06-30$_41826$',
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'xact_start'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'f45381a54504218e39aca33492d29306'},
+                 '_select' => [
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_column' => {
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'shortname'
+                                                      },
+                                         '_alias' => 'Home Library',
+                                         '_relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                         '_sql' => '"af74c49fe41f4e509e403ca1d45bd1f2"."shortname" AS "Home Library"',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_relation' => 'a57570a19fec886cd55a9e913be22ad7',
+                                         '_sql' => '"a57570a19fec886cd55a9e913be22ad7"."barcode" AS "Barcode"',
+                                         '_alias' => 'Barcode',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'barcode',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'f45381a54504218e39aca33492d29306',
+                                         '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") AS "Circ Count"',
+                                         '_alias' => 'Circ Count',
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count',
+                                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                        'transform' => 'count'
+                                                      },
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'count'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_relation' => 'af74c49fe41f4e509e403ca1d45bd1f2',
+                                           '_sql' => '"af74c49fe41f4e509e403ca1d45bd1f2"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_sql' => '"a57570a19fec886cd55a9e913be22ad7"."barcode" ASC',
+                                           '_relation' => 'a57570a19fec886cd55a9e913be22ad7',
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => 'COUNT("f45381a54504218e39aca33492d29306"."id") ASC',
+                                           '_relation' => 'f45381a54504218e39aca33492d29306',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_transform' => 'count',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

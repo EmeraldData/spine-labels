@@ -1,0 +1,57 @@
+[%-
+    opac_root = ctx.opac_root;
+    IF ctx.kpac_root;
+        opac_root = ctx.kpac_root;
+    END;
+-%]
+<div class="container">
+    <div>
+
+    [%- IF ctx.library.parent_ou; %]
+    <div id="branch-info" style="font-weight:bold;font-size:1.3em;">
+        [% ctx.parent.name | html %]:</a>
+    </div>
+    [%  END; -%]
+
+    <h2>[% ctx.library.name | html %]</h2>
+
+    [%- IF ctx.library.mailing_address; %]
+    <div class="my-3" id="addresses">
+        <div id="mailing" property="location address" typeof="PostalAddress">
+            <h3 property="contactType">[% l('Location') %]</h3>
+            <span property="streetAddress">[% ctx.mailing_address.street1 | html %]
+            [%- IF ctx.mailing_address.street2; "<br />"; ctx.mailing_address.street2 | html; END; %]
+            </span><br />
+            <span property="addressLocality">[% ctx.mailing_address.city | html %]</span>, 
+            <span property="addressRegion">[% ctx.mailing_address.state | html %]</span> 
+            <span property="postalCode">[% ctx.mailing_address.post_code | html %]</span><br/>
+            <br />
+            <a href="http://www.google.com/maps/place/[% ctx.mailing_address.street1 | html %]+[% ctx.mailing_address.street2 | html %]+[% ctx.mailing_address.city | html %]+[% ctx.mailing_address.state | html %]+[% ctx.mailing_address.post_code | html %]"><i class="fas fa-map-marker-alt" style="color:#28A745;" aria-hidden="true"></i> Map / Directions</a>    
+        </div>
+    </div>
+    [%- END; %]
+
+    [%- IF ctx.hours; %]
+        [%- INCLUDE "opac/parts/library/hours.tt2"; %]
+    [% END; -%]
+
+    [%- IF (ctx.library.email OR ctx.library.phone); %]
+    <div class="my-3">
+    <h3 id="contact-info">[% l('Contact information') %]</h3>
+    [%-
+        lib_url = ctx.get_org_setting(ctx.library.id, 'lib.info_url');
+        IF lib_url;
+            '<div id="library-url"><i class="fas fa-globe" style="color:#28A745;" aria-hidden="true"></i> '; l('Library web site: '); '<a href="'; lib_url | html; '" property="url" target="_blank">'; lib_url | html; '</a></div>';
+        END;
+    -%]
+    [%- IF ctx.library.email; %]
+        <div><i class="fas fa-envelope" style="color:#28A745;" aria-hidden="true"></i> [% l('Email address: ') %]<a href="mailto:[% ctx.library.email | html %]" property="email">[% ctx.library.email | html %]</a></div>
+    [%- END; %]
+    [%- IF ctx.library.phone; %]
+        <div><i class="fas fa-phone" style="color:#28A745;" aria-hidden="true"></i> [% l('Telephone: ') %]<a href="tel:[% ctx.library.phone | html %]" property="telephone">[% ctx.library.phone | html %]</a></div>
+    [% END %]
+    </div>
+    [% END %]
+
+    </div>
+</div>

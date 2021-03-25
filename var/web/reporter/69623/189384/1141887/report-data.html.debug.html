@@ -1,0 +1,1696 @@
+<html><head><meta charset='utf-8'><title>DEBUG:  31008000059903 test2</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"7e9c833f1cd0a945c6035898ff8a844b"."title" AS "Title",
+	"7e9c833f1cd0a945c6035898ff8a844b"."author" AS "Author",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" AS "Hold Type"
+  FROM	action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	LEFT OUTER JOIN reporter.hold_request_record AS "1792f5e8b5b8f67db1d0da0864425e5f" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."id" = "1792f5e8b5b8f67db1d0da0864425e5f"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2" ON ("1792f5e8b5b8f67db1d0da0864425e5f"."bib_record" = "86e9044fee6cbc03cc03b59666d5bbc2"."id")
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")
+	INNER JOIN actor.usr AS "4e09cff1d200f1b2657c55ddd4fdf2ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "4e09cff1d200f1b2657c55ddd4fdf2ee"."id")
+	INNER JOIN actor.card AS "2b1f2de8615d2c6e6697c3465b182903" ON ("4e09cff1d200f1b2657c55ddd4fdf2ee"."card" = "2b1f2de8615d2c6e6697c3465b182903"."id")
+  WHERE	"3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL
+	AND "2b1f2de8615d2c6e6697c3465b182903"."barcode" = $_31437$ 31008000059903$_31437$
+  GROUP BY 1, 2, 3, 4
+  ORDER BY "7e9c833f1cd0a945c6035898ff8a844b"."title" ASC, "7e9c833f1cd0a945c6035898ff8a844b"."author" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'id' => 69623,
+          'create_time' => '2020-09-11 14:22:09.193591-04',
+          'name' => 'List of Open Holds for a Patron',
+          'folder' => 3004,
+          'data' => '{"version":5,"doc_url":"","core_class":"ahr","select":[{"alias":"Title","path":"rmsr-title","field_doc":"","relation":"7e9c833f1cd0a945c6035898ff8a844b","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Author","path":"rmsr-author","field_doc":"","relation":"7e9c833f1cd0a945c6035898ff8a844b","column":{"colname":"author","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold ID","path":"ahr-id","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold Type","path":"ahr-hold_type","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"hold_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"3b0d7d05c65006de7b2ca20f5fe39690","path":"ahr-ahr","table":"action.hold_request","idlclass":"ahr","join":{"id-bib_rec-1792f5e8b5b8f67db1d0da0864425e5f":{"type":"left","key":"id","alias":"1792f5e8b5b8f67db1d0da0864425e5f","path":"ahr-id-bib_rec","table":"reporter.hold_request_record","idlclass":"rhrr","join":{"bib_record-86e9044fee6cbc03cc03b59666d5bbc2":{"type":"left","key":"id","alias":"86e9044fee6cbc03cc03b59666d5bbc2","path":"ahr-id-bib_rec-bib_record","table":"biblio.record_entry","idlclass":"bre","join":{"id-simple_record-f84fb1c0296f1f719bf64ec3aca6c362":{"type":"left","key":"id","alias":"7e9c833f1cd0a945c6035898ff8a844b","path":"ahr-id-bib_rec-bib_record-id-simple_record","table":"reporter.materialized_simple_record","idlclass":"rmsr","label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts "}}}}},"usr-4e09cff1d200f1b2657c55ddd4fdf2ee":{"type":"inner","key":"id","alias":"4e09cff1d200f1b2657c55ddd4fdf2ee","path":"ahr-usr","table":"actor.usr","idlclass":"au","join":{"card-ee8334a6d533006283a2fb08344b3a63":{"type":"inner","key":"id","alias":"2b1f2de8615d2c6e6697c3465b182903","path":"ahr-usr-card","table":"actor.card","idlclass":"ac","label":"Hold Request -> Hold User -> Current Library Card"}}}},"label":"Hold Request"},"where":[{"alias":"Hold Cancel Date/Time","path":"ahr-cancel_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"cancel_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Fulfillment Date/Time","path":"ahr-fulfillment_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"fulfillment_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Barcode","path":"ac-barcode","field_doc":"Patron barcode","relation":"2b1f2de8615d2c6e6697c3465b182903","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"title","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold Request Record","from":"ahr","link":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"id":"ahr.rhrr","uplink":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"classname":"rhrr","struct":{"name":"rhrr","label":"Hold Request Record","table":"reporter.hold_request_record","pkey":"id","core_label":"Non-core sources","classname":"rhrr"},"table":"reporter.hold_request_record"},{"label":"Bibliographic Record","from":"rhrr","link":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"rhrr.bre","uplink":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Fast Simple Record Extracts","from":"bre","link":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"id":"bre.rmsr","uplink":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"classname":"rmsr","struct":{"name":"rmsr","label":"Fast Simple Record Extracts","table":"reporter.materialized_simple_record","pkey":"id","core_label":"Non-core sources","classname":"rmsr"},"table":"reporter.materialized_simple_record"}],"label":"Title","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ","index":0},{"name":"author","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold Request Record","from":"ahr","link":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"id":"ahr.rhrr","uplink":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"classname":"rhrr","struct":{"name":"rhrr","label":"Hold Request Record","table":"reporter.hold_request_record","pkey":"id","core_label":"Non-core sources","classname":"rhrr"},"table":"reporter.hold_request_record"},{"label":"Bibliographic Record","from":"rhrr","link":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"rhrr.bre","uplink":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Fast Simple Record Extracts","from":"bre","link":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"id":"bre.rmsr","uplink":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"classname":"rmsr","struct":{"name":"rmsr","label":"Fast Simple Record Extracts","table":"reporter.materialized_simple_record","pkey":"id","core_label":"Non-core sources","classname":"rmsr"},"table":"reporter.materialized_simple_record"}],"label":"Author","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ","index":1},{"name":"id","label":"Hold ID","datatype":"id","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"hold_type","label":"Hold Type","type":"link","key":"hold_type","class":"cht","reltype":"has_a","datatype":"text","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"cancel_time","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"label":"Hold Cancel Date/Time","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request","operator":{"op":"is","label":"Is NULL"},"index":0},{"name":"fulfillment_time","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"label":"Fulfillment Date/Time","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request","operator":{"op":"is","label":"Is NULL"},"index":1},{"name":"barcode","label":"Barcode","datatype":"text","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold User","from":"ahr","link":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"ahr.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"ahr.au.ac","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Hold Request -> Hold User -> Current Library Card","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"Patron barcode"}]}',
+          'description' => 'Used for troubleshooting display problems in staff client.',
+          'owner' => 2923364
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'ahr-cancel_time',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'alias' => 'Hold Cancel Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'cancel_time',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'fulfillment_time'
+                                     },
+                         'alias' => 'Fulfillment Date/Time',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'path' => 'ahr-fulfillment_time'
+                       },
+                       {
+                         'path' => 'ac-barcode',
+                         'relation' => '2b1f2de8615d2c6e6697c3465b182903',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'alias' => 'Barcode',
+                         'field_doc' => 'Patron barcode',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'barcode'
+                                     }
+                       }
+                     ],
+          'version' => 5,
+          'doc_url' => '',
+          'display_cols' => [
+                              {
+                                'name' => 'title',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'classname' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'name' => 'ahr',
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.hold_request'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link',
+                                                            'label' => 'Bib Record link',
+                                                            'reltype' => 'might_have',
+                                                            'class' => 'rhrr',
+                                                            'type' => 'link',
+                                                            'name' => 'bib_rec',
+                                                            'key' => 'id'
+                                                          },
+                                              'struct' => {
+                                                            'name' => 'rhrr',
+                                                            'label' => 'Hold Request Record',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'reporter.hold_request_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rhrr'
+                                                          },
+                                              'table' => 'reporter.hold_request_record',
+                                              'id' => 'ahr.rhrr',
+                                              'link' => {
+                                                          'label' => 'Bib Record link',
+                                                          'reltype' => 'might_have',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link',
+                                                          'name' => 'bib_rec',
+                                                          'key' => 'id',
+                                                          'class' => 'rhrr',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'rhrr',
+                                              'from' => 'ahr',
+                                              'label' => 'Hold Request Record'
+                                            },
+                                            {
+                                              'table' => 'biblio.record_entry',
+                                              'struct' => {
+                                                            'table' => 'biblio.record_entry',
+                                                            'pkey' => 'id',
+                                                            'name' => 'bre',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'classname' => 'bre',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Bibliographic Record',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'bib_record',
+                                                            'label' => 'Target Bib Record'
+                                                          },
+                                              'id' => 'rhrr.bre',
+                                              'link' => {
+                                                          'label' => 'Target Bib Record',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'bib_record',
+                                                          'class' => 'bre',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'from' => 'rhrr',
+                                              'classname' => 'bre',
+                                              'label' => 'Bibliographic Record'
+                                            },
+                                            {
+                                              'id' => 'bre.rmsr',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'name' => 'simple_record',
+                                                          'type' => 'link',
+                                                          'class' => 'rmsr',
+                                                          'reltype' => 'might_have',
+                                                          'label' => 'Simple Record Extracts ',
+                                                          'datatype' => 'link',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                        },
+                                              'uplink' => {
+                                                            'name' => 'simple_record',
+                                                            'key' => 'id',
+                                                            'class' => 'rmsr',
+                                                            'type' => 'link',
+                                                            'label' => 'Simple Record Extracts ',
+                                                            'reltype' => 'might_have',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link'
+                                                          },
+                                              'table' => 'reporter.materialized_simple_record',
+                                              'struct' => {
+                                                            'name' => 'rmsr',
+                                                            'label' => 'Fast Simple Record Extracts',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'reporter.materialized_simple_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rmsr'
+                                                          },
+                                              'label' => 'Fast Simple Record Extracts',
+                                              'classname' => 'rmsr',
+                                              'from' => 'bre'
+                                            }
+                                          ],
+                                'label' => 'Title',
+                                'path_label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ',
+                                'datatype' => 'text',
+                                'index' => 0
+                              },
+                              {
+                                'name' => 'author',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Author',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.hold_request',
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'label' => 'Hold Request Record',
+                                              'classname' => 'rhrr',
+                                              'from' => 'ahr',
+                                              'id' => 'ahr.rhrr',
+                                              'link' => {
+                                                          'name' => 'bib_rec',
+                                                          'key' => 'id',
+                                                          'class' => 'rhrr',
+                                                          'type' => 'link',
+                                                          'label' => 'Bib Record link',
+                                                          'reltype' => 'might_have',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'class' => 'rhrr',
+                                                            'type' => 'link',
+                                                            'name' => 'bib_rec',
+                                                            'key' => 'id',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link',
+                                                            'label' => 'Bib Record link',
+                                                            'reltype' => 'might_have'
+                                                          },
+                                              'table' => 'reporter.hold_request_record',
+                                              'struct' => {
+                                                            'table' => 'reporter.hold_request_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rhrr',
+                                                            'name' => 'rhrr',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Hold Request Record'
+                                                          }
+                                            },
+                                            {
+                                              'from' => 'rhrr',
+                                              'classname' => 'bre',
+                                              'label' => 'Bibliographic Record',
+                                              'table' => 'biblio.record_entry',
+                                              'struct' => {
+                                                            'classname' => 'bre',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Bibliographic Record',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'biblio.record_entry',
+                                                            'name' => 'bre'
+                                                          },
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'bib_record',
+                                                            'key' => 'id',
+                                                            'label' => 'Target Bib Record'
+                                                          },
+                                              'link' => {
+                                                          'class' => 'bre',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Target Bib Record',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'bib_record',
+                                                          'key' => 'id'
+                                                        },
+                                              'id' => 'rhrr.bre'
+                                            },
+                                            {
+                                              'label' => 'Fast Simple Record Extracts',
+                                              'from' => 'bre',
+                                              'classname' => 'rmsr',
+                                              'id' => 'bre.rmsr',
+                                              'link' => {
+                                                          'class' => 'rmsr',
+                                                          'type' => 'link',
+                                                          'name' => 'simple_record',
+                                                          'key' => 'id',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link',
+                                                          'label' => 'Simple Record Extracts ',
+                                                          'reltype' => 'might_have'
+                                                        },
+                                              'struct' => {
+                                                            'label' => 'Fast Simple Record Extracts',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'rmsr',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rmsr',
+                                                            'table' => 'reporter.materialized_simple_record'
+                                                          },
+                                              'table' => 'reporter.materialized_simple_record',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'reltype' => 'might_have',
+                                                            'label' => 'Simple Record Extracts ',
+                                                            'type' => 'link',
+                                                            'class' => 'rmsr',
+                                                            'key' => 'id',
+                                                            'name' => 'simple_record'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'index' => 1,
+                                'datatype' => 'text',
+                                'path_label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts '
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'id',
+                                'datatype' => 'id',
+                                'path_label' => 'Hold Request',
+                                'index' => 2,
+                                'label' => 'Hold ID',
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'class' => 'cht',
+                                'type' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'}
+                                               },
+                                'key' => 'hold_type',
+                                'name' => 'hold_type',
+                                'index' => 3,
+                                'datatype' => 'text',
+                                'path_label' => 'Hold Request',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold Type',
+                                'reltype' => 'has_a'
+                              }
+                            ],
+          'having' => [],
+          'filter_cols' => [
+                             {
+                               'name' => 'cancel_time',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'label' => 'Hold Cancel Date/Time',
+                               'path' => [
+                                           {
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'operator' => {
+                                               'label' => 'Is NULL',
+                                               'op' => 'is'
+                                             },
+                               'index' => 0
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Hold Request',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Fulfillment Date/Time',
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'index' => 1,
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'name' => 'fulfillment_time',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare'
+                                              }
+                             },
+                             {
+                               'label' => 'Barcode',
+                               'path' => [
+                                           {
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request',
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'name' => 'ahr',
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'classname' => 'ahr'
+                                           },
+                                           {
+                                             'label' => 'Hold User',
+                                             'from' => 'ahr',
+                                             'classname' => 'au',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'usr',
+                                                         'key' => 'id',
+                                                         'label' => 'Hold User',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'au'
+                                                       },
+                                             'id' => 'ahr.au',
+                                             'table' => 'actor.usr',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'ILS User',
+                                                           'pkey_sequence' => 'actor.usr_id_seq',
+                                                           'classname' => 'au',
+                                                           'name' => 'au',
+                                                           'table' => 'actor.usr',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'uplink' => {
+                                                           'label' => 'Hold User',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'usr',
+                                                           'key' => 'id',
+                                                           'class' => 'au',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'id' => 'ahr.au.ac',
+                                             'link' => {
+                                                         'label' => 'Current Library Card',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'card',
+                                                         'class' => 'ac',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'table' => 'actor.card',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'classname' => 'ac',
+                                                           'pkey_sequence' => 'actor.card_id_seq',
+                                                           'table' => 'actor.card',
+                                                           'label' => 'Library Card',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'ac'
+                                                         },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'ac',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'card',
+                                                           'key' => 'id',
+                                                           'label' => 'Current Library Card'
+                                                         },
+                                             'label' => 'Current Library Card',
+                                             'from' => 'ahr.au',
+                                             'classname' => 'ac'
+                                           }
+                                         ],
+                               'doc_text' => 'Patron barcode',
+                               'datatype' => 'text',
+                               'path_label' => 'Hold Request -> Hold User -> Current Library Card',
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'index' => 2,
+                               'name' => 'barcode',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              }
+                             }
+                           ],
+          'select' => [
+                        {
+                          'path' => 'rmsr-title',
+                          'relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                          'alias' => 'Title',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                          'path' => 'rmsr-author',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'author',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Author'
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'id'
+                                      },
+                          'alias' => 'Hold ID'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'colname' => 'hold_type'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold Type',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-hold_type'
+                        }
+                      ],
+          'from' => {
+                      'join' => {
+                                  'id-bib_rec-1792f5e8b5b8f67db1d0da0864425e5f' => {
+                                                                                     'key' => 'id',
+                                                                                     'join' => {
+                                                                                                 'bib_record-86e9044fee6cbc03cc03b59666d5bbc2' => {
+                                                                                                                                                    'alias' => '86e9044fee6cbc03cc03b59666d5bbc2',
+                                                                                                                                                    'type' => 'left',
+                                                                                                                                                    'table' => 'biblio.record_entry',
+                                                                                                                                                    'idlclass' => 'bre',
+                                                                                                                                                    'path' => 'ahr-id-bib_rec-bib_record',
+                                                                                                                                                    'join' => {
+                                                                                                                                                                'id-simple_record-f84fb1c0296f1f719bf64ec3aca6c362' => {
+                                                                                                                                                                                                                         'alias' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                                                                                                                                                                                                         'type' => 'left',
+                                                                                                                                                                                                                         'table' => 'reporter.materialized_simple_record',
+                                                                                                                                                                                                                         'label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ',
+                                                                                                                                                                                                                         'idlclass' => 'rmsr',
+                                                                                                                                                                                                                         'path' => 'ahr-id-bib_rec-bib_record-id-simple_record',
+                                                                                                                                                                                                                         'key' => 'id'
+                                                                                                                                                                                                                       }
+                                                                                                                                                              },
+                                                                                                                                                    'key' => 'id'
+                                                                                                                                                  }
+                                                                                               },
+                                                                                     'path' => 'ahr-id-bib_rec',
+                                                                                     'idlclass' => 'rhrr',
+                                                                                     'table' => 'reporter.hold_request_record',
+                                                                                     'type' => 'left',
+                                                                                     'alias' => '1792f5e8b5b8f67db1d0da0864425e5f'
+                                                                                   },
+                                  'usr-4e09cff1d200f1b2657c55ddd4fdf2ee' => {
+                                                                              'join' => {
+                                                                                          'card-ee8334a6d533006283a2fb08344b3a63' => {
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => '2b1f2de8615d2c6e6697c3465b182903',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'idlclass' => 'ac',
+                                                                                                                                       'label' => 'Hold Request -> Hold User -> Current Library Card',
+                                                                                                                                       'path' => 'ahr-usr-card'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'key' => 'id',
+                                                                              'idlclass' => 'au',
+                                                                              'path' => 'ahr-usr',
+                                                                              'table' => 'actor.usr',
+                                                                              'type' => 'inner',
+                                                                              'alias' => '4e09cff1d200f1b2657c55ddd4fdf2ee'
+                                                                            }
+                                },
+                      'label' => 'Hold Request',
+                      'idlclass' => 'ahr',
+                      'path' => 'ahr-ahr',
+                      'table' => 'action.hold_request',
+                      'alias' => '3b0d7d05c65006de7b2ca20f5fe39690'
+                    },
+          'core_class' => 'ahr'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":" 31008000059903"}',
+          'template' => {
+                          'id' => 69623,
+                          'create_time' => '2020-09-11 14:22:09.193591-04',
+                          'name' => 'List of Open Holds for a Patron',
+                          'folder' => 3004,
+                          'data' => '{"version":5,"doc_url":"","core_class":"ahr","select":[{"alias":"Title","path":"rmsr-title","field_doc":"","relation":"7e9c833f1cd0a945c6035898ff8a844b","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Author","path":"rmsr-author","field_doc":"","relation":"7e9c833f1cd0a945c6035898ff8a844b","column":{"colname":"author","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold ID","path":"ahr-id","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold Type","path":"ahr-hold_type","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"hold_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"3b0d7d05c65006de7b2ca20f5fe39690","path":"ahr-ahr","table":"action.hold_request","idlclass":"ahr","join":{"id-bib_rec-1792f5e8b5b8f67db1d0da0864425e5f":{"type":"left","key":"id","alias":"1792f5e8b5b8f67db1d0da0864425e5f","path":"ahr-id-bib_rec","table":"reporter.hold_request_record","idlclass":"rhrr","join":{"bib_record-86e9044fee6cbc03cc03b59666d5bbc2":{"type":"left","key":"id","alias":"86e9044fee6cbc03cc03b59666d5bbc2","path":"ahr-id-bib_rec-bib_record","table":"biblio.record_entry","idlclass":"bre","join":{"id-simple_record-f84fb1c0296f1f719bf64ec3aca6c362":{"type":"left","key":"id","alias":"7e9c833f1cd0a945c6035898ff8a844b","path":"ahr-id-bib_rec-bib_record-id-simple_record","table":"reporter.materialized_simple_record","idlclass":"rmsr","label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts "}}}}},"usr-4e09cff1d200f1b2657c55ddd4fdf2ee":{"type":"inner","key":"id","alias":"4e09cff1d200f1b2657c55ddd4fdf2ee","path":"ahr-usr","table":"actor.usr","idlclass":"au","join":{"card-ee8334a6d533006283a2fb08344b3a63":{"type":"inner","key":"id","alias":"2b1f2de8615d2c6e6697c3465b182903","path":"ahr-usr-card","table":"actor.card","idlclass":"ac","label":"Hold Request -> Hold User -> Current Library Card"}}}},"label":"Hold Request"},"where":[{"alias":"Hold Cancel Date/Time","path":"ahr-cancel_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"cancel_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Fulfillment Date/Time","path":"ahr-fulfillment_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"fulfillment_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Barcode","path":"ac-barcode","field_doc":"Patron barcode","relation":"2b1f2de8615d2c6e6697c3465b182903","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"title","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold Request Record","from":"ahr","link":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"id":"ahr.rhrr","uplink":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"classname":"rhrr","struct":{"name":"rhrr","label":"Hold Request Record","table":"reporter.hold_request_record","pkey":"id","core_label":"Non-core sources","classname":"rhrr"},"table":"reporter.hold_request_record"},{"label":"Bibliographic Record","from":"rhrr","link":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"rhrr.bre","uplink":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Fast Simple Record Extracts","from":"bre","link":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"id":"bre.rmsr","uplink":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"classname":"rmsr","struct":{"name":"rmsr","label":"Fast Simple Record Extracts","table":"reporter.materialized_simple_record","pkey":"id","core_label":"Non-core sources","classname":"rmsr"},"table":"reporter.materialized_simple_record"}],"label":"Title","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ","index":0},{"name":"author","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold Request Record","from":"ahr","link":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"id":"ahr.rhrr","uplink":{"name":"bib_rec","label":"Bib Record link","virtual":true,"type":"link","key":"id","class":"rhrr","reltype":"might_have","datatype":"link"},"classname":"rhrr","struct":{"name":"rhrr","label":"Hold Request Record","table":"reporter.hold_request_record","pkey":"id","core_label":"Non-core sources","classname":"rhrr"},"table":"reporter.hold_request_record"},{"label":"Bibliographic Record","from":"rhrr","link":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"rhrr.bre","uplink":{"name":"bib_record","label":"Target Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"},{"label":"Fast Simple Record Extracts","from":"bre","link":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"id":"bre.rmsr","uplink":{"name":"simple_record","label":"Simple Record Extracts ","virtual":true,"type":"link","key":"id","class":"rmsr","reltype":"might_have","datatype":"link"},"classname":"rmsr","struct":{"name":"rmsr","label":"Fast Simple Record Extracts","table":"reporter.materialized_simple_record","pkey":"id","core_label":"Non-core sources","classname":"rmsr"},"table":"reporter.materialized_simple_record"}],"label":"Author","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ","index":1},{"name":"id","label":"Hold ID","datatype":"id","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"hold_type","label":"Hold Type","type":"link","key":"hold_type","class":"cht","reltype":"has_a","datatype":"text","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"cancel_time","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"label":"Hold Cancel Date/Time","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request","operator":{"op":"is","label":"Is NULL"},"index":0},{"name":"fulfillment_time","path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"label":"Fulfillment Date/Time","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Hold Request","operator":{"op":"is","label":"Is NULL"},"index":1},{"name":"barcode","label":"Barcode","datatype":"text","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold User","from":"ahr","link":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"ahr.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"ahr.au.ac","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Hold Request -> Hold User -> Current Library Card","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"Patron barcode"}]}',
+                          'description' => 'Used for troubleshooting display problems in staff client.',
+                          'owner' => 2923364
+                        },
+          'recur' => 0,
+          'recurrence' => '1 day',
+          'description' => '',
+          'owner' => 22067,
+          'create_time' => '2020-12-10 10:53:05.891947-05',
+          'id' => 189384,
+          'folder' => 5228,
+          'name' => ' 31008000059903 test2'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'ahr-cancel_time',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'alias' => 'Hold Cancel Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'cancel_time',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'fulfillment_time'
+                                     },
+                         'alias' => 'Fulfillment Date/Time',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'path' => 'ahr-fulfillment_time'
+                       },
+                       {
+                         'path' => 'ac-barcode',
+                         'relation' => '2b1f2de8615d2c6e6697c3465b182903',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'alias' => 'Barcode',
+                         'field_doc' => 'Patron barcode',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'barcode'
+                                     }
+                       }
+                     ],
+          'version' => 5,
+          'doc_url' => '',
+          'display_cols' => [
+                              {
+                                'name' => 'title',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'classname' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'name' => 'ahr',
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.hold_request'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link',
+                                                            'label' => 'Bib Record link',
+                                                            'reltype' => 'might_have',
+                                                            'class' => 'rhrr',
+                                                            'type' => 'link',
+                                                            'name' => 'bib_rec',
+                                                            'key' => 'id'
+                                                          },
+                                              'struct' => {
+                                                            'name' => 'rhrr',
+                                                            'label' => 'Hold Request Record',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'reporter.hold_request_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rhrr'
+                                                          },
+                                              'table' => 'reporter.hold_request_record',
+                                              'id' => 'ahr.rhrr',
+                                              'link' => {
+                                                          'label' => 'Bib Record link',
+                                                          'reltype' => 'might_have',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link',
+                                                          'name' => 'bib_rec',
+                                                          'key' => 'id',
+                                                          'class' => 'rhrr',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'rhrr',
+                                              'from' => 'ahr',
+                                              'label' => 'Hold Request Record'
+                                            },
+                                            {
+                                              'table' => 'biblio.record_entry',
+                                              'struct' => {
+                                                            'table' => 'biblio.record_entry',
+                                                            'pkey' => 'id',
+                                                            'name' => 'bre',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'classname' => 'bre',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Bibliographic Record',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'bib_record',
+                                                            'label' => 'Target Bib Record'
+                                                          },
+                                              'id' => 'rhrr.bre',
+                                              'link' => {
+                                                          'label' => 'Target Bib Record',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'bib_record',
+                                                          'class' => 'bre',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'from' => 'rhrr',
+                                              'classname' => 'bre',
+                                              'label' => 'Bibliographic Record'
+                                            },
+                                            {
+                                              'id' => 'bre.rmsr',
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'name' => 'simple_record',
+                                                          'type' => 'link',
+                                                          'class' => 'rmsr',
+                                                          'reltype' => 'might_have',
+                                                          'label' => 'Simple Record Extracts ',
+                                                          'datatype' => 'link',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                        },
+                                              'uplink' => {
+                                                            'name' => 'simple_record',
+                                                            'key' => 'id',
+                                                            'class' => 'rmsr',
+                                                            'type' => 'link',
+                                                            'label' => 'Simple Record Extracts ',
+                                                            'reltype' => 'might_have',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link'
+                                                          },
+                                              'table' => 'reporter.materialized_simple_record',
+                                              'struct' => {
+                                                            'name' => 'rmsr',
+                                                            'label' => 'Fast Simple Record Extracts',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'reporter.materialized_simple_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rmsr'
+                                                          },
+                                              'label' => 'Fast Simple Record Extracts',
+                                              'classname' => 'rmsr',
+                                              'from' => 'bre'
+                                            }
+                                          ],
+                                'label' => 'Title',
+                                'path_label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ',
+                                'datatype' => 'text',
+                                'index' => 0
+                              },
+                              {
+                                'name' => 'author',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Author',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'pkey' => 'id',
+                                                            'table' => 'action.hold_request',
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'label' => 'Hold Request Record',
+                                              'classname' => 'rhrr',
+                                              'from' => 'ahr',
+                                              'id' => 'ahr.rhrr',
+                                              'link' => {
+                                                          'name' => 'bib_rec',
+                                                          'key' => 'id',
+                                                          'class' => 'rhrr',
+                                                          'type' => 'link',
+                                                          'label' => 'Bib Record link',
+                                                          'reltype' => 'might_have',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'class' => 'rhrr',
+                                                            'type' => 'link',
+                                                            'name' => 'bib_rec',
+                                                            'key' => 'id',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'datatype' => 'link',
+                                                            'label' => 'Bib Record link',
+                                                            'reltype' => 'might_have'
+                                                          },
+                                              'table' => 'reporter.hold_request_record',
+                                              'struct' => {
+                                                            'table' => 'reporter.hold_request_record',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rhrr',
+                                                            'name' => 'rhrr',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Hold Request Record'
+                                                          }
+                                            },
+                                            {
+                                              'from' => 'rhrr',
+                                              'classname' => 'bre',
+                                              'label' => 'Bibliographic Record',
+                                              'table' => 'biblio.record_entry',
+                                              'struct' => {
+                                                            'classname' => 'bre',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Bibliographic Record',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'biblio.record_entry',
+                                                            'name' => 'bre'
+                                                          },
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'bib_record',
+                                                            'key' => 'id',
+                                                            'label' => 'Target Bib Record'
+                                                          },
+                                              'link' => {
+                                                          'class' => 'bre',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Target Bib Record',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'bib_record',
+                                                          'key' => 'id'
+                                                        },
+                                              'id' => 'rhrr.bre'
+                                            },
+                                            {
+                                              'label' => 'Fast Simple Record Extracts',
+                                              'from' => 'bre',
+                                              'classname' => 'rmsr',
+                                              'id' => 'bre.rmsr',
+                                              'link' => {
+                                                          'class' => 'rmsr',
+                                                          'type' => 'link',
+                                                          'name' => 'simple_record',
+                                                          'key' => 'id',
+                                                          'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                          'datatype' => 'link',
+                                                          'label' => 'Simple Record Extracts ',
+                                                          'reltype' => 'might_have'
+                                                        },
+                                              'struct' => {
+                                                            'label' => 'Fast Simple Record Extracts',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'rmsr',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'rmsr',
+                                                            'table' => 'reporter.materialized_simple_record'
+                                                          },
+                                              'table' => 'reporter.materialized_simple_record',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'virtual' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'reltype' => 'might_have',
+                                                            'label' => 'Simple Record Extracts ',
+                                                            'type' => 'link',
+                                                            'class' => 'rmsr',
+                                                            'key' => 'id',
+                                                            'name' => 'simple_record'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'index' => 1,
+                                'datatype' => 'text',
+                                'path_label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts '
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'id',
+                                'datatype' => 'id',
+                                'path_label' => 'Hold Request',
+                                'index' => 2,
+                                'label' => 'Hold ID',
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'class' => 'cht',
+                                'type' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'}
+                                               },
+                                'key' => 'hold_type',
+                                'name' => 'hold_type',
+                                'index' => 3,
+                                'datatype' => 'text',
+                                'path_label' => 'Hold Request',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold Type',
+                                'reltype' => 'has_a'
+                              }
+                            ],
+          'having' => [],
+          'filter_cols' => [
+                             {
+                               'name' => 'cancel_time',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'label' => 'Hold Cancel Date/Time',
+                               'path' => [
+                                           {
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'operator' => {
+                                               'label' => 'Is NULL',
+                                               'op' => 'is'
+                                             },
+                               'index' => 0
+                             },
+                             {
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Hold Request',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Fulfillment Date/Time',
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'index' => 1,
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'name' => 'fulfillment_time',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare'
+                                              }
+                             },
+                             {
+                               'label' => 'Barcode',
+                               'path' => [
+                                           {
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request',
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'name' => 'ahr',
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'classname' => 'ahr'
+                                           },
+                                           {
+                                             'label' => 'Hold User',
+                                             'from' => 'ahr',
+                                             'classname' => 'au',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'usr',
+                                                         'key' => 'id',
+                                                         'label' => 'Hold User',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'au'
+                                                       },
+                                             'id' => 'ahr.au',
+                                             'table' => 'actor.usr',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'ILS User',
+                                                           'pkey_sequence' => 'actor.usr_id_seq',
+                                                           'classname' => 'au',
+                                                           'name' => 'au',
+                                                           'table' => 'actor.usr',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'uplink' => {
+                                                           'label' => 'Hold User',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'usr',
+                                                           'key' => 'id',
+                                                           'class' => 'au',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'id' => 'ahr.au.ac',
+                                             'link' => {
+                                                         'label' => 'Current Library Card',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'name' => 'card',
+                                                         'class' => 'ac',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'table' => 'actor.card',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'classname' => 'ac',
+                                                           'pkey_sequence' => 'actor.card_id_seq',
+                                                           'table' => 'actor.card',
+                                                           'label' => 'Library Card',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'ac'
+                                                         },
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'ac',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'card',
+                                                           'key' => 'id',
+                                                           'label' => 'Current Library Card'
+                                                         },
+                                             'label' => 'Current Library Card',
+                                             'from' => 'ahr.au',
+                                             'classname' => 'ac'
+                                           }
+                                         ],
+                               'doc_text' => 'Patron barcode',
+                               'datatype' => 'text',
+                               'path_label' => 'Hold Request -> Hold User -> Current Library Card',
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'index' => 2,
+                               'name' => 'barcode',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              }
+                             }
+                           ],
+          'select' => [
+                        {
+                          'path' => 'rmsr-title',
+                          'relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                          'alias' => 'Title',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                          'path' => 'rmsr-author',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'author',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Author'
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'id'
+                                      },
+                          'alias' => 'Hold ID'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[2]{'transform'}{'aggregate'},
+                                        'colname' => 'hold_type'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold Type',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-hold_type'
+                        }
+                      ],
+          'from' => {
+                      'join' => {
+                                  'id-bib_rec-1792f5e8b5b8f67db1d0da0864425e5f' => {
+                                                                                     'key' => 'id',
+                                                                                     'join' => {
+                                                                                                 'bib_record-86e9044fee6cbc03cc03b59666d5bbc2' => {
+                                                                                                                                                    'alias' => '86e9044fee6cbc03cc03b59666d5bbc2',
+                                                                                                                                                    'type' => 'left',
+                                                                                                                                                    'table' => 'biblio.record_entry',
+                                                                                                                                                    'idlclass' => 'bre',
+                                                                                                                                                    'path' => 'ahr-id-bib_rec-bib_record',
+                                                                                                                                                    'join' => {
+                                                                                                                                                                'id-simple_record-f84fb1c0296f1f719bf64ec3aca6c362' => {
+                                                                                                                                                                                                                         'alias' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                                                                                                                                                                                                         'type' => 'left',
+                                                                                                                                                                                                                         'table' => 'reporter.materialized_simple_record',
+                                                                                                                                                                                                                         'label' => 'Hold Request -> Hold Request Record -> Bibliographic Record -> Simple Record Extracts ',
+                                                                                                                                                                                                                         'idlclass' => 'rmsr',
+                                                                                                                                                                                                                         'path' => 'ahr-id-bib_rec-bib_record-id-simple_record',
+                                                                                                                                                                                                                         'key' => 'id'
+                                                                                                                                                                                                                       }
+                                                                                                                                                              },
+                                                                                                                                                    'key' => 'id'
+                                                                                                                                                  }
+                                                                                               },
+                                                                                     'path' => 'ahr-id-bib_rec',
+                                                                                     'idlclass' => 'rhrr',
+                                                                                     'table' => 'reporter.hold_request_record',
+                                                                                     'type' => 'left',
+                                                                                     'alias' => '1792f5e8b5b8f67db1d0da0864425e5f'
+                                                                                   },
+                                  'usr-4e09cff1d200f1b2657c55ddd4fdf2ee' => {
+                                                                              'join' => {
+                                                                                          'card-ee8334a6d533006283a2fb08344b3a63' => {
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => '2b1f2de8615d2c6e6697c3465b182903',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'idlclass' => 'ac',
+                                                                                                                                       'label' => 'Hold Request -> Hold User -> Current Library Card',
+                                                                                                                                       'path' => 'ahr-usr-card'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'key' => 'id',
+                                                                              'idlclass' => 'au',
+                                                                              'path' => 'ahr-usr',
+                                                                              'table' => 'actor.usr',
+                                                                              'type' => 'inner',
+                                                                              'alias' => '4e09cff1d200f1b2657c55ddd4fdf2ee'
+                                                                            }
+                                },
+                      'label' => 'Hold Request',
+                      'idlclass' => 'ahr',
+                      'path' => 'ahr-ahr',
+                      'table' => 'action.hold_request',
+                      'alias' => '3b0d7d05c65006de7b2ca20f5fe39690'
+                    },
+          'core_class' => 'ahr'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-12-10 10:53:05.891947-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [],
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'cancel_time'
+                                                     },
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                        '_builder' => bless( {
+                                                               '_relative_time' => '2020-12-10 10:53:05.891947-05',
+                                                               '_rels' => {
+                                                                            '1792f5e8b5b8f67db1d0da0864425e5f' => bless( {
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_left_col' => 'id',
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'1792f5e8b5b8f67db1d0da0864425e5f'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                '_right_col' => 'id',
+                                                                                                                                                                                                '_sql' => '
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")',
+                                                                                                                                                                                                '_join_type' => 'left',
+                                                                                                                                                                                                '_right_rel' => bless( {
+                                                                                                                                                                                                                         '_nullable' => 'l',
+                                                                                                                                                                                                                         '_alias' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                                                                                                                                                                                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                         '_is_join' => 1,
+                                                                                                                                                                                                                         '_columns' => [],
+                                                                                                                                                                                                                         '_join' => [],
+                                                                                                                                                                                                                         '_table' => 'reporter.materialized_simple_record',
+                                                                                                                                                                                                                         '_sql' => 'reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b"',
+                                                                                                                                                                                                                         '_join_type' => 'left'
+                                                                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_table' => 'biblio.record_entry',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_sql' => 'biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2"',
+                                                                                                                                                                          '_join_type' => 'left',
+                                                                                                                                                                          '_alias' => '86e9044fee6cbc03cc03b59666d5bbc2',
+                                                                                                                                                                          '_nullable' => 'l',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_col' => 'bib_record',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'1792f5e8b5b8f67db1d0da0864425e5f'},
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2" ON ("1792f5e8b5b8f67db1d0da0864425e5f"."bib_record" = "86e9044fee6cbc03cc03b59666d5bbc2"."id")
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")',
+                                                                                                                                                 '_join_type' => 'left'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'reporter.hold_request_record',
+                                                                                                                           '_join_type' => 'left',
+                                                                                                                           '_sql' => 'reporter.hold_request_record AS "1792f5e8b5b8f67db1d0da0864425e5f"',
+                                                                                                                           '_nullable' => 'l',
+                                                                                                                           '_alias' => '1792f5e8b5b8f67db1d0da0864425e5f',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '3b0d7d05c65006de7b2ca20f5fe39690' => bless( {
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_sql' => 'action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	LEFT OUTER JOIN reporter.hold_request_record AS "1792f5e8b5b8f67db1d0da0864425e5f" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."id" = "1792f5e8b5b8f67db1d0da0864425e5f"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2" ON ("1792f5e8b5b8f67db1d0da0864425e5f"."bib_record" = "86e9044fee6cbc03cc03b59666d5bbc2"."id")
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")
+	INNER JOIN actor.usr AS "4e09cff1d200f1b2657c55ddd4fdf2ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "4e09cff1d200f1b2657c55ddd4fdf2ee"."id")
+	INNER JOIN actor.card AS "2b1f2de8615d2c6e6697c3465b182903" ON ("4e09cff1d200f1b2657c55ddd4fdf2ee"."card" = "2b1f2de8615d2c6e6697c3465b182903"."id")',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_alias' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_join_type' => 'left',
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN reporter.hold_request_record AS "1792f5e8b5b8f67db1d0da0864425e5f" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."id" = "1792f5e8b5b8f67db1d0da0864425e5f"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2" ON ("1792f5e8b5b8f67db1d0da0864425e5f"."bib_record" = "86e9044fee6cbc03cc03b59666d5bbc2"."id")
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_col' => 'id',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'1792f5e8b5b8f67db1d0da0864425e5f'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_sql' => 'actor.usr AS "4e09cff1d200f1b2657c55ddd4fdf2ee"',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'}{'_join'}[1]{'_right_rel'},
+                                                                                                                                                                                                '_right_col' => 'id',
+                                                                                                                                                                                                '_join_type' => 'i',
+                                                                                                                                                                                                '_sql' => '
+	INNER JOIN actor.card AS "2b1f2de8615d2c6e6697c3465b182903" ON ("4e09cff1d200f1b2657c55ddd4fdf2ee"."card" = "2b1f2de8615d2c6e6697c3465b182903"."id")',
+                                                                                                                                                                                                '_left_col' => 'card',
+                                                                                                                                                                                                '_right_rel' => bless( {
+                                                                                                                                                                                                                         '_join_type' => 'inner',
+                                                                                                                                                                                                                         '_sql' => 'actor.card AS "2b1f2de8615d2c6e6697c3465b182903"',
+                                                                                                                                                                                                                         '_columns' => [],
+                                                                                                                                                                                                                         '_join' => [],
+                                                                                                                                                                                                                         '_table' => 'actor.card',
+                                                                                                                                                                                                                         '_is_join' => 1,
+                                                                                                                                                                                                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                         '_alias' => '2b1f2de8615d2c6e6697c3465b182903'
+                                                                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_table' => 'actor.usr',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_nullable' => undef,
+                                                                                                                                                                          '_alias' => '4e09cff1d200f1b2657c55ddd4fdf2ee'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "4e09cff1d200f1b2657c55ddd4fdf2ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "4e09cff1d200f1b2657c55ddd4fdf2ee"."id")
+	INNER JOIN actor.card AS "2b1f2de8615d2c6e6697c3465b182903" ON ("4e09cff1d200f1b2657c55ddd4fdf2ee"."card" = "2b1f2de8615d2c6e6697c3465b182903"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_left_col' => 'usr'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'action.hold_request',
+                                                                                                                           '_nullable' => undef
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '2b1f2de8615d2c6e6697c3465b182903' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            '4e09cff1d200f1b2657c55ddd4fdf2ee' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'}{'_join'}[1]{'_right_rel'},
+                                                                            '86e9044fee6cbc03cc03b59666d5bbc2' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'1792f5e8b5b8f67db1d0da0864425e5f'}{'_join'}[0]{'_right_rel'},
+                                                                            '7e9c833f1cd0a945c6035898ff8a844b' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'1792f5e8b5b8f67db1d0da0864425e5f'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_sql' => undef,
+                                                               '_resultset_limit' => 1048575,
+                                                               '_params' => {
+                                                                              'P0' => ' 31008000059903'
+                                                                            }
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef,
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'fulfillment_time'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => '2b1f2de8615d2c6e6697c3465b182903',
+                                        '_sql' => '"2b1f2de8615d2c6e6697c3465b182903"."barcode" = $_31437$ 31008000059903$_31437$',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'colname' => 'barcode',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"7e9c833f1cd0a945c6035898ff8a844b"."title" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'title',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'colname' => 'author'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"7e9c833f1cd0a945c6035898ff8a844b"."author" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'id',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'colname' => 'hold_type',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" ASC',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                 '_sql' => 'SELECT * FROM (SELECT	"7e9c833f1cd0a945c6035898ff8a844b"."title" AS "Title",
+	"7e9c833f1cd0a945c6035898ff8a844b"."author" AS "Author",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" AS "Hold Type"
+  FROM	action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	LEFT OUTER JOIN reporter.hold_request_record AS "1792f5e8b5b8f67db1d0da0864425e5f" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."id" = "1792f5e8b5b8f67db1d0da0864425e5f"."id")
+	LEFT OUTER JOIN biblio.record_entry AS "86e9044fee6cbc03cc03b59666d5bbc2" ON ("1792f5e8b5b8f67db1d0da0864425e5f"."bib_record" = "86e9044fee6cbc03cc03b59666d5bbc2"."id")
+	LEFT OUTER JOIN reporter.materialized_simple_record AS "7e9c833f1cd0a945c6035898ff8a844b" ON ("86e9044fee6cbc03cc03b59666d5bbc2"."id" = "7e9c833f1cd0a945c6035898ff8a844b"."id")
+	INNER JOIN actor.usr AS "4e09cff1d200f1b2657c55ddd4fdf2ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "4e09cff1d200f1b2657c55ddd4fdf2ee"."id")
+	INNER JOIN actor.card AS "2b1f2de8615d2c6e6697c3465b182903" ON ("4e09cff1d200f1b2657c55ddd4fdf2ee"."card" = "2b1f2de8615d2c6e6697c3465b182903"."id")
+  WHERE	"3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL
+	AND "2b1f2de8615d2c6e6697c3465b182903"."barcode" = $_31437$ 31008000059903$_31437$
+  GROUP BY 1, 2, 3, 4
+  ORDER BY "7e9c833f1cd0a945c6035898ff8a844b"."title" ASC, "7e9c833f1cd0a945c6035898ff8a844b"."author" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_select' => [
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Title',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                         '_sql' => '"7e9c833f1cd0a945c6035898ff8a844b"."title" AS "Title"',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => '7e9c833f1cd0a945c6035898ff8a844b',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"7e9c833f1cd0a945c6035898ff8a844b"."author" AS "Author"',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_alias' => 'Author'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Hold ID',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'},
+                                         '_alias' => 'Hold Type',
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" AS "Hold Type"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

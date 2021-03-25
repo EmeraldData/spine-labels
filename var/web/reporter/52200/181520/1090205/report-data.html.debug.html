@@ -1,0 +1,1128 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 OCRL Total Distinct Titles </title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"589b762fcf4b0b89fd846e47564f26e1"."shortname" AS "Short (Policy) Name",
+	COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") AS "Record ID",
+	"abf99a89dbc3d3ce006aaf4780527281"."shortname" AS "Record Creator Home Lib"
+  FROM	biblio.record_entry AS "d94d9ed7d30666ea41bbd3190401885c"
+	INNER JOIN actor.usr AS "66bb4de8698ebb58e76247fd145ce8d7" ON ("d94d9ed7d30666ea41bbd3190401885c"."creator" = "66bb4de8698ebb58e76247fd145ce8d7"."id")
+	INNER JOIN actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281" ON ("66bb4de8698ebb58e76247fd145ce8d7"."home_ou" = "abf99a89dbc3d3ce006aaf4780527281"."id")
+	LEFT OUTER JOIN asset.call_number AS "d68daee86eb6a2ccbb3874ab886d35c8" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "d68daee86eb6a2ccbb3874ab886d35c8"."record")
+	LEFT OUTER JOIN actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1" ON ("d68daee86eb6a2ccbb3874ab886d35c8"."owning_lib" = "589b762fcf4b0b89fd846e47564f26e1"."id")
+	LEFT OUTER JOIN asset.call_number AS "284511cb8982143280e95b2458c695ff" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "284511cb8982143280e95b2458c695ff"."record")
+	LEFT OUTER JOIN asset.copy AS "087a06de853a11582370c60ee42324f3" ON ("284511cb8982143280e95b2458c695ff"."id" = "087a06de853a11582370c60ee42324f3"."call_number")
+  WHERE	(("589b762fcf4b0b89fd846e47564f26e1"."id") IS NULL OR "589b762fcf4b0b89fd846e47564f26e1"."id" IN ($_128335$198$_128335$,$_128335$199$_128335$,$_128335$200$_128335$,$_128335$201$_128335$,$_128335$202$_128335$))
+	AND (("d68daee86eb6a2ccbb3874ab886d35c8"."id") IS NULL OR "d68daee86eb6a2ccbb3874ab886d35c8"."id" is not NULL)
+	AND "d94d9ed7d30666ea41bbd3190401885c"."deleted" = $_128335$f$_128335$
+	AND (("087a06de853a11582370c60ee42324f3"."deleted") IS NULL OR "087a06de853a11582370c60ee42324f3"."deleted" = $_128335$f$_128335$)
+	AND (((EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || '-' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,'0'))) IS NULL OR (EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || '-' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,'0')) <= $_128335$2001-12$_128335$)
+  GROUP BY 1, 3
+  ORDER BY "589b762fcf4b0b89fd846e47564f26e1"."shortname" ASC, COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") ASC, "abf99a89dbc3d3ce006aaf4780527281"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'data' => '{"version":2,"core_class":"bre","select":[{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-owning_lib-aou-shortname","relation":"589b762fcf4b0b89fd846e47564f26e1"},{"alias":"Record ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"bre-id","relation":"d94d9ed7d30666ea41bbd3190401885c"},{"alias":"Record Creator Home Lib","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"bre-creator-au-home_ou-aou-shortname","relation":"abf99a89dbc3d3ce006aaf4780527281"}],"from":{"path":"bre-call_numbers","table":"biblio.record_entry","alias":"d94d9ed7d30666ea41bbd3190401885c","join":{"id-acn-record-c7f224021326f337ac56a550650ecaed":{"path":"bre-call_numbers-acn","table":"asset.call_number","key":"record","type":"left","alias":"d68daee86eb6a2ccbb3874ab886d35c8","join":{"owning_lib-ce1009a616301960a617aabcddfd0969":{"type":"left","path":"bre-call_numbers-acn-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Bibliographic Record -> Call Number/Volume :: Owning Library","alias":"589b762fcf4b0b89fd846e47564f26e1","idlclass":"aou","template_path":"bre-call_numbers.acn-owning_lib"}},"label":"Bibliographic Record :: Call Numbers","idlclass":"acn","template_path":"bre-call_numbers"},"creator-d94d9ed7d30666ea41bbd3190401885c":{"path":"bre-creator-au-home_ou","table":"actor.usr","key":"id","alias":"66bb4de8698ebb58e76247fd145ce8d7","join":{"home_ou-66bb4de8698ebb58e76247fd145ce8d7":{"path":"bre-creator-au-home_ou-aou","table":"actor.org_unit","key":"id","label":"Bibliographic Record -> ILS User :: Home Library","alias":"abf99a89dbc3d3ce006aaf4780527281","idlclass":"aou","template_path":"bre-creator.au-home_ou"}}},"id-acn-record-d94d9ed7d30666ea41bbd3190401885c":{"path":"bre-call_numbers-acn-copies","table":"asset.call_number","key":"record","type":"left","alias":"284511cb8982143280e95b2458c695ff","join":{"id-acp-call_number-284511cb8982143280e95b2458c695ff":{"type":"left","path":"bre-call_numbers-acn-copies-acp","table":"asset.copy","key":"call_number","label":"Bibliographic Record -> Call Number/Volume :: Copies","alias":"087a06de853a11582370c60ee42324f3","idlclass":"acp","template_path":"bre-call_numbers.acn-copies"}}}},"label":"Bibliographic Record","idlclass":"bre","template_path":"bre"},"where":[{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-owning_lib-aou-id","relation":"589b762fcf4b0b89fd846e47564f26e1","condition":{"in":"::P0"}},{"alias":"Call Number/Volume ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-id","relation":"d68daee86eb6a2ccbb3874ab886d35c8","condition":{"is not":null}},{"alias":"Is Deleted?","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"bre-deleted","relation":"d94d9ed7d30666ea41bbd3190401885c","condition":{"=":"f"}},{"alias":"Is Deleted","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-copies-acp-deleted","relation":"087a06de853a11582370c60ee42324f3","condition":{"=":"f"}},{"alias":"Creation Date/Time","column":{"colname":"create_date","transform":"month_trunc","transform_label":"Year + Month"},"path":"bre-call_numbers-acn-copies-acp-create_date","relation":"087a06de853a11582370c60ee42324f3","condition":{"<=":"2001-12"}}],"having":[],"order_by":[],"rel_cache":{"589b762fcf4b0b89fd846e47564f26e1":{"label":"Bibliographic Record -> Call Number/Volume :: Owning Library","alias":"589b762fcf4b0b89fd846e47564f26e1","path":"bre-call_numbers.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"589b762fcf4b0b89fd846e47564f26e1","field":"shortname"},{"relation":"d94d9ed7d30666ea41bbd3190401885c","field":"id"},{"relation":"abf99a89dbc3d3ce006aaf4780527281","field":"shortname"}],"d68daee86eb6a2ccbb3874ab886d35c8":{"label":"Bibliographic Record :: Call Numbers","alias":"d68daee86eb6a2ccbb3874ab886d35c8","path":"bre-call_numbers","reltype":"has_many","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Call Number/Volume ID","datatype":"id","op":"is not","op_label":"Is not NULL","op_value":{}}},"aggfilter_tab":{}}},"d94d9ed7d30666ea41bbd3190401885c":{"label":"Bibliographic Record","alias":"d94d9ed7d30666ea41bbd3190401885c","path":"bre","reltype":"","idlclass":"bre","table":"biblio.record_entry","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Record ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Is Deleted?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"abf99a89dbc3d3ce006aaf4780527281":{"label":"Bibliographic Record -> ILS User :: Home Library","alias":"abf99a89dbc3d3ce006aaf4780527281","path":"bre-creator.au-home_ou","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Record Creator Home Lib","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"087a06de853a11582370c60ee42324f3":{"label":"Bibliographic Record -> Call Number/Volume :: Copies","alias":"087a06de853a11582370c60ee42324f3","path":"bre-call_numbers.acn-copies","reltype":"has_many","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}},"create_date":{"colname":"create_date","transform":"month_trunc","aggregate":null,"params":null,"transform_label":"Year + Month","alias":"Creation Date/Time","datatype":"timestamp","op":"<=","op_label":"On or Before (Date/Time)","op_value":{"value":"2001-12","object":{"getMonthDays":null,"getDayOfYear":null,"getWeekNumber":null,"equalsTo":null,"setDateOnly":null,"print":null,"__msh_oldSetFullYear":null},"label":"\\"2001-12\\""}}},"aggfilter_tab":{}}}}}',
+          'create_time' => '2009-07-10 11:24:59.099708-04',
+          'description' => '',
+          'id' => 52200,
+          'owner' => 2134611,
+          'folder' => 1248,
+          'name' => 'Total Distince Titles by Lib,  Record Creator\'s Home Lib before 12/01'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'bre-call_numbers-acn-owning_lib-aou-id',
+                         'relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     }
+                       },
+                       {
+                         'path' => 'bre-call_numbers-acn-id',
+                         'alias' => 'Call Number/Volume ID',
+                         'relation' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                         'condition' => {
+                                          'is not' => undef
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'path' => 'bre-deleted',
+                         'alias' => 'Is Deleted?',
+                         'relation' => 'd94d9ed7d30666ea41bbd3190401885c'
+                       },
+                       {
+                         'path' => 'bre-call_numbers-acn-copies-acp-deleted',
+                         'relation' => '087a06de853a11582370c60ee42324f3',
+                         'alias' => 'Is Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '<=' => '2001-12'
+                                        },
+                         'relation' => '087a06de853a11582370c60ee42324f3',
+                         'alias' => 'Creation Date/Time',
+                         'path' => 'bre-call_numbers-acn-copies-acp-create_date',
+                         'column' => {
+                                       'transform' => 'month_trunc',
+                                       'transform_label' => 'Year + Month',
+                                       'colname' => 'create_date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'alias' => 'd94d9ed7d30666ea41bbd3190401885c',
+                      'path' => 'bre-call_numbers',
+                      'table' => 'biblio.record_entry',
+                      'join' => {
+                                  'creator-d94d9ed7d30666ea41bbd3190401885c' => {
+                                                                                  'key' => 'id',
+                                                                                  'path' => 'bre-creator-au-home_ou',
+                                                                                  'alias' => '66bb4de8698ebb58e76247fd145ce8d7',
+                                                                                  'join' => {
+                                                                                              'home_ou-66bb4de8698ebb58e76247fd145ce8d7' => {
+                                                                                                                                              'table' => 'actor.org_unit',
+                                                                                                                                              'template_path' => 'bre-creator.au-home_ou',
+                                                                                                                                              'alias' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                                                                                                                              'path' => 'bre-creator-au-home_ou-aou',
+                                                                                                                                              'idlclass' => 'aou',
+                                                                                                                                              'key' => 'id',
+                                                                                                                                              'label' => 'Bibliographic Record -> ILS User :: Home Library'
+                                                                                                                                            }
+                                                                                            },
+                                                                                  'table' => 'actor.usr'
+                                                                                },
+                                  'id-acn-record-c7f224021326f337ac56a550650ecaed' => {
+                                                                                        'join' => {
+                                                                                                    'owning_lib-ce1009a616301960a617aabcddfd0969' => {
+                                                                                                                                                       'idlclass' => 'aou',
+                                                                                                                                                       'label' => 'Bibliographic Record -> Call Number/Volume :: Owning Library',
+                                                                                                                                                       'path' => 'bre-call_numbers-acn-owning_lib-aou',
+                                                                                                                                                       'type' => 'left',
+                                                                                                                                                       'alias' => '589b762fcf4b0b89fd846e47564f26e1',
+                                                                                                                                                       'template_path' => 'bre-call_numbers.acn-owning_lib',
+                                                                                                                                                       'table' => 'actor.org_unit',
+                                                                                                                                                       'key' => 'id'
+                                                                                                                                                     }
+                                                                                                  },
+                                                                                        'table' => 'asset.call_number',
+                                                                                        'template_path' => 'bre-call_numbers',
+                                                                                        'type' => 'left',
+                                                                                        'alias' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                                                                        'path' => 'bre-call_numbers-acn',
+                                                                                        'key' => 'record',
+                                                                                        'idlclass' => 'acn',
+                                                                                        'label' => 'Bibliographic Record :: Call Numbers'
+                                                                                      },
+                                  'id-acn-record-d94d9ed7d30666ea41bbd3190401885c' => {
+                                                                                        'path' => 'bre-call_numbers-acn-copies',
+                                                                                        'alias' => '284511cb8982143280e95b2458c695ff',
+                                                                                        'type' => 'left',
+                                                                                        'join' => {
+                                                                                                    'id-acp-call_number-284511cb8982143280e95b2458c695ff' => {
+                                                                                                                                                               'idlclass' => 'acp',
+                                                                                                                                                               'label' => 'Bibliographic Record -> Call Number/Volume :: Copies',
+                                                                                                                                                               'table' => 'asset.copy',
+                                                                                                                                                               'template_path' => 'bre-call_numbers.acn-copies',
+                                                                                                                                                               'alias' => '087a06de853a11582370c60ee42324f3',
+                                                                                                                                                               'type' => 'left',
+                                                                                                                                                               'path' => 'bre-call_numbers-acn-copies-acp',
+                                                                                                                                                               'key' => 'call_number'
+                                                                                                                                                             }
+                                                                                                  },
+                                                                                        'table' => 'asset.call_number',
+                                                                                        'key' => 'record'
+                                                                                      }
+                                },
+                      'template_path' => 'bre',
+                      'idlclass' => 'bre',
+                      'label' => 'Bibliographic Record'
+                    },
+          'core_class' => 'bre',
+          'having' => [],
+          'rel_cache' => {
+                           'abf99a89dbc3d3ce006aaf4780527281' => {
+                                                                   'path' => 'bre-creator.au-home_ou',
+                                                                   'alias' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'params' => undef,
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Record Creator Home Lib',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform' => 'Bare'
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'label' => 'Bibliographic Record -> ILS User :: Home Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'd68daee86eb6a2ccbb3874ab886d35c8' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'colname' => 'id',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'params' => undef,
+                                                                                                             'op' => 'is not',
+                                                                                                             'datatype' => 'id',
+                                                                                                             'alias' => 'Call Number/Volume ID',
+                                                                                                             'op_label' => 'Is not NULL',
+                                                                                                             'aggregate' => undef
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'asset.call_number',
+                                                                   'alias' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                                                   'path' => 'bre-call_numbers',
+                                                                   'idlclass' => 'acn',
+                                                                   'reltype' => 'has_many',
+                                                                   'label' => 'Bibliographic Record :: Call Numbers'
+                                                                 },
+                           '087a06de853a11582370c60ee42324f3' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'op' => '=',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'params' => undef
+                                                                                                                },
+                                                                                                   'create_date' => {
+                                                                                                                      'colname' => 'create_date',
+                                                                                                                      'transform_label' => 'Year + Month',
+                                                                                                                      'transform' => 'month_trunc',
+                                                                                                                      'op_value' => {
+                                                                                                                                      'label' => '"2001-12"',
+                                                                                                                                      'object' => {
+                                                                                                                                                    'setDateOnly' => undef,
+                                                                                                                                                    'print' => undef,
+                                                                                                                                                    'equalsTo' => undef,
+                                                                                                                                                    'getWeekNumber' => undef,
+                                                                                                                                                    'getDayOfYear' => undef,
+                                                                                                                                                    '__msh_oldSetFullYear' => undef,
+                                                                                                                                                    'getMonthDays' => undef
+                                                                                                                                                  },
+                                                                                                                                      'value' => '2001-12'
+                                                                                                                                    },
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'alias' => 'Creation Date/Time',
+                                                                                                                      'op' => '<=',
+                                                                                                                      'params' => undef,
+                                                                                                                      'op_label' => 'On or Before (Date/Time)',
+                                                                                                                      'aggregate' => undef
+                                                                                                                    }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'asset.copy',
+                                                                   'alias' => '087a06de853a11582370c60ee42324f3',
+                                                                   'path' => 'bre-call_numbers.acn-copies',
+                                                                   'idlclass' => 'acp',
+                                                                   'reltype' => 'has_many',
+                                                                   'label' => 'Bibliographic Record -> Call Number/Volume :: Copies'
+                                                                 },
+                           'd94d9ed7d30666ea41bbd3190401885c' => {
+                                                                   'alias' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                                                   'path' => 'bre',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op' => '=',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => 'Record ID',
+                                                                                                          'params' => undef,
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                          'colname' => 'id',
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'op_value' => {}
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'op_value' => {
+                                                                                                                                  'value' => 'f',
+                                                                                                                                  'label' => 'False'
+                                                                                                                                },
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'params' => undef,
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'alias' => 'Is Deleted?',
+                                                                                                                  'op' => '='
+                                                                                                                }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'biblio.record_entry',
+                                                                   'reltype' => '',
+                                                                   'idlclass' => 'bre',
+                                                                   'label' => 'Bibliographic Record'
+                                                                 },
+                           '589b762fcf4b0b89fd846e47564f26e1' => {
+                                                                   'path' => 'bre-call_numbers.acn-owning_lib',
+                                                                   'alias' => '589b762fcf4b0b89fd846e47564f26e1',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op' => '=',
+                                                                                                                 'params' => undef,
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'op_label' => 'Equals'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'params' => undef,
+                                                                                                             'op' => 'in',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'colname' => 'id'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a',
+                                                                   'label' => 'Bibliographic Record -> Call Number/Volume :: Owning Library'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '589b762fcf4b0b89fd846e47564f26e1'
+                                           },
+                                           {
+                                             'relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                             'field' => 'shortname'
+                                           }
+                                         ]
+                         },
+          'order_by' => [],
+          'select' => [
+                        {
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                          'path' => 'bre-call_numbers-acn-owning_lib-aou-shortname',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'transform' => 'count_distinct'
+                                      },
+                          'alias' => 'Record ID',
+                          'relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                          'path' => 'bre-id'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Record Creator Home Lib',
+                          'relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                          'path' => 'bre-creator-au-home_ou-aou-shortname'
+                        }
+                      ],
+          'version' => 2
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 2134611,
+          'description' => '',
+          'create_time' => '2020-08-13 15:01:01.884711-04',
+          'id' => 181520,
+          'template' => {
+                          'data' => '{"version":2,"core_class":"bre","select":[{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-owning_lib-aou-shortname","relation":"589b762fcf4b0b89fd846e47564f26e1"},{"alias":"Record ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"bre-id","relation":"d94d9ed7d30666ea41bbd3190401885c"},{"alias":"Record Creator Home Lib","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"bre-creator-au-home_ou-aou-shortname","relation":"abf99a89dbc3d3ce006aaf4780527281"}],"from":{"path":"bre-call_numbers","table":"biblio.record_entry","alias":"d94d9ed7d30666ea41bbd3190401885c","join":{"id-acn-record-c7f224021326f337ac56a550650ecaed":{"path":"bre-call_numbers-acn","table":"asset.call_number","key":"record","type":"left","alias":"d68daee86eb6a2ccbb3874ab886d35c8","join":{"owning_lib-ce1009a616301960a617aabcddfd0969":{"type":"left","path":"bre-call_numbers-acn-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Bibliographic Record -> Call Number/Volume :: Owning Library","alias":"589b762fcf4b0b89fd846e47564f26e1","idlclass":"aou","template_path":"bre-call_numbers.acn-owning_lib"}},"label":"Bibliographic Record :: Call Numbers","idlclass":"acn","template_path":"bre-call_numbers"},"creator-d94d9ed7d30666ea41bbd3190401885c":{"path":"bre-creator-au-home_ou","table":"actor.usr","key":"id","alias":"66bb4de8698ebb58e76247fd145ce8d7","join":{"home_ou-66bb4de8698ebb58e76247fd145ce8d7":{"path":"bre-creator-au-home_ou-aou","table":"actor.org_unit","key":"id","label":"Bibliographic Record -> ILS User :: Home Library","alias":"abf99a89dbc3d3ce006aaf4780527281","idlclass":"aou","template_path":"bre-creator.au-home_ou"}}},"id-acn-record-d94d9ed7d30666ea41bbd3190401885c":{"path":"bre-call_numbers-acn-copies","table":"asset.call_number","key":"record","type":"left","alias":"284511cb8982143280e95b2458c695ff","join":{"id-acp-call_number-284511cb8982143280e95b2458c695ff":{"type":"left","path":"bre-call_numbers-acn-copies-acp","table":"asset.copy","key":"call_number","label":"Bibliographic Record -> Call Number/Volume :: Copies","alias":"087a06de853a11582370c60ee42324f3","idlclass":"acp","template_path":"bre-call_numbers.acn-copies"}}}},"label":"Bibliographic Record","idlclass":"bre","template_path":"bre"},"where":[{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-owning_lib-aou-id","relation":"589b762fcf4b0b89fd846e47564f26e1","condition":{"in":"::P0"}},{"alias":"Call Number/Volume ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-id","relation":"d68daee86eb6a2ccbb3874ab886d35c8","condition":{"is not":null}},{"alias":"Is Deleted?","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"bre-deleted","relation":"d94d9ed7d30666ea41bbd3190401885c","condition":{"=":"f"}},{"alias":"Is Deleted","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"bre-call_numbers-acn-copies-acp-deleted","relation":"087a06de853a11582370c60ee42324f3","condition":{"=":"f"}},{"alias":"Creation Date/Time","column":{"colname":"create_date","transform":"month_trunc","transform_label":"Year + Month"},"path":"bre-call_numbers-acn-copies-acp-create_date","relation":"087a06de853a11582370c60ee42324f3","condition":{"<=":"2001-12"}}],"having":[],"order_by":[],"rel_cache":{"589b762fcf4b0b89fd846e47564f26e1":{"label":"Bibliographic Record -> Call Number/Volume :: Owning Library","alias":"589b762fcf4b0b89fd846e47564f26e1","path":"bre-call_numbers.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"589b762fcf4b0b89fd846e47564f26e1","field":"shortname"},{"relation":"d94d9ed7d30666ea41bbd3190401885c","field":"id"},{"relation":"abf99a89dbc3d3ce006aaf4780527281","field":"shortname"}],"d68daee86eb6a2ccbb3874ab886d35c8":{"label":"Bibliographic Record :: Call Numbers","alias":"d68daee86eb6a2ccbb3874ab886d35c8","path":"bre-call_numbers","reltype":"has_many","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Call Number/Volume ID","datatype":"id","op":"is not","op_label":"Is not NULL","op_value":{}}},"aggfilter_tab":{}}},"d94d9ed7d30666ea41bbd3190401885c":{"label":"Bibliographic Record","alias":"d94d9ed7d30666ea41bbd3190401885c","path":"bre","reltype":"","idlclass":"bre","table":"biblio.record_entry","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Record ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Is Deleted?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"abf99a89dbc3d3ce006aaf4780527281":{"label":"Bibliographic Record -> ILS User :: Home Library","alias":"abf99a89dbc3d3ce006aaf4780527281","path":"bre-creator.au-home_ou","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Record Creator Home Lib","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"087a06de853a11582370c60ee42324f3":{"label":"Bibliographic Record -> Call Number/Volume :: Copies","alias":"087a06de853a11582370c60ee42324f3","path":"bre-call_numbers.acn-copies","reltype":"has_many","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}},"create_date":{"colname":"create_date","transform":"month_trunc","aggregate":null,"params":null,"transform_label":"Year + Month","alias":"Creation Date/Time","datatype":"timestamp","op":"<=","op_label":"On or Before (Date/Time)","op_value":{"value":"2001-12","object":{"getMonthDays":null,"getDayOfYear":null,"getWeekNumber":null,"equalsTo":null,"setDateOnly":null,"print":null,"__msh_oldSetFullYear":null},"label":"\\"2001-12\\""}}},"aggfilter_tab":{}}}}}',
+                          'create_time' => '2009-07-10 11:24:59.099708-04',
+                          'description' => '',
+                          'id' => 52200,
+                          'owner' => 2134611,
+                          'folder' => 1248,
+                          'name' => 'Total Distince Titles by Lib,  Record Creator\'s Home Lib before 12/01'
+                        },
+          'recur' => 0,
+          'name' => 'FY20 OCRL Total Distinct Titles ',
+          'data' => '{"P0":["198","199","200","201","202"],"__pivot_label":"","__pivot_data":"2"}',
+          'recurrence' => '1 day',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'bre-call_numbers-acn-owning_lib-aou-id',
+                         'relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     }
+                       },
+                       {
+                         'path' => 'bre-call_numbers-acn-id',
+                         'alias' => 'Call Number/Volume ID',
+                         'relation' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                         'condition' => {
+                                          'is not' => undef
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'path' => 'bre-deleted',
+                         'alias' => 'Is Deleted?',
+                         'relation' => 'd94d9ed7d30666ea41bbd3190401885c'
+                       },
+                       {
+                         'path' => 'bre-call_numbers-acn-copies-acp-deleted',
+                         'relation' => '087a06de853a11582370c60ee42324f3',
+                         'alias' => 'Is Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '<=' => '2001-12'
+                                        },
+                         'relation' => '087a06de853a11582370c60ee42324f3',
+                         'alias' => 'Creation Date/Time',
+                         'path' => 'bre-call_numbers-acn-copies-acp-create_date',
+                         'column' => {
+                                       'transform' => 'month_trunc',
+                                       'transform_label' => 'Year + Month',
+                                       'colname' => 'create_date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'alias' => 'd94d9ed7d30666ea41bbd3190401885c',
+                      'path' => 'bre-call_numbers',
+                      'table' => 'biblio.record_entry',
+                      'join' => {
+                                  'creator-d94d9ed7d30666ea41bbd3190401885c' => {
+                                                                                  'key' => 'id',
+                                                                                  'path' => 'bre-creator-au-home_ou',
+                                                                                  'alias' => '66bb4de8698ebb58e76247fd145ce8d7',
+                                                                                  'join' => {
+                                                                                              'home_ou-66bb4de8698ebb58e76247fd145ce8d7' => {
+                                                                                                                                              'table' => 'actor.org_unit',
+                                                                                                                                              'template_path' => 'bre-creator.au-home_ou',
+                                                                                                                                              'alias' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                                                                                                                              'path' => 'bre-creator-au-home_ou-aou',
+                                                                                                                                              'idlclass' => 'aou',
+                                                                                                                                              'key' => 'id',
+                                                                                                                                              'label' => 'Bibliographic Record -> ILS User :: Home Library'
+                                                                                                                                            }
+                                                                                            },
+                                                                                  'table' => 'actor.usr'
+                                                                                },
+                                  'id-acn-record-c7f224021326f337ac56a550650ecaed' => {
+                                                                                        'join' => {
+                                                                                                    'owning_lib-ce1009a616301960a617aabcddfd0969' => {
+                                                                                                                                                       'idlclass' => 'aou',
+                                                                                                                                                       'label' => 'Bibliographic Record -> Call Number/Volume :: Owning Library',
+                                                                                                                                                       'path' => 'bre-call_numbers-acn-owning_lib-aou',
+                                                                                                                                                       'type' => 'left',
+                                                                                                                                                       'alias' => '589b762fcf4b0b89fd846e47564f26e1',
+                                                                                                                                                       'template_path' => 'bre-call_numbers.acn-owning_lib',
+                                                                                                                                                       'table' => 'actor.org_unit',
+                                                                                                                                                       'key' => 'id'
+                                                                                                                                                     }
+                                                                                                  },
+                                                                                        'table' => 'asset.call_number',
+                                                                                        'template_path' => 'bre-call_numbers',
+                                                                                        'type' => 'left',
+                                                                                        'alias' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                                                                        'path' => 'bre-call_numbers-acn',
+                                                                                        'key' => 'record',
+                                                                                        'idlclass' => 'acn',
+                                                                                        'label' => 'Bibliographic Record :: Call Numbers'
+                                                                                      },
+                                  'id-acn-record-d94d9ed7d30666ea41bbd3190401885c' => {
+                                                                                        'path' => 'bre-call_numbers-acn-copies',
+                                                                                        'alias' => '284511cb8982143280e95b2458c695ff',
+                                                                                        'type' => 'left',
+                                                                                        'join' => {
+                                                                                                    'id-acp-call_number-284511cb8982143280e95b2458c695ff' => {
+                                                                                                                                                               'idlclass' => 'acp',
+                                                                                                                                                               'label' => 'Bibliographic Record -> Call Number/Volume :: Copies',
+                                                                                                                                                               'table' => 'asset.copy',
+                                                                                                                                                               'template_path' => 'bre-call_numbers.acn-copies',
+                                                                                                                                                               'alias' => '087a06de853a11582370c60ee42324f3',
+                                                                                                                                                               'type' => 'left',
+                                                                                                                                                               'path' => 'bre-call_numbers-acn-copies-acp',
+                                                                                                                                                               'key' => 'call_number'
+                                                                                                                                                             }
+                                                                                                  },
+                                                                                        'table' => 'asset.call_number',
+                                                                                        'key' => 'record'
+                                                                                      }
+                                },
+                      'template_path' => 'bre',
+                      'idlclass' => 'bre',
+                      'label' => 'Bibliographic Record'
+                    },
+          'core_class' => 'bre',
+          'having' => [],
+          'rel_cache' => {
+                           'abf99a89dbc3d3ce006aaf4780527281' => {
+                                                                   'path' => 'bre-creator.au-home_ou',
+                                                                   'alias' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'params' => undef,
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Record Creator Home Lib',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform' => 'Bare'
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'label' => 'Bibliographic Record -> ILS User :: Home Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'd68daee86eb6a2ccbb3874ab886d35c8' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'colname' => 'id',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'params' => undef,
+                                                                                                             'op' => 'is not',
+                                                                                                             'datatype' => 'id',
+                                                                                                             'alias' => 'Call Number/Volume ID',
+                                                                                                             'op_label' => 'Is not NULL',
+                                                                                                             'aggregate' => undef
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'asset.call_number',
+                                                                   'alias' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                                                   'path' => 'bre-call_numbers',
+                                                                   'idlclass' => 'acn',
+                                                                   'reltype' => 'has_many',
+                                                                   'label' => 'Bibliographic Record :: Call Numbers'
+                                                                 },
+                           '087a06de853a11582370c60ee42324f3' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'op' => '=',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'params' => undef
+                                                                                                                },
+                                                                                                   'create_date' => {
+                                                                                                                      'colname' => 'create_date',
+                                                                                                                      'transform_label' => 'Year + Month',
+                                                                                                                      'transform' => 'month_trunc',
+                                                                                                                      'op_value' => {
+                                                                                                                                      'label' => '"2001-12"',
+                                                                                                                                      'object' => {
+                                                                                                                                                    'setDateOnly' => undef,
+                                                                                                                                                    'print' => undef,
+                                                                                                                                                    'equalsTo' => undef,
+                                                                                                                                                    'getWeekNumber' => undef,
+                                                                                                                                                    'getDayOfYear' => undef,
+                                                                                                                                                    '__msh_oldSetFullYear' => undef,
+                                                                                                                                                    'getMonthDays' => undef
+                                                                                                                                                  },
+                                                                                                                                      'value' => '2001-12'
+                                                                                                                                    },
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'alias' => 'Creation Date/Time',
+                                                                                                                      'op' => '<=',
+                                                                                                                      'params' => undef,
+                                                                                                                      'op_label' => 'On or Before (Date/Time)',
+                                                                                                                      'aggregate' => undef
+                                                                                                                    }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'asset.copy',
+                                                                   'alias' => '087a06de853a11582370c60ee42324f3',
+                                                                   'path' => 'bre-call_numbers.acn-copies',
+                                                                   'idlclass' => 'acp',
+                                                                   'reltype' => 'has_many',
+                                                                   'label' => 'Bibliographic Record -> Call Number/Volume :: Copies'
+                                                                 },
+                           'd94d9ed7d30666ea41bbd3190401885c' => {
+                                                                   'alias' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                                                   'path' => 'bre',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op' => '=',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => 'Record ID',
+                                                                                                          'params' => undef,
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                          'colname' => 'id',
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'op_value' => {}
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'op_value' => {
+                                                                                                                                  'value' => 'f',
+                                                                                                                                  'label' => 'False'
+                                                                                                                                },
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'params' => undef,
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'alias' => 'Is Deleted?',
+                                                                                                                  'op' => '='
+                                                                                                                }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'table' => 'biblio.record_entry',
+                                                                   'reltype' => '',
+                                                                   'idlclass' => 'bre',
+                                                                   'label' => 'Bibliographic Record'
+                                                                 },
+                           '589b762fcf4b0b89fd846e47564f26e1' => {
+                                                                   'path' => 'bre-call_numbers.acn-owning_lib',
+                                                                   'alias' => '589b762fcf4b0b89fd846e47564f26e1',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op' => '=',
+                                                                                                                 'params' => undef,
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'op_label' => 'Equals'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'params' => undef,
+                                                                                                             'op' => 'in',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'op_value' => {},
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'colname' => 'id'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a',
+                                                                   'label' => 'Bibliographic Record -> Call Number/Volume :: Owning Library'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '589b762fcf4b0b89fd846e47564f26e1'
+                                           },
+                                           {
+                                             'relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                             'field' => 'id'
+                                           },
+                                           {
+                                             'relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                             'field' => 'shortname'
+                                           }
+                                         ]
+                         },
+          'order_by' => [],
+          'select' => [
+                        {
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                          'path' => 'bre-call_numbers-acn-owning_lib-aou-shortname',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'transform' => 'count_distinct'
+                                      },
+                          'alias' => 'Record ID',
+                          'relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                          'path' => 'bre-id'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Record Creator Home Lib',
+                          'relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                          'path' => 'bre-creator-au-home_ou-aou-shortname'
+                        }
+                      ],
+          'version' => 2
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-13 15:01:01.884711-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_builder' => bless( {
+                                        '_rels' => {
+                                                     'abf99a89dbc3d3ce006aaf4780527281' => bless( {
+                                                                                                    '_table' => 'actor.org_unit',
+                                                                                                    '_sql' => 'actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281"',
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [],
+                                                                                                    '_alias' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                                                                                    '_is_join' => 1
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'd68daee86eb6a2ccbb3874ab886d35c8' => bless( {
+                                                                                                    '_join_type' => 'left',
+                                                                                                    '_nullable' => 'l',
+                                                                                                    '_sql' => 'asset.call_number AS "d68daee86eb6a2ccbb3874ab886d35c8"',
+                                                                                                    '_table' => 'asset.call_number',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_alias' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'left',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'owning_lib',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d68daee86eb6a2ccbb3874ab886d35c8'},
+                                                                                                                          '_sql' => '
+	LEFT OUTER JOIN actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1" ON ("d68daee86eb6a2ccbb3874ab886d35c8"."owning_lib" = "589b762fcf4b0b89fd846e47564f26e1"."id")',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_alias' => '589b762fcf4b0b89fd846e47564f26e1',
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_join' => [],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_join_type' => 'left',
+                                                                                                                                                   '_nullable' => 'l',
+                                                                                                                                                   '_sql' => 'actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1"',
+                                                                                                                                                   '_table' => 'actor.org_unit'
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                               ],
+                                                                                                    '_builder' => $VAR1->{'_builder'}
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     '087a06de853a11582370c60ee42324f3' => bless( {
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_join' => [],
+                                                                                                    '_columns' => [],
+                                                                                                    '_alias' => '087a06de853a11582370c60ee42324f3',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_table' => 'asset.copy',
+                                                                                                    '_sql' => 'asset.copy AS "087a06de853a11582370c60ee42324f3"',
+                                                                                                    '_nullable' => 'l',
+                                                                                                    '_join_type' => 'left'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'd94d9ed7d30666ea41bbd3190401885c' => bless( {
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'creator',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'},
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.usr AS "66bb4de8698ebb58e76247fd145ce8d7" ON ("d94d9ed7d30666ea41bbd3190401885c"."creator" = "66bb4de8698ebb58e76247fd145ce8d7"."id")
+	INNER JOIN actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281" ON ("66bb4de8698ebb58e76247fd145ce8d7"."home_ou" = "abf99a89dbc3d3ce006aaf4780527281"."id")',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_alias' => '66bb4de8698ebb58e76247fd145ce8d7',
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_join_type' => 'i',
+                                                                                                                                                                         '_right_col' => 'id',
+                                                                                                                                                                         '_left_col' => 'home_ou',
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281" ON ("66bb4de8698ebb58e76247fd145ce8d7"."home_ou" = "abf99a89dbc3d3ce006aaf4780527281"."id")',
+                                                                                                                                                                         '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'abf99a89dbc3d3ce006aaf4780527281'}
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_sql' => 'actor.usr AS "66bb4de8698ebb58e76247fd145ce8d7"',
+                                                                                                                                                   '_table' => 'actor.usr',
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_nullable' => undef
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'},
+                                                                                                                          '_sql' => '
+	LEFT OUTER JOIN asset.call_number AS "d68daee86eb6a2ccbb3874ab886d35c8" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "d68daee86eb6a2ccbb3874ab886d35c8"."record")
+	LEFT OUTER JOIN actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1" ON ("d68daee86eb6a2ccbb3874ab886d35c8"."owning_lib" = "589b762fcf4b0b89fd846e47564f26e1"."id")',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'d68daee86eb6a2ccbb3874ab886d35c8'},
+                                                                                                                          '_join_type' => 'left',
+                                                                                                                          '_left_col' => 'id',
+                                                                                                                          '_right_col' => 'record'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::left' ),
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'left',
+                                                                                                                          '_left_col' => 'id',
+                                                                                                                          '_right_col' => 'record',
+                                                                                                                          '_sql' => '
+	LEFT OUTER JOIN asset.call_number AS "284511cb8982143280e95b2458c695ff" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "284511cb8982143280e95b2458c695ff"."record")
+	LEFT OUTER JOIN asset.copy AS "087a06de853a11582370c60ee42324f3" ON ("284511cb8982143280e95b2458c695ff"."id" = "087a06de853a11582370c60ee42324f3"."call_number")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'},
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_table' => 'asset.call_number',
+                                                                                                                                                   '_sql' => 'asset.call_number AS "284511cb8982143280e95b2458c695ff"',
+                                                                                                                                                   '_nullable' => 'l',
+                                                                                                                                                   '_join_type' => 'left',
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_join_type' => 'left',
+                                                                                                                                                                         '_left_col' => 'id',
+                                                                                                                                                                         '_right_col' => 'call_number',
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'}{'_join'}[2]{'_right_rel'},
+                                                                                                                                                                         '_sql' => '
+	LEFT OUTER JOIN asset.copy AS "087a06de853a11582370c60ee42324f3" ON ("284511cb8982143280e95b2458c695ff"."id" = "087a06de853a11582370c60ee42324f3"."call_number")',
+                                                                                                                                                                         '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'087a06de853a11582370c60ee42324f3'}
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_alias' => '284511cb8982143280e95b2458c695ff',
+                                                                                                                                                   '_is_join' => 1
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                               ],
+                                                                                                    '_table' => 'biblio.record_entry',
+                                                                                                    '_sql' => 'biblio.record_entry AS "d94d9ed7d30666ea41bbd3190401885c"
+	INNER JOIN actor.usr AS "66bb4de8698ebb58e76247fd145ce8d7" ON ("d94d9ed7d30666ea41bbd3190401885c"."creator" = "66bb4de8698ebb58e76247fd145ce8d7"."id")
+	INNER JOIN actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281" ON ("66bb4de8698ebb58e76247fd145ce8d7"."home_ou" = "abf99a89dbc3d3ce006aaf4780527281"."id")
+	LEFT OUTER JOIN asset.call_number AS "d68daee86eb6a2ccbb3874ab886d35c8" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "d68daee86eb6a2ccbb3874ab886d35c8"."record")
+	LEFT OUTER JOIN actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1" ON ("d68daee86eb6a2ccbb3874ab886d35c8"."owning_lib" = "589b762fcf4b0b89fd846e47564f26e1"."id")
+	LEFT OUTER JOIN asset.call_number AS "284511cb8982143280e95b2458c695ff" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "284511cb8982143280e95b2458c695ff"."record")
+	LEFT OUTER JOIN asset.copy AS "087a06de853a11582370c60ee42324f3" ON ("284511cb8982143280e95b2458c695ff"."id" = "087a06de853a11582370c60ee42324f3"."call_number")',
+                                                                                                    '_alias' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                                                                                    '_nullable' => undef
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     '284511cb8982143280e95b2458c695ff' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'}{'_join'}[2]{'_right_rel'},
+                                                     '589b762fcf4b0b89fd846e47564f26e1' => $VAR1->{'_builder'}{'_rels'}{'d68daee86eb6a2ccbb3874ab886d35c8'}{'_join'}[0]{'_right_rel'},
+                                                     '66bb4de8698ebb58e76247fd145ce8d7' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'}{'_join'}[0]{'_right_rel'}
+                                                   },
+                                        '_relative_time' => '2020-08-13 15:01:01.884711-04',
+                                        '_pivot_data' => '2',
+                                        '_params' => {
+                                                       '__pivot_label' => '',
+                                                       '__pivot_data' => '2',
+                                                       'P0' => [
+                                                                 '198',
+                                                                 '199',
+                                                                 '200',
+                                                                 '201',
+                                                                 '202'
+                                                               ]
+                                                     },
+                                        '_resultset_limit' => 1048575,
+                                        '_sql' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_having' => [],
+                 '_sql' => 'SELECT * FROM (SELECT	"589b762fcf4b0b89fd846e47564f26e1"."shortname" AS "Short (Policy) Name",
+	COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") AS "Record ID",
+	"abf99a89dbc3d3ce006aaf4780527281"."shortname" AS "Record Creator Home Lib"
+  FROM	biblio.record_entry AS "d94d9ed7d30666ea41bbd3190401885c"
+	INNER JOIN actor.usr AS "66bb4de8698ebb58e76247fd145ce8d7" ON ("d94d9ed7d30666ea41bbd3190401885c"."creator" = "66bb4de8698ebb58e76247fd145ce8d7"."id")
+	INNER JOIN actor.org_unit AS "abf99a89dbc3d3ce006aaf4780527281" ON ("66bb4de8698ebb58e76247fd145ce8d7"."home_ou" = "abf99a89dbc3d3ce006aaf4780527281"."id")
+	LEFT OUTER JOIN asset.call_number AS "d68daee86eb6a2ccbb3874ab886d35c8" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "d68daee86eb6a2ccbb3874ab886d35c8"."record")
+	LEFT OUTER JOIN actor.org_unit AS "589b762fcf4b0b89fd846e47564f26e1" ON ("d68daee86eb6a2ccbb3874ab886d35c8"."owning_lib" = "589b762fcf4b0b89fd846e47564f26e1"."id")
+	LEFT OUTER JOIN asset.call_number AS "284511cb8982143280e95b2458c695ff" ON ("d94d9ed7d30666ea41bbd3190401885c"."id" = "284511cb8982143280e95b2458c695ff"."record")
+	LEFT OUTER JOIN asset.copy AS "087a06de853a11582370c60ee42324f3" ON ("284511cb8982143280e95b2458c695ff"."id" = "087a06de853a11582370c60ee42324f3"."call_number")
+  WHERE	(("589b762fcf4b0b89fd846e47564f26e1"."id") IS NULL OR "589b762fcf4b0b89fd846e47564f26e1"."id" IN ($_128335$198$_128335$,$_128335$199$_128335$,$_128335$200$_128335$,$_128335$201$_128335$,$_128335$202$_128335$))
+	AND (("d68daee86eb6a2ccbb3874ab886d35c8"."id") IS NULL OR "d68daee86eb6a2ccbb3874ab886d35c8"."id" is not NULL)
+	AND "d94d9ed7d30666ea41bbd3190401885c"."deleted" = $_128335$f$_128335$
+	AND (("087a06de853a11582370c60ee42324f3"."deleted") IS NULL OR "087a06de853a11582370c60ee42324f3"."deleted" = $_128335$f$_128335$)
+	AND (((EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,\'0\'))) IS NULL OR (EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,\'0\')) <= $_128335$2001-12$_128335$)
+  GROUP BY 1, 3
+  ORDER BY "589b762fcf4b0b89fd846e47564f26e1"."shortname" ASC, COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") ASC, "abf99a89dbc3d3ce006aaf4780527281"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'shortname',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                                         '_sql' => '"589b762fcf4b0b89fd846e47564f26e1"."shortname" AS "Short (Policy) Name"',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_sql' => 'COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") AS "Record ID"',
+                                         '_relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                         '_alias' => 'Record ID',
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count Distinct',
+                                                        'transform' => 'count_distinct'
+                                                      },
+                                         '_transform' => 'count_distinct',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Record Creator Home Lib',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'shortname',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_sql' => '"abf99a89dbc3d3ce006aaf4780527281"."shortname" AS "Record Creator Home Lib"',
+                                         '_relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'d94d9ed7d30666ea41bbd3190401885c'},
+                 '_where' => [
+                               bless( {
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_sql' => '(("589b762fcf4b0b89fd846e47564f26e1"."id") IS NULL OR "589b762fcf4b0b89fd846e47564f26e1"."id" IN ($_128335$198$_128335$,$_128335$199$_128335$,$_128335$200$_128335$,$_128335$201$_128335$,$_128335$202$_128335$))',
+                                        '_relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'is not' => undef
+                                                        },
+                                        '_sql' => '(("d68daee86eb6a2ccbb3874ab886d35c8"."id") IS NULL OR "d68daee86eb6a2ccbb3874ab886d35c8"."id" is not NULL)',
+                                        '_relation' => 'd68daee86eb6a2ccbb3874ab886d35c8',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_sql' => '"d94d9ed7d30666ea41bbd3190401885c"."deleted" = $_128335$f$_128335$',
+                                        '_relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'deleted',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_relation' => '087a06de853a11582370c60ee42324f3',
+                                        '_sql' => '(("087a06de853a11582370c60ee42324f3"."deleted") IS NULL OR "087a06de853a11582370c60ee42324f3"."deleted" = $_128335$f$_128335$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'month_trunc',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_relation' => '087a06de853a11582370c60ee42324f3',
+                                        '_sql' => '(((EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,\'0\'))) IS NULL OR (EXTRACT(YEAR FROM "087a06de853a11582370c60ee42324f3"."create_date") || \'-\' || LPAD(EXTRACT(MONTH FROM "087a06de853a11582370c60ee42324f3"."create_date")::text,2,\'0\')) <= $_128335$2001-12$_128335$)',
+                                        '_condition' => {
+                                                          '<=' => '2001-12'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'month_trunc',
+                                                       'transform_label' => 'Year + Month',
+                                                       'colname' => 'create_date'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_relation' => '589b762fcf4b0b89fd846e47564f26e1',
+                                           '_sql' => '"589b762fcf4b0b89fd846e47564f26e1"."shortname" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'count_distinct',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_relation' => 'd94d9ed7d30666ea41bbd3190401885c',
+                                           '_sql' => 'COUNT(DISTINCT "d94d9ed7d30666ea41bbd3190401885c"."id") ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'abf99a89dbc3d3ce006aaf4780527281',
+                                           '_sql' => '"abf99a89dbc3d3ce006aaf4780527281"."shortname" ASC',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

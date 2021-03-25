@@ -1,0 +1,741 @@
+<html><head><meta charset='utf-8'><title>DEBUG: BRANT MISSING ITEMS</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" AS "Item:Call Number/Volume:Owning Library:Short (Policy) Name",
+	"73b79ed039229898a87ea008cc1e1d5e"."label" AS "Item:Call Number/Volume:Call Number Label",
+	"438599fe950ef0811622cf31bf5067f9"."title" AS "Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)",
+	"1a63625767c3337a241dd501759808f3"."barcode" AS "Item:Barcode",
+	"1bc9cf8236ffb2aac7a3e67c7263c73f"."name" AS "Item:Shelving Location:Name",
+	"2b7f77370264eec48e2b0c2be8ef5ef2"."name" AS "Item -> Copy Status -> name",
+	date("1a63625767c3337a241dd501759808f3"."edit_date") AS "Item -> Last Edit Date/Time"
+  FROM	asset.copy AS "1a63625767c3337a241dd501759808f3"
+	INNER JOIN asset.call_number AS "73b79ed039229898a87ea008cc1e1d5e" ON ("1a63625767c3337a241dd501759808f3"."call_number" = "73b79ed039229898a87ea008cc1e1d5e"."id")
+	INNER JOIN biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a" ON ("73b79ed039229898a87ea008cc1e1d5e"."record" = "e5280f0c7ed5dc08eddaf2957968467a"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")
+	INNER JOIN actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a" ON ("73b79ed039229898a87ea008cc1e1d5e"."owning_lib" = "e4f2f9e5cbb5003e95f5294bcc4b945a"."id")
+	INNER JOIN asset.copy_location AS "1bc9cf8236ffb2aac7a3e67c7263c73f" ON ("1a63625767c3337a241dd501759808f3"."location" = "1bc9cf8236ffb2aac7a3e67c7263c73f"."id")
+	INNER JOIN config.copy_status AS "2b7f77370264eec48e2b0c2be8ef5ef2" ON ("1a63625767c3337a241dd501759808f3"."status" = "2b7f77370264eec48e2b0c2be8ef5ef2"."id")
+  WHERE	"e4f2f9e5cbb5003e95f5294bcc4b945a"."id" IN ($_122860$71$_122860$)
+	AND "2b7f77370264eec48e2b0c2be8ef5ef2"."id" IN ($_122860$4$_122860$)
+	AND date("1a63625767c3337a241dd501759808f3"."edit_date") BETWEEN SYMMETRIC DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-30 days$_122860$) AND DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-1 days$_122860$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" ASC, "73b79ed039229898a87ea008cc1e1d5e"."label" ASC, "438599fe950ef0811622cf31bf5067f9"."title" ASC, "1a63625767c3337a241dd501759808f3"."barcode" ASC, "1bc9cf8236ffb2aac7a3e67c7263c73f"."name" ASC, "2b7f77370264eec48e2b0c2be8ef5ef2"."name" ASC, date("1a63625767c3337a241dd501759808f3"."edit_date") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'owner' => 457274,
+          'description' => 'List of items by status, call number, title, barcode, shelving location, copy status and last edit date.  Note: if you run an intransit status from this template, the date last edited is not the date the item was put in transit.  You must use a different template type for transit date information.',
+          'data' => '{"select":[{"relation":"e4f2f9e5cbb5003e95f5294bcc4b945a","path":"acp-call_number-acn-owning_lib-aou-shortname","alias":"Item:Call Number/Volume:Owning Library:Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"73b79ed039229898a87ea008cc1e1d5e","path":"acp-call_number-acn-label","alias":"Item:Call Number/Volume:Call Number Label","column":{"transform":"Bare","colname":"label"}},{"relation":"438599fe950ef0811622cf31bf5067f9","path":"acp-call_number-acn-record-bre-simple_record-rssr-title","alias":"Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)","column":{"transform":"Bare","colname":"title"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-barcode","alias":"Item:Barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"1bc9cf8236ffb2aac7a3e67c7263c73f","path":"acp-location-acpl-name","alias":"Item:Shelving Location:Name","column":{"transform":"Bare","colname":"name"}},{"relation":"2b7f77370264eec48e2b0c2be8ef5ef2","path":"acp-status-ccs-name","alias":"Item -> Copy Status -> name","column":{"transform":"Bare","colname":"name"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-edit_date","alias":"Item -> Last Edit Date/Time","column":{"transform":"date","colname":"edit_date"}}],"from":{"table":"asset.copy","path":"acp","alias":"1a63625767c3337a241dd501759808f3","join":{"call_number":{"key":"id","table":"asset.call_number","path":"acp-call_number-acn","alias":"73b79ed039229898a87ea008cc1e1d5e","join":{"owning_lib":{"key":"id","table":"actor.org_unit","path":"acp-call_number-acn-owning_lib-aou","alias":"e4f2f9e5cbb5003e95f5294bcc4b945a"},"record":{"key":"id","table":"biblio.record_entry","path":"acp-call_number-acn-record-bre","alias":"e5280f0c7ed5dc08eddaf2957968467a","join":{"id-simple_record":{"key":"id","type":"left","table":"reporter.super_simple_record","path":"acp-call_number-acn-record-bre-simple_record-rssr","alias":"438599fe950ef0811622cf31bf5067f9"}}}}},"location":{"key":"id","table":"asset.copy_location","path":"acp-location-acpl","alias":"1bc9cf8236ffb2aac7a3e67c7263c73f"},"status":{"key":"id","table":"config.copy_status","path":"acp-status-ccs","alias":"2b7f77370264eec48e2b0c2be8ef5ef2"}}},"where":[{"relation":"e4f2f9e5cbb5003e95f5294bcc4b945a","path":"acp-call_number-acn-owning_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P10"}},{"relation":"2b7f77370264eec48e2b0c2be8ef5ef2","path":"acp-status-ccs-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P11"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-edit_date","column":{"transform":"date","colname":"edit_date"},"condition":{"between":"::P12"}}],"having":[],"order_by":[]}',
+          'folder' => 3453,
+          'name' => 'List of Items by Status',
+          'create_time' => '2014-01-22 15:54:33-05',
+          'id' => 59400
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'select' => [
+                        {
+                          'relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a',
+                          'path' => 'acp-call_number-acn-owning_lib-aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Item:Call Number/Volume:Owning Library:Short (Policy) Name'
+                        },
+                        {
+                          'path' => 'acp-call_number-acn-label',
+                          'relation' => '73b79ed039229898a87ea008cc1e1d5e',
+                          'alias' => 'Item:Call Number/Volume:Call Number Label',
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-title',
+                          'relation' => '438599fe950ef0811622cf31bf5067f9'
+                        },
+                        {
+                          'path' => 'acp-barcode',
+                          'relation' => '1a63625767c3337a241dd501759808f3',
+                          'alias' => 'Item:Barcode',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item:Shelving Location:Name',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-location-acpl-name',
+                          'relation' => '1bc9cf8236ffb2aac7a3e67c7263c73f'
+                        },
+                        {
+                          'path' => 'acp-status-ccs-name',
+                          'relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                          'alias' => 'Item -> Copy Status -> name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item -> Last Edit Date/Time',
+                          'column' => {
+                                        'transform' => 'date',
+                                        'colname' => 'edit_date'
+                                      },
+                          'path' => 'acp-edit_date',
+                          'relation' => '1a63625767c3337a241dd501759808f3'
+                        }
+                      ],
+          'where' => [
+                       {
+                         'path' => 'acp-call_number-acn-owning_lib-aou-id',
+                         'condition' => {
+                                          'in' => '::P10'
+                                        },
+                         'relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P11'
+                                        },
+                         'relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                         'path' => 'acp-status-ccs-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'path' => 'acp-edit_date',
+                         'condition' => {
+                                          'between' => '::P12'
+                                        },
+                         'relation' => '1a63625767c3337a241dd501759808f3',
+                         'column' => {
+                                       'colname' => 'edit_date',
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'order_by' => [],
+          'from' => {
+                      'join' => {
+                                  'status' => {
+                                                'key' => 'id',
+                                                'path' => 'acp-status-ccs',
+                                                'table' => 'config.copy_status',
+                                                'alias' => '2b7f77370264eec48e2b0c2be8ef5ef2'
+                                              },
+                                  'location' => {
+                                                  'alias' => '1bc9cf8236ffb2aac7a3e67c7263c73f',
+                                                  'table' => 'asset.copy_location',
+                                                  'path' => 'acp-location-acpl',
+                                                  'key' => 'id'
+                                                },
+                                  'call_number' => {
+                                                     'table' => 'asset.call_number',
+                                                     'alias' => '73b79ed039229898a87ea008cc1e1d5e',
+                                                     'join' => {
+                                                                 'owning_lib' => {
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acp-call_number-acn-owning_lib-aou',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'alias' => 'e4f2f9e5cbb5003e95f5294bcc4b945a'
+                                                                                 },
+                                                                 'record' => {
+                                                                               'table' => 'biblio.record_entry',
+                                                                               'alias' => 'e5280f0c7ed5dc08eddaf2957968467a',
+                                                                               'key' => 'id',
+                                                                               'join' => {
+                                                                                           'id-simple_record' => {
+                                                                                                                   'key' => 'id',
+                                                                                                                   'path' => 'acp-call_number-acn-record-bre-simple_record-rssr',
+                                                                                                                   'table' => 'reporter.super_simple_record',
+                                                                                                                   'type' => 'left',
+                                                                                                                   'alias' => '438599fe950ef0811622cf31bf5067f9'
+                                                                                                                 }
+                                                                                         },
+                                                                               'path' => 'acp-call_number-acn-record-bre'
+                                                                             }
+                                                               },
+                                                     'key' => 'id',
+                                                     'path' => 'acp-call_number-acn'
+                                                   }
+                                },
+                      'path' => 'acp',
+                      'table' => 'asset.copy',
+                      'alias' => '1a63625767c3337a241dd501759808f3'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'owner' => 457274,
+                          'description' => 'List of items by status, call number, title, barcode, shelving location, copy status and last edit date.  Note: if you run an intransit status from this template, the date last edited is not the date the item was put in transit.  You must use a different template type for transit date information.',
+                          'data' => '{"select":[{"relation":"e4f2f9e5cbb5003e95f5294bcc4b945a","path":"acp-call_number-acn-owning_lib-aou-shortname","alias":"Item:Call Number/Volume:Owning Library:Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"73b79ed039229898a87ea008cc1e1d5e","path":"acp-call_number-acn-label","alias":"Item:Call Number/Volume:Call Number Label","column":{"transform":"Bare","colname":"label"}},{"relation":"438599fe950ef0811622cf31bf5067f9","path":"acp-call_number-acn-record-bre-simple_record-rssr-title","alias":"Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)","column":{"transform":"Bare","colname":"title"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-barcode","alias":"Item:Barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"1bc9cf8236ffb2aac7a3e67c7263c73f","path":"acp-location-acpl-name","alias":"Item:Shelving Location:Name","column":{"transform":"Bare","colname":"name"}},{"relation":"2b7f77370264eec48e2b0c2be8ef5ef2","path":"acp-status-ccs-name","alias":"Item -> Copy Status -> name","column":{"transform":"Bare","colname":"name"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-edit_date","alias":"Item -> Last Edit Date/Time","column":{"transform":"date","colname":"edit_date"}}],"from":{"table":"asset.copy","path":"acp","alias":"1a63625767c3337a241dd501759808f3","join":{"call_number":{"key":"id","table":"asset.call_number","path":"acp-call_number-acn","alias":"73b79ed039229898a87ea008cc1e1d5e","join":{"owning_lib":{"key":"id","table":"actor.org_unit","path":"acp-call_number-acn-owning_lib-aou","alias":"e4f2f9e5cbb5003e95f5294bcc4b945a"},"record":{"key":"id","table":"biblio.record_entry","path":"acp-call_number-acn-record-bre","alias":"e5280f0c7ed5dc08eddaf2957968467a","join":{"id-simple_record":{"key":"id","type":"left","table":"reporter.super_simple_record","path":"acp-call_number-acn-record-bre-simple_record-rssr","alias":"438599fe950ef0811622cf31bf5067f9"}}}}},"location":{"key":"id","table":"asset.copy_location","path":"acp-location-acpl","alias":"1bc9cf8236ffb2aac7a3e67c7263c73f"},"status":{"key":"id","table":"config.copy_status","path":"acp-status-ccs","alias":"2b7f77370264eec48e2b0c2be8ef5ef2"}}},"where":[{"relation":"e4f2f9e5cbb5003e95f5294bcc4b945a","path":"acp-call_number-acn-owning_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P10"}},{"relation":"2b7f77370264eec48e2b0c2be8ef5ef2","path":"acp-status-ccs-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P11"}},{"relation":"1a63625767c3337a241dd501759808f3","path":"acp-edit_date","column":{"transform":"date","colname":"edit_date"},"condition":{"between":"::P12"}}],"having":[],"order_by":[]}',
+                          'folder' => 3453,
+                          'name' => 'List of Items by Status',
+                          'create_time' => '2014-01-22 15:54:33-05',
+                          'id' => 59400
+                        },
+          'data' => '{"P10":["71"],"P11":["4"],"P12":[{"transform":"relative_date","params":["-30"]},{"transform":"relative_date","params":["-1"]}]}',
+          'recurrence' => '1 mon',
+          'recur' => 1,
+          'owner' => 457274,
+          'description' => '',
+          'name' => 'BRANT MISSING ITEMS',
+          'folder' => 4864,
+          'id' => 162194,
+          'create_time' => '2019-04-16 13:52:02.731956-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'select' => [
+                        {
+                          'relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a',
+                          'path' => 'acp-call_number-acn-owning_lib-aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Item:Call Number/Volume:Owning Library:Short (Policy) Name'
+                        },
+                        {
+                          'path' => 'acp-call_number-acn-label',
+                          'relation' => '73b79ed039229898a87ea008cc1e1d5e',
+                          'alias' => 'Item:Call Number/Volume:Call Number Label',
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)',
+                          'column' => {
+                                        'colname' => 'title',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-call_number-acn-record-bre-simple_record-rssr-title',
+                          'relation' => '438599fe950ef0811622cf31bf5067f9'
+                        },
+                        {
+                          'path' => 'acp-barcode',
+                          'relation' => '1a63625767c3337a241dd501759808f3',
+                          'alias' => 'Item:Barcode',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item:Shelving Location:Name',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'acp-location-acpl-name',
+                          'relation' => '1bc9cf8236ffb2aac7a3e67c7263c73f'
+                        },
+                        {
+                          'path' => 'acp-status-ccs-name',
+                          'relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                          'alias' => 'Item -> Copy Status -> name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item -> Last Edit Date/Time',
+                          'column' => {
+                                        'transform' => 'date',
+                                        'colname' => 'edit_date'
+                                      },
+                          'path' => 'acp-edit_date',
+                          'relation' => '1a63625767c3337a241dd501759808f3'
+                        }
+                      ],
+          'where' => [
+                       {
+                         'path' => 'acp-call_number-acn-owning_lib-aou-id',
+                         'condition' => {
+                                          'in' => '::P10'
+                                        },
+                         'relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P11'
+                                        },
+                         'relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                         'path' => 'acp-status-ccs-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'path' => 'acp-edit_date',
+                         'condition' => {
+                                          'between' => '::P12'
+                                        },
+                         'relation' => '1a63625767c3337a241dd501759808f3',
+                         'column' => {
+                                       'colname' => 'edit_date',
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'order_by' => [],
+          'from' => {
+                      'join' => {
+                                  'status' => {
+                                                'key' => 'id',
+                                                'path' => 'acp-status-ccs',
+                                                'table' => 'config.copy_status',
+                                                'alias' => '2b7f77370264eec48e2b0c2be8ef5ef2'
+                                              },
+                                  'location' => {
+                                                  'alias' => '1bc9cf8236ffb2aac7a3e67c7263c73f',
+                                                  'table' => 'asset.copy_location',
+                                                  'path' => 'acp-location-acpl',
+                                                  'key' => 'id'
+                                                },
+                                  'call_number' => {
+                                                     'table' => 'asset.call_number',
+                                                     'alias' => '73b79ed039229898a87ea008cc1e1d5e',
+                                                     'join' => {
+                                                                 'owning_lib' => {
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acp-call_number-acn-owning_lib-aou',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'alias' => 'e4f2f9e5cbb5003e95f5294bcc4b945a'
+                                                                                 },
+                                                                 'record' => {
+                                                                               'table' => 'biblio.record_entry',
+                                                                               'alias' => 'e5280f0c7ed5dc08eddaf2957968467a',
+                                                                               'key' => 'id',
+                                                                               'join' => {
+                                                                                           'id-simple_record' => {
+                                                                                                                   'key' => 'id',
+                                                                                                                   'path' => 'acp-call_number-acn-record-bre-simple_record-rssr',
+                                                                                                                   'table' => 'reporter.super_simple_record',
+                                                                                                                   'type' => 'left',
+                                                                                                                   'alias' => '438599fe950ef0811622cf31bf5067f9'
+                                                                                                                 }
+                                                                                         },
+                                                                               'path' => 'acp-call_number-acn-record-bre'
+                                                                             }
+                                                               },
+                                                     'key' => 'id',
+                                                     'path' => 'acp-call_number-acn'
+                                                   }
+                                },
+                      'path' => 'acp',
+                      'table' => 'asset.copy',
+                      'alias' => '1a63625767c3337a241dd501759808f3'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-11-16 13:52:02.731956-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => bless( {
+                                                                  '_resultset_limit' => 1048575,
+                                                                  '_params' => {
+                                                                                 'P10' => [
+                                                                                            '71'
+                                                                                          ],
+                                                                                 'P11' => [
+                                                                                            '4'
+                                                                                          ],
+                                                                                 'P12' => [
+                                                                                            {
+                                                                                              'transform' => 'relative_date',
+                                                                                              'params' => [
+                                                                                                            '-30'
+                                                                                                          ]
+                                                                                            },
+                                                                                            {
+                                                                                              'transform' => 'relative_date',
+                                                                                              'params' => [
+                                                                                                            '-1'
+                                                                                                          ]
+                                                                                            }
+                                                                                          ]
+                                                                               },
+                                                                  '_sql' => undef,
+                                                                  '_rels' => {
+                                                                               '73b79ed039229898a87ea008cc1e1d5e' => bless( {
+                                                                                                                              '_sql' => 'asset.call_number AS "73b79ed039229898a87ea008cc1e1d5e"',
+                                                                                                                              '_join_type' => 'inner',
+                                                                                                                              '_is_join' => 1,
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_table' => 'asset.call_number',
+                                                                                                                              '_join' => [
+                                                                                                                                           bless( {
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a" ON ("73b79ed039229898a87ea008cc1e1d5e"."record" = "e5280f0c7ed5dc08eddaf2957968467a"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'},
+                                                                                                                                                    '_left_col' => 'record',
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                             '_alias' => 'e5280f0c7ed5dc08eddaf2957968467a',
+                                                                                                                                                                             '_sql' => 'biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a"',
+                                                                                                                                                                             '_join_type' => 'inner',
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_join' => [
+                                                                                                                                                                                          bless( {
+                                                                                                                                                                                                   '_right_rel' => bless( {
+                                                                                                                                                                                                                            '_nullable' => 'l',
+                                                                                                                                                                                                                            '_alias' => '438599fe950ef0811622cf31bf5067f9',
+                                                                                                                                                                                                                            '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                                                                            '_is_join' => 1,
+                                                                                                                                                                                                                            '_columns' => [],
+                                                                                                                                                                                                                            '_join' => [],
+                                                                                                                                                                                                                            '_table' => 'reporter.super_simple_record',
+                                                                                                                                                                                                                            '_sql' => 'reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9"',
+                                                                                                                                                                                                                            '_join_type' => 'left'
+                                                                                                                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                   '_left_col' => 'id',
+                                                                                                                                                                                                   '_sql' => '
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")',
+                                                                                                                                                                                                   '_join_type' => 'left',
+                                                                                                                                                                                                   '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                   '_right_col' => 'id'
+                                                                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                                                                        ],
+                                                                                                                                                                             '_table' => 'biblio.record_entry',
+                                                                                                                                                                             '_is_join' => 1
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_alias' => 'e4f2f9e5cbb5003e95f5294bcc4b945a',
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_join' => [],
+                                                                                                                                                                             '_table' => 'actor.org_unit',
+                                                                                                                                                                             '_is_join' => 1,
+                                                                                                                                                                             '_sql' => 'actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a"',
+                                                                                                                                                                             '_join_type' => 'inner'
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a" ON ("73b79ed039229898a87ea008cc1e1d5e"."owning_lib" = "e4f2f9e5cbb5003e95f5294bcc4b945a"."id")',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'},
+                                                                                                                                                    '_left_col' => 'owning_lib'
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                         ],
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_nullable' => undef,
+                                                                                                                              '_alias' => '73b79ed039229898a87ea008cc1e1d5e'
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               '438599fe950ef0811622cf31bf5067f9' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                               '2b7f77370264eec48e2b0c2be8ef5ef2' => bless( {
+                                                                                                                              '_join' => [],
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_table' => 'config.copy_status',
+                                                                                                                              '_is_join' => 1,
+                                                                                                                              '_join_type' => 'inner',
+                                                                                                                              '_sql' => 'config.copy_status AS "2b7f77370264eec48e2b0c2be8ef5ef2"',
+                                                                                                                              '_alias' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'}
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               'e5280f0c7ed5dc08eddaf2957968467a' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'}{'_join'}[0]{'_right_rel'},
+                                                                               '1bc9cf8236ffb2aac7a3e67c7263c73f' => bless( {
+                                                                                                                              '_join_type' => 'inner',
+                                                                                                                              '_sql' => 'asset.copy_location AS "1bc9cf8236ffb2aac7a3e67c7263c73f"',
+                                                                                                                              '_join' => [],
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_table' => 'asset.copy_location',
+                                                                                                                              '_is_join' => 1,
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_alias' => '1bc9cf8236ffb2aac7a3e67c7263c73f'
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               'e4f2f9e5cbb5003e95f5294bcc4b945a' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'}{'_join'}[1]{'_right_rel'},
+                                                                               '1a63625767c3337a241dd501759808f3' => bless( {
+                                                                                                                              '_join' => [
+                                                                                                                                           bless( {
+                                                                                                                                                    '_left_col' => 'call_number',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'1a63625767c3337a241dd501759808f3'},
+                                                                                                                                                    '_sql' => '
+	INNER JOIN asset.call_number AS "73b79ed039229898a87ea008cc1e1d5e" ON ("1a63625767c3337a241dd501759808f3"."call_number" = "73b79ed039229898a87ea008cc1e1d5e"."id")
+	INNER JOIN biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a" ON ("73b79ed039229898a87ea008cc1e1d5e"."record" = "e5280f0c7ed5dc08eddaf2957968467a"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")
+	INNER JOIN actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a" ON ("73b79ed039229898a87ea008cc1e1d5e"."owning_lib" = "e4f2f9e5cbb5003e95f5294bcc4b945a"."id")',
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_right_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'73b79ed039229898a87ea008cc1e1d5e'}
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'1bc9cf8236ffb2aac7a3e67c7263c73f'},
+                                                                                                                                                    '_left_col' => 'location',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'1a63625767c3337a241dd501759808f3'},
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN asset.copy_location AS "1bc9cf8236ffb2aac7a3e67c7263c73f" ON ("1a63625767c3337a241dd501759808f3"."location" = "1bc9cf8236ffb2aac7a3e67c7263c73f"."id")'
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'2b7f77370264eec48e2b0c2be8ef5ef2'},
+                                                                                                                                                    '_left_col' => 'status',
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN config.copy_status AS "2b7f77370264eec48e2b0c2be8ef5ef2" ON ("1a63625767c3337a241dd501759808f3"."status" = "2b7f77370264eec48e2b0c2be8ef5ef2"."id")',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'1a63625767c3337a241dd501759808f3'}
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                         ],
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_table' => 'asset.copy',
+                                                                                                                              '_alias' => '1a63625767c3337a241dd501759808f3',
+                                                                                                                              '_nullable' => undef,
+                                                                                                                              '_sql' => 'asset.copy AS "1a63625767c3337a241dd501759808f3"
+	INNER JOIN asset.call_number AS "73b79ed039229898a87ea008cc1e1d5e" ON ("1a63625767c3337a241dd501759808f3"."call_number" = "73b79ed039229898a87ea008cc1e1d5e"."id")
+	INNER JOIN biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a" ON ("73b79ed039229898a87ea008cc1e1d5e"."record" = "e5280f0c7ed5dc08eddaf2957968467a"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")
+	INNER JOIN actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a" ON ("73b79ed039229898a87ea008cc1e1d5e"."owning_lib" = "e4f2f9e5cbb5003e95f5294bcc4b945a"."id")
+	INNER JOIN asset.copy_location AS "1bc9cf8236ffb2aac7a3e67c7263c73f" ON ("1a63625767c3337a241dd501759808f3"."location" = "1bc9cf8236ffb2aac7a3e67c7263c73f"."id")
+	INNER JOIN config.copy_status AS "2b7f77370264eec48e2b0c2be8ef5ef2" ON ("1a63625767c3337a241dd501759808f3"."status" = "2b7f77370264eec48e2b0c2be8ef5ef2"."id")',
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'}
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                             },
+                                                                  '_relative_time' => '2020-11-16 13:52:02.731956-05'
+                                                                }, 'OpenILS::Reporter::SQLBuilder' ),
+                                           '_relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"73b79ed039229898a87ea008cc1e1d5e"."label" ASC',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '73b79ed039229898a87ea008cc1e1d5e',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'label'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'title'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"438599fe950ef0811622cf31bf5067f9"."title" ASC',
+                                           '_relation' => '438599fe950ef0811622cf31bf5067f9',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"1a63625767c3337a241dd501759808f3"."barcode" ASC',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_relation' => '1a63625767c3337a241dd501759808f3',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'barcode'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_relation' => '1bc9cf8236ffb2aac7a3e67c7263c73f',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"1bc9cf8236ffb2aac7a3e67c7263c73f"."name" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'name',
+                                                          'transform' => 'Bare'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"2b7f77370264eec48e2b0c2be8ef5ef2"."name" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'name'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'GenericTransform',
+                                           '_sql' => 'date("1a63625767c3337a241dd501759808f3"."edit_date") ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_relation' => '1a63625767c3337a241dd501759808f3',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'date',
+                                                          'colname' => 'edit_date'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P10'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"e4f2f9e5cbb5003e95f5294bcc4b945a"."id" IN ($_122860$71$_122860$)',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => '"2b7f77370264eec48e2b0c2be8ef5ef2"."id" IN ($_122860$4$_122860$)',
+                                        '_relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare',
+                                        '_condition' => {
+                                                          'in' => '::P11'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform' => 'Bare'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => 'date("1a63625767c3337a241dd501759808f3"."edit_date") BETWEEN SYMMETRIC DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-30 days$_122860$) AND DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-1 days$_122860$)',
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => '1a63625767c3337a241dd501759808f3',
+                                        '_transform' => 'GenericTransform',
+                                        '_condition' => {
+                                                          'between' => '::P12'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'colname' => 'edit_date'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Item:Call Number/Volume:Owning Library:Short (Policy) Name',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" AS "Item:Call Number/Volume:Owning Library:Short (Policy) Name"',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'e4f2f9e5cbb5003e95f5294bcc4b945a'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Item:Call Number/Volume:Call Number Label',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_relation' => '73b79ed039229898a87ea008cc1e1d5e',
+                                         '_sql' => '"73b79ed039229898a87ea008cc1e1d5e"."label" AS "Item:Call Number/Volume:Call Number Label"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '438599fe950ef0811622cf31bf5067f9',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"438599fe950ef0811622cf31bf5067f9"."title" AS "Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)"',
+                                         '_alias' => 'Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"1a63625767c3337a241dd501759808f3"."barcode" AS "Item:Barcode"',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '1a63625767c3337a241dd501759808f3',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'},
+                                         '_alias' => 'Item:Barcode'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"1bc9cf8236ffb2aac7a3e67c7263c73f"."name" AS "Item:Shelving Location:Name"',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '1bc9cf8236ffb2aac7a3e67c7263c73f',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[4]{'_column'},
+                                         '_alias' => 'Item:Shelving Location:Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => '2b7f77370264eec48e2b0c2be8ef5ef2',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"2b7f77370264eec48e2b0c2be8ef5ef2"."name" AS "Item -> Copy Status -> name"',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[5]{'_column'},
+                                         '_alias' => 'Item -> Copy Status -> name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[6]{'_column'},
+                                         '_alias' => 'Item -> Last Edit Date/Time',
+                                         '_sql' => 'date("1a63625767c3337a241dd501759808f3"."edit_date") AS "Item -> Last Edit Date/Time"',
+                                         '_relation' => '1a63625767c3337a241dd501759808f3',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'GenericTransform'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" AS "Item:Call Number/Volume:Owning Library:Short (Policy) Name",
+	"73b79ed039229898a87ea008cc1e1d5e"."label" AS "Item:Call Number/Volume:Call Number Label",
+	"438599fe950ef0811622cf31bf5067f9"."title" AS "Item:Call Number/Volume:Bib Record:Simple Record Extracts :Title Proper (normalized)",
+	"1a63625767c3337a241dd501759808f3"."barcode" AS "Item:Barcode",
+	"1bc9cf8236ffb2aac7a3e67c7263c73f"."name" AS "Item:Shelving Location:Name",
+	"2b7f77370264eec48e2b0c2be8ef5ef2"."name" AS "Item -> Copy Status -> name",
+	date("1a63625767c3337a241dd501759808f3"."edit_date") AS "Item -> Last Edit Date/Time"
+  FROM	asset.copy AS "1a63625767c3337a241dd501759808f3"
+	INNER JOIN asset.call_number AS "73b79ed039229898a87ea008cc1e1d5e" ON ("1a63625767c3337a241dd501759808f3"."call_number" = "73b79ed039229898a87ea008cc1e1d5e"."id")
+	INNER JOIN biblio.record_entry AS "e5280f0c7ed5dc08eddaf2957968467a" ON ("73b79ed039229898a87ea008cc1e1d5e"."record" = "e5280f0c7ed5dc08eddaf2957968467a"."id")
+	LEFT OUTER JOIN reporter.super_simple_record AS "438599fe950ef0811622cf31bf5067f9" ON ("e5280f0c7ed5dc08eddaf2957968467a"."id" = "438599fe950ef0811622cf31bf5067f9"."id")
+	INNER JOIN actor.org_unit AS "e4f2f9e5cbb5003e95f5294bcc4b945a" ON ("73b79ed039229898a87ea008cc1e1d5e"."owning_lib" = "e4f2f9e5cbb5003e95f5294bcc4b945a"."id")
+	INNER JOIN asset.copy_location AS "1bc9cf8236ffb2aac7a3e67c7263c73f" ON ("1a63625767c3337a241dd501759808f3"."location" = "1bc9cf8236ffb2aac7a3e67c7263c73f"."id")
+	INNER JOIN config.copy_status AS "2b7f77370264eec48e2b0c2be8ef5ef2" ON ("1a63625767c3337a241dd501759808f3"."status" = "2b7f77370264eec48e2b0c2be8ef5ef2"."id")
+  WHERE	"e4f2f9e5cbb5003e95f5294bcc4b945a"."id" IN ($_122860$71$_122860$)
+	AND "2b7f77370264eec48e2b0c2be8ef5ef2"."id" IN ($_122860$4$_122860$)
+	AND date("1a63625767c3337a241dd501759808f3"."edit_date") BETWEEN SYMMETRIC DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-30 days$_122860$) AND DATE($_122860$2020-11-16 13:52:02.731956-05$_122860$::TIMESTAMPTZ + $_122860$-1 days$_122860$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "e4f2f9e5cbb5003e95f5294bcc4b945a"."shortname" ASC, "73b79ed039229898a87ea008cc1e1d5e"."label" ASC, "438599fe950ef0811622cf31bf5067f9"."title" ASC, "1a63625767c3337a241dd501759808f3"."barcode" ASC, "1bc9cf8236ffb2aac7a3e67c7263c73f"."name" ASC, "2b7f77370264eec48e2b0c2be8ef5ef2"."name" ASC, date("1a63625767c3337a241dd501759808f3"."edit_date") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'1a63625767c3337a241dd501759808f3'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

@@ -1,0 +1,70 @@
+<center><img src="https://pines.georgialibraries.org/dokuwiki/lib/exe/fetch.php?media=logo.png" style="width:150px;"><br/>
+<b>www.gapines.org</b><br/>
+<b>{{current_location.name}}</b></center>
+<h3>Payment Receipt</h3>
+
+<table style="width:100%">
+  <tr>
+    <td valign="top">Original Balance:</td>
+    <td align="right" valign="top">{{previous_balance | currency}}</td>
+  </tr>
+  <tr>
+    <td valign="top">Payment Method:</td>
+    <td align="right" valign="top">
+      <div ng-switch="payment_type">
+        <div ng-switch-when="cash_payment">[% l('Cash') %]</div>
+        <div ng-switch-when="check_payment">[% l('Check') %]</div>
+        <div ng-switch-when="credit_card_payment">[% l('Credit Card') %]</div>
+        <div ng-switch-when="debit_card_payment">[% l('Debit Card') %]</div>
+        <div ng-switch-when="credit_payment">[% l('Patron Credit') %]</div>
+        <div ng-switch-when="work_payment">[% l('Work') %]</div>
+        <div ng-switch-when="forgive_payment">[% l('Forgive') %]</div>
+        <div ng-switch-when="goods_payment">[% l('Goods') %]</div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">Amount Paid:</td>
+    <td align="right" valign="top">{{payment_applied | currency}}</td>
+  </tr>
+  <tr>
+    <td valign="top">Billings Voided:</td>
+    <td align="right" valign="top">{{amount_voided | currency}}</td>
+  </tr>
+  <tr>
+    <td valign="top">New Balance:</td>
+    <td align="right" valign="top">{{new_balance | currency}}</td>
+  </tr>
+</table>
+<div ng-if="payment_note"><br/><b><i>Note: {{payment_note}}</i></b></div>
+
+<hr/>
+<h4>Bill Details</h4>
+
+<div ng-repeat="payment in payments">
+     <br/>
+      <table>
+        <tr>
+          <td valign="top">Bill #:</td>
+          <td valign="top">{{payment.xact.id}}</td>
+        </tr>
+        <tr>
+          <td valign="top">Last Billing Type: &nbsp; </td>
+          <td valign="top">{{payment.xact.summary.last_billing_type}}</td>
+        </tr>
+        <tr>
+          <td valign="top">Received: &nbsp;</td>
+		  <td valign="top">{{payment.amount | currency}}</td>
+        </tr>
+        <tr ng-if="payment.xact.title">
+          <td valign="top">Title:</td>
+          <td valign="top">{{payment.xact.title}}</td>
+        </tr>
+        <tr ng-if="payment.xact.copy_barcode">
+          <td valign="top">Barcode:</td>
+          <td valign="top">{{payment.xact.copy_barcode}}</td>
+        </tr>
+      </table>
+    </div>
+<hr/>
+{{current_location.shortname}} {{today | date:'short'}}

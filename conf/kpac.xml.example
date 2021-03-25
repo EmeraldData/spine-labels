@@ -1,0 +1,97 @@
+<kpac version="1.0" xmlns="http://evergreen-ils.org/spec/OPAC/kpac/v1">
+
+    <!-- 
+    If configured, all searches, including topic searches configured
+    below, will be appended with this filter.  The purpose is to restrict 
+    all searches within the kpac to a specific collection.    
+      --> 
+    <global_filter>audience(a,b,c,j)</global_filter>
+
+ 
+    <pages>
+        <!-- Use one of the following formats for cell names and contents:
+             For keyword:         keyword:dog
+             For multiple words:  keyword:dog beagle
+             For phrase:          keyword:"fourth of july"
+             For boolean 'or':    (keyword:dog || keyword:puppy)
+             For multiples, next the terms:
+                                  ((keyword:dog || keyword:puppy) || keyword:beagle)
+             For 'link':          http://www.evergreen.org
+        -->
+
+        <!-- top-level layout pages -->
+
+        <page id="1" columns="4" name="Home" img="/images/home.jpg">
+        <!-- Use type="topic" for top-level categories, type="maintopic" for searches, or type="link" for page links --> 
+		<!-- Switching to use links instead of searches to see if it caches better -->
+			
+			<!-- ONLY SHOW CURRENT HOLIDAYS -->
+<!--
+            <cell name="Martin Luther King, Jr." img="cat-mlk.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%22martin+luther+king%22;sort=pubdate.descending</cell>
+            <cell name="Valentine's Day" img="cat-valentines.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%22valentine%27s+day%22+after%282000%29</cell> 
+			<cell name="President's Day" img="cat-history-us.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%22presidents%27+day%22;sort=pubdate.descending</cell>
+			<cell name="St. Patrick's Day" img="cat-stpatricks.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%22st.+patrick%27s+day%22;sort=pubdate.descending</cell> 
+			<cell name="Easter" img="cat-easter.png" type="link">http://gapines.org/eg/kpac/results?query=su:easter+after%282000%29;sort=pubdate.descending</cell>
+            <cell name="4th of July" img="cat-independence.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28%22independence+day%22+||+keyword:%22fourth+of+july%22%29;sort=pubdate.descending</cell> 
+            -->
+            
+            <cell name="Back to School" img="cat-school.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28%22back+to+school%22+||+keyword:%22goes+to+school%22%29;sort=pubdate.descending</cell>
+<!--
+			<cell name="Halloween" img="cat-halloween.png" type="link">http://gapines.org/eg/kpac/results?query=su:halloween+after%282000%29;qtype=keyword;fi:search_format=book;sort=pubdate.descending</cell>
+            <cell name="Thanksgiving" img="cat-thanksgiving.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=thanksgiving+after%282000%29;sort=pubdate.descending</cell>
+            <cell name="Christmas" img="cat-christmas.png" type="link">http://gapines.org/eg/kpac/results?query=su:christmas+after%282005%29;qtype=keyword</cell>
+            <cell name="Hannukah" img="cat-hannukah.png" type="link">http://gapines.org/eg/kpac/results?qtype=subject;query=hanukkah;sort=pubdate.descending</cell>
+            <cell name="Kwanzaa" img="cat-kwanzaa.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=kwanzaa;sort=pubdate.descending</cell>
+            <cell name="Happy New Year!" img="cat-newyear.png" type="link">http://gapines.org/eg/kpac/results?qtype=title;query=%22new%20year%22;sort=pubdate.descending</cell> 
+-->
+
+            <cell name="Online Books" img="cat-ereads.png" type="link">https://ereadkidsga.axis360.baker-taylor.com</cell>
+            <cell type="topic">30</cell>
+            <cell name="ABCs" img="cat-abc.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=(alphabet+||+keyword%3Aabc)+after(2000);sort=pubdate.descending</cell>
+            <cell name="Counting" img="cat-123.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28math+||+keyword%3A123%29+after%282005%29;sort=pubdate.descending</cell>
+            <cell name="Colors" img="cat-colors.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=su:color+after%282000%29;fi:audience=a</cell>         
+            <cell name="Nutrition" img="cat-nutrition.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28nutrition+||+keyword:%22healthy+food%22%29;sort=pubdate.descending;fi:audience=a,b</cell>
+            <cell name="Shapes" img="cat-shapes.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28%28su:shape+||+su:%22form+perception%22%29+||+su:geometry%29;fi:audience=a;sort=pubdate.descending</cell>
+            <cell name="Telling Time" img="cat-time.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28su:%22clocks+and+watches%22+||+kw:%22telling+time%22%29;fi:audience=a,b;sort=pubdate.descending</cell>
+            <cell name="Seasons" img="cat-seasons.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=su:seasons;fi:audience=a,b</cell>			
+            <cell type="topic">40</cell>
+            <cell name="Dinosaurs" img="cat-dinosaur.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=ti:dinosaur+after%282005%29;sort=pubdate.descending</cell>
+            <cell name="Princesses" img="cat-princess.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=ti:princess+after%282005%29;sort=pubdate.descending</cell>
+            <cell name="Dewey Categories" img="cat-dewey.png" type="link">homedewey</cell>
+        </page>
+
+        <page id="30" columns="2" name="Award-Winners" img="cat-caldecott.png" >
+             <cell name="Caldecott Medal" img="cat-caldecott.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153202;locg=1;trail=11</cell>
+             <cell name="Coretta Scott King" img="cat-king.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153204;locg=1;trail=11</cell>
+             <cell name="Geisel Award" img="cat-geisel.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153203;locg=1;trail=11</cell>
+             <cell name="Newbery Medal" img="cat-newbery.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153201;locg=1;trail=11</cell>
+             <cell name="Book Award Winners" img="cat-gcba.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153206;locg=1;trail=11</cell>
+             <cell name="Book Award Nominees" img="cat-gcba.png" type="link">https://gapines.org/eg/kpac/results?bookbag=154170;locg=1;trail=11</cell>
+             <cell name="Picture Book Winners" img="cat-gcba.png" type="link">https://gapines.org/eg/kpac/results?bookbag=153205;locg=1;trail=11</cell>
+             <cell name="Picture Book Nominees" img="cat-gcba.png" type="link">https://gapines.org/eg/kpac/results?bookbag=154171;locg=1;trail=11</cell>
+             <cell name="For Young Georgians" img="cat-center.png" type="link">https://gapines.org/eg/kpac/results?bookbag=379799;locg=1;trail=11</cell>
+        </page>		
+        <page id="40" columns="2" name="Transportation" img="cat-truck.png" >
+			<cell name="Cars &amp; Trucks" img="cat-car.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=su:automobiles+after%282005%29;sort=pubdate.descending</cell>
+            <cell name="Planes" img="cat-plane.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28airplane+||+keyword:aeroplane%29;sort=pubdate.descending</cell>
+            <cell name="Trains" img="cat-train.png" type="link">http://gapines.org/eg/kpac/results?qtype=subject;query=railroad+trains;sort=pubdate.descending</cell>
+            <cell name="Tractors &amp; Machines" img="cat-tractor.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28tractors+||+su:machinery%29;sort=pubdate.descending</cell>
+            <cell name="Boats" img="cat-boat.png" type="link">http://gapines.org/eg/kpac/results?query=su:%22boats+and+boating%22;sort=pubdate.descending</cell>
+            <cell name="Military" img="cat-military.png" type="link">http://gapines.org/eg/kpac/results?qtype=keyword;query=%28su:%22air+pilots,+military%22+||+warships%29;sort=pubdate.descending</cell>	
+        </page> 
+    </pages>
+
+    <layout owner="1" page="1"/>
+
+</kpac>
+<!-- vim: set ft=xml: -->
+
+
+     
+    
+
+ 
+    
+
+    
+

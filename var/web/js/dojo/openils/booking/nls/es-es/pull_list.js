@@ -1,0 +1,21 @@
+{
+    "COPY_LOOKUP_NO_RESPONSE": "No hay respuesta mirando hacia arriba copias de c\u00f3digo de barras",
+    "AUTO_th_call_number": "N\u00famero de llamada",
+    "FOR": "para",
+    "AUTO_th_copy_location": "Copiar ubicaci\u00f3n",
+    "AUTO_owning_lib_selector": "Ver la lista de tracci\u00f3n para la biblioteca:",
+    "AUTO_interval_in_days": "Lista para este n\u00famero de dias, por lo tanto generar ",
+    "AUTO_th_title_or_name": "T\u00edtulo o nombre",
+    "AUTO_th_barcode": "C\u00f3digo de barras",
+    "PULL_LIST_NO_RESPONSE": "No hay respuesta del servidor tratando de conseguir lista desplegable",
+    "COPY_MISSING": "Error inesperado: No hay informaci\u00f3n por copia: ",
+    "AUTO_ATTR_VALUE_fetch": "Obtener",
+    "PULL_LIST_ERROR": "Error al intentar obtener la lista desplegable: ",
+    "AT": "en",
+    "AUTO_ATTR_VALUE_print": "Imprimir",
+    "AUTO_th_pickup_lib": "Biblioteca para recolecci\u00f3n",
+    "AUTO_th_resv_details": "Detalles de reserva",
+    "COPY_LOOKUP_ERROR": "Error al buscar copias de c\u00f3digo de barras: ",
+    "AUTO_no_results": "No hay resultados.",
+    "AUTO_pull_list_title": "Lista de puesta de reserva"
+}

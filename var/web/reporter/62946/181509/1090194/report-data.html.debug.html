@@ -1,0 +1,601 @@
+<html><head><meta charset='utf-8'><title>DEBUG: OCRL FY20 Childrens Circ</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" AS "Library",
+	"3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" AS "Circ Modifier",
+	COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") AS "Count"
+  FROM	reporter.classic_current_circ AS "3ab8a993e187c3fada2b60d37eeac5d3"
+  WHERE	date("3ab8a993e187c3fada2b60d37eeac5d3"."xact_start") BETWEEN $_18656$2019-07-01$_18656$ AND $_18656$2020-06-30$_18656$
+	AND "3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib_id" IN ($_18656$198$_18656$,$_18656$199$_18656$,$_18656$200$_18656$,$_18656$201$_18656$,$_18656$202$_18656$)
+	AND "3ab8a993e187c3fada2b60d37eeac5d3"."shelving_location" = $_18656$JUV$_18656$
+  GROUP BY 1, 2
+  ORDER BY "3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" ASC, "3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" ASC, COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 1248,
+          'name' => 'Childrens Circulation by Circ Modifier (by Shelving Loc =JUV)',
+          'owner' => 2134611,
+          'id' => 62946,
+          'create_time' => '2015-07-09 15:24:08.487167-04',
+          'data' => '{"version":4,"doc_url":"","core_class":"rccc","select":[{"alias":"Library","field_doc":"","column":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_lib","relation":"3ab8a993e187c3fada2b60d37eeac5d3"},{"alias":"Circ Modifier","field_doc":"","column":{"colname":"circ_modifier","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_modifier","relation":"3ab8a993e187c3fada2b60d37eeac5d3"},{"alias":"Count","field_doc":"","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"rccc-id","relation":"3ab8a993e187c3fada2b60d37eeac5d3"}],"from":{"path":"rccc","table":"reporter.classic_current_circ","label":"Classic Circulation View","alias":"3ab8a993e187c3fada2b60d37eeac5d3","idlclass":"rccc","template_path":"rccc"},"where":[{"alias":"Circulation Date/Time","field_doc":"","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccc-xact_start","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"between":"::P0"}},{"alias":"Library Circulation Location Link","field_doc":"","column":{"colname":"circ_lib_id","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_lib_id","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"in":"::P1"}},{"alias":"Shelving Location","field_doc":"","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-shelving_location","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"=":"JUV"}}],"having":[],"order_by":[],"rel_cache":{"3ab8a993e187c3fada2b60d37eeac5d3":{"label":"Classic Circulation View","alias":"3ab8a993e187c3fada2b60d37eeac5d3","path":"rccc","reltype":"","idlclass":"rccc","table":"reporter.classic_current_circ","fields":{"dis_tab":{"circ_lib":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data","alias":"Library","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"id":{"colname":"id","transform":"count_distinct","aggregate":"true","params":"undefined","transform_label":"Count Distinct","alias":"Count","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"circ_modifier":{"colname":"circ_modifier","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Circ Modifier","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"xact_start":{"colname":"xact_start","transform":"date","transform_label":"Date","alias":"Circulation Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""},"circ_lib_id":{"colname":"circ_lib_id","transform":"Bare","transform_label":"Raw Data","alias":"Library Circulation Location Link","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""},"shelving_location":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data","alias":"Shelving Location","datatype":"text","op":"=","op_label":"Equals","op_value":{"value":"JUV","label":"\\"JUV\\""},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"circ_lib"},{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"circ_modifier"},{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"id"}]}}',
+          'description' => ''
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'version' => 4,
+          'doc_url' => '',
+          'select' => [
+                        {
+                          'path' => 'rccc-circ_lib',
+                          'alias' => 'Library',
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'circ_lib'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Circ Modifier',
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'path' => 'rccc-circ_modifier',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'circ_modifier',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct'
+                                      },
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'alias' => 'Count',
+                          'path' => 'rccc-id'
+                        }
+                      ],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                             'field' => 'circ_lib'
+                                           },
+                                           {
+                                             'field' => 'circ_modifier',
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                                           }
+                                         ],
+                           '3ab8a993e187c3fada2b60d37eeac5d3' => {
+                                                                   'idlclass' => 'rccc',
+                                                                   'label' => 'Classic Circulation View',
+                                                                   'reltype' => '',
+                                                                   'alias' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                                                   'path' => 'rccc',
+                                                                   'table' => 'reporter.classic_current_circ',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'field_doc' => '',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'colname' => 'id',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'op' => '=',
+                                                                                                          'alias' => 'Count',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'params' => 'undefined'
+                                                                                                        },
+                                                                                                'circ_lib' => {
+                                                                                                                'op' => '=',
+                                                                                                                'alias' => 'Library',
+                                                                                                                'datatype' => 'text',
+                                                                                                                'op_label' => 'Equals',
+                                                                                                                'transform_label' => 'Raw Data',
+                                                                                                                'colname' => 'circ_lib',
+                                                                                                                'transform' => 'Bare',
+                                                                                                                'field_doc' => '',
+                                                                                                                'op_value' => {}
+                                                                                                              },
+                                                                                                'circ_modifier' => {
+                                                                                                                     'op' => '=',
+                                                                                                                     'datatype' => 'text',
+                                                                                                                     'alias' => 'Circ Modifier',
+                                                                                                                     'params' => undef,
+                                                                                                                     'join' => '',
+                                                                                                                     'op_label' => 'Equals',
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'transform_label' => 'Raw Data',
+                                                                                                                     'colname' => 'circ_modifier',
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {}
+                                                                                                                   }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'xact_start' => {
+                                                                                                                     'op' => 'between',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Circulation Date/Time',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'xact_start',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {}
+                                                                                                                   },
+                                                                                                   'circ_lib_id' => {
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'colname' => 'circ_lib_id',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'field_doc' => '',
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'datatype' => 'org_unit',
+                                                                                                                      'alias' => 'Library Circulation Location Link',
+                                                                                                                      'op' => 'in',
+                                                                                                                      'op_label' => 'In list'
+                                                                                                                    },
+                                                                                                   'shelving_location' => {
+                                                                                                                            'datatype' => 'text',
+                                                                                                                            'alias' => 'Shelving Location',
+                                                                                                                            'op' => '=',
+                                                                                                                            'op_label' => 'Equals',
+                                                                                                                            'colname' => 'shelving_location',
+                                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                                            'transform' => 'Bare',
+                                                                                                                            'op_value' => {
+                                                                                                                                            'label' => '"JUV"',
+                                                                                                                                            'value' => 'JUV'
+                                                                                                                                          },
+                                                                                                                            'field_doc' => ''
+                                                                                                                          }
+                                                                                                 }
+                                                                               }
+                                                                 }
+                         },
+          'order_by' => [],
+          'core_class' => 'rccc',
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'xact_start'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'path' => 'rccc-xact_start',
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'circ_lib_id'
+                                     },
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                         'alias' => 'Library Circulation Location Link',
+                         'path' => 'rccc-circ_lib_id',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        }
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'shelving_location'
+                                     },
+                         'condition' => {
+                                          '=' => 'JUV'
+                                        },
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                         'alias' => 'Shelving Location',
+                         'path' => 'rccc-shelving_location'
+                       }
+                     ],
+          'from' => {
+                      'alias' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                      'path' => 'rccc',
+                      'table' => 'reporter.classic_current_circ',
+                      'template_path' => 'rccc',
+                      'idlclass' => 'rccc',
+                      'label' => 'Classic Circulation View'
+                    },
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":["2019-07-01","2020-06-30"],"P1":["198","199","200","201","202"],"__pivot_label":"","__pivot_data":"3"}',
+          'recurrence' => '1 day',
+          'folder' => 1296,
+          'owner' => 2134611,
+          'template' => {
+                          'folder' => 1248,
+                          'name' => 'Childrens Circulation by Circ Modifier (by Shelving Loc =JUV)',
+                          'owner' => 2134611,
+                          'id' => 62946,
+                          'create_time' => '2015-07-09 15:24:08.487167-04',
+                          'data' => '{"version":4,"doc_url":"","core_class":"rccc","select":[{"alias":"Library","field_doc":"","column":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_lib","relation":"3ab8a993e187c3fada2b60d37eeac5d3"},{"alias":"Circ Modifier","field_doc":"","column":{"colname":"circ_modifier","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_modifier","relation":"3ab8a993e187c3fada2b60d37eeac5d3"},{"alias":"Count","field_doc":"","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"rccc-id","relation":"3ab8a993e187c3fada2b60d37eeac5d3"}],"from":{"path":"rccc","table":"reporter.classic_current_circ","label":"Classic Circulation View","alias":"3ab8a993e187c3fada2b60d37eeac5d3","idlclass":"rccc","template_path":"rccc"},"where":[{"alias":"Circulation Date/Time","field_doc":"","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccc-xact_start","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"between":"::P0"}},{"alias":"Library Circulation Location Link","field_doc":"","column":{"colname":"circ_lib_id","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-circ_lib_id","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"in":"::P1"}},{"alias":"Shelving Location","field_doc":"","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data"},"path":"rccc-shelving_location","relation":"3ab8a993e187c3fada2b60d37eeac5d3","condition":{"=":"JUV"}}],"having":[],"order_by":[],"rel_cache":{"3ab8a993e187c3fada2b60d37eeac5d3":{"label":"Classic Circulation View","alias":"3ab8a993e187c3fada2b60d37eeac5d3","path":"rccc","reltype":"","idlclass":"rccc","table":"reporter.classic_current_circ","fields":{"dis_tab":{"circ_lib":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data","alias":"Library","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"id":{"colname":"id","transform":"count_distinct","aggregate":"true","params":"undefined","transform_label":"Count Distinct","alias":"Count","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"circ_modifier":{"colname":"circ_modifier","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Circ Modifier","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"xact_start":{"colname":"xact_start","transform":"date","transform_label":"Date","alias":"Circulation Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""},"circ_lib_id":{"colname":"circ_lib_id","transform":"Bare","transform_label":"Raw Data","alias":"Library Circulation Location Link","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""},"shelving_location":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data","alias":"Shelving Location","datatype":"text","op":"=","op_label":"Equals","op_value":{"value":"JUV","label":"\\"JUV\\""},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"circ_lib"},{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"circ_modifier"},{"relation":"3ab8a993e187c3fada2b60d37eeac5d3","field":"id"}]}}',
+                          'description' => ''
+                        },
+          'id' => 181509,
+          'description' => '',
+          'create_time' => '2020-08-05 16:57:26.723001-04',
+          'recur' => 0,
+          'name' => 'OCRL FY20 Childrens Circ'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'version' => 4,
+          'doc_url' => '',
+          'select' => [
+                        {
+                          'path' => 'rccc-circ_lib',
+                          'alias' => 'Library',
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'circ_lib'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Circ Modifier',
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'path' => 'rccc-circ_modifier',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'circ_modifier',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct'
+                                      },
+                          'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                          'alias' => 'Count',
+                          'path' => 'rccc-id'
+                        }
+                      ],
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                             'field' => 'circ_lib'
+                                           },
+                                           {
+                                             'field' => 'circ_modifier',
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                                           }
+                                         ],
+                           '3ab8a993e187c3fada2b60d37eeac5d3' => {
+                                                                   'idlclass' => 'rccc',
+                                                                   'label' => 'Classic Circulation View',
+                                                                   'reltype' => '',
+                                                                   'alias' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                                                   'path' => 'rccc',
+                                                                   'table' => 'reporter.classic_current_circ',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'field_doc' => '',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'colname' => 'id',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'op' => '=',
+                                                                                                          'alias' => 'Count',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'params' => 'undefined'
+                                                                                                        },
+                                                                                                'circ_lib' => {
+                                                                                                                'op' => '=',
+                                                                                                                'alias' => 'Library',
+                                                                                                                'datatype' => 'text',
+                                                                                                                'op_label' => 'Equals',
+                                                                                                                'transform_label' => 'Raw Data',
+                                                                                                                'colname' => 'circ_lib',
+                                                                                                                'transform' => 'Bare',
+                                                                                                                'field_doc' => '',
+                                                                                                                'op_value' => {}
+                                                                                                              },
+                                                                                                'circ_modifier' => {
+                                                                                                                     'op' => '=',
+                                                                                                                     'datatype' => 'text',
+                                                                                                                     'alias' => 'Circ Modifier',
+                                                                                                                     'params' => undef,
+                                                                                                                     'join' => '',
+                                                                                                                     'op_label' => 'Equals',
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'transform_label' => 'Raw Data',
+                                                                                                                     'colname' => 'circ_modifier',
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {}
+                                                                                                                   }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'xact_start' => {
+                                                                                                                     'op' => 'between',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Circulation Date/Time',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'xact_start',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {}
+                                                                                                                   },
+                                                                                                   'circ_lib_id' => {
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'colname' => 'circ_lib_id',
+                                                                                                                      'op_value' => {},
+                                                                                                                      'field_doc' => '',
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'datatype' => 'org_unit',
+                                                                                                                      'alias' => 'Library Circulation Location Link',
+                                                                                                                      'op' => 'in',
+                                                                                                                      'op_label' => 'In list'
+                                                                                                                    },
+                                                                                                   'shelving_location' => {
+                                                                                                                            'datatype' => 'text',
+                                                                                                                            'alias' => 'Shelving Location',
+                                                                                                                            'op' => '=',
+                                                                                                                            'op_label' => 'Equals',
+                                                                                                                            'colname' => 'shelving_location',
+                                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                                            'transform' => 'Bare',
+                                                                                                                            'op_value' => {
+                                                                                                                                            'label' => '"JUV"',
+                                                                                                                                            'value' => 'JUV'
+                                                                                                                                          },
+                                                                                                                            'field_doc' => ''
+                                                                                                                          }
+                                                                                                 }
+                                                                               }
+                                                                 }
+                         },
+          'order_by' => [],
+          'core_class' => 'rccc',
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'xact_start'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'path' => 'rccc-xact_start',
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3'
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'circ_lib_id'
+                                     },
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                         'alias' => 'Library Circulation Location Link',
+                         'path' => 'rccc-circ_lib_id',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        }
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'shelving_location'
+                                     },
+                         'condition' => {
+                                          '=' => 'JUV'
+                                        },
+                         'relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                         'alias' => 'Shelving Location',
+                         'path' => 'rccc-shelving_location'
+                       }
+                     ],
+          'from' => {
+                      'alias' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                      'path' => 'rccc',
+                      'table' => 'reporter.classic_current_circ',
+                      'template_path' => 'rccc',
+                      'idlclass' => 'rccc',
+                      'label' => 'Classic Circulation View'
+                    },
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-05 16:57:26.723001-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [],
+                 '_builder' => bless( {
+                                        '_resultset_limit' => 1048575,
+                                        '_sql' => undef,
+                                        '_pivot_data' => '3',
+                                        '_params' => {
+                                                       'P0' => [
+                                                                 '2019-07-01',
+                                                                 '2020-06-30'
+                                                               ],
+                                                       'P1' => [
+                                                                 '198',
+                                                                 '199',
+                                                                 '200',
+                                                                 '201',
+                                                                 '202'
+                                                               ],
+                                                       '__pivot_label' => '',
+                                                       '__pivot_data' => '3'
+                                                     },
+                                        '_rels' => {
+                                                     '3ab8a993e187c3fada2b60d37eeac5d3' => bless( {
+                                                                                                    '_alias' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                                                                                    '_sql' => 'reporter.classic_current_circ AS "3ab8a993e187c3fada2b60d37eeac5d3"',
+                                                                                                    '_join' => [],
+                                                                                                    '_columns' => [],
+                                                                                                    '_table' => 'reporter.classic_current_circ',
+                                                                                                    '_builder' => $VAR1->{'_builder'}
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_relative_time' => '2020-08-05 16:57:26.723001-04'
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_sql' => 'SELECT * FROM (SELECT	"3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" AS "Library",
+	"3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" AS "Circ Modifier",
+	COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") AS "Count"
+  FROM	reporter.classic_current_circ AS "3ab8a993e187c3fada2b60d37eeac5d3"
+  WHERE	date("3ab8a993e187c3fada2b60d37eeac5d3"."xact_start") BETWEEN $_18656$2019-07-01$_18656$ AND $_18656$2020-06-30$_18656$
+	AND "3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib_id" IN ($_18656$198$_18656$,$_18656$199$_18656$,$_18656$200$_18656$,$_18656$201$_18656$,$_18656$202$_18656$)
+	AND "3ab8a993e187c3fada2b60d37eeac5d3"."shelving_location" = $_18656$JUV$_18656$
+  GROUP BY 1, 2
+  ORDER BY "3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" ASC, "3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" ASC, COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_sql' => 'date("3ab8a993e187c3fada2b60d37eeac5d3"."xact_start") BETWEEN $_18656$2019-07-01$_18656$ AND $_18656$2020-06-30$_18656$',
+                                        '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                        '_column' => {
+                                                       'colname' => 'xact_start',
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date'
+                                                     },
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'GenericTransform'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                        '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib_id" IN ($_18656$198$_18656$,$_18656$199$_18656$,$_18656$200$_18656$,$_18656$201$_18656$,$_18656$202$_18656$)',
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'circ_lib_id'
+                                                     },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'colname' => 'shelving_location',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'JUV'
+                                                        },
+                                        '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                        '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."shelving_location" = $_18656$JUV$_18656$',
+                                        '_builder' => $VAR1->{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" AS "Library"',
+                                         '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                         '_alias' => 'Library',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'circ_lib'
+                                                      },
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                         '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" AS "Circ Modifier"',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'circ_modifier',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Circ Modifier',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'count_distinct',
+                                         '_alias' => 'Count',
+                                         '_column' => {
+                                                        'transform' => 'count_distinct',
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count Distinct'
+                                                      },
+                                         '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                         '_sql' => 'COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") AS "Count"',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'3ab8a993e187c3fada2b60d37eeac5d3'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."circ_lib" ASC',
+                                           '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                           '_sql' => '"3ab8a993e187c3fada2b60d37eeac5d3"."circ_modifier" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending',
+                                           '_relation' => '3ab8a993e187c3fada2b60d37eeac5d3',
+                                           '_sql' => 'COUNT(DISTINCT "3ab8a993e187c3fada2b60d37eeac5d3"."id") ASC',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_transform' => 'count_distinct',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

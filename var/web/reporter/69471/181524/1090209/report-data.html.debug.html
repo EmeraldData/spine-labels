@@ -1,0 +1,1305 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 Noncat Circs!!!</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"d9da41c963a7ac7f9481e6239a8ec66e"."shortname" AS "Short (Policy) Name",
+	(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) AS "Circulation Date/Time",
+	"d4a61ae1632d1eefcce1db7481e8700f"."name" AS "Name",
+	COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"
+  FROM	action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "d4a61ae1632d1eefcce1db7481e8700f" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "d4a61ae1632d1eefcce1db7481e8700f"."id")
+	INNER JOIN actor.org_unit AS "d9da41c963a7ac7f9481e6239a8ec66e" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "d9da41c963a7ac7f9481e6239a8ec66e"."id")
+  WHERE	"d4a61ae1632d1eefcce1db7481e8700f"."in_house" = $_56192$f$_56192$
+	AND "d9da41c963a7ac7f9481e6239a8ec66e"."id" IN ($_56192$198$_56192$,$_56192$199$_56192$,$_56192$200$_56192$,$_56192$201$_56192$,$_56192$202$_56192$)
+	AND (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) BETWEEN $_56192$2019-07$_56192$ AND $_56192$2020-06$_56192$
+  GROUP BY 1, 2, 3
+  ORDER BY "d9da41c963a7ac7f9481e6239a8ec66e"."shortname" ASC, (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) ASC, "d4a61ae1632d1eefcce1db7481e8700f"."name" ASC, COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'id' => 69471,
+          'data' => '{"version":5,"core_class":"ancc","select":[{"alias":"Short (Policy) Name","path":"aou-shortname","field_doc":"","relation":"d9da41c963a7ac7f9481e6239a8ec66e","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circulation Date/Time","path":"ancc-circ_time","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","aggregate":false}},{"alias":"Name","path":"cnct-name","field_doc":"","relation":"d4a61ae1632d1eefcce1db7481e8700f","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Non-cat Circulation ID","path":"ancc-id","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct","aggregate":true}}],"from":{"alias":"66107b0e23d6e1c4ec919c0dc8998de4","path":"ancc-ancc","table":"action.non_cataloged_circulation","idlclass":"ancc","join":{"circ_lib-4638ced280de3bfd1dc42b004109531c":{"type":"inner","key":"id","alias":"d9da41c963a7ac7f9481e6239a8ec66e","path":"ancc-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Non-cataloged Circulation -> Circulating Library (inner)"},"item_type-418621e690c7da8d2c4743e80df9fb30":{"type":"inner","key":"id","alias":"d4a61ae1632d1eefcce1db7481e8700f","path":"ancc-item_type","table":"config.non_cataloged_type","idlclass":"cnct","label":"Non-cataloged Circulation -> Non-cat Item Type (inner)"}},"label":"Non-cataloged Circulation"},"where":[{"alias":"In House?","path":"cnct-in_house","field_doc":"","relation":"d4a61ae1632d1eefcce1db7481e8700f","column":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"d9da41c963a7ac7f9481e6239a8ec66e","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P1"}},{"alias":"Circulation Date/Time","path":"ancc-circ_time","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","aggregate":0},"condition":{"between":"::P2"}}],"having":[],"display_cols":[{"name":"shortname","label":"Short (Policy) Name","required":true,"datatype":"text","index":0,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Circulating Library","from":"ancc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ancc.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Non-cataloged Circulation -> Circulating Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"circ_time","label":"Circulation Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","transform":{"transform":"month_trunc","label":"Year + Month","aggregate":false},"doc_text":""},{"name":"name","label":"Name","i18n":true,"datatype":"text","index":2,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Non-cat Item Type","from":"ancc","link":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"id":"ancc.cnct","jtype":"inner","uplink":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"classname":"cnct","struct":{"name":"cnct","label":"Non-cataloged Type","table":"config.non_cataloged_type","pkey":"id","pkey_sequence":"config.non_cataloged_type_id_seq","core_label":"Non-core sources","classname":"cnct"},"table":"config.non_cataloged_type"}],"path_label":"Non-cataloged Circulation -> Non-cat Item Type (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Non-cat Circulation ID","datatype":"id","index":3,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","transform":{"label":"Count Distinct","transform":"count_distinct","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"in_house","label":"In House?","datatype":"bool","index":0,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Non-cat Item Type","from":"ancc","link":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"id":"ancc.cnct","jtype":"inner","uplink":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"classname":"cnct","struct":{"name":"cnct","label":"Non-cataloged Type","table":"config.non_cataloged_type","pkey":"id","pkey_sequence":"config.non_cataloged_type_id_seq","core_label":"Non-core sources","classname":"cnct"},"table":"config.non_cataloged_type"}],"path_label":"Non-cataloged Circulation -> Non-cat Item Type (inner)","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":1,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Circulating Library","from":"ancc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ancc.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Non-cataloged Circulation -> Circulating Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"circ_time","label":"Circulation Date/Time","datatype":"timestamp","index":2,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","operator":{"label":"Between","op":"between"},"transform":{"label":"Year + Month","transform":"month_trunc","aggregate":false},"doc_text":""}]}',
+          'description' => '2020 Template',
+          'create_time' => '2020-08-14 15:06:35.713793-04',
+          'owner' => 2134611,
+          'name' => 'FY NonCat Circs',
+          'folder' => 1248
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'cnct-in_house',
+                         'alias' => 'In House?',
+                         'relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'in_house',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                         'alias' => 'Organizational Unit ID',
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'circ_time',
+                                       'transform_label' => 'Year + Month',
+                                       'transform' => 'month_trunc',
+                                       'aggregate' => 0
+                                     },
+                         'condition' => {
+                                          'between' => '::P2'
+                                        },
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'path' => 'ancc-circ_time'
+                       }
+                     ],
+          'from' => {
+                      'path' => 'ancc-ancc',
+                      'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                      'join' => {
+                                  'item_type-418621e690c7da8d2c4743e80df9fb30' => {
+                                                                                    'table' => 'config.non_cataloged_type',
+                                                                                    'type' => 'inner',
+                                                                                    'alias' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                                                                    'path' => 'ancc-item_type',
+                                                                                    'key' => 'id',
+                                                                                    'label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                                                                                    'idlclass' => 'cnct'
+                                                                                  },
+                                  'circ_lib-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                   'label' => 'Non-cataloged Circulation -> Circulating Library (inner)',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'ancc-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 }
+                                },
+                      'table' => 'action.non_cataloged_circulation',
+                      'label' => 'Non-cataloged Circulation',
+                      'idlclass' => 'ancc'
+                    },
+          'core_class' => 'ancc',
+          'having' => [],
+          'select' => [
+                        {
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                          'path' => 'aou-shortname',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'circ_time',
+                                        'transform_label' => 'Year + Month'
+                                      },
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Circulation Date/Time',
+                          'path' => 'ancc-circ_time'
+                        },
+                        {
+                          'path' => 'cnct-name',
+                          'alias' => 'Name',
+                          'relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'count_distinct'
+                                      },
+                          'path' => 'ancc-id',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Non-cat Circulation ID'
+                        }
+                      ],
+          'display_cols' => [
+                              {
+                                'label' => 'Short (Policy) Name',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'path_label' => 'Non-cataloged Circulation -> Circulating Library (inner)',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'classname' => 'ancc',
+                                                            'name' => 'ancc',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                            'table' => 'action.non_cataloged_circulation'
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'classname' => 'ancc'
+                                            },
+                                            {
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit',
+                                                            'class' => 'aou',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Circulating Library',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib'
+                                                          },
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'name' => 'circ_lib',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'aou',
+                                                          'label' => 'Circulating Library',
+                                                          'key' => 'id'
+                                                        },
+                                              'label' => 'Circulating Library',
+                                              'jtype' => 'inner',
+                                              'id' => 'ancc.aou',
+                                              'from' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou'
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'required' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                              },
+                              {
+                                'path_label' => 'Non-cataloged Circulation',
+                                'name' => 'circ_time',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'month_trunc',
+                                                 'label' => 'Year + Month'
+                                               },
+                                'label' => 'Circulation Date/Time',
+                                'datatype' => 'timestamp',
+                                'path' => [
+                                            {
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'struct' => {
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'id' => 'ancc',
+                                              'classname' => 'ancc',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation'
+                                            }
+                                          ],
+                                'index' => 1
+                              },
+                              {
+                                'doc_text' => '',
+                                'name' => 'name',
+                                'label' => 'Name',
+                                'i18n' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path_label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                                'index' => 2,
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'classname' => 'ancc',
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'item_type',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'cnct',
+                                                            'label' => 'Non-cat Item Type',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'config.non_cataloged_type',
+                                              'struct' => {
+                                                            'label' => 'Non-cataloged Type',
+                                                            'classname' => 'cnct',
+                                                            'name' => 'cnct',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'config.non_cataloged_type_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'config.non_cataloged_type'
+                                                          },
+                                              'from' => 'ancc',
+                                              'id' => 'ancc.cnct',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cat Item Type',
+                                              'classname' => 'cnct',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'name' => 'item_type',
+                                                          'class' => 'cnct',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'label' => 'Non-cat Item Type'
+                                                        }
+                                            }
+                                          ],
+                                'datatype' => 'text'
+                              },
+                              {
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'ancc'
+                                            }
+                                          ],
+                                'index' => 3,
+                                'path_label' => 'Non-cataloged Circulation',
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'transform' => 'count_distinct',
+                                                 'label' => 'Count Distinct',
+                                                 'aggregate' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                               },
+                                'label' => 'Non-cat Circulation ID'
+                              }
+                            ],
+          'filter_cols' => [
+                             {
+                               'name' => 'in_house',
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'label' => 'In House?',
+                               'path_label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                               'index' => 0,
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'datatype' => 'bool',
+                               'path' => [
+                                           {
+                                             'label' => 'Non-cataloged Circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'ancc',
+                                             'struct' => {
+                                                           'name' => 'ancc',
+                                                           'classname' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'id' => 'ancc'
+                                           },
+                                           {
+                                             'table' => 'config.non_cataloged_type',
+                                             'uplink' => {
+                                                           'name' => 'item_type',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'class' => 'cnct',
+                                                           'label' => 'Non-cat Item Type',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'ancc.cnct',
+                                             'from' => 'ancc',
+                                             'struct' => {
+                                                           'classname' => 'cnct',
+                                                           'label' => 'Non-cataloged Type',
+                                                           'name' => 'cnct',
+                                                           'pkey' => 'id',
+                                                           'table' => 'config.non_cataloged_type',
+                                                           'pkey_sequence' => 'config.non_cataloged_type_id_seq',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'classname' => 'cnct',
+                                             'link' => {
+                                                         'name' => 'item_type',
+                                                         'class' => 'cnct',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Non-cat Item Type',
+                                                         'key' => 'id',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'jtype' => 'inner',
+                                             'label' => 'Non-cat Item Type'
+                                           }
+                                         ]
+                             },
+                             {
+                               'index' => 1,
+                               'selector' => 'shortname',
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Non-cataloged Circulation',
+                                             'classname' => 'ancc',
+                                             'struct' => {
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'name' => 'ancc',
+                                                           'classname' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'id' => 'ancc'
+                                           },
+                                           {
+                                             'from' => 'ancc',
+                                             'id' => 'ancc.aou',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'label' => 'Organizational Unit',
+                                                           'classname' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulating Library',
+                                             'link' => {
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'aou',
+                                                         'key' => 'id',
+                                                         'label' => 'Circulating Library',
+                                                         'name' => 'circ_lib'
+                                                       },
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'aou',
+                                                           'label' => 'Circulating Library',
+                                                           'name' => 'circ_lib',
+                                                           'type' => 'link',
+                                                           'datatype' => 'org_unit'
+                                                         },
+                                             'table' => 'actor.org_unit'
+                                           }
+                                         ],
+                               'datatype' => 'org_unit',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'doc_text' => '',
+                               'name' => 'id',
+                               'path_label' => 'Non-cataloged Circulation -> Circulating Library (inner)'
+                             },
+                             {
+                               'path_label' => 'Non-cataloged Circulation',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'month_trunc',
+                                                'label' => 'Year + Month'
+                                              },
+                               'label' => 'Circulation Date/Time',
+                               'name' => 'circ_time',
+                               'doc_text' => '',
+                               'datatype' => 'timestamp',
+                               'path' => [
+                                           {
+                                             'id' => 'ancc',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'classname' => 'ancc'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'label' => 'Non-cataloged Circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'ancc'
+                                           }
+                                         ],
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'index' => 2
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 2134611,
+          'create_time' => '2020-08-14 15:11:11.034234-04',
+          'description' => '',
+          'id' => 181524,
+          'template' => {
+                          'id' => 69471,
+                          'data' => '{"version":5,"core_class":"ancc","select":[{"alias":"Short (Policy) Name","path":"aou-shortname","field_doc":"","relation":"d9da41c963a7ac7f9481e6239a8ec66e","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circulation Date/Time","path":"ancc-circ_time","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","aggregate":false}},{"alias":"Name","path":"cnct-name","field_doc":"","relation":"d4a61ae1632d1eefcce1db7481e8700f","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Non-cat Circulation ID","path":"ancc-id","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct","aggregate":true}}],"from":{"alias":"66107b0e23d6e1c4ec919c0dc8998de4","path":"ancc-ancc","table":"action.non_cataloged_circulation","idlclass":"ancc","join":{"circ_lib-4638ced280de3bfd1dc42b004109531c":{"type":"inner","key":"id","alias":"d9da41c963a7ac7f9481e6239a8ec66e","path":"ancc-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Non-cataloged Circulation -> Circulating Library (inner)"},"item_type-418621e690c7da8d2c4743e80df9fb30":{"type":"inner","key":"id","alias":"d4a61ae1632d1eefcce1db7481e8700f","path":"ancc-item_type","table":"config.non_cataloged_type","idlclass":"cnct","label":"Non-cataloged Circulation -> Non-cat Item Type (inner)"}},"label":"Non-cataloged Circulation"},"where":[{"alias":"In House?","path":"cnct-in_house","field_doc":"","relation":"d4a61ae1632d1eefcce1db7481e8700f","column":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"d9da41c963a7ac7f9481e6239a8ec66e","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P1"}},{"alias":"Circulation Date/Time","path":"ancc-circ_time","field_doc":"","relation":"66107b0e23d6e1c4ec919c0dc8998de4","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","aggregate":0},"condition":{"between":"::P2"}}],"having":[],"display_cols":[{"name":"shortname","label":"Short (Policy) Name","required":true,"datatype":"text","index":0,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Circulating Library","from":"ancc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ancc.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Non-cataloged Circulation -> Circulating Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"circ_time","label":"Circulation Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","transform":{"transform":"month_trunc","label":"Year + Month","aggregate":false},"doc_text":""},{"name":"name","label":"Name","i18n":true,"datatype":"text","index":2,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Non-cat Item Type","from":"ancc","link":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"id":"ancc.cnct","jtype":"inner","uplink":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"classname":"cnct","struct":{"name":"cnct","label":"Non-cataloged Type","table":"config.non_cataloged_type","pkey":"id","pkey_sequence":"config.non_cataloged_type_id_seq","core_label":"Non-core sources","classname":"cnct"},"table":"config.non_cataloged_type"}],"path_label":"Non-cataloged Circulation -> Non-cat Item Type (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Non-cat Circulation ID","datatype":"id","index":3,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","transform":{"label":"Count Distinct","transform":"count_distinct","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"in_house","label":"In House?","datatype":"bool","index":0,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Non-cat Item Type","from":"ancc","link":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"id":"ancc.cnct","jtype":"inner","uplink":{"name":"item_type","label":"Non-cat Item Type","type":"link","key":"id","class":"cnct","reltype":"has_a","datatype":"link"},"classname":"cnct","struct":{"name":"cnct","label":"Non-cataloged Type","table":"config.non_cataloged_type","pkey":"id","pkey_sequence":"config.non_cataloged_type_id_seq","core_label":"Non-core sources","classname":"cnct"},"table":"config.non_cataloged_type"}],"path_label":"Non-cataloged Circulation -> Non-cat Item Type (inner)","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":1,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"},{"label":"Circulating Library","from":"ancc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ancc.aou","jtype":"inner","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Non-cataloged Circulation -> Circulating Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"circ_time","label":"Circulation Date/Time","datatype":"timestamp","index":2,"path":[{"label":"Non-cataloged Circulation","id":"ancc","jtype":"inner","classname":"ancc","struct":{"name":"ancc","label":"Non-cataloged Circulation","table":"action.non_cataloged_circulation","core":true,"pkey":"id","pkey_sequence":"action.non_cataloged_circulation_id_seq","core_label":"Core sources","classname":"ancc"},"table":"action.non_cataloged_circulation"}],"path_label":"Non-cataloged Circulation","operator":{"label":"Between","op":"between"},"transform":{"label":"Year + Month","transform":"month_trunc","aggregate":false},"doc_text":""}]}',
+                          'description' => '2020 Template',
+                          'create_time' => '2020-08-14 15:06:35.713793-04',
+                          'owner' => 2134611,
+                          'name' => 'FY NonCat Circs',
+                          'folder' => 1248
+                        },
+          'name' => 'FY20 Noncat Circs!!!',
+          'recur' => 0,
+          'data' => '{"P0":"f","P1":["198","199","200","201","202"],"P2":["2019-07","2020-06"],"__pivot_label":"","__pivot_data":"4"}',
+          'recurrence' => '1 day',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'path' => 'cnct-in_house',
+                         'alias' => 'In House?',
+                         'relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'in_house',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                         'alias' => 'Organizational Unit ID',
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'circ_time',
+                                       'transform_label' => 'Year + Month',
+                                       'transform' => 'month_trunc',
+                                       'aggregate' => 0
+                                     },
+                         'condition' => {
+                                          'between' => '::P2'
+                                        },
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'path' => 'ancc-circ_time'
+                       }
+                     ],
+          'from' => {
+                      'path' => 'ancc-ancc',
+                      'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                      'join' => {
+                                  'item_type-418621e690c7da8d2c4743e80df9fb30' => {
+                                                                                    'table' => 'config.non_cataloged_type',
+                                                                                    'type' => 'inner',
+                                                                                    'alias' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                                                                    'path' => 'ancc-item_type',
+                                                                                    'key' => 'id',
+                                                                                    'label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                                                                                    'idlclass' => 'cnct'
+                                                                                  },
+                                  'circ_lib-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                   'label' => 'Non-cataloged Circulation -> Circulating Library (inner)',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'ancc-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 }
+                                },
+                      'table' => 'action.non_cataloged_circulation',
+                      'label' => 'Non-cataloged Circulation',
+                      'idlclass' => 'ancc'
+                    },
+          'core_class' => 'ancc',
+          'having' => [],
+          'select' => [
+                        {
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                          'path' => 'aou-shortname',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'circ_time',
+                                        'transform_label' => 'Year + Month'
+                                      },
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Circulation Date/Time',
+                          'path' => 'ancc-circ_time'
+                        },
+                        {
+                          'path' => 'cnct-name',
+                          'alias' => 'Name',
+                          'relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'count_distinct'
+                                      },
+                          'path' => 'ancc-id',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Non-cat Circulation ID'
+                        }
+                      ],
+          'display_cols' => [
+                              {
+                                'label' => 'Short (Policy) Name',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'path_label' => 'Non-cataloged Circulation -> Circulating Library (inner)',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'classname' => 'ancc',
+                                                            'name' => 'ancc',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                            'table' => 'action.non_cataloged_circulation'
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'classname' => 'ancc'
+                                            },
+                                            {
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit',
+                                                            'class' => 'aou',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Circulating Library',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib'
+                                                          },
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'name' => 'circ_lib',
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'aou',
+                                                          'label' => 'Circulating Library',
+                                                          'key' => 'id'
+                                                        },
+                                              'label' => 'Circulating Library',
+                                              'jtype' => 'inner',
+                                              'id' => 'ancc.aou',
+                                              'from' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou'
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'text',
+                                'required' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                              },
+                              {
+                                'path_label' => 'Non-cataloged Circulation',
+                                'name' => 'circ_time',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'month_trunc',
+                                                 'label' => 'Year + Month'
+                                               },
+                                'label' => 'Circulation Date/Time',
+                                'datatype' => 'timestamp',
+                                'path' => [
+                                            {
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'struct' => {
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'id' => 'ancc',
+                                              'classname' => 'ancc',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation'
+                                            }
+                                          ],
+                                'index' => 1
+                              },
+                              {
+                                'doc_text' => '',
+                                'name' => 'name',
+                                'label' => 'Name',
+                                'i18n' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path_label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                                'index' => 2,
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'classname' => 'ancc',
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'item_type',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'cnct',
+                                                            'label' => 'Non-cat Item Type',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'config.non_cataloged_type',
+                                              'struct' => {
+                                                            'label' => 'Non-cataloged Type',
+                                                            'classname' => 'cnct',
+                                                            'name' => 'cnct',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'config.non_cataloged_type_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'table' => 'config.non_cataloged_type'
+                                                          },
+                                              'from' => 'ancc',
+                                              'id' => 'ancc.cnct',
+                                              'jtype' => 'inner',
+                                              'label' => 'Non-cat Item Type',
+                                              'classname' => 'cnct',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'name' => 'item_type',
+                                                          'class' => 'cnct',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'label' => 'Non-cat Item Type'
+                                                        }
+                                            }
+                                          ],
+                                'datatype' => 'text'
+                              },
+                              {
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'id' => 'ancc',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'classname' => 'ancc',
+                                                            'label' => 'Non-cataloged Circulation',
+                                                            'name' => 'ancc',
+                                                            'table' => 'action.non_cataloged_circulation',
+                                                            'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                            'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                                          },
+                                              'table' => 'action.non_cataloged_circulation',
+                                              'label' => 'Non-cataloged Circulation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'ancc'
+                                            }
+                                          ],
+                                'index' => 3,
+                                'path_label' => 'Non-cataloged Circulation',
+                                'name' => 'id',
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'transform' => 'count_distinct',
+                                                 'label' => 'Count Distinct',
+                                                 'aggregate' => $VAR1->{'select'}[3]{'column'}{'aggregate'}
+                                               },
+                                'label' => 'Non-cat Circulation ID'
+                              }
+                            ],
+          'filter_cols' => [
+                             {
+                               'name' => 'in_house',
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'label' => 'In House?',
+                               'path_label' => 'Non-cataloged Circulation -> Non-cat Item Type (inner)',
+                               'index' => 0,
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'datatype' => 'bool',
+                               'path' => [
+                                           {
+                                             'label' => 'Non-cataloged Circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'ancc',
+                                             'struct' => {
+                                                           'name' => 'ancc',
+                                                           'classname' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'id' => 'ancc'
+                                           },
+                                           {
+                                             'table' => 'config.non_cataloged_type',
+                                             'uplink' => {
+                                                           'name' => 'item_type',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'class' => 'cnct',
+                                                           'label' => 'Non-cat Item Type',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'ancc.cnct',
+                                             'from' => 'ancc',
+                                             'struct' => {
+                                                           'classname' => 'cnct',
+                                                           'label' => 'Non-cataloged Type',
+                                                           'name' => 'cnct',
+                                                           'pkey' => 'id',
+                                                           'table' => 'config.non_cataloged_type',
+                                                           'pkey_sequence' => 'config.non_cataloged_type_id_seq',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'classname' => 'cnct',
+                                             'link' => {
+                                                         'name' => 'item_type',
+                                                         'class' => 'cnct',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Non-cat Item Type',
+                                                         'key' => 'id',
+                                                         'type' => 'link',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'jtype' => 'inner',
+                                             'label' => 'Non-cat Item Type'
+                                           }
+                                         ]
+                             },
+                             {
+                               'index' => 1,
+                               'selector' => 'shortname',
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'label' => 'Non-cataloged Circulation',
+                                             'classname' => 'ancc',
+                                             'struct' => {
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'name' => 'ancc',
+                                                           'classname' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'id' => 'ancc'
+                                           },
+                                           {
+                                             'from' => 'ancc',
+                                             'id' => 'ancc.aou',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit',
+                                                           'pkey' => 'id',
+                                                           'name' => 'aou',
+                                                           'label' => 'Organizational Unit',
+                                                           'classname' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Circulating Library',
+                                             'link' => {
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'class' => 'aou',
+                                                         'key' => 'id',
+                                                         'label' => 'Circulating Library',
+                                                         'name' => 'circ_lib'
+                                                       },
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'aou',
+                                                           'label' => 'Circulating Library',
+                                                           'name' => 'circ_lib',
+                                                           'type' => 'link',
+                                                           'datatype' => 'org_unit'
+                                                         },
+                                             'table' => 'actor.org_unit'
+                                           }
+                                         ],
+                               'datatype' => 'org_unit',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'label' => 'Organizational Unit ID',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'doc_text' => '',
+                               'name' => 'id',
+                               'path_label' => 'Non-cataloged Circulation -> Circulating Library (inner)'
+                             },
+                             {
+                               'path_label' => 'Non-cataloged Circulation',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'month_trunc',
+                                                'label' => 'Year + Month'
+                                              },
+                               'label' => 'Circulation Date/Time',
+                               'name' => 'circ_time',
+                               'doc_text' => '',
+                               'datatype' => 'timestamp',
+                               'path' => [
+                                           {
+                                             'id' => 'ancc',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'action.non_cataloged_circulation_id_seq',
+                                                           'core' => $VAR1->{'select'}[3]{'column'}{'aggregate'},
+                                                           'table' => 'action.non_cataloged_circulation',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ancc',
+                                                           'label' => 'Non-cataloged Circulation',
+                                                           'classname' => 'ancc'
+                                                         },
+                                             'table' => 'action.non_cataloged_circulation',
+                                             'label' => 'Non-cataloged Circulation',
+                                             'jtype' => 'inner',
+                                             'classname' => 'ancc'
+                                           }
+                                         ],
+                               'operator' => {
+                                               'op' => 'between',
+                                               'label' => 'Between'
+                                             },
+                               'index' => 2
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-14 15:11:11.034234-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	"d9da41c963a7ac7f9481e6239a8ec66e"."shortname" AS "Short (Policy) Name",
+	(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) AS "Circulation Date/Time",
+	"d4a61ae1632d1eefcce1db7481e8700f"."name" AS "Name",
+	COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"
+  FROM	action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "d4a61ae1632d1eefcce1db7481e8700f" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "d4a61ae1632d1eefcce1db7481e8700f"."id")
+	INNER JOIN actor.org_unit AS "d9da41c963a7ac7f9481e6239a8ec66e" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "d9da41c963a7ac7f9481e6239a8ec66e"."id")
+  WHERE	"d4a61ae1632d1eefcce1db7481e8700f"."in_house" = $_56192$f$_56192$
+	AND "d9da41c963a7ac7f9481e6239a8ec66e"."id" IN ($_56192$198$_56192$,$_56192$199$_56192$,$_56192$200$_56192$,$_56192$201$_56192$,$_56192$202$_56192$)
+	AND (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) BETWEEN $_56192$2019-07$_56192$ AND $_56192$2020-06$_56192$
+  GROUP BY 1, 2, 3
+  ORDER BY "d9da41c963a7ac7f9481e6239a8ec66e"."shortname" ASC, (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) ASC, "d4a61ae1632d1eefcce1db7481e8700f"."name" ASC, COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_builder' => bless( {
+                                        '_pivot_data' => '4',
+                                        '_params' => {
+                                                       '__pivot_data' => '4',
+                                                       '__pivot_label' => '',
+                                                       'P2' => [
+                                                                 '2019-07',
+                                                                 '2020-06'
+                                                               ],
+                                                       'P1' => [
+                                                                 '198',
+                                                                 '199',
+                                                                 '200',
+                                                                 '201',
+                                                                 '202'
+                                                               ],
+                                                       'P0' => 'f'
+                                                     },
+                                        '_rels' => {
+                                                     'd4a61ae1632d1eefcce1db7481e8700f' => bless( {
+                                                                                                    '_alias' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [],
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_sql' => 'config.non_cataloged_type AS "d4a61ae1632d1eefcce1db7481e8700f"',
+                                                                                                    '_table' => 'config.non_cataloged_type',
+                                                                                                    '_join_type' => 'inner'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'd9da41c963a7ac7f9481e6239a8ec66e' => bless( {
+                                                                                                    '_sql' => 'actor.org_unit AS "d9da41c963a7ac7f9481e6239a8ec66e"',
+                                                                                                    '_table' => 'actor.org_unit',
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_alias' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [],
+                                                                                                    '_is_join' => 1
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     '66107b0e23d6e1c4ec919c0dc8998de4' => bless( {
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_left_col' => 'item_type',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_sql' => '
+	INNER JOIN config.non_cataloged_type AS "d4a61ae1632d1eefcce1db7481e8700f" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "d4a61ae1632d1eefcce1db7481e8700f"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'d4a61ae1632d1eefcce1db7481e8700f'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_left_col' => 'circ_lib',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'d9da41c963a7ac7f9481e6239a8ec66e'},
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "d9da41c963a7ac7f9481e6239a8ec66e" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "d9da41c963a7ac7f9481e6239a8ec66e"."id")'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_columns' => [],
+                                                                                                    '_table' => 'action.non_cataloged_circulation',
+                                                                                                    '_sql' => 'action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "d4a61ae1632d1eefcce1db7481e8700f" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "d4a61ae1632d1eefcce1db7481e8700f"."id")
+	INNER JOIN actor.org_unit AS "d9da41c963a7ac7f9481e6239a8ec66e" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "d9da41c963a7ac7f9481e6239a8ec66e"."id")',
+                                                                                                    '_alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                                                                                    '_nullable' => undef
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_relative_time' => '2020-08-14 15:11:11.034234-04',
+                                        '_resultset_limit' => 1048575,
+                                        '_sql' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_having' => [],
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                           '_sql' => '"d9da41c963a7ac7f9481e6239a8ec66e"."shortname" ASC',
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'month_trunc',
+                                           '_column' => {
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'month_trunc',
+                                                          'colname' => 'circ_time',
+                                                          'transform_label' => 'Year + Month'
+                                                        },
+                                           '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                           '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'name',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'}
+                                                        },
+                                           '_relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                           '_sql' => '"d4a61ae1632d1eefcce1db7481e8700f"."name" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'count_distinct',
+                                           '_sql' => 'COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC',
+                                           '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                           '_column' => {
+                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                          'transform' => 'count_distinct',
+                                                          'colname' => 'id',
+                                                          'transform_label' => 'Count Distinct'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                 '_select' => [
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_sql' => '"d9da41c963a7ac7f9481e6239a8ec66e"."shortname" AS "Short (Policy) Name"',
+                                         '_relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Short (Policy) Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_alias' => 'Circulation Date/Time',
+                                         '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                         '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) AS "Circulation Date/Time"',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'month_trunc'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Name',
+                                         '_sql' => '"d4a61ae1632d1eefcce1db7481e8700f"."name" AS "Name"',
+                                         '_relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'count_distinct',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'},
+                                         '_alias' => 'Non-cat Circulation ID',
+                                         '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                         '_sql' => 'COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_relation' => 'd4a61ae1632d1eefcce1db7481e8700f',
+                                        '_sql' => '"d4a61ae1632d1eefcce1db7481e8700f"."in_house" = $_56192$f$_56192$',
+                                        '_condition' => {
+                                                          '=' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'in_house',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id',
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_sql' => '"d9da41c963a7ac7f9481e6239a8ec66e"."id" IN ($_56192$198$_56192$,$_56192$199$_56192$,$_56192$200$_56192$,$_56192$201$_56192$,$_56192$202$_56192$)',
+                                        '_relation' => 'd9da41c963a7ac7f9481e6239a8ec66e',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_transform' => 'month_trunc',
+                                        '_column' => {
+                                                       'transform' => 'month_trunc',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Year + Month',
+                                                       'colname' => 'circ_time'
+                                                     },
+                                        '_condition' => {
+                                                          'between' => '::P2'
+                                                        },
+                                        '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                        '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) BETWEEN $_56192$2019-07$_56192$ AND $_56192$2020-06$_56192$',
+                                        '_builder' => $VAR1->{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

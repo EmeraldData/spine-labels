@@ -1,0 +1,49 @@
+[%  
+    PROCESS "opac/parts/header.tt2";
+    PROCESS "kpac/parts/grid.tt2";
+	PROCESS "opac/parts/org_selector.tt2";
+    WRAPPER "kpac/parts/base.tt2";
+    ctx.page_title = l("Home") 
+%]
+
+            <div class="search_wrapper">
+                <h1>Search the Libraries</h1>
+                <form action="[% ctx.kpac_root _ '/results' %]">
+                    [% qtype = CGI.param('qtype') %]
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" class="search_box_wrapper" style="margin-top:0px;">
+                        <tr>
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="keyword" id="st_word" class="st_word" 
+                                [% IF !qtype OR qtype == 'keyword' %]checked="checked"[% END %]/></td>
+                            <td class="st_label"><label for="st_word">Word</label></td>
+
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="title" id="st_title" class="st_title" 
+                                [% IF qtype == 'title' %]checked="checked"[% END %]/></td>
+                            <td class="st_label"><label for="st_title">Title</label></td>
+
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="author" id="st_author" class="st_author"
+                                [% IF qtype == 'author' %]checked="checked"[% END %]/></td>
+                            <td class="st_label st_author_box"><label for="st_author">Author</label></td>
+
+                            <td><input type="text" class="search_box" name="query" 
+                                value=""/></td>
+							<td></td>
+                        </tr>
+						<tr>
+						    <td colspan="6" align="right" class="st_label st_author_box"><label>Search Location:</label></td>
+							<td align="left">[% INCLUDE build_org_selector show_loc_groups=1 %]</td>						
+                            <td><input type="image" src="[% ctx.media_prefix %]/images/kpac/search_btn.png" alt="search" style="margin-top:4px;" /></td>
+						</tr>
+                    </table>
+                </form>
+            </div>
+</div> <!-- this ends the main_header_wrapper div that was started in header.tt2 -->
+
+    <div class="clear">&nbsp;</div>
+    <div class="category_wrapper">
+        <h3 class="c_header_image">Or choose one of these subjects to get started:</h3>
+        [% render_kpac_grid(ctx.kpac_layout.page) %]
+    </div>
+
+
+[% END %]
+

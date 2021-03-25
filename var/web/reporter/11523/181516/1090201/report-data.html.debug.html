@@ -1,0 +1,783 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 OCRL Noncat Circs</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"0ab9cec5e1cbbd623d7c013943c4c556"."shortname" AS "Short (Policy) Name",
+	(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) AS "Circ Month",
+	UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") AS "Type",
+	COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"
+  FROM	action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "805511b75fbf8ad6ddf78ace07bd447a" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "805511b75fbf8ad6ddf78ace07bd447a"."id")
+	INNER JOIN actor.org_unit AS "0ab9cec5e1cbbd623d7c013943c4c556" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "0ab9cec5e1cbbd623d7c013943c4c556"."id")
+  WHERE	"805511b75fbf8ad6ddf78ace07bd447a"."in_house" = $_127833$f$_127833$
+	AND "66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" IN ($_127833$198$_127833$,$_127833$199$_127833$,$_127833$200$_127833$,$_127833$201$_127833$,$_127833$202$_127833$)
+	AND (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) BETWEEN $_127833$2020-07$_127833$ AND $_127833$2020-06$_127833$
+  GROUP BY 1, 2, 3
+  ORDER BY "0ab9cec5e1cbbd623d7c013943c4c556"."shortname" ASC, (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || '-' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,'0')) ASC, UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") ASC, COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 1248,
+          'name' => 'Monthly NonCat Circs (Date BETWEEN)',
+          'owner' => 2134611,
+          'create_time' => '2009-07-22 17:11:01.553184-04',
+          'data' => '{"version":2,"core_class":"ancc","select":[{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-circ_lib-aou-shortname","relation":"0ab9cec5e1cbbd623d7c013943c4c556"},{"alias":"Circ Month","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month"},"path":"ancc-circ_time","relation":"66107b0e23d6e1c4ec919c0dc8998de4"},{"alias":"Type","column":{"colname":"name","transform":"upper","transform_label":"Upper case"},"path":"ancc-item_type-cnct-name","relation":"805511b75fbf8ad6ddf78ace07bd447a"},{"alias":"Non-cat Circulation ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"ancc-id","relation":"66107b0e23d6e1c4ec919c0dc8998de4"}],"from":{"path":"ancc","table":"action.non_cataloged_circulation","alias":"66107b0e23d6e1c4ec919c0dc8998de4","join":{"circ_lib-4638ced280de3bfd1dc42b004109531c":{"path":"ancc-circ_lib-aou","table":"actor.org_unit","key":"id","label":"Non-cataloged Circulation :: Circulating Library","alias":"0ab9cec5e1cbbd623d7c013943c4c556","idlclass":"aou","template_path":"ancc-circ_lib"},"item_type-4638ced280de3bfd1dc42b004109531c":{"path":"ancc-item_type-cnct","table":"config.non_cataloged_type","key":"id","label":"Non-cataloged Circulation :: Non-cat Item Type","alias":"805511b75fbf8ad6ddf78ace07bd447a","idlclass":"cnct","template_path":"ancc-item_type"}},"label":"Non-cataloged Circulation","idlclass":"ancc","template_path":"ancc"},"where":[{"alias":"In House?","column":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-item_type-cnct-in_house","relation":"805511b75fbf8ad6ddf78ace07bd447a","condition":{"=":"f"}},{"alias":"Circulating Library","column":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-circ_lib","relation":"66107b0e23d6e1c4ec919c0dc8998de4","condition":{"in":"::P0"}},{"alias":"Circulation Date/Time","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month"},"path":"ancc-circ_time","relation":"66107b0e23d6e1c4ec919c0dc8998de4","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"0ab9cec5e1cbbd623d7c013943c4c556":{"label":"Non-cataloged Circulation :: Circulating Library","alias":"0ab9cec5e1cbbd623d7c013943c4c556","path":"ancc-circ_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"0ab9cec5e1cbbd623d7c013943c4c556","field":"shortname"},{"relation":"66107b0e23d6e1c4ec919c0dc8998de4","field":"circ_time"},{"relation":"805511b75fbf8ad6ddf78ace07bd447a","field":"name"},{"relation":"66107b0e23d6e1c4ec919c0dc8998de4","field":"id"}],"805511b75fbf8ad6ddf78ace07bd447a":{"label":"Non-cataloged Circulation :: Non-cat Item Type","alias":"805511b75fbf8ad6ddf78ace07bd447a","path":"ancc-item_type","reltype":"has_a","idlclass":"cnct","table":"config.non_cataloged_type","fields":{"dis_tab":{"name":{"colname":"name","transform":"upper","transform_label":"Upper case","alias":"Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"in_house":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data","alias":"In House?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"66107b0e23d6e1c4ec919c0dc8998de4":{"label":"Non-cataloged Circulation","alias":"66107b0e23d6e1c4ec919c0dc8998de4","path":"ancc","reltype":"","idlclass":"ancc","table":"action.non_cataloged_circulation","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":"true","transform_label":"Count Distinct","alias":"Non-cat Circulation ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}},"circ_time":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","alias":"Circ Month","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"circ_lib":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data","alias":"Circulating Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}},"circ_time":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","alias":"Circulation Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}}}}',
+          'description' => 'Monthly nonCat Circs by Type excluding In House Circs.  A version of Fiscal Year End report  Note: report output for FY07 was edited due to some libraries using noncat circs instead of noncat inhouse types for things like reference questions, computers, pamphlets, and tax forms.',
+          'id' => 11523
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'In House?',
+                         'relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                         'path' => 'ancc-item_type-cnct-in_house',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'in_house',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'path' => 'ancc-circ_lib',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'alias' => 'Circulating Library',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'circ_lib'
+                                     }
+                       },
+                       {
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'path' => 'ancc-circ_time',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Year + Month',
+                                       'colname' => 'circ_time',
+                                       'transform' => 'month_trunc'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Non-cataloged Circulation',
+                      'idlclass' => 'ancc',
+                      'join' => {
+                                  'circ_lib-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                   'key' => 'id',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'label' => 'Non-cataloged Circulation :: Circulating Library',
+                                                                                   'path' => 'ancc-circ_lib-aou',
+                                                                                   'alias' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                                                                   'template_path' => 'ancc-circ_lib',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 },
+                                  'item_type-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                    'alias' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                                                                    'path' => 'ancc-item_type-cnct',
+                                                                                    'table' => 'config.non_cataloged_type',
+                                                                                    'template_path' => 'ancc-item_type',
+                                                                                    'key' => 'id',
+                                                                                    'idlclass' => 'cnct',
+                                                                                    'label' => 'Non-cataloged Circulation :: Non-cat Item Type'
+                                                                                  }
+                                },
+                      'table' => 'action.non_cataloged_circulation',
+                      'template_path' => 'ancc',
+                      'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                      'path' => 'ancc'
+                    },
+          'core_class' => 'ancc',
+          'order_by' => [],
+          'rel_cache' => {
+                           '805511b75fbf8ad6ddf78ace07bd447a' => {
+                                                                   'alias' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                                                   'path' => 'ancc-item_type',
+                                                                   'table' => 'config.non_cataloged_type',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op' => '=',
+                                                                                                            'alias' => 'Type',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'transform_label' => 'Upper case',
+                                                                                                            'colname' => 'name',
+                                                                                                            'op_value' => {},
+                                                                                                            'transform' => 'upper'
+                                                                                                          }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'in_house' => {
+                                                                                                                   'alias' => 'In House?',
+                                                                                                                   'datatype' => 'bool',
+                                                                                                                   'op' => '=',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'colname' => 'in_house',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_value' => {
+                                                                                                                                   'value' => 'f',
+                                                                                                                                   'label' => 'False'
+                                                                                                                                 },
+                                                                                                                   'transform' => 'Bare'
+                                                                                                                 }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'idlclass' => 'cnct',
+                                                                   'label' => 'Non-cataloged Circulation :: Non-cat Item Type',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           '66107b0e23d6e1c4ec919c0dc8998de4' => {
+                                                                   'table' => 'action.non_cataloged_circulation',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op' => '=',
+                                                                                                          'alias' => 'Non-cat Circulation ID',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform' => 'count_distinct'
+                                                                                                        },
+                                                                                                'circ_time' => {
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Circ Month',
+                                                                                                                 'datatype' => 'timestamp',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Year + Month',
+                                                                                                                 'colname' => 'circ_time',
+                                                                                                                 'transform' => 'month_trunc',
+                                                                                                                 'op_value' => {}
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'circ_time' => {
+                                                                                                                    'transform_label' => 'Year + Month',
+                                                                                                                    'colname' => 'circ_time',
+                                                                                                                    'op_value' => {},
+                                                                                                                    'transform' => 'month_trunc',
+                                                                                                                    'datatype' => 'timestamp',
+                                                                                                                    'alias' => 'Circulation Date/Time',
+                                                                                                                    'op' => 'between',
+                                                                                                                    'op_label' => 'Between'
+                                                                                                                  },
+                                                                                                   'circ_lib' => {
+                                                                                                                   'op_value' => {},
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'colname' => 'circ_lib',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_label' => 'In list',
+                                                                                                                   'alias' => 'Circulating Library',
+                                                                                                                   'datatype' => 'org_unit',
+                                                                                                                   'op' => 'in'
+                                                                                                                 }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                                                   'path' => 'ancc',
+                                                                   'label' => 'Non-cataloged Circulation',
+                                                                   'idlclass' => 'ancc',
+                                                                   'reltype' => ''
+                                                                 },
+                           '0ab9cec5e1cbbd623d7c013943c4c556' => {
+                                                                   'path' => 'ancc-circ_lib',
+                                                                   'alias' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_label' => 'Equals'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Non-cataloged Circulation :: Circulating Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                             'field' => 'circ_time'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => '805511b75fbf8ad6ddf78ace07bd447a'
+                                           },
+                                           {
+                                             'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                             'field' => 'id'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'path' => 'ancc-circ_lib-aou-shortname',
+                          'relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                          'alias' => 'Short (Policy) Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'transform_label' => 'Year + Month',
+                                        'colname' => 'circ_time'
+                                      },
+                          'path' => 'ancc-circ_time',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Circ Month'
+                        },
+                        {
+                          'alias' => 'Type',
+                          'relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                          'path' => 'ancc-item_type-cnct-name',
+                          'column' => {
+                                        'transform' => 'upper',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Upper case'
+                                      }
+                        },
+                        {
+                          'path' => 'ancc-id',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Non-cat Circulation ID',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'version' => 2
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 2134611,
+          'description' => '',
+          'create_time' => '2020-08-13 14:48:44.841937-04',
+          'id' => 181516,
+          'template' => {
+                          'folder' => 1248,
+                          'name' => 'Monthly NonCat Circs (Date BETWEEN)',
+                          'owner' => 2134611,
+                          'create_time' => '2009-07-22 17:11:01.553184-04',
+                          'data' => '{"version":2,"core_class":"ancc","select":[{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-circ_lib-aou-shortname","relation":"0ab9cec5e1cbbd623d7c013943c4c556"},{"alias":"Circ Month","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month"},"path":"ancc-circ_time","relation":"66107b0e23d6e1c4ec919c0dc8998de4"},{"alias":"Type","column":{"colname":"name","transform":"upper","transform_label":"Upper case"},"path":"ancc-item_type-cnct-name","relation":"805511b75fbf8ad6ddf78ace07bd447a"},{"alias":"Non-cat Circulation ID","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"ancc-id","relation":"66107b0e23d6e1c4ec919c0dc8998de4"}],"from":{"path":"ancc","table":"action.non_cataloged_circulation","alias":"66107b0e23d6e1c4ec919c0dc8998de4","join":{"circ_lib-4638ced280de3bfd1dc42b004109531c":{"path":"ancc-circ_lib-aou","table":"actor.org_unit","key":"id","label":"Non-cataloged Circulation :: Circulating Library","alias":"0ab9cec5e1cbbd623d7c013943c4c556","idlclass":"aou","template_path":"ancc-circ_lib"},"item_type-4638ced280de3bfd1dc42b004109531c":{"path":"ancc-item_type-cnct","table":"config.non_cataloged_type","key":"id","label":"Non-cataloged Circulation :: Non-cat Item Type","alias":"805511b75fbf8ad6ddf78ace07bd447a","idlclass":"cnct","template_path":"ancc-item_type"}},"label":"Non-cataloged Circulation","idlclass":"ancc","template_path":"ancc"},"where":[{"alias":"In House?","column":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-item_type-cnct-in_house","relation":"805511b75fbf8ad6ddf78ace07bd447a","condition":{"=":"f"}},{"alias":"Circulating Library","column":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data"},"path":"ancc-circ_lib","relation":"66107b0e23d6e1c4ec919c0dc8998de4","condition":{"in":"::P0"}},{"alias":"Circulation Date/Time","column":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month"},"path":"ancc-circ_time","relation":"66107b0e23d6e1c4ec919c0dc8998de4","condition":{"between":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"0ab9cec5e1cbbd623d7c013943c4c556":{"label":"Non-cataloged Circulation :: Circulating Library","alias":"0ab9cec5e1cbbd623d7c013943c4c556","path":"ancc-circ_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"0ab9cec5e1cbbd623d7c013943c4c556","field":"shortname"},{"relation":"66107b0e23d6e1c4ec919c0dc8998de4","field":"circ_time"},{"relation":"805511b75fbf8ad6ddf78ace07bd447a","field":"name"},{"relation":"66107b0e23d6e1c4ec919c0dc8998de4","field":"id"}],"805511b75fbf8ad6ddf78ace07bd447a":{"label":"Non-cataloged Circulation :: Non-cat Item Type","alias":"805511b75fbf8ad6ddf78ace07bd447a","path":"ancc-item_type","reltype":"has_a","idlclass":"cnct","table":"config.non_cataloged_type","fields":{"dis_tab":{"name":{"colname":"name","transform":"upper","transform_label":"Upper case","alias":"Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"in_house":{"colname":"in_house","transform":"Bare","transform_label":"Raw Data","alias":"In House?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"66107b0e23d6e1c4ec919c0dc8998de4":{"label":"Non-cataloged Circulation","alias":"66107b0e23d6e1c4ec919c0dc8998de4","path":"ancc","reltype":"","idlclass":"ancc","table":"action.non_cataloged_circulation","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":"true","transform_label":"Count Distinct","alias":"Non-cat Circulation ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}},"circ_time":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","alias":"Circ Month","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"circ_lib":{"colname":"circ_lib","transform":"Bare","transform_label":"Raw Data","alias":"Circulating Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}},"circ_time":{"colname":"circ_time","transform":"month_trunc","transform_label":"Year + Month","alias":"Circulation Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}}}}',
+                          'description' => 'Monthly nonCat Circs by Type excluding In House Circs.  A version of Fiscal Year End report  Note: report output for FY07 was edited due to some libraries using noncat circs instead of noncat inhouse types for things like reference questions, computers, pamphlets, and tax forms.',
+                          'id' => 11523
+                        },
+          'name' => 'FY20 OCRL Noncat Circs',
+          'recur' => 0,
+          'recurrence' => '1 day',
+          'data' => '{"P0":["198","199","200","201","202"],"P1":["2020-07","2020-06"],"__pivot_label":"","__pivot_data":"4"}',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'In House?',
+                         'relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                         'path' => 'ancc-item_type-cnct-in_house',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'in_house',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'path' => 'ancc-circ_lib',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'alias' => 'Circulating Library',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'circ_lib'
+                                     }
+                       },
+                       {
+                         'alias' => 'Circulation Date/Time',
+                         'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                         'path' => 'ancc-circ_time',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Year + Month',
+                                       'colname' => 'circ_time',
+                                       'transform' => 'month_trunc'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Non-cataloged Circulation',
+                      'idlclass' => 'ancc',
+                      'join' => {
+                                  'circ_lib-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                   'key' => 'id',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'label' => 'Non-cataloged Circulation :: Circulating Library',
+                                                                                   'path' => 'ancc-circ_lib-aou',
+                                                                                   'alias' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                                                                   'template_path' => 'ancc-circ_lib',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 },
+                                  'item_type-4638ced280de3bfd1dc42b004109531c' => {
+                                                                                    'alias' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                                                                    'path' => 'ancc-item_type-cnct',
+                                                                                    'table' => 'config.non_cataloged_type',
+                                                                                    'template_path' => 'ancc-item_type',
+                                                                                    'key' => 'id',
+                                                                                    'idlclass' => 'cnct',
+                                                                                    'label' => 'Non-cataloged Circulation :: Non-cat Item Type'
+                                                                                  }
+                                },
+                      'table' => 'action.non_cataloged_circulation',
+                      'template_path' => 'ancc',
+                      'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                      'path' => 'ancc'
+                    },
+          'core_class' => 'ancc',
+          'order_by' => [],
+          'rel_cache' => {
+                           '805511b75fbf8ad6ddf78ace07bd447a' => {
+                                                                   'alias' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                                                   'path' => 'ancc-item_type',
+                                                                   'table' => 'config.non_cataloged_type',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op' => '=',
+                                                                                                            'alias' => 'Type',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'transform_label' => 'Upper case',
+                                                                                                            'colname' => 'name',
+                                                                                                            'op_value' => {},
+                                                                                                            'transform' => 'upper'
+                                                                                                          }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'in_house' => {
+                                                                                                                   'alias' => 'In House?',
+                                                                                                                   'datatype' => 'bool',
+                                                                                                                   'op' => '=',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'colname' => 'in_house',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_value' => {
+                                                                                                                                   'value' => 'f',
+                                                                                                                                   'label' => 'False'
+                                                                                                                                 },
+                                                                                                                   'transform' => 'Bare'
+                                                                                                                 }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'idlclass' => 'cnct',
+                                                                   'label' => 'Non-cataloged Circulation :: Non-cat Item Type',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           '66107b0e23d6e1c4ec919c0dc8998de4' => {
+                                                                   'table' => 'action.non_cataloged_circulation',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'op' => '=',
+                                                                                                          'alias' => 'Non-cat Circulation ID',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'transform_label' => 'Count Distinct',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_value' => {},
+                                                                                                          'transform' => 'count_distinct'
+                                                                                                        },
+                                                                                                'circ_time' => {
+                                                                                                                 'op' => '=',
+                                                                                                                 'alias' => 'Circ Month',
+                                                                                                                 'datatype' => 'timestamp',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Year + Month',
+                                                                                                                 'colname' => 'circ_time',
+                                                                                                                 'transform' => 'month_trunc',
+                                                                                                                 'op_value' => {}
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'circ_time' => {
+                                                                                                                    'transform_label' => 'Year + Month',
+                                                                                                                    'colname' => 'circ_time',
+                                                                                                                    'op_value' => {},
+                                                                                                                    'transform' => 'month_trunc',
+                                                                                                                    'datatype' => 'timestamp',
+                                                                                                                    'alias' => 'Circulation Date/Time',
+                                                                                                                    'op' => 'between',
+                                                                                                                    'op_label' => 'Between'
+                                                                                                                  },
+                                                                                                   'circ_lib' => {
+                                                                                                                   'op_value' => {},
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'colname' => 'circ_lib',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_label' => 'In list',
+                                                                                                                   'alias' => 'Circulating Library',
+                                                                                                                   'datatype' => 'org_unit',
+                                                                                                                   'op' => 'in'
+                                                                                                                 }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'alias' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                                                   'path' => 'ancc',
+                                                                   'label' => 'Non-cataloged Circulation',
+                                                                   'idlclass' => 'ancc',
+                                                                   'reltype' => ''
+                                                                 },
+                           '0ab9cec5e1cbbd623d7c013943c4c556' => {
+                                                                   'path' => 'ancc-circ_lib',
+                                                                   'alias' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_label' => 'Equals'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Non-cataloged Circulation :: Circulating Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                             'field' => 'circ_time'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => '805511b75fbf8ad6ddf78ace07bd447a'
+                                           },
+                                           {
+                                             'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                             'field' => 'id'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'path' => 'ancc-circ_lib-aou-shortname',
+                          'relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                          'alias' => 'Short (Policy) Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'transform_label' => 'Year + Month',
+                                        'colname' => 'circ_time'
+                                      },
+                          'path' => 'ancc-circ_time',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Circ Month'
+                        },
+                        {
+                          'alias' => 'Type',
+                          'relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                          'path' => 'ancc-item_type-cnct-name',
+                          'column' => {
+                                        'transform' => 'upper',
+                                        'colname' => 'name',
+                                        'transform_label' => 'Upper case'
+                                      }
+                        },
+                        {
+                          'path' => 'ancc-id',
+                          'relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                          'alias' => 'Non-cat Circulation ID',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'version' => 2
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-13 14:48:44.841937-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'in_house'
+                                                     },
+                                        '_relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                        '_sql' => '"805511b75fbf8ad6ddf78ace07bd447a"."in_house" = $_127833$f$_127833$',
+                                        '_builder' => bless( {
+                                                               '_relative_time' => '2020-08-13 14:48:44.841937-04',
+                                                               '_rels' => {
+                                                                            '66107b0e23d6e1c4ec919c0dc8998de4' => bless( {
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_table' => 'action.non_cataloged_circulation',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_alias' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_table' => 'config.non_cataloged_type',
+                                                                                                                                                                          '_sql' => 'config.non_cataloged_type AS "805511b75fbf8ad6ddf78ace07bd447a"'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN config.non_cataloged_type AS "805511b75fbf8ad6ddf78ace07bd447a" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "805511b75fbf8ad6ddf78ace07bd447a"."id")',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                                                                                                                                                 '_left_col' => 'item_type',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "0ab9cec5e1cbbd623d7c013943c4c556"',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_alias' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                                                                                                                                                          '_is_join' => 1
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "0ab9cec5e1cbbd623d7c013943c4c556" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "0ab9cec5e1cbbd623d7c013943c4c556"."id")',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_col' => 'circ_lib',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_sql' => 'action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "805511b75fbf8ad6ddf78ace07bd447a" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "805511b75fbf8ad6ddf78ace07bd447a"."id")
+	INNER JOIN actor.org_unit AS "0ab9cec5e1cbbd623d7c013943c4c556" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "0ab9cec5e1cbbd623d7c013943c4c556"."id")',
+                                                                                                                           '_alias' => '66107b0e23d6e1c4ec919c0dc8998de4'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '805511b75fbf8ad6ddf78ace07bd447a' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'}{'_join'}[0]{'_right_rel'},
+                                                                            '0ab9cec5e1cbbd623d7c013943c4c556' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'}{'_join'}[1]{'_right_rel'}
+                                                                          },
+                                                               '_params' => {
+                                                                              'P1' => [
+                                                                                        '2020-07',
+                                                                                        '2020-06'
+                                                                                      ],
+                                                                              '__pivot_label' => '',
+                                                                              '__pivot_data' => '4',
+                                                                              'P0' => [
+                                                                                        '198',
+                                                                                        '199',
+                                                                                        '200',
+                                                                                        '201',
+                                                                                        '202'
+                                                                                      ]
+                                                                            },
+                                                               '_pivot_data' => '4',
+                                                               '_sql' => undef,
+                                                               '_resultset_limit' => 1048575
+                                                             }, 'OpenILS::Reporter::SQLBuilder' )
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare',
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'circ_lib',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                        '_sql' => '"66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" IN ($_127833$198$_127833$,$_127833$199$_127833$,$_127833$200$_127833$,$_127833$201$_127833$,$_127833$202$_127833$)',
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'month_trunc',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                        '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) BETWEEN $_127833$2020-07$_127833$ AND $_127833$2020-06$_127833$',
+                                        '_column' => {
+                                                       'transform' => 'month_trunc',
+                                                       'colname' => 'circ_time',
+                                                       'transform_label' => 'Year + Month'
+                                                     },
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'66107b0e23d6e1c4ec919c0dc8998de4'},
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"0ab9cec5e1cbbd623d7c013943c4c556"."shortname" AS "Short (Policy) Name"',
+                                         '_relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'month_trunc',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'month_trunc',
+                                                        'colname' => 'circ_time',
+                                                        'transform_label' => 'Year + Month'
+                                                      },
+                                         '_alias' => 'Circ Month',
+                                         '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) AS "Circ Month"',
+                                         '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'upper',
+                                         '_sql' => 'UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") AS "Type"',
+                                         '_relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                         '_column' => {
+                                                        'transform_label' => 'Upper case',
+                                                        'colname' => 'name',
+                                                        'transform' => 'upper'
+                                                      },
+                                         '_alias' => 'Type',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => 'COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"',
+                                         '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count Distinct',
+                                                        'transform' => 'count_distinct'
+                                                      },
+                                         '_alias' => 'Non-cat Circulation ID',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'count_distinct'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_relation' => '0ab9cec5e1cbbd623d7c013943c4c556',
+                                           '_sql' => '"0ab9cec5e1cbbd623d7c013943c4c556"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'month_trunc',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_sql' => '(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) ASC',
+                                           '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'upper',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_relation' => '805511b75fbf8ad6ddf78ace07bd447a',
+                                           '_sql' => 'UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'count_distinct',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_relation' => '66107b0e23d6e1c4ec919c0dc8998de4',
+                                           '_sql' => 'COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => [],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"0ab9cec5e1cbbd623d7c013943c4c556"."shortname" AS "Short (Policy) Name",
+	(EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) AS "Circ Month",
+	UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") AS "Type",
+	COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") AS "Non-cat Circulation ID"
+  FROM	action.non_cataloged_circulation AS "66107b0e23d6e1c4ec919c0dc8998de4"
+	INNER JOIN config.non_cataloged_type AS "805511b75fbf8ad6ddf78ace07bd447a" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."item_type" = "805511b75fbf8ad6ddf78ace07bd447a"."id")
+	INNER JOIN actor.org_unit AS "0ab9cec5e1cbbd623d7c013943c4c556" ON ("66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" = "0ab9cec5e1cbbd623d7c013943c4c556"."id")
+  WHERE	"805511b75fbf8ad6ddf78ace07bd447a"."in_house" = $_127833$f$_127833$
+	AND "66107b0e23d6e1c4ec919c0dc8998de4"."circ_lib" IN ($_127833$198$_127833$,$_127833$199$_127833$,$_127833$200$_127833$,$_127833$201$_127833$,$_127833$202$_127833$)
+	AND (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) BETWEEN $_127833$2020-07$_127833$ AND $_127833$2020-06$_127833$
+  GROUP BY 1, 2, 3
+  ORDER BY "0ab9cec5e1cbbd623d7c013943c4c556"."shortname" ASC, (EXTRACT(YEAR FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time") || \'-\' || LPAD(EXTRACT(MONTH FROM "66107b0e23d6e1c4ec919c0dc8998de4"."circ_time")::text,2,\'0\')) ASC, UPPER("805511b75fbf8ad6ddf78ace07bd447a"."name") ASC, COUNT(DISTINCT "66107b0e23d6e1c4ec919c0dc8998de4"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+'
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

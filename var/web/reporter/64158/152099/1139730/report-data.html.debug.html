@@ -1,0 +1,1214 @@
+<html><head><meta charset='utf-8'><title>DEBUG: New Users</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"8deb774ac638eb70a238a77d7fa9b277"."shortname" AS "Home Library",
+	"36cbae28efe27cc2b3a89bcfe8043584"."name" AS "Permission Group",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" AS "First Name",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."family_name" AS "Last Name",
+	date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") AS "Date of Birth",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" AS "Primary Identification",
+	"8cec5bf1d142774c8d550118afde7d75"."barcode" AS "Barcode"
+  FROM	actor.usr AS "fe21ca9ecd516f33ec379ecc11aa7051"
+	INNER JOIN permission.grp_tree AS "36cbae28efe27cc2b3a89bcfe8043584" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."profile" = "36cbae28efe27cc2b3a89bcfe8043584"."id")
+	INNER JOIN actor.card AS "8cec5bf1d142774c8d550118afde7d75" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."card" = "8cec5bf1d142774c8d550118afde7d75"."id")
+	INNER JOIN actor.org_unit AS "8deb774ac638eb70a238a77d7fa9b277" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."home_ou" = "8deb774ac638eb70a238a77d7fa9b277"."id")
+  WHERE	"8deb774ac638eb70a238a77d7fa9b277"."id" IN ($_21544$71$_21544$)
+	AND date("fe21ca9ecd516f33ec379ecc11aa7051"."create_date") BETWEEN SYMMETRIC DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-7 days$_21544$) AND DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-1 days$_21544$)
+	AND "fe21ca9ecd516f33ec379ecc11aa7051"."active" = $_21544$t$_21544$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "8deb774ac638eb70a238a77d7fa9b277"."shortname" ASC, "36cbae28efe27cc2b3a89bcfe8043584"."name" ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."family_name" ASC, date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" ASC, "8cec5bf1d142774c8d550118afde7d75"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 2571,
+          'name' => 'List of New Users',
+          'id' => 64158,
+          'create_time' => '2016-03-03 14:44:34.573243-05',
+          'owner' => 2923364,
+          'description' => 'List of new users added within a specified date range.
+-----------------------------------------
+Uses ILS User source.
+
+Displayed Fields:
+
+ILS User -> Home Library -> Short (Policy) Name as "Home Library"
+ILS User -> Main (Profile) Permission Group-> Group Name (as Permission Group)
+ILS User -> User ID -> First Name
+ILS User -> User ID -> Last Name
+ILS User -> Date of Birth (Date)
+ILS User -> Primary Identification
+ILS User -> Current Library Card -> Barcode
+
+Base Filters:
+
+ILS User -> Home Library -> Organizational Unit ID (In list)
+ILS User -> Record Creation Date/Time (Date) (Between)
+ILS User -> Active (Equals) True',
+          'data' => '{"version":4,"doc_url":"","core_class":"au","select":[{"alias":"Home Library","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"au-home_ou-aou-shortname","relation":"8deb774ac638eb70a238a77d7fa9b277"},{"alias":"Permission Group","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"au-profile-pgt-name","relation":"36cbae28efe27cc2b3a89bcfe8043584"},{"alias":"First Name","field_doc":"","column":{"colname":"first_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"au-first_given_name","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Last Name","field_doc":"","column":{"colname":"family_name","transform":"Bare","transform_label":"Raw Data"},"path":"au-family_name","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Date of Birth","field_doc":"","column":{"colname":"dob","transform":"date","transform_label":"Date"},"path":"au-dob","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Primary Identification","field_doc":"","column":{"colname":"ident_value","transform":"Bare","transform_label":"Raw Data"},"path":"au-ident_value","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"au-card-ac-barcode","relation":"8cec5bf1d142774c8d550118afde7d75"}],"from":{"path":"au-card","table":"actor.usr","alias":"fe21ca9ecd516f33ec379ecc11aa7051","join":{"home_ou-16a2ead7781e3688162a158c0778415f":{"key":"id","path":"au-home_ou-aou","table":"actor.org_unit","label":"ILS User :: Home Library","alias":"8deb774ac638eb70a238a77d7fa9b277","idlclass":"aou","template_path":"au-home_ou"},"profile-fe21ca9ecd516f33ec379ecc11aa7051":{"key":"id","path":"au-profile-pgt","table":"permission.grp_tree","label":"ILS User :: Main (Profile) Permission Group","alias":"36cbae28efe27cc2b3a89bcfe8043584","idlclass":"pgt","template_path":"au-profile"},"card-fe21ca9ecd516f33ec379ecc11aa7051":{"key":"id","path":"au-card-ac","table":"actor.card","label":"ILS User :: Current Library Card","alias":"8cec5bf1d142774c8d550118afde7d75","idlclass":"ac","template_path":"au-card"}},"label":"ILS User","idlclass":"au","template_path":"au"},"where":[{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"au-home_ou-aou-id","relation":"8deb774ac638eb70a238a77d7fa9b277","condition":{"in":"::P0"}},{"alias":"Record Creation Date/Time","field_doc":"","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"au-create_date","relation":"fe21ca9ecd516f33ec379ecc11aa7051","condition":{"between":"::P1"}},{"alias":"Active","field_doc":"","column":{"colname":"active","transform":"Bare","transform_label":"Raw Data"},"path":"au-active","relation":"fe21ca9ecd516f33ec379ecc11aa7051","condition":{"=":"t"}}],"having":[],"order_by":[],"rel_cache":{"8deb774ac638eb70a238a77d7fa9b277":{"label":"ILS User :: Home Library","alias":"8deb774ac638eb70a238a77d7fa9b277","path":"au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Home Library","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"8deb774ac638eb70a238a77d7fa9b277","field":"shortname"},{"relation":"36cbae28efe27cc2b3a89bcfe8043584","field":"name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"first_given_name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"family_name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"dob"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"ident_value"},{"relation":"8cec5bf1d142774c8d550118afde7d75","field":"barcode"}],"fe21ca9ecd516f33ec379ecc11aa7051":{"label":"ILS User","alias":"fe21ca9ecd516f33ec379ecc11aa7051","path":"au","join":"","reltype":"","idlclass":"au","table":"actor.usr","fields":{"dis_tab":{"first_given_name":{"colname":"first_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"First Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"family_name":{"colname":"family_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Last Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"dob":{"colname":"dob","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Date of Birth","field_doc":"","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"ident_value":{"colname":"ident_value","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Primary Identification","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"create_date":{"colname":"create_date","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Record Creation Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""},"active":{"colname":"active","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Active","field_doc":"","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"t","label":"True"}}},"aggfilter_tab":{}}},"36cbae28efe27cc2b3a89bcfe8043584":{"label":"ILS User :: Main (Profile) Permission Group","alias":"36cbae28efe27cc2b3a89bcfe8043584","path":"au-profile","join":"","reltype":"has_a","idlclass":"pgt","table":"permission.grp_tree","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Permission Group","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"8cec5bf1d142774c8d550118afde7d75":{"label":"ILS User :: Current Library Card","alias":"8cec5bf1d142774c8d550118afde7d75","path":"au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Barcode","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'order_by' => [],
+          'doc_url' => '',
+          'version' => 4,
+          'where' => [
+                       {
+                         'path' => 'au-home_ou-aou-id',
+                         'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'alias' => 'Record Creation Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date'
+                                     },
+                         'path' => 'au-create_date',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                       },
+                       {
+                         'path' => 'au-active',
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                         'alias' => 'Active',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'active'
+                                     },
+                         'field_doc' => ''
+                       }
+                     ],
+          'core_class' => 'au',
+          'from' => {
+                      'alias' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                      'table' => 'actor.usr',
+                      'label' => 'ILS User',
+                      'idlclass' => 'au',
+                      'template_path' => 'au',
+                      'path' => 'au-card',
+                      'join' => {
+                                  'home_ou-16a2ead7781e3688162a158c0778415f' => {
+                                                                                  'table' => 'actor.org_unit',
+                                                                                  'alias' => '8deb774ac638eb70a238a77d7fa9b277',
+                                                                                  'key' => 'id',
+                                                                                  'label' => 'ILS User :: Home Library',
+                                                                                  'idlclass' => 'aou',
+                                                                                  'template_path' => 'au-home_ou',
+                                                                                  'path' => 'au-home_ou-aou'
+                                                                                },
+                                  'profile-fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                                  'table' => 'permission.grp_tree',
+                                                                                  'alias' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                                                                  'key' => 'id',
+                                                                                  'label' => 'ILS User :: Main (Profile) Permission Group',
+                                                                                  'idlclass' => 'pgt',
+                                                                                  'path' => 'au-profile-pgt',
+                                                                                  'template_path' => 'au-profile'
+                                                                                },
+                                  'card-fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                               'label' => 'ILS User :: Current Library Card',
+                                                                               'idlclass' => 'ac',
+                                                                               'template_path' => 'au-card',
+                                                                               'path' => 'au-card-ac',
+                                                                               'key' => 'id',
+                                                                               'alias' => '8cec5bf1d142774c8d550118afde7d75',
+                                                                               'table' => 'actor.card'
+                                                                             }
+                                }
+                    },
+          'rel_cache' => {
+                           '8deb774ac638eb70a238a77d7fa9b277' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'alias' => '8deb774ac638eb70a238a77d7fa9b277',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'path' => 'au-home_ou',
+                                                                   'label' => 'ILS User :: Home Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'join' => '',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'params' => undef,
+                                                                                                             'field_doc' => '',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'alias' => 'Organizational Unit ID'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'alias' => 'Home Library',
+                                                                                                                 'params' => undef,
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '='
+                                                                                                               }
+                                                                                              }
+                                                                               }
+                                                                 },
+                           '8cec5bf1d142774c8d550118afde7d75' => {
+                                                                   'alias' => '8cec5bf1d142774c8d550118afde7d75',
+                                                                   'table' => 'actor.card',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'join' => '',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'params' => undef,
+                                                                                                               'field_doc' => '',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'alias' => 'Barcode'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'idlclass' => 'ac',
+                                                                   'label' => 'ILS User :: Current Library Card',
+                                                                   'path' => 'au-card',
+                                                                   'join' => '',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                   'alias' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                                                   'table' => 'actor.usr',
+                                                                   'path' => 'au',
+                                                                   'idlclass' => 'au',
+                                                                   'label' => 'ILS User',
+                                                                   'reltype' => '',
+                                                                   'join' => '',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'first_given_name' => {
+                                                                                                                        'join' => '',
+                                                                                                                        'op_label' => 'Equals',
+                                                                                                                        'datatype' => 'text',
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'params' => undef,
+                                                                                                                        'op_value' => {},
+                                                                                                                        'colname' => 'first_given_name',
+                                                                                                                        'op' => '=',
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'alias' => 'First Name'
+                                                                                                                      },
+                                                                                                'ident_value' => {
+                                                                                                                   'alias' => 'Primary Identification',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'op_value' => {},
+                                                                                                                   'colname' => 'ident_value',
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => ''
+                                                                                                                 },
+                                                                                                'family_name' => {
+                                                                                                                   'alias' => 'Last Name',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'colname' => 'family_name',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => ''
+                                                                                                                 },
+                                                                                                'dob' => {
+                                                                                                           'join' => '',
+                                                                                                           'aggregate' => undef,
+                                                                                                           'transform_label' => 'Date',
+                                                                                                           'op_label' => 'Equals',
+                                                                                                           'datatype' => 'timestamp',
+                                                                                                           'params' => undef,
+                                                                                                           'colname' => 'dob',
+                                                                                                           'op_value' => {},
+                                                                                                           'op' => '=',
+                                                                                                           'alias' => 'Date of Birth',
+                                                                                                           'transform' => 'date',
+                                                                                                           'field_doc' => ''
+                                                                                                         }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'create_date' => {
+                                                                                                                      'transform' => 'date',
+                                                                                                                      'field_doc' => '',
+                                                                                                                      'alias' => 'Record Creation Date/Time',
+                                                                                                                      'params' => undef,
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'between',
+                                                                                                                      'colname' => 'create_date',
+                                                                                                                      'op_label' => 'Between',
+                                                                                                                      'transform_label' => 'Date',
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'aggregate' => undef,
+                                                                                                                      'join' => ''
+                                                                                                                    },
+                                                                                                   'active' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'alias' => 'Active',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'label' => 'True',
+                                                                                                                                 'value' => 't'
+                                                                                                                               },
+                                                                                                                 'colname' => 'active',
+                                                                                                                 'op' => '=',
+                                                                                                                 'params' => undef
+                                                                                                               }
+                                                                                                 }
+                                                                               }
+                                                                 },
+                           '36cbae28efe27cc2b3a89bcfe8043584' => {
+                                                                   'alias' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                                                   'table' => 'permission.grp_tree',
+                                                                   'path' => 'au-profile',
+                                                                   'label' => 'ILS User :: Main (Profile) Permission Group',
+                                                                   'idlclass' => 'pgt',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'alias' => 'Permission Group',
+                                                                                                            'field_doc' => '',
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'op' => '=',
+                                                                                                            'op_value' => {},
+                                                                                                            'colname' => 'name',
+                                                                                                            'params' => undef,
+                                                                                                            'aggregate' => undef,
+                                                                                                            'datatype' => 'text',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'join' => ''
+                                                                                                          }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               }
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => '36cbae28efe27cc2b3a89bcfe8043584'
+                                           },
+                                           {
+                                             'field' => 'first_given_name',
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                                           },
+                                           {
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                             'field' => 'family_name'
+                                           },
+                                           {
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                             'field' => 'dob'
+                                           },
+                                           {
+                                             'field' => 'ident_value',
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                                           },
+                                           {
+                                             'relation' => '8cec5bf1d142774c8d550118afde7d75',
+                                             'field' => 'barcode'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                          'path' => 'au-home_ou-aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Home Library'
+                        },
+                        {
+                          'path' => 'au-profile-pgt-name',
+                          'relation' => '36cbae28efe27cc2b3a89bcfe8043584',
+                          'alias' => 'Permission Group',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'alias' => 'First Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'first_given_name'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'au-first_given_name',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                        },
+                        {
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                          'path' => 'au-family_name',
+                          'column' => {
+                                        'colname' => 'family_name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Last Name'
+                        },
+                        {
+                          'alias' => 'Date of Birth',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'transform' => 'date',
+                                        'colname' => 'dob'
+                                      },
+                          'path' => 'au-dob',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'ident_value'
+                                      },
+                          'alias' => 'Primary Identification',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                          'path' => 'au-ident_value'
+                        },
+                        {
+                          'relation' => '8cec5bf1d142774c8d550118afde7d75',
+                          'path' => 'au-card-ac-barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Barcode'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":["71"],"P1":[{"transform":"relative_date","params":["-7"]},{"transform":"relative_date","params":["-1"]}]}',
+          'template' => {
+                          'folder' => 2571,
+                          'name' => 'List of New Users',
+                          'id' => 64158,
+                          'create_time' => '2016-03-03 14:44:34.573243-05',
+                          'owner' => 2923364,
+                          'description' => 'List of new users added within a specified date range.
+-----------------------------------------
+Uses ILS User source.
+
+Displayed Fields:
+
+ILS User -> Home Library -> Short (Policy) Name as "Home Library"
+ILS User -> Main (Profile) Permission Group-> Group Name (as Permission Group)
+ILS User -> User ID -> First Name
+ILS User -> User ID -> Last Name
+ILS User -> Date of Birth (Date)
+ILS User -> Primary Identification
+ILS User -> Current Library Card -> Barcode
+
+Base Filters:
+
+ILS User -> Home Library -> Organizational Unit ID (In list)
+ILS User -> Record Creation Date/Time (Date) (Between)
+ILS User -> Active (Equals) True',
+                          'data' => '{"version":4,"doc_url":"","core_class":"au","select":[{"alias":"Home Library","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"au-home_ou-aou-shortname","relation":"8deb774ac638eb70a238a77d7fa9b277"},{"alias":"Permission Group","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"au-profile-pgt-name","relation":"36cbae28efe27cc2b3a89bcfe8043584"},{"alias":"First Name","field_doc":"","column":{"colname":"first_given_name","transform":"Bare","transform_label":"Raw Data"},"path":"au-first_given_name","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Last Name","field_doc":"","column":{"colname":"family_name","transform":"Bare","transform_label":"Raw Data"},"path":"au-family_name","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Date of Birth","field_doc":"","column":{"colname":"dob","transform":"date","transform_label":"Date"},"path":"au-dob","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Primary Identification","field_doc":"","column":{"colname":"ident_value","transform":"Bare","transform_label":"Raw Data"},"path":"au-ident_value","relation":"fe21ca9ecd516f33ec379ecc11aa7051"},{"alias":"Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"au-card-ac-barcode","relation":"8cec5bf1d142774c8d550118afde7d75"}],"from":{"path":"au-card","table":"actor.usr","alias":"fe21ca9ecd516f33ec379ecc11aa7051","join":{"home_ou-16a2ead7781e3688162a158c0778415f":{"key":"id","path":"au-home_ou-aou","table":"actor.org_unit","label":"ILS User :: Home Library","alias":"8deb774ac638eb70a238a77d7fa9b277","idlclass":"aou","template_path":"au-home_ou"},"profile-fe21ca9ecd516f33ec379ecc11aa7051":{"key":"id","path":"au-profile-pgt","table":"permission.grp_tree","label":"ILS User :: Main (Profile) Permission Group","alias":"36cbae28efe27cc2b3a89bcfe8043584","idlclass":"pgt","template_path":"au-profile"},"card-fe21ca9ecd516f33ec379ecc11aa7051":{"key":"id","path":"au-card-ac","table":"actor.card","label":"ILS User :: Current Library Card","alias":"8cec5bf1d142774c8d550118afde7d75","idlclass":"ac","template_path":"au-card"}},"label":"ILS User","idlclass":"au","template_path":"au"},"where":[{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"au-home_ou-aou-id","relation":"8deb774ac638eb70a238a77d7fa9b277","condition":{"in":"::P0"}},{"alias":"Record Creation Date/Time","field_doc":"","column":{"colname":"create_date","transform":"date","transform_label":"Date"},"path":"au-create_date","relation":"fe21ca9ecd516f33ec379ecc11aa7051","condition":{"between":"::P1"}},{"alias":"Active","field_doc":"","column":{"colname":"active","transform":"Bare","transform_label":"Raw Data"},"path":"au-active","relation":"fe21ca9ecd516f33ec379ecc11aa7051","condition":{"=":"t"}}],"having":[],"order_by":[],"rel_cache":{"8deb774ac638eb70a238a77d7fa9b277":{"label":"ILS User :: Home Library","alias":"8deb774ac638eb70a238a77d7fa9b277","path":"au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Home Library","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"8deb774ac638eb70a238a77d7fa9b277","field":"shortname"},{"relation":"36cbae28efe27cc2b3a89bcfe8043584","field":"name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"first_given_name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"family_name"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"dob"},{"relation":"fe21ca9ecd516f33ec379ecc11aa7051","field":"ident_value"},{"relation":"8cec5bf1d142774c8d550118afde7d75","field":"barcode"}],"fe21ca9ecd516f33ec379ecc11aa7051":{"label":"ILS User","alias":"fe21ca9ecd516f33ec379ecc11aa7051","path":"au","join":"","reltype":"","idlclass":"au","table":"actor.usr","fields":{"dis_tab":{"first_given_name":{"colname":"first_given_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"First Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"family_name":{"colname":"family_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Last Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"dob":{"colname":"dob","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Date of Birth","field_doc":"","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"ident_value":{"colname":"ident_value","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Primary Identification","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"create_date":{"colname":"create_date","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Record Creation Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""},"active":{"colname":"active","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Active","field_doc":"","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"t","label":"True"}}},"aggfilter_tab":{}}},"36cbae28efe27cc2b3a89bcfe8043584":{"label":"ILS User :: Main (Profile) Permission Group","alias":"36cbae28efe27cc2b3a89bcfe8043584","path":"au-profile","join":"","reltype":"has_a","idlclass":"pgt","table":"permission.grp_tree","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Permission Group","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"8cec5bf1d142774c8d550118afde7d75":{"label":"ILS User :: Current Library Card","alias":"8cec5bf1d142774c8d550118afde7d75","path":"au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Barcode","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}'
+                        },
+          'description' => '',
+          'owner' => 460049,
+          'recur' => 1,
+          'recurrence' => '7 days',
+          'create_time' => '2018-09-17 16:29:03.502072-04',
+          'id' => 152099,
+          'folder' => 2032,
+          'name' => 'New Users'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'order_by' => [],
+          'doc_url' => '',
+          'version' => 4,
+          'where' => [
+                       {
+                         'path' => 'au-home_ou-aou-id',
+                         'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'alias' => 'Record Creation Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'create_date',
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date'
+                                     },
+                         'path' => 'au-create_date',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                       },
+                       {
+                         'path' => 'au-active',
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                         'alias' => 'Active',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'active'
+                                     },
+                         'field_doc' => ''
+                       }
+                     ],
+          'core_class' => 'au',
+          'from' => {
+                      'alias' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                      'table' => 'actor.usr',
+                      'label' => 'ILS User',
+                      'idlclass' => 'au',
+                      'template_path' => 'au',
+                      'path' => 'au-card',
+                      'join' => {
+                                  'home_ou-16a2ead7781e3688162a158c0778415f' => {
+                                                                                  'table' => 'actor.org_unit',
+                                                                                  'alias' => '8deb774ac638eb70a238a77d7fa9b277',
+                                                                                  'key' => 'id',
+                                                                                  'label' => 'ILS User :: Home Library',
+                                                                                  'idlclass' => 'aou',
+                                                                                  'template_path' => 'au-home_ou',
+                                                                                  'path' => 'au-home_ou-aou'
+                                                                                },
+                                  'profile-fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                                  'table' => 'permission.grp_tree',
+                                                                                  'alias' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                                                                  'key' => 'id',
+                                                                                  'label' => 'ILS User :: Main (Profile) Permission Group',
+                                                                                  'idlclass' => 'pgt',
+                                                                                  'path' => 'au-profile-pgt',
+                                                                                  'template_path' => 'au-profile'
+                                                                                },
+                                  'card-fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                               'label' => 'ILS User :: Current Library Card',
+                                                                               'idlclass' => 'ac',
+                                                                               'template_path' => 'au-card',
+                                                                               'path' => 'au-card-ac',
+                                                                               'key' => 'id',
+                                                                               'alias' => '8cec5bf1d142774c8d550118afde7d75',
+                                                                               'table' => 'actor.card'
+                                                                             }
+                                }
+                    },
+          'rel_cache' => {
+                           '8deb774ac638eb70a238a77d7fa9b277' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'alias' => '8deb774ac638eb70a238a77d7fa9b277',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'path' => 'au-home_ou',
+                                                                   'label' => 'ILS User :: Home Library',
+                                                                   'idlclass' => 'aou',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'join' => '',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'params' => undef,
+                                                                                                             'field_doc' => '',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'alias' => 'Organizational Unit ID'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'alias' => 'Home Library',
+                                                                                                                 'params' => undef,
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '='
+                                                                                                               }
+                                                                                              }
+                                                                               }
+                                                                 },
+                           '8cec5bf1d142774c8d550118afde7d75' => {
+                                                                   'alias' => '8cec5bf1d142774c8d550118afde7d75',
+                                                                   'table' => 'actor.card',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'join' => '',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'params' => undef,
+                                                                                                               'field_doc' => '',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'alias' => 'Barcode'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'idlclass' => 'ac',
+                                                                   'label' => 'ILS User :: Current Library Card',
+                                                                   'path' => 'au-card',
+                                                                   'join' => '',
+                                                                   'reltype' => 'has_a'
+                                                                 },
+                           'fe21ca9ecd516f33ec379ecc11aa7051' => {
+                                                                   'alias' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                                                   'table' => 'actor.usr',
+                                                                   'path' => 'au',
+                                                                   'idlclass' => 'au',
+                                                                   'label' => 'ILS User',
+                                                                   'reltype' => '',
+                                                                   'join' => '',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'first_given_name' => {
+                                                                                                                        'join' => '',
+                                                                                                                        'op_label' => 'Equals',
+                                                                                                                        'datatype' => 'text',
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'params' => undef,
+                                                                                                                        'op_value' => {},
+                                                                                                                        'colname' => 'first_given_name',
+                                                                                                                        'op' => '=',
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'alias' => 'First Name'
+                                                                                                                      },
+                                                                                                'ident_value' => {
+                                                                                                                   'alias' => 'Primary Identification',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'op_value' => {},
+                                                                                                                   'colname' => 'ident_value',
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => ''
+                                                                                                                 },
+                                                                                                'family_name' => {
+                                                                                                                   'alias' => 'Last Name',
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'colname' => 'family_name',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'datatype' => 'text',
+                                                                                                                   'join' => ''
+                                                                                                                 },
+                                                                                                'dob' => {
+                                                                                                           'join' => '',
+                                                                                                           'aggregate' => undef,
+                                                                                                           'transform_label' => 'Date',
+                                                                                                           'op_label' => 'Equals',
+                                                                                                           'datatype' => 'timestamp',
+                                                                                                           'params' => undef,
+                                                                                                           'colname' => 'dob',
+                                                                                                           'op_value' => {},
+                                                                                                           'op' => '=',
+                                                                                                           'alias' => 'Date of Birth',
+                                                                                                           'transform' => 'date',
+                                                                                                           'field_doc' => ''
+                                                                                                         }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'create_date' => {
+                                                                                                                      'transform' => 'date',
+                                                                                                                      'field_doc' => '',
+                                                                                                                      'alias' => 'Record Creation Date/Time',
+                                                                                                                      'params' => undef,
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'between',
+                                                                                                                      'colname' => 'create_date',
+                                                                                                                      'op_label' => 'Between',
+                                                                                                                      'transform_label' => 'Date',
+                                                                                                                      'datatype' => 'timestamp',
+                                                                                                                      'aggregate' => undef,
+                                                                                                                      'join' => ''
+                                                                                                                    },
+                                                                                                   'active' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'alias' => 'Active',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'label' => 'True',
+                                                                                                                                 'value' => 't'
+                                                                                                                               },
+                                                                                                                 'colname' => 'active',
+                                                                                                                 'op' => '=',
+                                                                                                                 'params' => undef
+                                                                                                               }
+                                                                                                 }
+                                                                               }
+                                                                 },
+                           '36cbae28efe27cc2b3a89bcfe8043584' => {
+                                                                   'alias' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                                                   'table' => 'permission.grp_tree',
+                                                                   'path' => 'au-profile',
+                                                                   'label' => 'ILS User :: Main (Profile) Permission Group',
+                                                                   'idlclass' => 'pgt',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'alias' => 'Permission Group',
+                                                                                                            'field_doc' => '',
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'op' => '=',
+                                                                                                            'op_value' => {},
+                                                                                                            'colname' => 'name',
+                                                                                                            'params' => undef,
+                                                                                                            'aggregate' => undef,
+                                                                                                            'datatype' => 'text',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'join' => ''
+                                                                                                          }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               }
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => '36cbae28efe27cc2b3a89bcfe8043584'
+                                           },
+                                           {
+                                             'field' => 'first_given_name',
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                                           },
+                                           {
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                             'field' => 'family_name'
+                                           },
+                                           {
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                             'field' => 'dob'
+                                           },
+                                           {
+                                             'field' => 'ident_value',
+                                             'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                                           },
+                                           {
+                                             'relation' => '8cec5bf1d142774c8d550118afde7d75',
+                                             'field' => 'barcode'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                          'path' => 'au-home_ou-aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Home Library'
+                        },
+                        {
+                          'path' => 'au-profile-pgt-name',
+                          'relation' => '36cbae28efe27cc2b3a89bcfe8043584',
+                          'alias' => 'Permission Group',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'alias' => 'First Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'first_given_name'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'au-first_given_name',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                        },
+                        {
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                          'path' => 'au-family_name',
+                          'column' => {
+                                        'colname' => 'family_name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Last Name'
+                        },
+                        {
+                          'alias' => 'Date of Birth',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'transform' => 'date',
+                                        'colname' => 'dob'
+                                      },
+                          'path' => 'au-dob',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'ident_value'
+                                      },
+                          'alias' => 'Primary Identification',
+                          'relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                          'path' => 'au-ident_value'
+                        },
+                        {
+                          'relation' => '8cec5bf1d142774c8d550118afde7d75',
+                          'path' => 'au-card-ac-barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Barcode'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-11-16 16:29:03.502072-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_select' => [
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Home Library',
+                                         '_sql' => '"8deb774ac638eb70a238a77d7fa9b277"."shortname" AS "Home Library"',
+                                         '_builder' => bless( {
+                                                                '_rels' => {
+                                                                             'fe21ca9ecd516f33ec379ecc11aa7051' => bless( {
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_sql' => 'actor.usr AS "fe21ca9ecd516f33ec379ecc11aa7051"
+	INNER JOIN permission.grp_tree AS "36cbae28efe27cc2b3a89bcfe8043584" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."profile" = "36cbae28efe27cc2b3a89bcfe8043584"."id")
+	INNER JOIN actor.card AS "8cec5bf1d142774c8d550118afde7d75" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."card" = "8cec5bf1d142774c8d550118afde7d75"."id")
+	INNER JOIN actor.org_unit AS "8deb774ac638eb70a238a77d7fa9b277" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."home_ou" = "8deb774ac638eb70a238a77d7fa9b277"."id")',
+                                                                                                                            '_table' => 'actor.usr',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'},
+                                                                                                                                                  '_sql' => '
+	INNER JOIN permission.grp_tree AS "36cbae28efe27cc2b3a89bcfe8043584" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."profile" = "36cbae28efe27cc2b3a89bcfe8043584"."id")',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_col' => 'profile',
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_alias' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_sql' => 'permission.grp_tree AS "36cbae28efe27cc2b3a89bcfe8043584"',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_table' => 'permission.grp_tree'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN actor.card AS "8cec5bf1d142774c8d550118afde7d75" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."card" = "8cec5bf1d142774c8d550118afde7d75"."id")',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'},
+                                                                                                                                                  '_left_col' => 'card',
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_alias' => '8cec5bf1d142774c8d550118afde7d75',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_table' => 'actor.card',
+                                                                                                                                                                           '_sql' => 'actor.card AS "8cec5bf1d142774c8d550118afde7d75"',
+                                                                                                                                                                           '_join_type' => 'inner'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_table' => 'actor.org_unit',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_sql' => 'actor.org_unit AS "8deb774ac638eb70a238a77d7fa9b277"',
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_alias' => '8deb774ac638eb70a238a77d7fa9b277',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'}
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_left_col' => 'home_ou',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN actor.org_unit AS "8deb774ac638eb70a238a77d7fa9b277" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."home_ou" = "8deb774ac638eb70a238a77d7fa9b277"."id")',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'}
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                       ],
+                                                                                                                            '_alias' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                                                                                                            '_nullable' => undef
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '8deb774ac638eb70a238a77d7fa9b277' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'}{'_join'}[2]{'_right_rel'},
+                                                                             '8cec5bf1d142774c8d550118afde7d75' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'}{'_join'}[1]{'_right_rel'},
+                                                                             '36cbae28efe27cc2b3a89bcfe8043584' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'}{'_join'}[0]{'_right_rel'}
+                                                                           },
+                                                                '_relative_time' => '2020-11-16 16:29:03.502072-05',
+                                                                '_sql' => undef,
+                                                                '_params' => {
+                                                                               'P1' => [
+                                                                                         {
+                                                                                           'transform' => 'relative_date',
+                                                                                           'params' => [
+                                                                                                         '-7'
+                                                                                                       ]
+                                                                                         },
+                                                                                         {
+                                                                                           'transform' => 'relative_date',
+                                                                                           'params' => [
+                                                                                                         '-1'
+                                                                                                       ]
+                                                                                         }
+                                                                                       ],
+                                                                               'P0' => [
+                                                                                         '71'
+                                                                                       ]
+                                                                             },
+                                                                '_resultset_limit' => 1048575
+                                                              }, 'OpenILS::Reporter::SQLBuilder' ),
+                                         '_aggregate' => undef,
+                                         '_relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"36cbae28efe27cc2b3a89bcfe8043584"."name" AS "Permission Group"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                         '_alias' => 'Permission Group',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'name'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" AS "First Name"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'First Name',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'first_given_name'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                         '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."family_name" AS "Last Name"',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'family_name',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Last Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => 'date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") AS "Date of Birth"',
+                                         '_transform' => 'GenericTransform',
+                                         '_column' => {
+                                                        'colname' => 'dob',
+                                                        'transform_label' => 'Date',
+                                                        'transform' => 'date'
+                                                      },
+                                         '_alias' => 'Date of Birth'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Primary Identification',
+                                         '_column' => {
+                                                        'colname' => 'ident_value',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" AS "Primary Identification"',
+                                         '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Barcode',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'barcode'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_relation' => '8cec5bf1d142774c8d550118afde7d75',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"8cec5bf1d142774c8d550118afde7d75"."barcode" AS "Barcode"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fe21ca9ecd516f33ec379ecc11aa7051'},
+                 '_sql' => 'SELECT * FROM (SELECT	"8deb774ac638eb70a238a77d7fa9b277"."shortname" AS "Home Library",
+	"36cbae28efe27cc2b3a89bcfe8043584"."name" AS "Permission Group",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" AS "First Name",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."family_name" AS "Last Name",
+	date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") AS "Date of Birth",
+	"fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" AS "Primary Identification",
+	"8cec5bf1d142774c8d550118afde7d75"."barcode" AS "Barcode"
+  FROM	actor.usr AS "fe21ca9ecd516f33ec379ecc11aa7051"
+	INNER JOIN permission.grp_tree AS "36cbae28efe27cc2b3a89bcfe8043584" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."profile" = "36cbae28efe27cc2b3a89bcfe8043584"."id")
+	INNER JOIN actor.card AS "8cec5bf1d142774c8d550118afde7d75" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."card" = "8cec5bf1d142774c8d550118afde7d75"."id")
+	INNER JOIN actor.org_unit AS "8deb774ac638eb70a238a77d7fa9b277" ON ("fe21ca9ecd516f33ec379ecc11aa7051"."home_ou" = "8deb774ac638eb70a238a77d7fa9b277"."id")
+  WHERE	"8deb774ac638eb70a238a77d7fa9b277"."id" IN ($_21544$71$_21544$)
+	AND date("fe21ca9ecd516f33ec379ecc11aa7051"."create_date") BETWEEN SYMMETRIC DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-7 days$_21544$) AND DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-1 days$_21544$)
+	AND "fe21ca9ecd516f33ec379ecc11aa7051"."active" = $_21544$t$_21544$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "8deb774ac638eb70a238a77d7fa9b277"."shortname" ASC, "36cbae28efe27cc2b3a89bcfe8043584"."name" ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."family_name" ASC, date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") ASC, "fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" ASC, "8cec5bf1d142774c8d550118afde7d75"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                 '_where' => [
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                                        '_sql' => '"8deb774ac638eb70a238a77d7fa9b277"."id" IN ($_21544$71$_21544$)',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => 'date("fe21ca9ecd516f33ec379ecc11aa7051"."create_date") BETWEEN SYMMETRIC DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-7 days$_21544$) AND DATE($_21544$2020-11-16 16:29:03.502072-05$_21544$::TIMESTAMPTZ + $_21544$-1 days$_21544$)',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                        '_aggregate' => undef,
+                                        '_transform' => 'GenericTransform',
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date',
+                                                       'colname' => 'create_date'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                        '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."active" = $_21544$t$_21544$',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'colname' => 'active',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 't'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '8deb774ac638eb70a238a77d7fa9b277',
+                                           '_sql' => '"8deb774ac638eb70a238a77d7fa9b277"."shortname" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '36cbae28efe27cc2b3a89bcfe8043584',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"36cbae28efe27cc2b3a89bcfe8043584"."name" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."first_given_name" ASC',
+                                           '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                           '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."family_name" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => 'date("fe21ca9ecd516f33ec379ecc11aa7051"."dob") ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                           '_aggregate' => undef,
+                                           '_transform' => 'GenericTransform',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"fe21ca9ecd516f33ec379ecc11aa7051"."ident_value" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'fe21ca9ecd516f33ec379ecc11aa7051',
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '8cec5bf1d142774c8d550118afde7d75',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"8cec5bf1d142774c8d550118afde7d75"."barcode" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

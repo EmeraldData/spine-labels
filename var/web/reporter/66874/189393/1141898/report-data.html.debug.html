@@ -1,0 +1,1591 @@
+<html><head><meta charset='utf-8'><title>DEBUG: Friday test 1</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"71340ee51817967b96e95314b8fce7a7"."name" AS "Workstation Name",
+	"b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" AS "Payment Date/Time",
+	"b5994e1ddb6ed2a83bcc82653f748593"."amount" AS "Amount",
+	"b5994e1ddb6ed2a83bcc82653f748593"."payment_type" AS "Payment Type",
+	"b5994e1ddb6ed2a83bcc82653f748593"."id" AS "Payment ID",
+	"122768e6405328c3d6c0804207719acf"."barcode" AS "Barcode"
+  FROM	money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "71340ee51817967b96e95314b8fce7a7" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "71340ee51817967b96e95314b8fce7a7"."id")
+	INNER JOIN money.billable_xact AS "348a3fb8650f728f2b03689b19a14d33" ON ("b5994e1ddb6ed2a83bcc82653f748593"."xact" = "348a3fb8650f728f2b03689b19a14d33"."id")
+	INNER JOIN actor.usr AS "3736aca51ef86c56c095d78ffd2a8132" ON ("348a3fb8650f728f2b03689b19a14d33"."usr" = "3736aca51ef86c56c095d78ffd2a8132"."id")
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")
+  WHERE	date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") = $_64219$2020-11-02$_64219$
+	AND "71340ee51817967b96e95314b8fce7a7"."owning_lib" IN ($_64219$7$_64219$)
+  GROUP BY 1, 2, 3, 4, 5, 6
+  ORDER BY "71340ee51817967b96e95314b8fce7a7"."name" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."amount" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."payment_type" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."id" ASC, "122768e6405328c3d6c0804207719acf"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'description' => 'Source: Payments: Desk
+
+Display Fields:
+Payments: Desk > Cash Drawer > Workstation Name
+Payments: Desk > Payment Date/Time
+Payments: Desk > Amount
+Payments: Desk > Payment Type
+Payments: Desk > Payment ID
+Payments: Desk > Billable Transaction > User > Current Library Card > Barcode
+
+Filters:
+Payments: Desk > Payment Date/Time (Equals) (Date)
+Payments: Desk > Cash Drawer > Owning Library (In List)',
+          'owner' => 2923364,
+          'data' => '{"version":5,"core_class":"mdp","select":[{"alias":"Workstation Name","path":"aws-name","field_doc":"","relation":"71340ee51817967b96e95314b8fce7a7","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment Date/Time","path":"mdp-payment_ts","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Amount","path":"mdp-amount","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment Type","path":"mdp-payment_type","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment ID","path":"mdp-id","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"ac-barcode","field_doc":"","relation":"122768e6405328c3d6c0804207719acf","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"b5994e1ddb6ed2a83bcc82653f748593","path":"mdp-mdp","table":"money.desk_payment_view","idlclass":"mdp","join":{"cash_drawer-a0f6b175e3905be5cb6c4841e1b002a1":{"type":"inner","key":"id","alias":"71340ee51817967b96e95314b8fce7a7","path":"mdp-cash_drawer","table":"actor.workstation","idlclass":"aws","label":"Payments: Desk -> Cash Drawer (inner)"},"xact-348a3fb8650f728f2b03689b19a14d33":{"type":"inner","key":"id","alias":"348a3fb8650f728f2b03689b19a14d33","path":"mdp-xact","table":"money.billable_xact","idlclass":"mbt","join":{"usr-3736aca51ef86c56c095d78ffd2a8132":{"type":"inner","key":"id","alias":"3736aca51ef86c56c095d78ffd2a8132","path":"mdp-xact-usr","table":"actor.usr","idlclass":"au","join":{"card-0a0eda9f4cdf6a6683150da3b2451e54":{"type":"inner","key":"id","alias":"122768e6405328c3d6c0804207719acf","path":"mdp-xact-usr-card","table":"actor.card","idlclass":"ac","label":"Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)"}}}}}},"label":"Payments: Desk"},"where":[{"alias":"Payment Date/Time","path":"mdp-payment_ts","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_ts","transform":"date","transform_label":"Date","aggregate":0},"condition":{"=":"::P0"}},{"alias":"Owning Library","path":"aws-owning_lib","field_doc":"","relation":"71340ee51817967b96e95314b8fce7a7","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P1"}}],"having":[],"display_cols":[{"name":"name","label":"Workstation Name","datatype":"text","index":0,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Cash Drawer","from":"mdp","link":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"id":"mdp.aws","jtype":"inner","uplink":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Payments: Desk -> Cash Drawer (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"payment_ts","label":"Payment Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"amount","label":"Amount","datatype":"money","index":2,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"payment_type","label":"Payment Type","datatype":"text","index":3,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Payment ID","datatype":"id","index":4,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"barcode","label":"Barcode","datatype":"text","index":5,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Billable Transaction","from":"mdp","link":{"name":"xact","label":"Billable Transaction","type":"link","key":"id","class":"mbt","reltype":"has_a","datatype":"link"},"id":"mdp.mbt","jtype":"inner","uplink":{"name":"xact","label":"Billable Transaction","type":"link","key":"id","class":"mbt","reltype":"has_a","datatype":"link"},"classname":"mbt","struct":{"name":"mbt","label":"Billable Transaction","table":"money.billable_xact","pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Non-core sources","classname":"mbt"},"table":"money.billable_xact"},{"label":"User","from":"mdp.mbt","link":{"name":"usr","label":"User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"mdp.mbt.au","jtype":"inner","uplink":{"name":"usr","label":"User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"mdp.mbt.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"mdp.mbt.au.ac","jtype":"inner","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"payment_ts","label":"Payment Date/Time","datatype":"timestamp","index":0,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","operator":{"op":"=","label":"Equals"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""},{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":1,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Cash Drawer","from":"mdp","link":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"id":"mdp.aws","jtype":"inner","uplink":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Payments: Desk -> Cash Drawer (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'name' => 'Daily Cash Report',
+          'folder' => 3241,
+          'id' => 66874,
+          'create_time' => '2018-02-23 11:34:04.920774-05'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'name',
+                                'index' => 0,
+                                'path_label' => 'Payments: Desk -> Cash Drawer (inner)',
+                                'datatype' => 'text',
+                                'label' => 'Workstation Name',
+                                'path' => [
+                                            {
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'table' => 'money.desk_payment_view',
+                                              'struct' => {
+                                                            'pkey_sequence' => '',
+                                                            'classname' => 'mdp',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'pkey' => 'id',
+                                                            'name' => 'mdp'
+                                                          }
+                                            },
+                                            {
+                                              'id' => 'mdp.aws',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'class' => 'aws',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'cash_drawer',
+                                                          'label' => 'Cash Drawer'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'class' => 'aws',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Cash Drawer',
+                                                            'name' => 'cash_drawer',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'table' => 'actor.workstation',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Workstation',
+                                                            'name' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'aws',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq',
+                                                            'table' => 'actor.workstation'
+                                                          },
+                                              'label' => 'Cash Drawer',
+                                              'classname' => 'aws',
+                                              'from' => 'mdp'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Payments: Desk',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'money.desk_payment_view',
+                                                            'pkey' => 'id',
+                                                            'name' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'classname' => 'mdp',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp'
+                                            }
+                                          ],
+                                'label' => 'Payment Date/Time',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'payment_ts'
+                              },
+                              {
+                                'index' => 2,
+                                'path_label' => 'Payments: Desk',
+                                'datatype' => 'money',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'classname' => 'mdp',
+                                              'table' => 'money.desk_payment_view',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp',
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Payments: Desk',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Amount',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'amount'
+                              },
+                              {
+                                'name' => 'payment_type',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'name' => 'mdp',
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => ''
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Payment Type',
+                                'index' => 3,
+                                'datatype' => 'text',
+                                'path_label' => 'Payments: Desk'
+                              },
+                              {
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Payment ID',
+                                'path_label' => 'Payments: Desk',
+                                'datatype' => 'id',
+                                'index' => 4,
+                                'name' => 'id',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               }
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'barcode',
+                                'index' => 5,
+                                'path_label' => 'Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)',
+                                'datatype' => 'text',
+                                'label' => 'Barcode',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'jtype' => 'inner',
+                                              'classname' => 'mdp',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'classname' => 'mbt',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'money.billable_xact',
+                                                            'label' => 'Billable Transaction',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'mbt'
+                                                          },
+                                              'table' => 'money.billable_xact',
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'xact',
+                                                            'label' => 'Billable Transaction',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'mbt'
+                                                          },
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'xact',
+                                                          'label' => 'Billable Transaction',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'mbt'
+                                                        },
+                                              'id' => 'mdp.mbt',
+                                              'from' => 'mdp',
+                                              'classname' => 'mbt',
+                                              'label' => 'Billable Transaction'
+                                            },
+                                            {
+                                              'label' => 'User',
+                                              'from' => 'mdp.mbt',
+                                              'classname' => 'au',
+                                              'id' => 'mdp.mbt.au',
+                                              'link' => {
+                                                          'label' => 'User',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'name' => 'usr',
+                                                          'class' => 'au',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'table' => 'actor.usr',
+                                              'struct' => {
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id',
+                                                            'name' => 'au',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'ILS User',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'label' => 'User',
+                                                            'name' => 'usr',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'au',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          }
+                                            },
+                                            {
+                                              'label' => 'Current Library Card',
+                                              'from' => 'mdp.mbt.au',
+                                              'classname' => 'ac',
+                                              'id' => 'mdp.mbt.au.ac',
+                                              'link' => {
+                                                          'label' => 'Current Library Card',
+                                                          'name' => 'card',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'class' => 'ac',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'classname' => 'ac',
+                                                            'pkey_sequence' => 'actor.card_id_seq',
+                                                            'table' => 'actor.card',
+                                                            'label' => 'Library Card',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'ac'
+                                                          },
+                                              'table' => 'actor.card',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'card',
+                                                            'label' => 'Current Library Card',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'ac'
+                                                          },
+                                              'jtype' => 'inner'
+                                            }
+                                          ]
+                              }
+                            ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'colname' => 'payment_ts'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Payment Date/Time',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'path' => 'mdp-payment_ts'
+                       },
+                       {
+                         'alias' => 'Owning Library',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'owning_lib'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'aws-owning_lib',
+                         'relation' => '71340ee51817967b96e95314b8fce7a7',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        }
+                       }
+                     ],
+          'core_class' => 'mdp',
+          'from' => {
+                      'join' => {
+                                  'cash_drawer-a0f6b175e3905be5cb6c4841e1b002a1' => {
+                                                                                      'table' => 'actor.workstation',
+                                                                                      'type' => 'inner',
+                                                                                      'alias' => '71340ee51817967b96e95314b8fce7a7',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'mdp-cash_drawer',
+                                                                                      'idlclass' => 'aws',
+                                                                                      'label' => 'Payments: Desk -> Cash Drawer (inner)'
+                                                                                    },
+                                  'xact-348a3fb8650f728f2b03689b19a14d33' => {
+                                                                               'join' => {
+                                                                                           'usr-3736aca51ef86c56c095d78ffd2a8132' => {
+                                                                                                                                       'alias' => '3736aca51ef86c56c095d78ffd2a8132',
+                                                                                                                                       'table' => 'actor.usr',
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'idlclass' => 'au',
+                                                                                                                                       'path' => 'mdp-xact-usr',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'card-0a0eda9f4cdf6a6683150da3b2451e54' => {
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'type' => 'inner',
+                                                                                                                                                                                                'alias' => '122768e6405328c3d6c0804207719acf',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'label' => 'Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'path' => 'mdp-xact-usr-card'
+                                                                                                                                                                                              }
+                                                                                                                                                 },
+                                                                                                                                       'key' => 'id'
+                                                                                                                                     }
+                                                                                         },
+                                                                               'key' => 'id',
+                                                                               'idlclass' => 'mbt',
+                                                                               'path' => 'mdp-xact',
+                                                                               'table' => 'money.billable_xact',
+                                                                               'type' => 'inner',
+                                                                               'alias' => '348a3fb8650f728f2b03689b19a14d33'
+                                                                             }
+                                },
+                      'label' => 'Payments: Desk',
+                      'idlclass' => 'mdp',
+                      'path' => 'mdp-mdp',
+                      'table' => 'money.desk_payment_view',
+                      'alias' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                    },
+          'filter_cols' => [
+                             {
+                               'path_label' => 'Payments: Desk',
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'index' => 0,
+                               'label' => 'Payment Date/Time',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Payments: Desk',
+                                             'id' => 'mdp',
+                                             'jtype' => 'inner',
+                                             'classname' => 'mdp',
+                                             'table' => 'money.desk_payment_view',
+                                             'struct' => {
+                                                           'classname' => 'mdp',
+                                                           'pkey_sequence' => '',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Payments: Desk',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'money.desk_payment_view',
+                                                           'name' => 'mdp'
+                                                         }
+                                           }
+                                         ],
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'date',
+                                                'label' => 'Date'
+                                              },
+                               'name' => 'payment_ts'
+                             },
+                             {
+                               'key' => 'id',
+                               'name' => 'owning_lib',
+                               'class' => 'aou',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'type' => 'link',
+                               'label' => 'Owning Library',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'label' => 'Payments: Desk',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'mdp',
+                                                           'pkey_sequence' => '',
+                                                           'name' => 'mdp',
+                                                           'pkey' => 'id',
+                                                           'table' => 'money.desk_payment_view'
+                                                         },
+                                             'table' => 'money.desk_payment_view',
+                                             'jtype' => 'inner',
+                                             'classname' => 'mdp',
+                                             'id' => 'mdp',
+                                             'label' => 'Payments: Desk'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'class' => 'aws',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'cash_drawer',
+                                                           'label' => 'Cash Drawer'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'table' => 'actor.workstation',
+                                             'struct' => {
+                                                           'label' => 'Workstation',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aws',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aws',
+                                                           'pkey_sequence' => 'actor.workstation_id_seq',
+                                                           'table' => 'actor.workstation'
+                                                         },
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'cash_drawer',
+                                                         'key' => 'id',
+                                                         'label' => 'Cash Drawer',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'aws'
+                                                       },
+                                             'id' => 'mdp.aws',
+                                             'classname' => 'aws',
+                                             'from' => 'mdp',
+                                             'label' => 'Cash Drawer'
+                                           }
+                                         ],
+                               'reltype' => 'has_a',
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'index' => 1,
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Payments: Desk -> Cash Drawer (inner)'
+                             }
+                           ],
+          'select' => [
+                        {
+                          'alias' => 'Workstation Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      },
+                          'path' => 'aws-name',
+                          'relation' => '71340ee51817967b96e95314b8fce7a7'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'payment_ts',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Payment Date/Time',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_ts'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'amount'
+                                      },
+                          'path' => 'mdp-amount',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                        },
+                        {
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_type',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'payment_type'
+                                      },
+                          'alias' => 'Payment Type'
+                        },
+                        {
+                          'alias' => 'Payment ID',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'id'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mdp-id',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                        },
+                        {
+                          'relation' => '122768e6405328c3d6c0804207719acf',
+                          'path' => 'ac-barcode',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Barcode'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'create_time' => '2021-01-08 09:19:22.640295-05',
+          'id' => 189393,
+          'folder' => 5527,
+          'name' => 'Friday test 1',
+          'description' => '',
+          'owner' => 2923364,
+          'recur' => 0,
+          'recurrence' => undef,
+          'data' => '{"P0":["2020-11-02"],"P1":["7"]}',
+          'template' => {
+                          'description' => 'Source: Payments: Desk
+
+Display Fields:
+Payments: Desk > Cash Drawer > Workstation Name
+Payments: Desk > Payment Date/Time
+Payments: Desk > Amount
+Payments: Desk > Payment Type
+Payments: Desk > Payment ID
+Payments: Desk > Billable Transaction > User > Current Library Card > Barcode
+
+Filters:
+Payments: Desk > Payment Date/Time (Equals) (Date)
+Payments: Desk > Cash Drawer > Owning Library (In List)',
+                          'owner' => 2923364,
+                          'data' => '{"version":5,"core_class":"mdp","select":[{"alias":"Workstation Name","path":"aws-name","field_doc":"","relation":"71340ee51817967b96e95314b8fce7a7","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment Date/Time","path":"mdp-payment_ts","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Amount","path":"mdp-amount","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment Type","path":"mdp-payment_type","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Payment ID","path":"mdp-id","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"ac-barcode","field_doc":"","relation":"122768e6405328c3d6c0804207719acf","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"b5994e1ddb6ed2a83bcc82653f748593","path":"mdp-mdp","table":"money.desk_payment_view","idlclass":"mdp","join":{"cash_drawer-a0f6b175e3905be5cb6c4841e1b002a1":{"type":"inner","key":"id","alias":"71340ee51817967b96e95314b8fce7a7","path":"mdp-cash_drawer","table":"actor.workstation","idlclass":"aws","label":"Payments: Desk -> Cash Drawer (inner)"},"xact-348a3fb8650f728f2b03689b19a14d33":{"type":"inner","key":"id","alias":"348a3fb8650f728f2b03689b19a14d33","path":"mdp-xact","table":"money.billable_xact","idlclass":"mbt","join":{"usr-3736aca51ef86c56c095d78ffd2a8132":{"type":"inner","key":"id","alias":"3736aca51ef86c56c095d78ffd2a8132","path":"mdp-xact-usr","table":"actor.usr","idlclass":"au","join":{"card-0a0eda9f4cdf6a6683150da3b2451e54":{"type":"inner","key":"id","alias":"122768e6405328c3d6c0804207719acf","path":"mdp-xact-usr-card","table":"actor.card","idlclass":"ac","label":"Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)"}}}}}},"label":"Payments: Desk"},"where":[{"alias":"Payment Date/Time","path":"mdp-payment_ts","field_doc":"","relation":"b5994e1ddb6ed2a83bcc82653f748593","column":{"colname":"payment_ts","transform":"date","transform_label":"Date","aggregate":0},"condition":{"=":"::P0"}},{"alias":"Owning Library","path":"aws-owning_lib","field_doc":"","relation":"71340ee51817967b96e95314b8fce7a7","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P1"}}],"having":[],"display_cols":[{"name":"name","label":"Workstation Name","datatype":"text","index":0,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Cash Drawer","from":"mdp","link":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"id":"mdp.aws","jtype":"inner","uplink":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Payments: Desk -> Cash Drawer (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"payment_ts","label":"Payment Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"amount","label":"Amount","datatype":"money","index":2,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"payment_type","label":"Payment Type","datatype":"text","index":3,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Payment ID","datatype":"id","index":4,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"barcode","label":"Barcode","datatype":"text","index":5,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Billable Transaction","from":"mdp","link":{"name":"xact","label":"Billable Transaction","type":"link","key":"id","class":"mbt","reltype":"has_a","datatype":"link"},"id":"mdp.mbt","jtype":"inner","uplink":{"name":"xact","label":"Billable Transaction","type":"link","key":"id","class":"mbt","reltype":"has_a","datatype":"link"},"classname":"mbt","struct":{"name":"mbt","label":"Billable Transaction","table":"money.billable_xact","pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Non-core sources","classname":"mbt"},"table":"money.billable_xact"},{"label":"User","from":"mdp.mbt","link":{"name":"usr","label":"User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"mdp.mbt.au","jtype":"inner","uplink":{"name":"usr","label":"User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"},{"label":"Current Library Card","from":"mdp.mbt.au","link":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"id":"mdp.mbt.au.ac","jtype":"inner","uplink":{"name":"card","label":"Current Library Card","type":"link","key":"id","class":"ac","reltype":"has_a","datatype":"link"},"classname":"ac","struct":{"name":"ac","label":"Library Card","table":"actor.card","pkey":"id","pkey_sequence":"actor.card_id_seq","core_label":"Non-core sources","classname":"ac"},"table":"actor.card"}],"path_label":"Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"payment_ts","label":"Payment Date/Time","datatype":"timestamp","index":0,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"}],"path_label":"Payments: Desk","operator":{"op":"=","label":"Equals"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""},{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":1,"path":[{"label":"Payments: Desk","id":"mdp","jtype":"inner","classname":"mdp","struct":{"name":"mdp","label":"Payments: Desk","table":"money.desk_payment_view","core":true,"pkey":"id","pkey_sequence":"","core_label":"Core sources","classname":"mdp"},"table":"money.desk_payment_view"},{"label":"Cash Drawer","from":"mdp","link":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"id":"mdp.aws","jtype":"inner","uplink":{"name":"cash_drawer","label":"Cash Drawer","type":"link","key":"id","class":"aws","reltype":"has_a","datatype":"link"},"classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Payments: Desk -> Cash Drawer (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'name' => 'Daily Cash Report',
+                          'folder' => 3241,
+                          'id' => 66874,
+                          'create_time' => '2018-02-23 11:34:04.920774-05'
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'name',
+                                'index' => 0,
+                                'path_label' => 'Payments: Desk -> Cash Drawer (inner)',
+                                'datatype' => 'text',
+                                'label' => 'Workstation Name',
+                                'path' => [
+                                            {
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'table' => 'money.desk_payment_view',
+                                              'struct' => {
+                                                            'pkey_sequence' => '',
+                                                            'classname' => 'mdp',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'pkey' => 'id',
+                                                            'name' => 'mdp'
+                                                          }
+                                            },
+                                            {
+                                              'id' => 'mdp.aws',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'class' => 'aws',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'cash_drawer',
+                                                          'label' => 'Cash Drawer'
+                                                        },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'class' => 'aws',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Cash Drawer',
+                                                            'name' => 'cash_drawer',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'table' => 'actor.workstation',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Workstation',
+                                                            'name' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'aws',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq',
+                                                            'table' => 'actor.workstation'
+                                                          },
+                                              'label' => 'Cash Drawer',
+                                              'classname' => 'aws',
+                                              'from' => 'mdp'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Payments: Desk',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'money.desk_payment_view',
+                                                            'pkey' => 'id',
+                                                            'name' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'classname' => 'mdp',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp'
+                                            }
+                                          ],
+                                'label' => 'Payment Date/Time',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'payment_ts'
+                              },
+                              {
+                                'index' => 2,
+                                'path_label' => 'Payments: Desk',
+                                'datatype' => 'money',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'label' => 'Payments: Desk',
+                                              'id' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'classname' => 'mdp',
+                                              'table' => 'money.desk_payment_view',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp',
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Payments: Desk',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Amount',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'amount'
+                              },
+                              {
+                                'name' => 'payment_type',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'name' => 'mdp',
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => ''
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Payment Type',
+                                'index' => 3,
+                                'datatype' => 'text',
+                                'path_label' => 'Payments: Desk'
+                              },
+                              {
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'classname' => 'mdp',
+                                              'jtype' => 'inner',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Payment ID',
+                                'path_label' => 'Payments: Desk',
+                                'datatype' => 'id',
+                                'index' => 4,
+                                'name' => 'id',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               }
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'barcode',
+                                'index' => 5,
+                                'path_label' => 'Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)',
+                                'datatype' => 'text',
+                                'label' => 'Barcode',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'classname' => 'mdp',
+                                                            'pkey_sequence' => '',
+                                                            'label' => 'Payments: Desk',
+                                                            'core_label' => 'Core sources',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'pkey' => 'id',
+                                                            'table' => 'money.desk_payment_view',
+                                                            'name' => 'mdp'
+                                                          },
+                                              'table' => 'money.desk_payment_view',
+                                              'jtype' => 'inner',
+                                              'classname' => 'mdp',
+                                              'id' => 'mdp',
+                                              'label' => 'Payments: Desk'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'classname' => 'mbt',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'money.billable_xact',
+                                                            'label' => 'Billable Transaction',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'mbt'
+                                                          },
+                                              'table' => 'money.billable_xact',
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'xact',
+                                                            'label' => 'Billable Transaction',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'mbt'
+                                                          },
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'xact',
+                                                          'label' => 'Billable Transaction',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'mbt'
+                                                        },
+                                              'id' => 'mdp.mbt',
+                                              'from' => 'mdp',
+                                              'classname' => 'mbt',
+                                              'label' => 'Billable Transaction'
+                                            },
+                                            {
+                                              'label' => 'User',
+                                              'from' => 'mdp.mbt',
+                                              'classname' => 'au',
+                                              'id' => 'mdp.mbt.au',
+                                              'link' => {
+                                                          'label' => 'User',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'name' => 'usr',
+                                                          'class' => 'au',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'table' => 'actor.usr',
+                                              'struct' => {
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id',
+                                                            'name' => 'au',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'ILS User',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'label' => 'User',
+                                                            'name' => 'usr',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'au',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          }
+                                            },
+                                            {
+                                              'label' => 'Current Library Card',
+                                              'from' => 'mdp.mbt.au',
+                                              'classname' => 'ac',
+                                              'id' => 'mdp.mbt.au.ac',
+                                              'link' => {
+                                                          'label' => 'Current Library Card',
+                                                          'name' => 'card',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'class' => 'ac',
+                                                          'type' => 'link',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'classname' => 'ac',
+                                                            'pkey_sequence' => 'actor.card_id_seq',
+                                                            'table' => 'actor.card',
+                                                            'label' => 'Library Card',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'ac'
+                                                          },
+                                              'table' => 'actor.card',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'card',
+                                                            'label' => 'Current Library Card',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'class' => 'ac'
+                                                          },
+                                              'jtype' => 'inner'
+                                            }
+                                          ]
+                              }
+                            ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'colname' => 'payment_ts'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Payment Date/Time',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'path' => 'mdp-payment_ts'
+                       },
+                       {
+                         'alias' => 'Owning Library',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'owning_lib'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'aws-owning_lib',
+                         'relation' => '71340ee51817967b96e95314b8fce7a7',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        }
+                       }
+                     ],
+          'core_class' => 'mdp',
+          'from' => {
+                      'join' => {
+                                  'cash_drawer-a0f6b175e3905be5cb6c4841e1b002a1' => {
+                                                                                      'table' => 'actor.workstation',
+                                                                                      'type' => 'inner',
+                                                                                      'alias' => '71340ee51817967b96e95314b8fce7a7',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'mdp-cash_drawer',
+                                                                                      'idlclass' => 'aws',
+                                                                                      'label' => 'Payments: Desk -> Cash Drawer (inner)'
+                                                                                    },
+                                  'xact-348a3fb8650f728f2b03689b19a14d33' => {
+                                                                               'join' => {
+                                                                                           'usr-3736aca51ef86c56c095d78ffd2a8132' => {
+                                                                                                                                       'alias' => '3736aca51ef86c56c095d78ffd2a8132',
+                                                                                                                                       'table' => 'actor.usr',
+                                                                                                                                       'type' => 'inner',
+                                                                                                                                       'idlclass' => 'au',
+                                                                                                                                       'path' => 'mdp-xact-usr',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'card-0a0eda9f4cdf6a6683150da3b2451e54' => {
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'type' => 'inner',
+                                                                                                                                                                                                'alias' => '122768e6405328c3d6c0804207719acf',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'label' => 'Payments: Desk -> Billable Transaction (inner) -> User (inner) -> Current Library Card (inner)',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'path' => 'mdp-xact-usr-card'
+                                                                                                                                                                                              }
+                                                                                                                                                 },
+                                                                                                                                       'key' => 'id'
+                                                                                                                                     }
+                                                                                         },
+                                                                               'key' => 'id',
+                                                                               'idlclass' => 'mbt',
+                                                                               'path' => 'mdp-xact',
+                                                                               'table' => 'money.billable_xact',
+                                                                               'type' => 'inner',
+                                                                               'alias' => '348a3fb8650f728f2b03689b19a14d33'
+                                                                             }
+                                },
+                      'label' => 'Payments: Desk',
+                      'idlclass' => 'mdp',
+                      'path' => 'mdp-mdp',
+                      'table' => 'money.desk_payment_view',
+                      'alias' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                    },
+          'filter_cols' => [
+                             {
+                               'path_label' => 'Payments: Desk',
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'index' => 0,
+                               'label' => 'Payment Date/Time',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Payments: Desk',
+                                             'id' => 'mdp',
+                                             'jtype' => 'inner',
+                                             'classname' => 'mdp',
+                                             'table' => 'money.desk_payment_view',
+                                             'struct' => {
+                                                           'classname' => 'mdp',
+                                                           'pkey_sequence' => '',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Payments: Desk',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'money.desk_payment_view',
+                                                           'name' => 'mdp'
+                                                         }
+                                           }
+                                         ],
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'date',
+                                                'label' => 'Date'
+                                              },
+                               'name' => 'payment_ts'
+                             },
+                             {
+                               'key' => 'id',
+                               'name' => 'owning_lib',
+                               'class' => 'aou',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'type' => 'link',
+                               'label' => 'Owning Library',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'label' => 'Payments: Desk',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'mdp',
+                                                           'pkey_sequence' => '',
+                                                           'name' => 'mdp',
+                                                           'pkey' => 'id',
+                                                           'table' => 'money.desk_payment_view'
+                                                         },
+                                             'table' => 'money.desk_payment_view',
+                                             'jtype' => 'inner',
+                                             'classname' => 'mdp',
+                                             'id' => 'mdp',
+                                             'label' => 'Payments: Desk'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'class' => 'aws',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'cash_drawer',
+                                                           'label' => 'Cash Drawer'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'table' => 'actor.workstation',
+                                             'struct' => {
+                                                           'label' => 'Workstation',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aws',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aws',
+                                                           'pkey_sequence' => 'actor.workstation_id_seq',
+                                                           'table' => 'actor.workstation'
+                                                         },
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'cash_drawer',
+                                                         'key' => 'id',
+                                                         'label' => 'Cash Drawer',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'aws'
+                                                       },
+                                             'id' => 'mdp.aws',
+                                             'classname' => 'aws',
+                                             'from' => 'mdp',
+                                             'label' => 'Cash Drawer'
+                                           }
+                                         ],
+                               'reltype' => 'has_a',
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'index' => 1,
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Payments: Desk -> Cash Drawer (inner)'
+                             }
+                           ],
+          'select' => [
+                        {
+                          'alias' => 'Workstation Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'name'
+                                      },
+                          'path' => 'aws-name',
+                          'relation' => '71340ee51817967b96e95314b8fce7a7'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'payment_ts',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Payment Date/Time',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_ts'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'amount'
+                                      },
+                          'path' => 'mdp-amount',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                        },
+                        {
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_type',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'payment_type'
+                                      },
+                          'alias' => 'Payment Type'
+                        },
+                        {
+                          'alias' => 'Payment ID',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'id'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mdp-id',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                        },
+                        {
+                          'relation' => '122768e6405328c3d6c0804207719acf',
+                          'path' => 'ac-barcode',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Barcode'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2021-01-08 09:19:22.640295-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => bless( {
+                                                                  '_rels' => {
+                                                                               '122768e6405328c3d6c0804207719acf' => bless( {
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_alias' => '122768e6405328c3d6c0804207719acf',
+                                                                                                                              '_sql' => 'actor.card AS "122768e6405328c3d6c0804207719acf"',
+                                                                                                                              '_join_type' => 'inner',
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_join' => [],
+                                                                                                                              '_table' => 'actor.card',
+                                                                                                                              '_is_join' => 1
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               '348a3fb8650f728f2b03689b19a14d33' => bless( {
+                                                                                                                              '_join_type' => 'inner',
+                                                                                                                              '_sql' => 'money.billable_xact AS "348a3fb8650f728f2b03689b19a14d33"',
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_table' => 'money.billable_xact',
+                                                                                                                              '_join' => [
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'348a3fb8650f728f2b03689b19a14d33'},
+                                                                                                                                                    '_sql' => '
+	INNER JOIN actor.usr AS "3736aca51ef86c56c095d78ffd2a8132" ON ("348a3fb8650f728f2b03689b19a14d33"."usr" = "3736aca51ef86c56c095d78ffd2a8132"."id")
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")',
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_left_col' => 'usr',
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_nullable' => undef,
+                                                                                                                                                                             '_alias' => '3736aca51ef86c56c095d78ffd2a8132',
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                             '_is_join' => 1,
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_join' => [
+                                                                                                                                                                                          bless( {
+                                                                                                                                                                                                   '_left_col' => 'card',
+                                                                                                                                                                                                   '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'348a3fb8650f728f2b03689b19a14d33'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                   '_right_col' => 'id',
+                                                                                                                                                                                                   '_join_type' => 'i',
+                                                                                                                                                                                                   '_sql' => '
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")',
+                                                                                                                                                                                                   '_right_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'122768e6405328c3d6c0804207719acf'}
+                                                                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                        ],
+                                                                                                                                                                             '_table' => 'actor.usr',
+                                                                                                                                                                             '_sql' => 'actor.usr AS "3736aca51ef86c56c095d78ffd2a8132"',
+                                                                                                                                                                             '_join_type' => 'inner'
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                         ],
+                                                                                                                              '_is_join' => 1,
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_alias' => '348a3fb8650f728f2b03689b19a14d33',
+                                                                                                                              '_nullable' => undef
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               '3736aca51ef86c56c095d78ffd2a8132' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'348a3fb8650f728f2b03689b19a14d33'}{'_join'}[0]{'_right_rel'},
+                                                                               'b5994e1ddb6ed2a83bcc82653f748593' => bless( {
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_join' => [
+                                                                                                                                           bless( {
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN actor.workstation AS "71340ee51817967b96e95314b8fce7a7" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "71340ee51817967b96e95314b8fce7a7"."id")',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'},
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_col' => 'cash_drawer',
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_join' => [],
+                                                                                                                                                                             '_table' => 'actor.workstation',
+                                                                                                                                                                             '_is_join' => 1,
+                                                                                                                                                                             '_sql' => 'actor.workstation AS "71340ee51817967b96e95314b8fce7a7"',
+                                                                                                                                                                             '_join_type' => 'inner',
+                                                                                                                                                                             '_alias' => '71340ee51817967b96e95314b8fce7a7',
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'}
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'348a3fb8650f728f2b03689b19a14d33'},
+                                                                                                                                                    '_left_col' => 'xact',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN money.billable_xact AS "348a3fb8650f728f2b03689b19a14d33" ON ("b5994e1ddb6ed2a83bcc82653f748593"."xact" = "348a3fb8650f728f2b03689b19a14d33"."id")
+	INNER JOIN actor.usr AS "3736aca51ef86c56c095d78ffd2a8132" ON ("348a3fb8650f728f2b03689b19a14d33"."usr" = "3736aca51ef86c56c095d78ffd2a8132"."id")
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")',
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'}
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                         ],
+                                                                                                                              '_table' => 'money.desk_payment_view',
+                                                                                                                              '_alias' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                                                                                                              '_nullable' => undef,
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_sql' => 'money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "71340ee51817967b96e95314b8fce7a7" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "71340ee51817967b96e95314b8fce7a7"."id")
+	INNER JOIN money.billable_xact AS "348a3fb8650f728f2b03689b19a14d33" ON ("b5994e1ddb6ed2a83bcc82653f748593"."xact" = "348a3fb8650f728f2b03689b19a14d33"."id")
+	INNER JOIN actor.usr AS "3736aca51ef86c56c095d78ffd2a8132" ON ("348a3fb8650f728f2b03689b19a14d33"."usr" = "3736aca51ef86c56c095d78ffd2a8132"."id")
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")'
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               '71340ee51817967b96e95314b8fce7a7' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'}{'_join'}[0]{'_right_rel'}
+                                                                             },
+                                                                  '_relative_time' => '2021-01-08 09:19:22.640295-05',
+                                                                  '_resultset_limit' => 1048575,
+                                                                  '_params' => {
+                                                                                 'P0' => [
+                                                                                           '2020-11-02'
+                                                                                         ],
+                                                                                 'P1' => [
+                                                                                           '7'
+                                                                                         ]
+                                                                               },
+                                                                  '_sql' => undef
+                                                                }, 'OpenILS::Reporter::SQLBuilder' ),
+                                           '_relation' => '71340ee51817967b96e95314b8fce7a7',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"71340ee51817967b96e95314b8fce7a7"."name" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'name',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                           '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'payment_ts'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'amount'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                           '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."amount" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'colname' => 'payment_type'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."payment_type" ASC',
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                           '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."id" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'id',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'barcode',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '122768e6405328c3d6c0804207719acf',
+                                           '_sql' => '"122768e6405328c3d6c0804207719acf"."barcode" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                        '_aggregate' => undef,
+                                        '_sql' => 'date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") = $_64219$2020-11-02$_64219$',
+                                        '_column' => {
+                                                       'colname' => 'payment_ts',
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_condition' => {
+                                                          '=' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'owning_lib',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"71340ee51817967b96e95314b8fce7a7"."owning_lib" IN ($_64219$7$_64219$)',
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_relation' => '71340ee51817967b96e95314b8fce7a7',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Workstation Name',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_relation' => '71340ee51817967b96e95314b8fce7a7',
+                                         '_sql' => '"71340ee51817967b96e95314b8fce7a7"."name" AS "Workstation Name"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Payment Date/Time',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" AS "Payment Date/Time"',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Amount',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."amount" AS "Amount"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."payment_type" AS "Payment Type"',
+                                         '_alias' => 'Payment Type',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."id" AS "Payment ID"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_alias' => 'Payment ID',
+                                         '_column' => $VAR1->{'_order_by'}[4]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Barcode',
+                                         '_column' => $VAR1->{'_order_by'}[5]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"122768e6405328c3d6c0804207719acf"."barcode" AS "Barcode"',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_relation' => '122768e6405328c3d6c0804207719acf',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"71340ee51817967b96e95314b8fce7a7"."name" AS "Workstation Name",
+	"b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" AS "Payment Date/Time",
+	"b5994e1ddb6ed2a83bcc82653f748593"."amount" AS "Amount",
+	"b5994e1ddb6ed2a83bcc82653f748593"."payment_type" AS "Payment Type",
+	"b5994e1ddb6ed2a83bcc82653f748593"."id" AS "Payment ID",
+	"122768e6405328c3d6c0804207719acf"."barcode" AS "Barcode"
+  FROM	money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "71340ee51817967b96e95314b8fce7a7" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "71340ee51817967b96e95314b8fce7a7"."id")
+	INNER JOIN money.billable_xact AS "348a3fb8650f728f2b03689b19a14d33" ON ("b5994e1ddb6ed2a83bcc82653f748593"."xact" = "348a3fb8650f728f2b03689b19a14d33"."id")
+	INNER JOIN actor.usr AS "3736aca51ef86c56c095d78ffd2a8132" ON ("348a3fb8650f728f2b03689b19a14d33"."usr" = "3736aca51ef86c56c095d78ffd2a8132"."id")
+	INNER JOIN actor.card AS "122768e6405328c3d6c0804207719acf" ON ("3736aca51ef86c56c095d78ffd2a8132"."card" = "122768e6405328c3d6c0804207719acf"."id")
+  WHERE	date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") = $_64219$2020-11-02$_64219$
+	AND "71340ee51817967b96e95314b8fce7a7"."owning_lib" IN ($_64219$7$_64219$)
+  GROUP BY 1, 2, 3, 4, 5, 6
+  ORDER BY "71340ee51817967b96e95314b8fce7a7"."name" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."amount" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."payment_type" ASC, "b5994e1ddb6ed2a83bcc82653f748593"."id" ASC, "122768e6405328c3d6c0804207719acf"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

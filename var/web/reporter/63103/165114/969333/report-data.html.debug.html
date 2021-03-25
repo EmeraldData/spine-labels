@@ -1,0 +1,1376 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 11/1/2019 detailed payment received</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"a48d7e171e0903ff11069fb2e9a223d9"."amount" AS "Amount Forgiven",
+	LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") AS "Legacy Billing Type",
+	"a48d7e171e0903ff11069fb2e9a223d9"."payment_type" AS "Payment Type",
+	"a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" AS "Forgival Date/Time",
+	"a48d7e171e0903ff11069fb2e9a223d9"."id" AS "Payment ID",
+	"8669502d9695405226a339204ed65aec"."barcode" AS "Staff Barcode",
+	"427fbaf280ddc22b070633ce41d9b7cc"."barcode" AS "Patron Barcode"
+  FROM	money.non_drawer_payment_view AS "a48d7e171e0903ff11069fb2e9a223d9"
+	INNER JOIN money.forgive_payment AS "6d795c38632b1f4966e80d9c4d272b16" ON ("a48d7e171e0903ff11069fb2e9a223d9"."id" = "6d795c38632b1f4966e80d9c4d272b16"."id")
+	INNER JOIN actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558" ON ("6d795c38632b1f4966e80d9c4d272b16"."accepting_usr" = "96d3a665d7e6c564f88fa5ed5269b558"."id")
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")
+	LEFT OUTER JOIN money.billable_xact AS "73fbd57c3c97772debe109e08c5cb5b4" ON ("a48d7e171e0903ff11069fb2e9a223d9"."xact" = "73fbd57c3c97772debe109e08c5cb5b4"."id")
+	LEFT OUTER JOIN money.billing AS "da90d583379309d1791ff09ff2ec8c82" ON ("73fbd57c3c97772debe109e08c5cb5b4"."id" = "da90d583379309d1791ff09ff2ec8c82"."xact")
+	LEFT OUTER JOIN actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7" ON ("73fbd57c3c97772debe109e08c5cb5b4"."usr" = "e899bff9937b8fe721f1d2d809ecf6d7"."id")
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")
+  WHERE	date("a48d7e171e0903ff11069fb2e9a223d9"."payment_ts") BETWEEN $_20553$2019-11-01$_20553$ AND $_20553$2019-11-01$_20553$
+	AND "aeea38265b72a797dfb2b6c20fc9f7c3"."id" IN ($_20553$117$_20553$)
+  GROUP BY 1, 3, 4, 5, 6, 7
+  ORDER BY "a48d7e171e0903ff11069fb2e9a223d9"."amount" ASC, LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") ASC, "a48d7e171e0903ff11069fb2e9a223d9"."payment_type" ASC, "a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" ASC, "a48d7e171e0903ff11069fb2e9a223d9"."id" ASC, "8669502d9695405226a339204ed65aec"."barcode" ASC, "427fbaf280ddc22b070633ce41d9b7cc"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'data' => '{"version":4,"doc_url":"","core_class":"mndp","select":[{"alias":"Amount Forgiven","field_doc":"","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-amount","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Legacy Billing Type","field_doc":"","column":{"colname":"billing_type","transform":"last","transform_label":"Last Value"},"path":"mndp-xact-mbt-billings-mb-billing_type","relation":"da90d583379309d1791ff09ff2ec8c82"},{"alias":"Payment Type","field_doc":"","column":{"colname":"payment_type","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-payment_type","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Forgival Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-payment_ts","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Payment ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-id","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Staff Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-forgive_payment>inner-mfp-accepting_usr-au-card-ac-barcode","relation":"8669502d9695405226a339204ed65aec"},{"alias":"Patron Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-xact-mbt-usr-au-card-ac-barcode","relation":"427fbaf280ddc22b070633ce41d9b7cc"}],"from":{"path":"mndp-forgive_payment","table":"money.non_drawer_payment_view","label":"Payments: Non-drawer Staff","alias":"a48d7e171e0903ff11069fb2e9a223d9","idlclass":"mndp","template_path":"mndp","join":{"xact-a48d7e171e0903ff11069fb2e9a223d9":{"key":"id","type":"left","path":"mndp-xact-mbt-usr","table":"money.billable_xact","alias":"73fbd57c3c97772debe109e08c5cb5b4","join":{"id-mb-xact-73fbd57c3c97772debe109e08c5cb5b4":{"type":"left","key":"xact","path":"mndp-xact-mbt-billings-mb","table":"money.billing","label":"Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items","alias":"da90d583379309d1791ff09ff2ec8c82","idlclass":"mb","template_path":"mndp-xact.mbt-billings"},"usr-73fbd57c3c97772debe109e08c5cb5b4":{"type":"left","key":"id","path":"mndp-xact-mbt-usr-au-card","table":"actor.usr","alias":"e899bff9937b8fe721f1d2d809ecf6d7","join":{"card-e899bff9937b8fe721f1d2d809ecf6d7":{"type":"left","key":"id","path":"mndp-xact-mbt-usr-au-card-ac","table":"actor.card","label":"Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card","alias":"427fbaf280ddc22b070633ce41d9b7cc","idlclass":"ac","template_path":"mndp-xact.mbt-usr.au-card"}}}}},"id-mfp-id-a48d7e171e0903ff11069fb2e9a223d9":{"key":"id","type":"inner","path":"mndp-forgive_payment-mfp-accepting_usr","table":"money.forgive_payment","alias":"6d795c38632b1f4966e80d9c4d272b16","join":{"accepting_usr-6d795c38632b1f4966e80d9c4d272b16":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-home_ou","table":"actor.usr","alias":"96d3a665d7e6c564f88fa5ed5269b558","join":{"card-96d3a665d7e6c564f88fa5ed5269b558":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-card-ac","table":"actor.card","label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card","alias":"8669502d9695405226a339204ed65aec","idlclass":"ac","template_path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-card"},"home_ou-96d3a665d7e6c564f88fa5ed5269b558":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-home_ou-aou","table":"actor.org_unit","label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library","alias":"aeea38265b72a797dfb2b6c20fc9f7c3","idlclass":"aou","template_path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou"}}}}}}},"where":[{"alias":"Payment Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mndp-payment_ts","relation":"a48d7e171e0903ff11069fb2e9a223d9","condition":{"between":"::P0"}},{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-forgive_payment>inner-mfp-accepting_usr-au-home_ou-aou-id","relation":"aeea38265b72a797dfb2b6c20fc9f7c3","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"a48d7e171e0903ff11069fb2e9a223d9":{"label":"Payments: Non-drawer Staff","alias":"a48d7e171e0903ff11069fb2e9a223d9","path":"mndp","join":"","reltype":"","idlclass":"mndp","table":"money.non_drawer_payment_view","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Amount Forgiven","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"payment_type":{"colname":"payment_type","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Type","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"payment_ts":{"colname":"payment_ts","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Forgival Date/Time","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment ID","join":"","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"payment_ts":{"colname":"payment_ts","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Payment Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"amount"},{"relation":"da90d583379309d1791ff09ff2ec8c82","field":"billing_type"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"payment_type"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"payment_ts"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"id"},{"relation":"8669502d9695405226a339204ed65aec","field":"barcode"},{"relation":"427fbaf280ddc22b070633ce41d9b7cc","field":"barcode"}],"da90d583379309d1791ff09ff2ec8c82":{"label":"Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items","alias":"da90d583379309d1791ff09ff2ec8c82","path":"mndp-xact.mbt-billings","join":"","reltype":"has_many","idlclass":"mb","table":"money.billing","fields":{"dis_tab":{"billing_type":{"colname":"billing_type","transform":"last","aggregate":null,"params":null,"transform_label":"Last Value","alias":"Legacy Billing Type","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"8669502d9695405226a339204ed65aec":{"label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card","alias":"8669502d9695405226a339204ed65aec","path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Staff Barcode","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"427fbaf280ddc22b070633ce41d9b7cc":{"label":"Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card","alias":"427fbaf280ddc22b070633ce41d9b7cc","path":"mndp-xact.mbt-usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Patron Barcode","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"aeea38265b72a797dfb2b6c20fc9f7c3":{"label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library","alias":"aeea38265b72a797dfb2b6c20fc9f7c3","path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}}}}',
+          'create_time' => '2015-07-29 16:23:45.924274-04',
+          'name' => 'Detailed Forgive and Work Payments',
+          'folder' => 2787,
+          'description' => 'List of bills that were forgiven by library staff, or "paid" via work in exchange for fine forgival. 
+--------------------------------------------------------------------------------------------
+Uses Payments: Non-drawer Staff source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Payments: Non-drawer Staff -> Amount as "Amount Forgiven"
+Payments: Non-drawer Staff -> (Default) Billable Transaction -> (Default) Billing Line Items -> Legacy Billing Type (Last)
+Payments: Non-drawer Staff -> Payment Type
+Payments: Non-drawer Staff -> Payment Date/Time as "Forgival Date/Time"
+Payments: Non-drawer Staff -> (None) Forgive Payment Detail -> (Default) accepting_usr -> (Default) Current Library Card -> Barcode as "Staff Barcode"
+Payments: Non-drawer Staff -> (Default) Billable Transaction -> (Default) User -> (Default) Current Library Card -> Barcode as "Patron Barcode"
+
+Base Filters:
+
+Payments: Non-drawer Staff -> (None) Forgive Payement Detail -> (Default) accepting_usr -> (Default) Home Library -> Organizational Unit ID (In list)
+Payments: Non-drawer Staff -> Payment Date/Time (Date) (Between)
+
+NOTE: this report necessarily uses the home library of the staff user accepting the forgive payment.  This may *not* be the same as the working location of the user.
+',
+          'id' => 63103,
+          'owner' => 3983472
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'rel_cache' => {
+                           'a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                   'idlclass' => 'mndp',
+                                                                   'reltype' => '',
+                                                                   'table' => 'money.non_drawer_payment_view',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'payment_ts' => {
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'join' => '',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'params' => undef,
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'alias' => 'Forgival Date/Time',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'aggregate' => undef
+                                                                                                                },
+                                                                                                'amount' => {
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'join' => '',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'params' => undef,
+                                                                                                              'datatype' => 'money',
+                                                                                                              'alias' => 'Amount Forgiven',
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'op_value' => {},
+                                                                                                              'field_doc' => '',
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => undef
+                                                                                                            },
+                                                                                                'payment_type' => {
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'field_doc' => '',
+                                                                                                                    'op_value' => {},
+                                                                                                                    'op' => '=',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'join' => '',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'colname' => 'payment_type',
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'params' => undef,
+                                                                                                                    'alias' => 'Payment Type'
+                                                                                                                  },
+                                                                                                'id' => {
+                                                                                                          'alias' => 'Payment ID',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'colname' => 'id',
+                                                                                                          'join' => '',
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'params' => undef,
+                                                                                                          'datatype' => 'id',
+                                                                                                          'op' => '=',
+                                                                                                          'op_value' => {},
+                                                                                                          'field_doc' => '',
+                                                                                                          'aggregate' => undef,
+                                                                                                          'transform_label' => 'Raw Data'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'payment_ts' => {
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'op_value' => {},
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'params' => undef,
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'join' => '',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'alias' => 'Payment Date/Time'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff',
+                                                                   'alias' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                                                   'join' => '',
+                                                                   'path' => 'mndp'
+                                                                 },
+                           '427fbaf280ddc22b070633ce41d9b7cc' => {
+                                                                   'label' => 'Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'alias' => 'Patron Barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'datatype' => 'text',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'field_doc' => '',
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'transform_label' => 'Raw Data'
+                                                                                                             }
+                                                                                              }
+                                                                               },
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.card',
+                                                                   'idlclass' => 'ac',
+                                                                   'path' => 'mndp-xact.mbt-usr.au-card',
+                                                                   'join' => '',
+                                                                   'alias' => '427fbaf280ddc22b070633ce41d9b7cc'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'billing_type',
+                                             'relation' => 'da90d583379309d1791ff09ff2ec8c82'
+                                           },
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'payment_type'
+                                           },
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'payment_ts'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9'
+                                           },
+                                           {
+                                             'field' => 'barcode',
+                                             'relation' => '8669502d9695405226a339204ed65aec'
+                                           },
+                                           {
+                                             'relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           'aeea38265b72a797dfb2b6c20fc9f7c3' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'join' => '',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'params' => undef,
+                                                                                                             'field_doc' => '',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'transform_label' => 'Raw Data'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {}
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library',
+                                                                   'alias' => 'aeea38265b72a797dfb2b6c20fc9f7c3',
+                                                                   'path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou',
+                                                                   'join' => ''
+                                                                 },
+                           '8669502d9695405226a339204ed65aec' => {
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {},
+                                                                                                               'field_doc' => '',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'params' => undef,
+                                                                                                               'alias' => 'Staff Barcode'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card',
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'ac',
+                                                                   'path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-card',
+                                                                   'join' => '',
+                                                                   'alias' => '8669502d9695405226a339204ed65aec'
+                                                                 },
+                           'da90d583379309d1791ff09ff2ec8c82' => {
+                                                                   'path' => 'mndp-xact.mbt-billings',
+                                                                   'join' => '',
+                                                                   'alias' => 'da90d583379309d1791ff09ff2ec8c82',
+                                                                   'label' => 'Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'billing_type' => {
+                                                                                                                    'params' => undef,
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'colname' => 'billing_type',
+                                                                                                                    'join' => '',
+                                                                                                                    'transform' => 'last',
+                                                                                                                    'alias' => 'Legacy Billing Type',
+                                                                                                                    'transform_label' => 'Last Value',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'op' => '=',
+                                                                                                                    'field_doc' => '',
+                                                                                                                    'op_value' => {}
+                                                                                                                  }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'money.billing',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'mb'
+                                                                 }
+                         },
+          'having' => [],
+          'version' => 4,
+          'select' => [
+                        {
+                          'alias' => 'Amount Forgiven',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'amount',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-amount'
+                        },
+                        {
+                          'alias' => 'Legacy Billing Type',
+                          'column' => {
+                                        'transform' => 'last',
+                                        'colname' => 'billing_type',
+                                        'transform_label' => 'Last Value'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mndp-xact-mbt-billings-mb-billing_type',
+                          'relation' => 'da90d583379309d1791ff09ff2ec8c82'
+                        },
+                        {
+                          'alias' => 'Payment Type',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'payment_type',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-payment_type'
+                        },
+                        {
+                          'path' => 'mndp-payment_ts',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'payment_ts',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Forgival Date/Time'
+                        },
+                        {
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-id',
+                          'alias' => 'Payment ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'id'
+                                      }
+                        },
+                        {
+                          'relation' => '8669502d9695405226a339204ed65aec',
+                          'path' => 'mndp-forgive_payment>inner-mfp-accepting_usr-au-card-ac-barcode',
+                          'alias' => 'Staff Barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                          'path' => 'mndp-xact-mbt-usr-au-card-ac-barcode',
+                          'alias' => 'Patron Barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      }
+                        }
+                      ],
+          'doc_url' => '',
+          'from' => {
+                      'table' => 'money.non_drawer_payment_view',
+                      'alias' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                      'idlclass' => 'mndp',
+                      'path' => 'mndp-forgive_payment',
+                      'join' => {
+                                  'xact-a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                               'key' => 'id',
+                                                                               'table' => 'money.billable_xact',
+                                                                               'type' => 'left',
+                                                                               'alias' => '73fbd57c3c97772debe109e08c5cb5b4',
+                                                                               'join' => {
+                                                                                           'usr-73fbd57c3c97772debe109e08c5cb5b4' => {
+                                                                                                                                       'alias' => 'e899bff9937b8fe721f1d2d809ecf6d7',
+                                                                                                                                       'table' => 'actor.usr',
+                                                                                                                                       'type' => 'left',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'path' => 'mndp-xact-mbt-usr-au-card',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'card-e899bff9937b8fe721f1d2d809ecf6d7' => {
+                                                                                                                                                                                                'alias' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                                                                                                                                                                                'path' => 'mndp-xact-mbt-usr-au-card-ac',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'type' => 'left',
+                                                                                                                                                                                                'label' => 'Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                                                                                                                                                'template_path' => 'mndp-xact.mbt-usr.au-card'
+                                                                                                                                                                                              }
+                                                                                                                                                 }
+                                                                                                                                     },
+                                                                                           'id-mb-xact-73fbd57c3c97772debe109e08c5cb5b4' => {
+                                                                                                                                              'alias' => 'da90d583379309d1791ff09ff2ec8c82',
+                                                                                                                                              'path' => 'mndp-xact-mbt-billings-mb',
+                                                                                                                                              'key' => 'xact',
+                                                                                                                                              'type' => 'left',
+                                                                                                                                              'table' => 'money.billing',
+                                                                                                                                              'idlclass' => 'mb',
+                                                                                                                                              'label' => 'Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items',
+                                                                                                                                              'template_path' => 'mndp-xact.mbt-billings'
+                                                                                                                                            }
+                                                                                         },
+                                                                               'path' => 'mndp-xact-mbt-usr'
+                                                                             },
+                                  'id-mfp-id-a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                                    'alias' => '6d795c38632b1f4966e80d9c4d272b16',
+                                                                                    'table' => 'money.forgive_payment',
+                                                                                    'type' => 'inner',
+                                                                                    'key' => 'id',
+                                                                                    'path' => 'mndp-forgive_payment-mfp-accepting_usr',
+                                                                                    'join' => {
+                                                                                                'accepting_usr-6d795c38632b1f4966e80d9c4d272b16' => {
+                                                                                                                                                      'alias' => '96d3a665d7e6c564f88fa5ed5269b558',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'table' => 'actor.usr',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'card-96d3a665d7e6c564f88fa5ed5269b558' => {
+                                                                                                                                                                                                               'idlclass' => 'ac',
+                                                                                                                                                                                                               'table' => 'actor.card',
+                                                                                                                                                                                                               'key' => 'id',
+                                                                                                                                                                                                               'alias' => '8669502d9695405226a339204ed65aec',
+                                                                                                                                                                                                               'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card',
+                                                                                                                                                                                                               'template_path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-card',
+                                                                                                                                                                                                               'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-card-ac'
+                                                                                                                                                                                                             },
+                                                                                                                                                                  'home_ou-96d3a665d7e6c564f88fa5ed5269b558' => {
+                                                                                                                                                                                                                  'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library',
+                                                                                                                                                                                                                  'template_path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou',
+                                                                                                                                                                                                                  'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-home_ou-aou',
+                                                                                                                                                                                                                  'idlclass' => 'aou',
+                                                                                                                                                                                                                  'key' => 'id',
+                                                                                                                                                                                                                  'table' => 'actor.org_unit',
+                                                                                                                                                                                                                  'alias' => 'aeea38265b72a797dfb2b6c20fc9f7c3'
+                                                                                                                                                                                                                }
+                                                                                                                                                                },
+                                                                                                                                                      'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-home_ou'
+                                                                                                                                                    }
+                                                                                              }
+                                                                                  }
+                                },
+                      'template_path' => 'mndp',
+                      'label' => 'Payments: Non-drawer Staff'
+                    },
+          'where' => [
+                       {
+                         'alias' => 'Payment Date/Time',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'payment_ts'
+                                     },
+                         'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                         'path' => 'mndp-payment_ts'
+                       },
+                       {
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'mndp-forgive_payment>inner-mfp-accepting_usr-au-home_ou-aou-id',
+                         'relation' => 'aeea38265b72a797dfb2b6c20fc9f7c3'
+                       }
+                     ],
+          'order_by' => [],
+          'core_class' => 'mndp'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'recur' => 0,
+          'name' => '11/1/2019 detailed payment received',
+          'data' => '{"P0":["2019-11-01","2019-11-01"],"P1":["117"]}',
+          'create_time' => '2019-12-23 10:39:34.807015-05',
+          'folder' => 4749,
+          'recurrence' => undef,
+          'template' => {
+                          'data' => '{"version":4,"doc_url":"","core_class":"mndp","select":[{"alias":"Amount Forgiven","field_doc":"","column":{"colname":"amount","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-amount","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Legacy Billing Type","field_doc":"","column":{"colname":"billing_type","transform":"last","transform_label":"Last Value"},"path":"mndp-xact-mbt-billings-mb-billing_type","relation":"da90d583379309d1791ff09ff2ec8c82"},{"alias":"Payment Type","field_doc":"","column":{"colname":"payment_type","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-payment_type","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Forgival Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-payment_ts","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Payment ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-id","relation":"a48d7e171e0903ff11069fb2e9a223d9"},{"alias":"Staff Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-forgive_payment>inner-mfp-accepting_usr-au-card-ac-barcode","relation":"8669502d9695405226a339204ed65aec"},{"alias":"Patron Barcode","field_doc":"","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-xact-mbt-usr-au-card-ac-barcode","relation":"427fbaf280ddc22b070633ce41d9b7cc"}],"from":{"path":"mndp-forgive_payment","table":"money.non_drawer_payment_view","label":"Payments: Non-drawer Staff","alias":"a48d7e171e0903ff11069fb2e9a223d9","idlclass":"mndp","template_path":"mndp","join":{"xact-a48d7e171e0903ff11069fb2e9a223d9":{"key":"id","type":"left","path":"mndp-xact-mbt-usr","table":"money.billable_xact","alias":"73fbd57c3c97772debe109e08c5cb5b4","join":{"id-mb-xact-73fbd57c3c97772debe109e08c5cb5b4":{"type":"left","key":"xact","path":"mndp-xact-mbt-billings-mb","table":"money.billing","label":"Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items","alias":"da90d583379309d1791ff09ff2ec8c82","idlclass":"mb","template_path":"mndp-xact.mbt-billings"},"usr-73fbd57c3c97772debe109e08c5cb5b4":{"type":"left","key":"id","path":"mndp-xact-mbt-usr-au-card","table":"actor.usr","alias":"e899bff9937b8fe721f1d2d809ecf6d7","join":{"card-e899bff9937b8fe721f1d2d809ecf6d7":{"type":"left","key":"id","path":"mndp-xact-mbt-usr-au-card-ac","table":"actor.card","label":"Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card","alias":"427fbaf280ddc22b070633ce41d9b7cc","idlclass":"ac","template_path":"mndp-xact.mbt-usr.au-card"}}}}},"id-mfp-id-a48d7e171e0903ff11069fb2e9a223d9":{"key":"id","type":"inner","path":"mndp-forgive_payment-mfp-accepting_usr","table":"money.forgive_payment","alias":"6d795c38632b1f4966e80d9c4d272b16","join":{"accepting_usr-6d795c38632b1f4966e80d9c4d272b16":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-home_ou","table":"actor.usr","alias":"96d3a665d7e6c564f88fa5ed5269b558","join":{"card-96d3a665d7e6c564f88fa5ed5269b558":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-card-ac","table":"actor.card","label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card","alias":"8669502d9695405226a339204ed65aec","idlclass":"ac","template_path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-card"},"home_ou-96d3a665d7e6c564f88fa5ed5269b558":{"key":"id","path":"mndp-forgive_payment-mfp-accepting_usr-au-home_ou-aou","table":"actor.org_unit","label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library","alias":"aeea38265b72a797dfb2b6c20fc9f7c3","idlclass":"aou","template_path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou"}}}}}}},"where":[{"alias":"Payment Date/Time","field_doc":"","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mndp-payment_ts","relation":"a48d7e171e0903ff11069fb2e9a223d9","condition":{"between":"::P0"}},{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mndp-forgive_payment>inner-mfp-accepting_usr-au-home_ou-aou-id","relation":"aeea38265b72a797dfb2b6c20fc9f7c3","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"a48d7e171e0903ff11069fb2e9a223d9":{"label":"Payments: Non-drawer Staff","alias":"a48d7e171e0903ff11069fb2e9a223d9","path":"mndp","join":"","reltype":"","idlclass":"mndp","table":"money.non_drawer_payment_view","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Amount Forgiven","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"payment_type":{"colname":"payment_type","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment Type","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"payment_ts":{"colname":"payment_ts","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Forgival Date/Time","join":"","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Payment ID","join":"","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"payment_ts":{"colname":"payment_ts","transform":"date","aggregate":null,"params":null,"transform_label":"Date","alias":"Payment Date/Time","join":"","datatype":"timestamp","op":"between","op_label":"Between","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"amount"},{"relation":"da90d583379309d1791ff09ff2ec8c82","field":"billing_type"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"payment_type"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"payment_ts"},{"relation":"a48d7e171e0903ff11069fb2e9a223d9","field":"id"},{"relation":"8669502d9695405226a339204ed65aec","field":"barcode"},{"relation":"427fbaf280ddc22b070633ce41d9b7cc","field":"barcode"}],"da90d583379309d1791ff09ff2ec8c82":{"label":"Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items","alias":"da90d583379309d1791ff09ff2ec8c82","path":"mndp-xact.mbt-billings","join":"","reltype":"has_many","idlclass":"mb","table":"money.billing","fields":{"dis_tab":{"billing_type":{"colname":"billing_type","transform":"last","aggregate":null,"params":null,"transform_label":"Last Value","alias":"Legacy Billing Type","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"8669502d9695405226a339204ed65aec":{"label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card","alias":"8669502d9695405226a339204ed65aec","path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Staff Barcode","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"427fbaf280ddc22b070633ce41d9b7cc":{"label":"Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card","alias":"427fbaf280ddc22b070633ce41d9b7cc","path":"mndp-xact.mbt-usr.au-card","join":"","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Patron Barcode","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"aeea38265b72a797dfb2b6c20fc9f7c3":{"label":"Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library","alias":"aeea38265b72a797dfb2b6c20fc9f7c3","path":"mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}}}}',
+                          'create_time' => '2015-07-29 16:23:45.924274-04',
+                          'name' => 'Detailed Forgive and Work Payments',
+                          'folder' => 2787,
+                          'description' => 'List of bills that were forgiven by library staff, or "paid" via work in exchange for fine forgival. 
+--------------------------------------------------------------------------------------------
+Uses Payments: Non-drawer Staff source.  Nullability selection enabled.
+
+Displayed Fields:
+
+Payments: Non-drawer Staff -> Amount as "Amount Forgiven"
+Payments: Non-drawer Staff -> (Default) Billable Transaction -> (Default) Billing Line Items -> Legacy Billing Type (Last)
+Payments: Non-drawer Staff -> Payment Type
+Payments: Non-drawer Staff -> Payment Date/Time as "Forgival Date/Time"
+Payments: Non-drawer Staff -> (None) Forgive Payment Detail -> (Default) accepting_usr -> (Default) Current Library Card -> Barcode as "Staff Barcode"
+Payments: Non-drawer Staff -> (Default) Billable Transaction -> (Default) User -> (Default) Current Library Card -> Barcode as "Patron Barcode"
+
+Base Filters:
+
+Payments: Non-drawer Staff -> (None) Forgive Payement Detail -> (Default) accepting_usr -> (Default) Home Library -> Organizational Unit ID (In list)
+Payments: Non-drawer Staff -> Payment Date/Time (Date) (Between)
+
+NOTE: this report necessarily uses the home library of the staff user accepting the forgive payment.  This may *not* be the same as the working location of the user.
+',
+                          'id' => 63103,
+                          'owner' => 3983472
+                        },
+          'description' => '',
+          'id' => 165114,
+          'owner' => 2437
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'rel_cache' => {
+                           'a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                   'idlclass' => 'mndp',
+                                                                   'reltype' => '',
+                                                                   'table' => 'money.non_drawer_payment_view',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'payment_ts' => {
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'join' => '',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'params' => undef,
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'alias' => 'Forgival Date/Time',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'aggregate' => undef
+                                                                                                                },
+                                                                                                'amount' => {
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'join' => '',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'params' => undef,
+                                                                                                              'datatype' => 'money',
+                                                                                                              'alias' => 'Amount Forgiven',
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'op_value' => {},
+                                                                                                              'field_doc' => '',
+                                                                                                              'op' => '=',
+                                                                                                              'aggregate' => undef
+                                                                                                            },
+                                                                                                'payment_type' => {
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'field_doc' => '',
+                                                                                                                    'op_value' => {},
+                                                                                                                    'op' => '=',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'join' => '',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'colname' => 'payment_type',
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'params' => undef,
+                                                                                                                    'alias' => 'Payment Type'
+                                                                                                                  },
+                                                                                                'id' => {
+                                                                                                          'alias' => 'Payment ID',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'colname' => 'id',
+                                                                                                          'join' => '',
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'params' => undef,
+                                                                                                          'datatype' => 'id',
+                                                                                                          'op' => '=',
+                                                                                                          'op_value' => {},
+                                                                                                          'field_doc' => '',
+                                                                                                          'aggregate' => undef,
+                                                                                                          'transform_label' => 'Raw Data'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'payment_ts' => {
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'aggregate' => undef,
+                                                                                                                     'op_value' => {},
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'params' => undef,
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'join' => '',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'alias' => 'Payment Date/Time'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff',
+                                                                   'alias' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                                                   'join' => '',
+                                                                   'path' => 'mndp'
+                                                                 },
+                           '427fbaf280ddc22b070633ce41d9b7cc' => {
+                                                                   'label' => 'Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'alias' => 'Patron Barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'datatype' => 'text',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'field_doc' => '',
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'transform_label' => 'Raw Data'
+                                                                                                             }
+                                                                                              }
+                                                                               },
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.card',
+                                                                   'idlclass' => 'ac',
+                                                                   'path' => 'mndp-xact.mbt-usr.au-card',
+                                                                   'join' => '',
+                                                                   'alias' => '427fbaf280ddc22b070633ce41d9b7cc'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'amount'
+                                           },
+                                           {
+                                             'field' => 'billing_type',
+                                             'relation' => 'da90d583379309d1791ff09ff2ec8c82'
+                                           },
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'payment_type'
+                                           },
+                                           {
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                             'field' => 'payment_ts'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => 'a48d7e171e0903ff11069fb2e9a223d9'
+                                           },
+                                           {
+                                             'field' => 'barcode',
+                                             'relation' => '8669502d9695405226a339204ed65aec'
+                                           },
+                                           {
+                                             'relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           'aeea38265b72a797dfb2b6c20fc9f7c3' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'join' => '',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'params' => undef,
+                                                                                                             'field_doc' => '',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'transform_label' => 'Raw Data'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {}
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library',
+                                                                   'alias' => 'aeea38265b72a797dfb2b6c20fc9f7c3',
+                                                                   'path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou',
+                                                                   'join' => ''
+                                                                 },
+                           '8669502d9695405226a339204ed65aec' => {
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {},
+                                                                                                               'field_doc' => '',
+                                                                                                               'aggregate' => undef,
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'text',
+                                                                                                               'params' => undef,
+                                                                                                               'alias' => 'Staff Barcode'
+                                                                                                             }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card',
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'ac',
+                                                                   'path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-card',
+                                                                   'join' => '',
+                                                                   'alias' => '8669502d9695405226a339204ed65aec'
+                                                                 },
+                           'da90d583379309d1791ff09ff2ec8c82' => {
+                                                                   'path' => 'mndp-xact.mbt-billings',
+                                                                   'join' => '',
+                                                                   'alias' => 'da90d583379309d1791ff09ff2ec8c82',
+                                                                   'label' => 'Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'billing_type' => {
+                                                                                                                    'params' => undef,
+                                                                                                                    'datatype' => 'text',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'colname' => 'billing_type',
+                                                                                                                    'join' => '',
+                                                                                                                    'transform' => 'last',
+                                                                                                                    'alias' => 'Legacy Billing Type',
+                                                                                                                    'transform_label' => 'Last Value',
+                                                                                                                    'aggregate' => undef,
+                                                                                                                    'op' => '=',
+                                                                                                                    'field_doc' => '',
+                                                                                                                    'op_value' => {}
+                                                                                                                  }
+                                                                                              }
+                                                                               },
+                                                                   'table' => 'money.billing',
+                                                                   'reltype' => 'has_many',
+                                                                   'idlclass' => 'mb'
+                                                                 }
+                         },
+          'having' => [],
+          'version' => 4,
+          'select' => [
+                        {
+                          'alias' => 'Amount Forgiven',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'amount',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-amount'
+                        },
+                        {
+                          'alias' => 'Legacy Billing Type',
+                          'column' => {
+                                        'transform' => 'last',
+                                        'colname' => 'billing_type',
+                                        'transform_label' => 'Last Value'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'mndp-xact-mbt-billings-mb-billing_type',
+                          'relation' => 'da90d583379309d1791ff09ff2ec8c82'
+                        },
+                        {
+                          'alias' => 'Payment Type',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'payment_type',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-payment_type'
+                        },
+                        {
+                          'path' => 'mndp-payment_ts',
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'payment_ts',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Forgival Date/Time'
+                        },
+                        {
+                          'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                          'path' => 'mndp-id',
+                          'alias' => 'Payment ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'id'
+                                      }
+                        },
+                        {
+                          'relation' => '8669502d9695405226a339204ed65aec',
+                          'path' => 'mndp-forgive_payment>inner-mfp-accepting_usr-au-card-ac-barcode',
+                          'alias' => 'Staff Barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'barcode',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                          'path' => 'mndp-xact-mbt-usr-au-card-ac-barcode',
+                          'alias' => 'Patron Barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      }
+                        }
+                      ],
+          'doc_url' => '',
+          'from' => {
+                      'table' => 'money.non_drawer_payment_view',
+                      'alias' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                      'idlclass' => 'mndp',
+                      'path' => 'mndp-forgive_payment',
+                      'join' => {
+                                  'xact-a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                               'key' => 'id',
+                                                                               'table' => 'money.billable_xact',
+                                                                               'type' => 'left',
+                                                                               'alias' => '73fbd57c3c97772debe109e08c5cb5b4',
+                                                                               'join' => {
+                                                                                           'usr-73fbd57c3c97772debe109e08c5cb5b4' => {
+                                                                                                                                       'alias' => 'e899bff9937b8fe721f1d2d809ecf6d7',
+                                                                                                                                       'table' => 'actor.usr',
+                                                                                                                                       'type' => 'left',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'path' => 'mndp-xact-mbt-usr-au-card',
+                                                                                                                                       'join' => {
+                                                                                                                                                   'card-e899bff9937b8fe721f1d2d809ecf6d7' => {
+                                                                                                                                                                                                'alias' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                                                                                                                                                                                'path' => 'mndp-xact-mbt-usr-au-card-ac',
+                                                                                                                                                                                                'idlclass' => 'ac',
+                                                                                                                                                                                                'key' => 'id',
+                                                                                                                                                                                                'table' => 'actor.card',
+                                                                                                                                                                                                'type' => 'left',
+                                                                                                                                                                                                'label' => 'Payments: Non-drawer Staff -> Billable Transaction -> ILS User :: Current Library Card',
+                                                                                                                                                                                                'template_path' => 'mndp-xact.mbt-usr.au-card'
+                                                                                                                                                                                              }
+                                                                                                                                                 }
+                                                                                                                                     },
+                                                                                           'id-mb-xact-73fbd57c3c97772debe109e08c5cb5b4' => {
+                                                                                                                                              'alias' => 'da90d583379309d1791ff09ff2ec8c82',
+                                                                                                                                              'path' => 'mndp-xact-mbt-billings-mb',
+                                                                                                                                              'key' => 'xact',
+                                                                                                                                              'type' => 'left',
+                                                                                                                                              'table' => 'money.billing',
+                                                                                                                                              'idlclass' => 'mb',
+                                                                                                                                              'label' => 'Payments: Non-drawer Staff -> Billable Transaction :: Billing Line Items',
+                                                                                                                                              'template_path' => 'mndp-xact.mbt-billings'
+                                                                                                                                            }
+                                                                                         },
+                                                                               'path' => 'mndp-xact-mbt-usr'
+                                                                             },
+                                  'id-mfp-id-a48d7e171e0903ff11069fb2e9a223d9' => {
+                                                                                    'alias' => '6d795c38632b1f4966e80d9c4d272b16',
+                                                                                    'table' => 'money.forgive_payment',
+                                                                                    'type' => 'inner',
+                                                                                    'key' => 'id',
+                                                                                    'path' => 'mndp-forgive_payment-mfp-accepting_usr',
+                                                                                    'join' => {
+                                                                                                'accepting_usr-6d795c38632b1f4966e80d9c4d272b16' => {
+                                                                                                                                                      'alias' => '96d3a665d7e6c564f88fa5ed5269b558',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'table' => 'actor.usr',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'card-96d3a665d7e6c564f88fa5ed5269b558' => {
+                                                                                                                                                                                                               'idlclass' => 'ac',
+                                                                                                                                                                                                               'table' => 'actor.card',
+                                                                                                                                                                                                               'key' => 'id',
+                                                                                                                                                                                                               'alias' => '8669502d9695405226a339204ed65aec',
+                                                                                                                                                                                                               'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Current Library Card',
+                                                                                                                                                                                                               'template_path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-card',
+                                                                                                                                                                                                               'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-card-ac'
+                                                                                                                                                                                                             },
+                                                                                                                                                                  'home_ou-96d3a665d7e6c564f88fa5ed5269b558' => {
+                                                                                                                                                                                                                  'label' => 'Payments: Non-drawer Staff -> Forgive Payment -> ILS User :: Home Library',
+                                                                                                                                                                                                                  'template_path' => 'mndp-forgive_payment>inner.mfp-accepting_usr.au-home_ou',
+                                                                                                                                                                                                                  'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-home_ou-aou',
+                                                                                                                                                                                                                  'idlclass' => 'aou',
+                                                                                                                                                                                                                  'key' => 'id',
+                                                                                                                                                                                                                  'table' => 'actor.org_unit',
+                                                                                                                                                                                                                  'alias' => 'aeea38265b72a797dfb2b6c20fc9f7c3'
+                                                                                                                                                                                                                }
+                                                                                                                                                                },
+                                                                                                                                                      'path' => 'mndp-forgive_payment-mfp-accepting_usr-au-home_ou'
+                                                                                                                                                    }
+                                                                                              }
+                                                                                  }
+                                },
+                      'template_path' => 'mndp',
+                      'label' => 'Payments: Non-drawer Staff'
+                    },
+          'where' => [
+                       {
+                         'alias' => 'Payment Date/Time',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'payment_ts'
+                                     },
+                         'relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                         'path' => 'mndp-payment_ts'
+                       },
+                       {
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'mndp-forgive_payment>inner-mfp-accepting_usr-au-home_ou-aou-id',
+                         'relation' => 'aeea38265b72a797dfb2b6c20fc9f7c3'
+                       }
+                     ],
+          'order_by' => [],
+          'core_class' => 'mndp'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-12-23 10:39:34.807015-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	"a48d7e171e0903ff11069fb2e9a223d9"."amount" AS "Amount Forgiven",
+	LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") AS "Legacy Billing Type",
+	"a48d7e171e0903ff11069fb2e9a223d9"."payment_type" AS "Payment Type",
+	"a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" AS "Forgival Date/Time",
+	"a48d7e171e0903ff11069fb2e9a223d9"."id" AS "Payment ID",
+	"8669502d9695405226a339204ed65aec"."barcode" AS "Staff Barcode",
+	"427fbaf280ddc22b070633ce41d9b7cc"."barcode" AS "Patron Barcode"
+  FROM	money.non_drawer_payment_view AS "a48d7e171e0903ff11069fb2e9a223d9"
+	INNER JOIN money.forgive_payment AS "6d795c38632b1f4966e80d9c4d272b16" ON ("a48d7e171e0903ff11069fb2e9a223d9"."id" = "6d795c38632b1f4966e80d9c4d272b16"."id")
+	INNER JOIN actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558" ON ("6d795c38632b1f4966e80d9c4d272b16"."accepting_usr" = "96d3a665d7e6c564f88fa5ed5269b558"."id")
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")
+	LEFT OUTER JOIN money.billable_xact AS "73fbd57c3c97772debe109e08c5cb5b4" ON ("a48d7e171e0903ff11069fb2e9a223d9"."xact" = "73fbd57c3c97772debe109e08c5cb5b4"."id")
+	LEFT OUTER JOIN money.billing AS "da90d583379309d1791ff09ff2ec8c82" ON ("73fbd57c3c97772debe109e08c5cb5b4"."id" = "da90d583379309d1791ff09ff2ec8c82"."xact")
+	LEFT OUTER JOIN actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7" ON ("73fbd57c3c97772debe109e08c5cb5b4"."usr" = "e899bff9937b8fe721f1d2d809ecf6d7"."id")
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")
+  WHERE	date("a48d7e171e0903ff11069fb2e9a223d9"."payment_ts") BETWEEN $_20553$2019-11-01$_20553$ AND $_20553$2019-11-01$_20553$
+	AND "aeea38265b72a797dfb2b6c20fc9f7c3"."id" IN ($_20553$117$_20553$)
+  GROUP BY 1, 3, 4, 5, 6, 7
+  ORDER BY "a48d7e171e0903ff11069fb2e9a223d9"."amount" ASC, LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") ASC, "a48d7e171e0903ff11069fb2e9a223d9"."payment_type" ASC, "a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" ASC, "a48d7e171e0903ff11069fb2e9a223d9"."id" ASC, "8669502d9695405226a339204ed65aec"."barcode" ASC, "427fbaf280ddc22b070633ce41d9b7cc"."barcode" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => bless( {
+                                                               '_relative_time' => '2019-12-23 10:39:34.807015-05',
+                                                               '_resultset_limit' => 1048575,
+                                                               '_params' => {
+                                                                              'P1' => [
+                                                                                        '117'
+                                                                                      ],
+                                                                              'P0' => [
+                                                                                        '2019-11-01',
+                                                                                        '2019-11-01'
+                                                                                      ]
+                                                                            },
+                                                               '_rels' => {
+                                                                            '96d3a665d7e6c564f88fa5ed5269b558' => bless( {
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_alias' => '96d3a665d7e6c564f88fa5ed5269b558',
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_sql' => 'actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558"',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'home_ou',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3"',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_alias' => 'aeea38265b72a797dfb2b6c20fc9f7c3'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'96d3a665d7e6c564f88fa5ed5269b558'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'96d3a665d7e6c564f88fa5ed5269b558'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_alias' => '8669502d9695405226a339204ed65aec',
+                                                                                                                                                                          '_table' => 'actor.card',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_sql' => 'actor.card AS "8669502d9695405226a339204ed65aec"',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_columns' => []
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'card'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ]
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'aeea38265b72a797dfb2b6c20fc9f7c3' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'96d3a665d7e6c564f88fa5ed5269b558'}{'_join'}[0]{'_right_rel'},
+                                                                            '427fbaf280ddc22b070633ce41d9b7cc' => bless( {
+                                                                                                                           '_table' => 'actor.card',
+                                                                                                                           '_alias' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                                                                                                           '_join' => [],
+                                                                                                                           '_sql' => 'actor.card AS "427fbaf280ddc22b070633ce41d9b7cc"',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_nullable' => 'l',
+                                                                                                                           '_join_type' => 'left',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '6d795c38632b1f4966e80d9c4d272b16' => bless( {
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_sql' => 'money.forgive_payment AS "6d795c38632b1f4966e80d9c4d272b16"',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558" ON ("6d795c38632b1f4966e80d9c4d272b16"."accepting_usr" = "96d3a665d7e6c564f88fa5ed5269b558"."id")
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'96d3a665d7e6c564f88fa5ed5269b558'},
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'6d795c38632b1f4966e80d9c4d272b16'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'accepting_usr'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_alias' => '6d795c38632b1f4966e80d9c4d272b16',
+                                                                                                                           '_table' => 'money.forgive_payment'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'e899bff9937b8fe721f1d2d809ecf6d7' => bless( {
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_alias' => 'e899bff9937b8fe721f1d2d809ecf6d7',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'card',
+                                                                                                                                                 '_join_type' => 'left',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'e899bff9937b8fe721f1d2d809ecf6d7'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'427fbaf280ddc22b070633ce41d9b7cc'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                      ],
+                                                                                                                           '_sql' => 'actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7"',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_nullable' => 'l',
+                                                                                                                           '_join_type' => 'left'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'da90d583379309d1791ff09ff2ec8c82' => bless( {
+                                                                                                                           '_table' => 'money.billing',
+                                                                                                                           '_alias' => 'da90d583379309d1791ff09ff2ec8c82',
+                                                                                                                           '_sql' => 'money.billing AS "da90d583379309d1791ff09ff2ec8c82"',
+                                                                                                                           '_join' => [],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_nullable' => 'l',
+                                                                                                                           '_join_type' => 'left',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '8669502d9695405226a339204ed65aec' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'96d3a665d7e6c564f88fa5ed5269b558'}{'_join'}[1]{'_right_rel'},
+                                                                            '73fbd57c3c97772debe109e08c5cb5b4' => bless( {
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_nullable' => 'l',
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_join_type' => 'left',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_sql' => 'money.billable_xact AS "73fbd57c3c97772debe109e08c5cb5b4"',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'73fbd57c3c97772debe109e08c5cb5b4'},
+                                                                                                                                                 '_right_col' => 'xact',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'da90d583379309d1791ff09ff2ec8c82'},
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN money.billing AS "da90d583379309d1791ff09ff2ec8c82" ON ("73fbd57c3c97772debe109e08c5cb5b4"."id" = "da90d583379309d1791ff09ff2ec8c82"."xact")',
+                                                                                                                                                 '_join_type' => 'left',
+                                                                                                                                                 '_left_col' => 'id'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'usr',
+                                                                                                                                                 '_join_type' => 'left',
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7" ON ("73fbd57c3c97772debe109e08c5cb5b4"."usr" = "e899bff9937b8fe721f1d2d809ecf6d7"."id")
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'e899bff9937b8fe721f1d2d809ecf6d7'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'73fbd57c3c97772debe109e08c5cb5b4'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'money.billable_xact',
+                                                                                                                           '_alias' => '73fbd57c3c97772debe109e08c5cb5b4'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'a48d7e171e0903ff11069fb2e9a223d9' => bless( {
+                                                                                                                           '_sql' => 'money.non_drawer_payment_view AS "a48d7e171e0903ff11069fb2e9a223d9"
+	INNER JOIN money.forgive_payment AS "6d795c38632b1f4966e80d9c4d272b16" ON ("a48d7e171e0903ff11069fb2e9a223d9"."id" = "6d795c38632b1f4966e80d9c4d272b16"."id")
+	INNER JOIN actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558" ON ("6d795c38632b1f4966e80d9c4d272b16"."accepting_usr" = "96d3a665d7e6c564f88fa5ed5269b558"."id")
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")
+	LEFT OUTER JOIN money.billable_xact AS "73fbd57c3c97772debe109e08c5cb5b4" ON ("a48d7e171e0903ff11069fb2e9a223d9"."xact" = "73fbd57c3c97772debe109e08c5cb5b4"."id")
+	LEFT OUTER JOIN money.billing AS "da90d583379309d1791ff09ff2ec8c82" ON ("73fbd57c3c97772debe109e08c5cb5b4"."id" = "da90d583379309d1791ff09ff2ec8c82"."xact")
+	LEFT OUTER JOIN actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7" ON ("73fbd57c3c97772debe109e08c5cb5b4"."usr" = "e899bff9937b8fe721f1d2d809ecf6d7"."id")
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_sql' => '
+	INNER JOIN money.forgive_payment AS "6d795c38632b1f4966e80d9c4d272b16" ON ("a48d7e171e0903ff11069fb2e9a223d9"."id" = "6d795c38632b1f4966e80d9c4d272b16"."id")
+	INNER JOIN actor.usr AS "96d3a665d7e6c564f88fa5ed5269b558" ON ("6d795c38632b1f4966e80d9c4d272b16"."accepting_usr" = "96d3a665d7e6c564f88fa5ed5269b558"."id")
+	INNER JOIN actor.org_unit AS "aeea38265b72a797dfb2b6c20fc9f7c3" ON ("96d3a665d7e6c564f88fa5ed5269b558"."home_ou" = "aeea38265b72a797dfb2b6c20fc9f7c3"."id")
+	INNER JOIN actor.card AS "8669502d9695405226a339204ed65aec" ON ("96d3a665d7e6c564f88fa5ed5269b558"."card" = "8669502d9695405226a339204ed65aec"."id")',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'6d795c38632b1f4966e80d9c4d272b16'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'a48d7e171e0903ff11069fb2e9a223d9'},
+                                                                                                                                                 '_left_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'73fbd57c3c97772debe109e08c5cb5b4'},
+                                                                                                                                                 '_sql' => '
+	LEFT OUTER JOIN money.billable_xact AS "73fbd57c3c97772debe109e08c5cb5b4" ON ("a48d7e171e0903ff11069fb2e9a223d9"."xact" = "73fbd57c3c97772debe109e08c5cb5b4"."id")
+	LEFT OUTER JOIN money.billing AS "da90d583379309d1791ff09ff2ec8c82" ON ("73fbd57c3c97772debe109e08c5cb5b4"."id" = "da90d583379309d1791ff09ff2ec8c82"."xact")
+	LEFT OUTER JOIN actor.usr AS "e899bff9937b8fe721f1d2d809ecf6d7" ON ("73fbd57c3c97772debe109e08c5cb5b4"."usr" = "e899bff9937b8fe721f1d2d809ecf6d7"."id")
+	LEFT OUTER JOIN actor.card AS "427fbaf280ddc22b070633ce41d9b7cc" ON ("e899bff9937b8fe721f1d2d809ecf6d7"."card" = "427fbaf280ddc22b070633ce41d9b7cc"."id")',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'a48d7e171e0903ff11069fb2e9a223d9'},
+                                                                                                                                                 '_join_type' => 'left',
+                                                                                                                                                 '_left_col' => 'xact'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'money.non_drawer_payment_view',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_alias' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                          },
+                                                               '_sql' => undef
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'payment_ts'
+                                                     },
+                                        '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                        '_transform' => 'GenericTransform',
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_sql' => 'date("a48d7e171e0903ff11069fb2e9a223d9"."payment_ts") BETWEEN $_20553$2019-11-01$_20553$ AND $_20553$2019-11-01$_20553$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"aeea38265b72a797dfb2b6c20fc9f7c3"."id" IN ($_20553$117$_20553$)',
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_relation' => 'aeea38265b72a797dfb2b6c20fc9f7c3',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."amount" AS "Amount Forgiven"',
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'amount',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Amount Forgiven',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => 'LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") AS "Legacy Billing Type"',
+                                         '_relation' => 'da90d583379309d1791ff09ff2ec8c82',
+                                         '_transform' => 'last',
+                                         '_column' => {
+                                                        'transform' => 'last',
+                                                        'colname' => 'billing_type',
+                                                        'transform_label' => 'Last Value'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Legacy Billing Type',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'payment_type',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Payment Type',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."payment_type" AS "Payment Type"',
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'payment_ts',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Forgival Date/Time',
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                         '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" AS "Forgival Date/Time"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                         '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."id" AS "Payment ID"',
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Payment ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"8669502d9695405226a339204ed65aec"."barcode" AS "Staff Barcode"',
+                                         '_relation' => '8669502d9695405226a339204ed65aec',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'barcode',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Staff Barcode',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                         '_sql' => '"427fbaf280ddc22b070633ce41d9b7cc"."barcode" AS "Patron Barcode"',
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'barcode'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Patron Barcode'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."amount" ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'da90d583379309d1791ff09ff2ec8c82',
+                                           '_transform' => 'last',
+                                           '_sql' => 'LAST("da90d583379309d1791ff09ff2ec8c82"."billing_type") ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                           '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."payment_type" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."payment_ts" ASC',
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"a48d7e171e0903ff11069fb2e9a223d9"."id" ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => 'a48d7e171e0903ff11069fb2e9a223d9',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"8669502d9695405226a339204ed65aec"."barcode" ASC',
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '8669502d9695405226a339204ed65aec',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => '427fbaf280ddc22b070633ce41d9b7cc',
+                                           '_sql' => '"427fbaf280ddc22b070633ce41d9b7cc"."barcode" ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'a48d7e171e0903ff11069fb2e9a223d9'},
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

@@ -1,0 +1,798 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 2020 closeout-open POs</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"56ea0ee77c2c6efe0131dfeea01705f5"."id" AS "Purchase Order ID",
+	"56ea0ee77c2c6efe0131dfeea01705f5"."name" AS "Name",
+	date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") AS "Order Date",
+	"56ea0ee77c2c6efe0131dfeea01705f5"."state" AS "State"
+  FROM	acq.purchase_order AS "56ea0ee77c2c6efe0131dfeea01705f5"
+  WHERE	"56ea0ee77c2c6efe0131dfeea01705f5"."ordering_agency" IN ($_41245$65$_41245$,$_41245$67$_41245$,$_41245$373$_41245$,$_41245$66$_41245$,$_41245$394$_41245$)
+	AND "56ea0ee77c2c6efe0131dfeea01705f5"."state" IN ($_41245$pending$_41245$,$_41245$on-order$_41245$)
+  GROUP BY 1, 2, 3, 4
+  ORDER BY "56ea0ee77c2c6efe0131dfeea01705f5"."id" ASC, "56ea0ee77c2c6efe0131dfeea01705f5"."name" ASC, date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") ASC, "56ea0ee77c2c6efe0131dfeea01705f5"."state" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'create_time' => '2020-05-11 12:05:06.830379-04',
+          'id' => 69220,
+          'owner' => 4009295,
+          'description' => '',
+          'name' => 'Purchase Orders with pending / on-order status',
+          'folder' => 3151,
+          'data' => '{"version":5,"doc_url":"","core_class":"acqpo","select":[{"alias":"Purchase Order ID","path":"acqpo-id","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Name","path":"acqpo-name","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Order Date","path":"acqpo-order_date","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"order_date","transform":"date","transform_label":"Date","aggregate":false}},{"alias":"State","path":"acqpo-state","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"state","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"56ea0ee77c2c6efe0131dfeea01705f5","path":"acqpo-acqpo","table":"acq.purchase_order","idlclass":"acqpo","label":"Purchase Order"},"where":[{"alias":"Ordering Agency","path":"acqpo-ordering_agency","field_doc":"Your library system","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"ordering_agency","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"State","path":"acqpo-state","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"state","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":["pending","on-order"]}}],"having":[],"display_cols":[{"name":"id","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Purchase Order ID","datatype":"id","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":0},{"name":"name","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":1},{"name":"order_date","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Order Date","datatype":"timestamp","doc_text":"","transform":{"label":"Date","transform":"date"},"path_label":"Purchase Order","index":2},{"name":"state","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"State","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":3}],"filter_cols":[{"name":"ordering_agency","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Ordering Agency","datatype":"org_unit","doc_text":"Your library system","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","operator":{"label":"In list","op":"in"},"index":0},{"name":"state","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"State","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","operator":{"op":"in","label":"In list"},"index":1,"value":["pending","on-order"]}]}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => 'Your library system',
+                               'label' => 'Ordering Agency',
+                               'path_label' => 'Purchase Order',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare'
+                                              },
+                               'path' => [
+                                           {
+                                             'classname' => 'acqpo',
+                                             'id' => 'acqpo',
+                                             'table' => 'acq.purchase_order',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'label' => 'Purchase Order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acqpo',
+                                                           'core_label' => 'Non-core sources'
+                                                         }
+                                           }
+                                         ],
+                               'name' => 'ordering_agency',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'datatype' => 'org_unit'
+                             },
+                             {
+                               'value' => [
+                                            'pending',
+                                            'on-order'
+                                          ],
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path_label' => 'Purchase Order',
+                               'label' => 'State',
+                               'datatype' => 'text',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'name' => 'state',
+                               'transform' => {
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'table' => 'acq.purchase_order',
+                                             'id' => 'acqpo',
+                                             'classname' => 'acqpo',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqpo',
+                                                           'pkey' => 'id',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo',
+                                                           'label' => 'Purchase Order'
+                                                         }
+                                           }
+                                         ]
+                             }
+                           ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'ordering_agency'
+                                     },
+                         'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                         'alias' => 'Ordering Agency',
+                         'path' => 'acqpo-ordering_agency',
+                         'field_doc' => 'Your library system'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => [
+                                                    'pending',
+                                                    'on-order'
+                                                  ]
+                                        },
+                         'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'state',
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'State',
+                         'path' => 'acqpo-state',
+                         'field_doc' => ''
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Purchase Order',
+                      'table' => 'acq.purchase_order',
+                      'idlclass' => 'acqpo',
+                      'alias' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                      'path' => 'acqpo-acqpo'
+                    },
+          'display_cols' => [
+                              {
+                                'name' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'acq.purchase_order',
+                                              'classname' => 'acqpo',
+                                              'id' => 'acqpo',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'classname' => 'acqpo',
+                                                            'table' => 'acq.purchase_order',
+                                                            'label' => 'Purchase Order'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'datatype' => 'id',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'Purchase Order ID',
+                                'index' => 0,
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'table' => 'acq.purchase_order',
+                                              'id' => 'acqpo',
+                                              'classname' => 'acqpo',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'table' => 'acq.purchase_order',
+                                                            'label' => 'Purchase Order'
+                                                          }
+                                            }
+                                          ],
+                                'name' => 'name',
+                                'datatype' => 'text',
+                                'label' => 'Name',
+                                'path_label' => 'Purchase Order'
+                              },
+                              {
+                                'index' => 2,
+                                'doc_text' => '',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'Order Date',
+                                'name' => 'order_date',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpo',
+                                                            'label' => 'Purchase Order',
+                                                            'table' => 'acq.purchase_order',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'classname' => 'acqpo'
+                                                          },
+                                              'label' => 'Purchase Order',
+                                              'table' => 'acq.purchase_order',
+                                              'id' => 'acqpo',
+                                              'classname' => 'acqpo'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'date',
+                                                 'label' => 'Date'
+                                               },
+                                'datatype' => 'timestamp'
+                              },
+                              {
+                                'index' => 3,
+                                'doc_text' => '',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'State',
+                                'name' => 'state',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'classname' => 'acqpo',
+                                              'id' => 'acqpo',
+                                              'table' => 'acq.purchase_order',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'label' => 'Purchase Order',
+                                                            'table' => 'acq.purchase_order',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpo'
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'text'
+                              }
+                            ],
+          'having' => [],
+          'doc_url' => '',
+          'select' => [
+                        {
+                          'path' => 'acqpo-id',
+                          'field_doc' => '',
+                          'alias' => 'Purchase Order ID',
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'alias' => 'Name',
+                          'path' => 'acqpo-name',
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'transform' => 'date',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'order_date'
+                                      },
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'alias' => 'Order Date',
+                          'path' => 'acqpo-order_date',
+                          'field_doc' => ''
+                        },
+                        {
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'state'
+                                      },
+                          'alias' => 'State',
+                          'path' => 'acqpo-state',
+                          'field_doc' => ''
+                        }
+                      ],
+          'core_class' => 'acqpo'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'create_time' => '2020-05-11 12:05:06.830379-04',
+                          'id' => 69220,
+                          'owner' => 4009295,
+                          'description' => '',
+                          'name' => 'Purchase Orders with pending / on-order status',
+                          'folder' => 3151,
+                          'data' => '{"version":5,"doc_url":"","core_class":"acqpo","select":[{"alias":"Purchase Order ID","path":"acqpo-id","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Name","path":"acqpo-name","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Order Date","path":"acqpo-order_date","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"order_date","transform":"date","transform_label":"Date","aggregate":false}},{"alias":"State","path":"acqpo-state","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"state","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"56ea0ee77c2c6efe0131dfeea01705f5","path":"acqpo-acqpo","table":"acq.purchase_order","idlclass":"acqpo","label":"Purchase Order"},"where":[{"alias":"Ordering Agency","path":"acqpo-ordering_agency","field_doc":"Your library system","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"ordering_agency","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"State","path":"acqpo-state","field_doc":"","relation":"56ea0ee77c2c6efe0131dfeea01705f5","column":{"colname":"state","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":["pending","on-order"]}}],"having":[],"display_cols":[{"name":"id","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Purchase Order ID","datatype":"id","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":0},{"name":"name","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":1},{"name":"order_date","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Order Date","datatype":"timestamp","doc_text":"","transform":{"label":"Date","transform":"date"},"path_label":"Purchase Order","index":2},{"name":"state","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"State","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","index":3}],"filter_cols":[{"name":"ordering_agency","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"Ordering Agency","datatype":"org_unit","doc_text":"Your library system","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","operator":{"label":"In list","op":"in"},"index":0},{"name":"state","path":[{"label":"Purchase Order","id":"acqpo","classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"label":"State","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Purchase Order","operator":{"op":"in","label":"In list"},"index":1,"value":["pending","on-order"]}]}'
+                        },
+          'create_time' => '2020-05-11 12:07:07.313917-04',
+          'recur' => 0,
+          'owner' => 863206,
+          'name' => '2020 closeout-open POs',
+          'id' => 176698,
+          'description' => '',
+          'recurrence' => '1 day',
+          'folder' => 3869,
+          'data' => '{"P0":["65","67","373","66","394"]}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => 'Your library system',
+                               'label' => 'Ordering Agency',
+                               'path_label' => 'Purchase Order',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare'
+                                              },
+                               'path' => [
+                                           {
+                                             'classname' => 'acqpo',
+                                             'id' => 'acqpo',
+                                             'table' => 'acq.purchase_order',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'label' => 'Purchase Order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acqpo',
+                                                           'core_label' => 'Non-core sources'
+                                                         }
+                                           }
+                                         ],
+                               'name' => 'ordering_agency',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'datatype' => 'org_unit'
+                             },
+                             {
+                               'value' => [
+                                            'pending',
+                                            'on-order'
+                                          ],
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path_label' => 'Purchase Order',
+                               'label' => 'State',
+                               'datatype' => 'text',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'name' => 'state',
+                               'transform' => {
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'table' => 'acq.purchase_order',
+                                             'id' => 'acqpo',
+                                             'classname' => 'acqpo',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqpo',
+                                                           'pkey' => 'id',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo',
+                                                           'label' => 'Purchase Order'
+                                                         }
+                                           }
+                                         ]
+                             }
+                           ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'ordering_agency'
+                                     },
+                         'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                         'alias' => 'Ordering Agency',
+                         'path' => 'acqpo-ordering_agency',
+                         'field_doc' => 'Your library system'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => [
+                                                    'pending',
+                                                    'on-order'
+                                                  ]
+                                        },
+                         'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'state',
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'State',
+                         'path' => 'acqpo-state',
+                         'field_doc' => ''
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Purchase Order',
+                      'table' => 'acq.purchase_order',
+                      'idlclass' => 'acqpo',
+                      'alias' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                      'path' => 'acqpo-acqpo'
+                    },
+          'display_cols' => [
+                              {
+                                'name' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'acq.purchase_order',
+                                              'classname' => 'acqpo',
+                                              'id' => 'acqpo',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'classname' => 'acqpo',
+                                                            'table' => 'acq.purchase_order',
+                                                            'label' => 'Purchase Order'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'datatype' => 'id',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'Purchase Order ID',
+                                'index' => 0,
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'doc_text' => '',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'table' => 'acq.purchase_order',
+                                              'id' => 'acqpo',
+                                              'classname' => 'acqpo',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'table' => 'acq.purchase_order',
+                                                            'label' => 'Purchase Order'
+                                                          }
+                                            }
+                                          ],
+                                'name' => 'name',
+                                'datatype' => 'text',
+                                'label' => 'Name',
+                                'path_label' => 'Purchase Order'
+                              },
+                              {
+                                'index' => 2,
+                                'doc_text' => '',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'Order Date',
+                                'name' => 'order_date',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpo',
+                                                            'label' => 'Purchase Order',
+                                                            'table' => 'acq.purchase_order',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'classname' => 'acqpo'
+                                                          },
+                                              'label' => 'Purchase Order',
+                                              'table' => 'acq.purchase_order',
+                                              'id' => 'acqpo',
+                                              'classname' => 'acqpo'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'date',
+                                                 'label' => 'Date'
+                                               },
+                                'datatype' => 'timestamp'
+                              },
+                              {
+                                'index' => 3,
+                                'doc_text' => '',
+                                'path_label' => 'Purchase Order',
+                                'label' => 'State',
+                                'name' => 'state',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'classname' => 'acqpo',
+                                              'id' => 'acqpo',
+                                              'table' => 'acq.purchase_order',
+                                              'label' => 'Purchase Order',
+                                              'struct' => {
+                                                            'label' => 'Purchase Order',
+                                                            'table' => 'acq.purchase_order',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpo'
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'text'
+                              }
+                            ],
+          'having' => [],
+          'doc_url' => '',
+          'select' => [
+                        {
+                          'path' => 'acqpo-id',
+                          'field_doc' => '',
+                          'alias' => 'Purchase Order ID',
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'name',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'alias' => 'Name',
+                          'path' => 'acqpo-name',
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'transform' => 'date',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'order_date'
+                                      },
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'alias' => 'Order Date',
+                          'path' => 'acqpo-order_date',
+                          'field_doc' => ''
+                        },
+                        {
+                          'relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'state'
+                                      },
+                          'alias' => 'State',
+                          'path' => 'acqpo-state',
+                          'field_doc' => ''
+                        }
+                      ],
+          'core_class' => 'acqpo'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-05-11 12:07:07.313917-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_from' => bless( {
+                                     '_builder' => bless( {
+                                                            '_resultset_limit' => 1048575,
+                                                            '_params' => {
+                                                                           'P0' => [
+                                                                                     '65',
+                                                                                     '67',
+                                                                                     '373',
+                                                                                     '66',
+                                                                                     '394'
+                                                                                   ]
+                                                                         },
+                                                            '_relative_time' => '2020-05-11 12:07:07.313917-04',
+                                                            '_sql' => undef,
+                                                            '_rels' => {
+                                                                         '56ea0ee77c2c6efe0131dfeea01705f5' => $VAR1->{'_from'}
+                                                                       }
+                                                          }, 'OpenILS::Reporter::SQLBuilder' ),
+                                     '_columns' => [],
+                                     '_sql' => 'acq.purchase_order AS "56ea0ee77c2c6efe0131dfeea01705f5"',
+                                     '_alias' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                     '_join' => [],
+                                     '_table' => 'acq.purchase_order'
+                                   }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."id" AS "Purchase Order ID"',
+                                         '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'colname' => 'id'
+                                                      },
+                                         '_alias' => 'Purchase Order ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'name',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Name',
+                                         '_aggregate' => undef,
+                                         '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                         '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."name" AS "Name"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                         '_sql' => 'date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") AS "Order Date"',
+                                         '_transform' => 'GenericTransform',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'date',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'order_date',
+                                                        'transform_label' => 'Date'
+                                                      },
+                                         '_alias' => 'Order Date'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                         '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."state" AS "State"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_from'}{'_builder'},
+                                         '_column' => {
+                                                        'colname' => 'state',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'State'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_order_by' => [
+                                  bless( {
+                                           '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."id" ASC',
+                                           '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."name" ASC',
+                                           '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_sql' => 'date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") ASC',
+                                           '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                           '_transform' => 'GenericTransform',
+                                           '_builder' => $VAR1->{'_from'}{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."state" ASC',
+                                           '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_builder'},
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_from'}{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"56ea0ee77c2c6efe0131dfeea01705f5"."id" AS "Purchase Order ID",
+	"56ea0ee77c2c6efe0131dfeea01705f5"."name" AS "Name",
+	date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") AS "Order Date",
+	"56ea0ee77c2c6efe0131dfeea01705f5"."state" AS "State"
+  FROM	acq.purchase_order AS "56ea0ee77c2c6efe0131dfeea01705f5"
+  WHERE	"56ea0ee77c2c6efe0131dfeea01705f5"."ordering_agency" IN ($_41245$65$_41245$,$_41245$67$_41245$,$_41245$373$_41245$,$_41245$66$_41245$,$_41245$394$_41245$)
+	AND "56ea0ee77c2c6efe0131dfeea01705f5"."state" IN ($_41245$pending$_41245$,$_41245$on-order$_41245$)
+  GROUP BY 1, 2, 3, 4
+  ORDER BY "56ea0ee77c2c6efe0131dfeea01705f5"."id" ASC, "56ea0ee77c2c6efe0131dfeea01705f5"."name" ASC, date("56ea0ee77c2c6efe0131dfeea01705f5"."order_date") ASC, "56ea0ee77c2c6efe0131dfeea01705f5"."state" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'ordering_agency',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."ordering_agency" IN ($_41245$65$_41245$,$_41245$67$_41245$,$_41245$373$_41245$,$_41245$66$_41245$,$_41245$394$_41245$)',
+                                        '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'state',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => [
+                                                                    'pending',
+                                                                    'on-order'
+                                                                  ]
+                                                        },
+                                        '_sql' => '"56ea0ee77c2c6efe0131dfeea01705f5"."state" IN ($_41245$pending$_41245$,$_41245$on-order$_41245$)',
+                                        '_relation' => '56ea0ee77c2c6efe0131dfeea01705f5',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_builder'},
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

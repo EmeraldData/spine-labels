@@ -1,0 +1,1407 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY 2019 Count of Items by Language and Circ Mod</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name",
+	"0316f02e4884d4f1cdc32e95d783045e"."value" AS "Language",
+	"e237951dc5d20431723e6183173ea9b4"."name" AS "Circ Modifier",
+	COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN config.circ_modifier AS "e237951dc5d20431723e6183173ea9b4" ON ("7d74f3b92b19da5e606d737d339a9679"."circ_modifier" = "e237951dc5d20431723e6183173ea9b4"."code")
+	INNER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	INNER JOIN biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "933a4c0b6dfb193f677f4b100eb07d06"."id")
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")
+	INNER JOIN asset.call_number AS "6d47a03270f761656e30bab94ee64d38" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "6d47a03270f761656e30bab94ee64d38"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("6d47a03270f761656e30bab94ee64d38"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")
+  WHERE	"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_41627$f$_41627$
+	AND "286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_41627$1$_41627$,$_41627$6$_41627$,$_41627$17$_41627$,$_41627$7$_41627$,$_41627$9$_41627$,$_41627$11$_41627$,$_41627$18$_41627$,$_41627$13$_41627$,$_41627$19$_41627$,$_41627$10$_41627$,$_41627$16$_41627$,$_41627$20$_41627$,$_41627$14$_41627$,$_41627$15$_41627$,$_41627$8$_41627$,$_41627$12$_41627$,$_41627$275$_41627$,$_41627$278$_41627$,$_41627$276$_41627$,$_41627$282$_41627$,$_41627$279$_41627$,$_41627$280$_41627$,$_41627$281$_41627$,$_41627$221$_41627$,$_41627$225$_41627$,$_41627$222$_41627$,$_41627$224$_41627$,$_41627$223$_41627$,$_41627$211$_41627$,$_41627$212$_41627$,$_41627$344$_41627$,$_41627$345$_41627$,$_41627$119$_41627$,$_41627$121$_41627$,$_41627$120$_41627$,$_41627$216$_41627$,$_41627$219$_41627$,$_41627$220$_41627$,$_41627$217$_41627$,$_41627$218$_41627$,$_41627$213$_41627$,$_41627$361$_41627$,$_41627$215$_41627$,$_41627$214$_41627$,$_41627$124$_41627$,$_41627$126$_41627$,$_41627$125$_41627$,$_41627$127$_41627$,$_41627$128$_41627$,$_41627$129$_41627$,$_41627$130$_41627$,$_41627$267$_41627$,$_41627$269$_41627$,$_41627$272$_41627$,$_41627$270$_41627$,$_41627$32$_41627$,$_41627$271$_41627$,$_41627$273$_41627$,$_41627$268$_41627$,$_41627$122$_41627$,$_41627$123$_41627$,$_41627$260$_41627$,$_41627$265$_41627$,$_41627$263$_41627$,$_41627$261$_41627$,$_41627$266$_41627$,$_41627$264$_41627$,$_41627$318$_41627$,$_41627$33$_41627$,$_41627$34$_41627$,$_41627$35$_41627$,$_41627$38$_41627$,$_41627$36$_41627$,$_41627$37$_41627$,$_41627$21$_41627$,$_41627$23$_41627$,$_41627$24$_41627$,$_41627$22$_41627$,$_41627$31$_41627$,$_41627$106$_41627$,$_41627$109$_41627$,$_41627$111$_41627$,$_41627$107$_41627$,$_41627$113$_41627$,$_41627$108$_41627$,$_41627$369$_41627$,$_41627$110$_41627$,$_41627$112$_41627$,$_41627$114$_41627$,$_41627$65$_41627$,$_41627$67$_41627$,$_41627$373$_41627$,$_41627$66$_41627$,$_41627$394$_41627$,$_41627$365$_41627$,$_41627$284$_41627$,$_41627$287$_41627$,$_41627$289$_41627$,$_41627$288$_41627$,$_41627$291$_41627$,$_41627$285$_41627$,$_41627$286$_41627$,$_41627$290$_41627$,$_41627$156$_41627$,$_41627$157$_41627$,$_41627$158$_41627$,$_41627$159$_41627$,$_41627$160$_41627$,$_41627$161$_41627$,$_41627$351$_41627$,$_41627$162$_41627$,$_41627$182$_41627$,$_41627$183$_41627$,$_41627$140$_41627$,$_41627$143$_41627$,$_41627$300$_41627$,$_41627$144$_41627$,$_41627$367$_41627$,$_41627$141$_41627$,$_41627$142$_41627$,$_41627$152$_41627$,$_41627$155$_41627$,$_41627$154$_41627$,$_41627$153$_41627$,$_41627$226$_41627$,$_41627$230$_41627$,$_41627$227$_41627$,$_41627$228$_41627$,$_41627$229$_41627$,$_41627$252$_41627$,$_41627$253$_41627$,$_41627$254$_41627$,$_41627$255$_41627$,$_41627$259$_41627$,$_41627$343$_41627$,$_41627$256$_41627$,$_41627$257$_41627$,$_41627$258$_41627$,$_41627$328$_41627$,$_41627$331$_41627$,$_41627$330$_41627$,$_41627$333$_41627$,$_41627$335$_41627$,$_41627$329$_41627$,$_41627$337$_41627$,$_41627$336$_41627$,$_41627$115$_41627$,$_41627$117$_41627$,$_41627$360$_41627$,$_41627$118$_41627$,$_41627$116$_41627$,$_41627$376$_41627$,$_41627$393$_41627$,$_41627$377$_41627$,$_41627$378$_41627$,$_41627$395$_41627$,$_41627$379$_41627$,$_41627$380$_41627$,$_41627$381$_41627$,$_41627$382$_41627$,$_41627$396$_41627$,$_41627$383$_41627$,$_41627$384$_41627$,$_41627$397$_41627$,$_41627$385$_41627$,$_41627$386$_41627$,$_41627$398$_41627$,$_41627$387$_41627$,$_41627$388$_41627$,$_41627$389$_41627$,$_41627$399$_41627$,$_41627$390$_41627$,$_41627$391$_41627$,$_41627$392$_41627$,$_41627$362$_41627$,$_41627$74$_41627$,$_41627$70$_41627$,$_41627$233$_41627$,$_41627$374$_41627$,$_41627$237$_41627$,$_41627$239$_41627$,$_41627$246$_41627$,$_41627$248$_41627$,$_41627$247$_41627$,$_41627$241$_41627$,$_41627$240$_41627$,$_41627$249$_41627$,$_41627$243$_41627$,$_41627$250$_41627$,$_41627$244$_41627$,$_41627$242$_41627$,$_41627$251$_41627$,$_41627$236$_41627$,$_41627$235$_41627$,$_41627$245$_41627$,$_41627$234$_41627$,$_41627$238$_41627$,$_41627$2$_41627$,$_41627$4$_41627$,$_41627$5$_41627$,$_41627$3$_41627$,$_41627$96$_41627$,$_41627$99$_41627$,$_41627$98$_41627$,$_41627$97$_41627$,$_41627$100$_41627$,$_41627$101$_41627$,$_41627$231$_41627$,$_41627$232$_41627$,$_41627$340$_41627$,$_41627$342$_41627$,$_41627$145$_41627$,$_41627$146$_41627$,$_41627$147$_41627$,$_41627$150$_41627$,$_41627$350$_41627$,$_41627$151$_41627$,$_41627$148$_41627$,$_41627$149$_41627$,$_41627$353$_41627$,$_41627$354$_41627$,$_41627$356$_41627$,$_41627$355$_41627$,$_41627$292$_41627$,$_41627$295$_41627$,$_41627$299$_41627$,$_41627$293$_41627$,$_41627$297$_41627$,$_41627$294$_41627$,$_41627$298$_41627$,$_41627$296$_41627$,$_41627$197$_41627$,$_41627$198$_41627$,$_41627$199$_41627$,$_41627$200$_41627$,$_41627$201$_41627$,$_41627$202$_41627$,$_41627$203$_41627$,$_41627$208$_41627$,$_41627$136$_41627$,$_41627$210$_41627$,$_41627$205$_41627$,$_41627$206$_41627$,$_41627$209$_41627$,$_41627$207$_41627$,$_41627$204$_41627$,$_41627$58$_41627$,$_41627$60$_41627$,$_41627$62$_41627$,$_41627$59$_41627$,$_41627$64$_41627$,$_41627$61$_41627$,$_41627$63$_41627$,$_41627$102$_41627$,$_41627$104$_41627$,$_41627$105$_41627$,$_41627$103$_41627$,$_41627$184$_41627$,$_41627$188$_41627$,$_41627$190$_41627$,$_41627$196$_41627$,$_41627$189$_41627$,$_41627$193$_41627$,$_41627$191$_41627$,$_41627$192$_41627$,$_41627$195$_41627$,$_41627$185$_41627$,$_41627$371$_41627$,$_41627$194$_41627$,$_41627$186$_41627$,$_41627$187$_41627$,$_41627$87$_41627$,$_41627$88$_41627$,$_41627$94$_41627$,$_41627$90$_41627$,$_41627$89$_41627$,$_41627$91$_41627$,$_41627$92$_41627$,$_41627$93$_41627$,$_41627$95$_41627$,$_41627$85$_41627$,$_41627$86$_41627$,$_41627$25$_41627$,$_41627$27$_41627$,$_41627$29$_41627$,$_41627$30$_41627$,$_41627$28$_41627$,$_41627$26$_41627$,$_41627$131$_41627$,$_41627$132$_41627$,$_41627$134$_41627$,$_41627$135$_41627$,$_41627$137$_41627$,$_41627$138$_41627$,$_41627$133$_41627$,$_41627$139$_41627$,$_41627$80$_41627$,$_41627$84$_41627$,$_41627$82$_41627$,$_41627$83$_41627$,$_41627$81$_41627$,$_41627$301$_41627$,$_41627$306$_41627$,$_41627$310$_41627$,$_41627$307$_41627$,$_41627$304$_41627$,$_41627$308$_41627$,$_41627$305$_41627$,$_41627$309$_41627$,$_41627$303$_41627$,$_41627$177$_41627$,$_41627$178$_41627$,$_41627$181$_41627$,$_41627$180$_41627$,$_41627$179$_41627$,$_41627$39$_41627$,$_41627$42$_41627$,$_41627$43$_41627$,$_41627$45$_41627$,$_41627$44$_41627$,$_41627$40$_41627$,$_41627$41$_41627$,$_41627$311$_41627$,$_41627$313$_41627$,$_41627$314$_41627$,$_41627$316$_41627$,$_41627$315$_41627$,$_41627$317$_41627$,$_41627$312$_41627$,$_41627$68$_41627$,$_41627$71$_41627$,$_41627$72$_41627$,$_41627$73$_41627$,$_41627$79$_41627$,$_41627$69$_41627$,$_41627$75$_41627$,$_41627$76$_41627$,$_41627$77$_41627$,$_41627$78$_41627$,$_41627$321$_41627$,$_41627$323$_41627$,$_41627$322$_41627$,$_41627$326$_41627$,$_41627$324$_41627$,$_41627$55$_41627$,$_41627$347$_41627$,$_41627$401$_41627$,$_41627$57$_41627$,$_41627$56$_41627$,$_41627$46$_41627$,$_41627$47$_41627$,$_41627$48$_41627$,$_41627$49$_41627$,$_41627$51$_41627$,$_41627$50$_41627$,$_41627$52$_41627$,$_41627$53$_41627$,$_41627$54$_41627$,$_41627$366$_41627$,$_41627$357$_41627$,$_41627$163$_41627$,$_41627$166$_41627$,$_41627$167$_41627$,$_41627$176$_41627$,$_41627$375$_41627$,$_41627$352$_41627$,$_41627$173$_41627$,$_41627$358$_41627$,$_41627$168$_41627$,$_41627$349$_41627$,$_41627$169$_41627$,$_41627$170$_41627$,$_41627$171$_41627$,$_41627$320$_41627$,$_41627$164$_41627$,$_41627$172$_41627$,$_41627$372$_41627$,$_41627$174$_41627$,$_41627$175$_41627$,$_41627$165$_41627$,$_41627$319$_41627$,$_41627$346$_41627$,$_41627$262$_41627$)
+  GROUP BY 1, 2, 3
+  ORDER BY "bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC, "0316f02e4884d4f1cdc32e95d783045e"."value" ASC, "e237951dc5d20431723e6183173ea9b4"."name" ASC, COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'description' => 'This information is displaying off of the Fixed Field  Lang 008/35-37 in the MARC',
+          'folder' => 3335,
+          'name' => 'Item Count by Language and Circ Mod',
+          'create_time' => '2018-07-10 14:56:38.037436-04',
+          'data' => '{"version":4,"doc_url":"","core_class":"acp","select":[{"alias":"Short (Policy) Name","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib-aou-shortname","relation":"bdd43e1440a00047b1e66cb9619865c0"},{"alias":"Language","field_doc":"","column":{"colname":"value","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm-value","relation":"0316f02e4884d4f1cdc32e95d783045e"},{"alias":"Circ Modifier","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acp-circ_modifier-ccm-name","relation":"e237951dc5d20431723e6183173ea9b4"},{"alias":"Copy ID","field_doc":"","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"acp-id","relation":"7d74f3b92b19da5e606d737d339a9679"}],"from":{"path":"acp-call_number","table":"asset.copy","alias":"7d74f3b92b19da5e606d737d339a9679","join":{"call_number-ed55d72666ad50c3c4b9652f5627aba0":{"key":"id","path":"acp-call_number-acn-owning_lib","table":"asset.call_number","alias":"6d47a03270f761656e30bab94ee64d38","join":{"owning_lib-6d47a03270f761656e30bab94ee64d38":{"key":"id","path":"acp-call_number-acn-owning_lib-aou","table":"actor.org_unit","label":"Item -> Call Number/Volume :: Owning Library","alias":"bdd43e1440a00047b1e66cb9619865c0","idlclass":"aou","template_path":"acp-call_number.acn-owning_lib"}}},"call_number-7d74f3b92b19da5e606d737d339a9679":{"key":"id","path":"acp-call_number-acn-record","table":"asset.call_number","label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","idlclass":"acn","template_path":"acp-call_number","join":{"record-286d7899ae25bee8bdd7dcde49f9e0b7":{"key":"id","path":"acp-call_number-acn-record-bre-fixed_fields","table":"biblio.record_entry","alias":"933a4c0b6dfb193f677f4b100eb07d06","join":{"id-mrd-record-933a4c0b6dfb193f677f4b100eb07d06":{"key":"record","type":"left","path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang","table":"metabib.rec_descriptor","alias":"7f6d0d9dd1fd9c2d8ba4e854e89fb6d3","join":{"item_lang-7f6d0d9dd1fd9c2d8ba4e854e89fb6d3":{"type":"left","key":"code","path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm","table":"config.language_map","label":"Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang","alias":"0316f02e4884d4f1cdc32e95d783045e","idlclass":"clm","template_path":"acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang"}}}}}}},"circ_modifier-7d74f3b92b19da5e606d737d339a9679":{"key":"code","path":"acp-circ_modifier-ccm","table":"config.circ_modifier","label":"Item :: Circulation Modifier","alias":"e237951dc5d20431723e6183173ea9b4","idlclass":"ccm","template_path":"acp-circ_modifier"}},"label":"Item","idlclass":"acp","template_path":"acp"},"where":[{"alias":"Is Deleted","field_doc":"","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"acp-deleted","relation":"7d74f3b92b19da5e606d737d339a9679","condition":{"=":"f"}},{"alias":"Owning Library","field_doc":"","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib","relation":"286d7899ae25bee8bdd7dcde49f9e0b7","condition":{"in":"::P0"}}],"having":[],"order_by":[],"rel_cache":{"bdd43e1440a00047b1e66cb9619865c0":{"label":"Item -> Call Number/Volume :: Owning Library","alias":"bdd43e1440a00047b1e66cb9619865c0","path":"acp-call_number.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"bdd43e1440a00047b1e66cb9619865c0","field":"shortname"},{"relation":"0316f02e4884d4f1cdc32e95d783045e","field":"value"},{"relation":"e237951dc5d20431723e6183173ea9b4","field":"name"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"id"}],"7d74f3b92b19da5e606d737d339a9679":{"label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp","reltype":"","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":"true","transform_label":"Count Distinct","alias":"Copy ID","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"},"field_doc":""}},"aggfilter_tab":{}}},"286d7899ae25bee8bdd7dcde49f9e0b7":{"label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","path":"acp-call_number","reltype":"has_a","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{},"filter_tab":{"owning_lib":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"e237951dc5d20431723e6183173ea9b4":{"label":"Item :: Circulation Modifier","alias":"e237951dc5d20431723e6183173ea9b4","path":"acp-circ_modifier","join":"","reltype":"has_a","idlclass":"ccm","table":"config.circ_modifier","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Circ Modifier","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"0316f02e4884d4f1cdc32e95d783045e":{"label":"Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang","alias":"0316f02e4884d4f1cdc32e95d783045e","path":"acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang","join":"","reltype":"has_a","idlclass":"clm","table":"config.language_map","fields":{"dis_tab":{"value":{"colname":"value","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Language","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+          'owner' => 402541,
+          'id' => 67254
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'core_class' => 'acp',
+          'from' => {
+                      'path' => 'acp-call_number',
+                      'template_path' => 'acp',
+                      'label' => 'Item',
+                      'join' => {
+                                  'call_number-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                      'path' => 'acp-call_number-acn-record',
+                                                                                      'join' => {
+                                                                                                  'record-286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-fixed_fields',
+                                                                                                                                                 'join' => {
+                                                                                                                                                             'id-mrd-record-933a4c0b6dfb193f677f4b100eb07d06' => {
+                                                                                                                                                                                                                   'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang',
+                                                                                                                                                                                                                   'join' => {
+                                                                                                                                                                                                                               'item_lang-7f6d0d9dd1fd9c2d8ba4e854e89fb6d3' => {
+                                                                                                                                                                                                                                                                                 'label' => 'Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang',
+                                                                                                                                                                                                                                                                                 'template_path' => 'acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang',
+                                                                                                                                                                                                                                                                                 'idlclass' => 'clm',
+                                                                                                                                                                                                                                                                                 'key' => 'code',
+                                                                                                                                                                                                                                                                                 'type' => 'left',
+                                                                                                                                                                                                                                                                                 'table' => 'config.language_map',
+                                                                                                                                                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm',
+                                                                                                                                                                                                                                                                                 'alias' => '0316f02e4884d4f1cdc32e95d783045e'
+                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                             },
+                                                                                                                                                                                                                   'table' => 'metabib.rec_descriptor',
+                                                                                                                                                                                                                   'type' => 'left',
+                                                                                                                                                                                                                   'key' => 'record',
+                                                                                                                                                                                                                   'alias' => '7f6d0d9dd1fd9c2d8ba4e854e89fb6d3'
+                                                                                                                                                                                                                 }
+                                                                                                                                                           },
+                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                 'key' => 'id',
+                                                                                                                                                 'alias' => '933a4c0b6dfb193f677f4b100eb07d06'
+                                                                                                                                               }
+                                                                                                },
+                                                                                      'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                                      'label' => 'Item :: Call Number/Volume',
+                                                                                      'template_path' => 'acp-call_number',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acn'
+                                                                                    },
+                                  'circ_modifier-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                        'path' => 'acp-circ_modifier-ccm',
+                                                                                        'label' => 'Item :: Circulation Modifier',
+                                                                                        'template_path' => 'acp-circ_modifier',
+                                                                                        'alias' => 'e237951dc5d20431723e6183173ea9b4',
+                                                                                        'table' => 'config.circ_modifier',
+                                                                                        'key' => 'code',
+                                                                                        'idlclass' => 'ccm'
+                                                                                      },
+                                  'call_number-ed55d72666ad50c3c4b9652f5627aba0' => {
+                                                                                      'alias' => '6d47a03270f761656e30bab94ee64d38',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'acp-call_number-acn-owning_lib',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-6d47a03270f761656e30bab94ee64d38' => {
+                                                                                                                                                     'path' => 'acp-call_number-acn-owning_lib-aou',
+                                                                                                                                                     'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                     'template_path' => 'acp-call_number.acn-owning_lib',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                     'idlclass' => 'aou'
+                                                                                                                                                   }
+                                                                                                }
+                                                                                    }
+                                },
+                      'table' => 'asset.copy',
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'idlclass' => 'acp'
+                    },
+          'doc_url' => '',
+          'where' => [
+                       {
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'path' => 'acp-deleted',
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'Is Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'owning_lib'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Owning Library',
+                         'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                         'path' => 'acp-call_number-acn-owning_lib'
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                          'path' => 'acp-call_number-acn-owning_lib-aou-shortname'
+                        },
+                        {
+                          'alias' => 'Language',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'value'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                          'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm-value'
+                        },
+                        {
+                          'relation' => 'e237951dc5d20431723e6183173ea9b4',
+                          'path' => 'acp-circ_modifier-ccm-name',
+                          'alias' => 'Circ Modifier',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'path' => 'acp-id',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'alias' => 'Copy ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'transform' => 'count_distinct'
+                                      }
+                        }
+                      ],
+          'rel_cache' => {
+                           '7d74f3b92b19da5e606d737d339a9679' => {
+                                                                   'label' => 'Item',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'alias' => 'Copy ID',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'op' => '=',
+                                                                                                          'op_value' => {},
+                                                                                                          'field_doc' => '',
+                                                                                                          'transform_label' => 'Count Distinct'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'op_value' => {
+                                                                                                                                  'value' => 'f',
+                                                                                                                                  'label' => 'False'
+                                                                                                                                },
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'datatype' => 'bool'
+                                                                                                                }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'acp',
+                                                                   'idlclass' => 'acp',
+                                                                   'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                                                   'reltype' => '',
+                                                                   'table' => 'asset.copy'
+                                                                 },
+                           '286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                   'path' => 'acp-call_number',
+                                                                   'label' => 'Item :: Call Number/Volume',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'owning_lib' => {
+                                                                                                                     'alias' => 'Owning Library',
+                                                                                                                     'datatype' => 'org_unit',
+                                                                                                                     'op_label' => 'In list',
+                                                                                                                     'colname' => 'owning_lib',
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'op' => 'in',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'transform_label' => 'Raw Data'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'asset.call_number',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                   'idlclass' => 'acn'
+                                                                 },
+                           'bdd43e1440a00047b1e66cb9619865c0' => {
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform_label' => 'Raw Data'
+                                                                                                               }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'acp-call_number.acn-owning_lib'
+                                                                 },
+                           'e237951dc5d20431723e6183173ea9b4' => {
+                                                                   'idlclass' => 'ccm',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'config.circ_modifier',
+                                                                   'label' => 'Item :: Circulation Modifier',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'alias' => 'Circ Modifier',
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'colname' => 'name',
+                                                                                                            'params' => undef,
+                                                                                                            'datatype' => 'text',
+                                                                                                            'field_doc' => '',
+                                                                                                            'op_value' => {},
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform_label' => 'Raw Data'
+                                                                                                          }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'alias' => 'e237951dc5d20431723e6183173ea9b4',
+                                                                   'join' => '',
+                                                                   'path' => 'acp-circ_modifier'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => 'bdd43e1440a00047b1e66cb9619865c0'
+                                           },
+                                           {
+                                             'relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                                             'field' => 'value'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => 'e237951dc5d20431723e6183173ea9b4'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                           }
+                                         ],
+                           '0316f02e4884d4f1cdc32e95d783045e' => {
+                                                                   'label' => 'Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'value' => {
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_value' => {},
+                                                                                                             'field_doc' => '',
+                                                                                                             'op' => '=',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Language',
+                                                                                                             'params' => undef,
+                                                                                                             'datatype' => 'text',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'join' => '',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'colname' => 'value'
+                                                                                                           }
+                                                                                              }
+                                                                               },
+                                                                   'idlclass' => 'clm',
+                                                                   'table' => 'config.language_map',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'path' => 'acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang',
+                                                                   'alias' => '0316f02e4884d4f1cdc32e95d783045e'
+                                                                 }
+                         },
+          'having' => [],
+          'version' => 4
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'id' => 165074,
+          'owner' => 402541,
+          'recurrence' => '1 day',
+          'template' => {
+                          'description' => 'This information is displaying off of the Fixed Field  Lang 008/35-37 in the MARC',
+                          'folder' => 3335,
+                          'name' => 'Item Count by Language and Circ Mod',
+                          'create_time' => '2018-07-10 14:56:38.037436-04',
+                          'data' => '{"version":4,"doc_url":"","core_class":"acp","select":[{"alias":"Short (Policy) Name","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib-aou-shortname","relation":"bdd43e1440a00047b1e66cb9619865c0"},{"alias":"Language","field_doc":"","column":{"colname":"value","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm-value","relation":"0316f02e4884d4f1cdc32e95d783045e"},{"alias":"Circ Modifier","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acp-circ_modifier-ccm-name","relation":"e237951dc5d20431723e6183173ea9b4"},{"alias":"Copy ID","field_doc":"","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct"},"path":"acp-id","relation":"7d74f3b92b19da5e606d737d339a9679"}],"from":{"path":"acp-call_number","table":"asset.copy","alias":"7d74f3b92b19da5e606d737d339a9679","join":{"call_number-ed55d72666ad50c3c4b9652f5627aba0":{"key":"id","path":"acp-call_number-acn-owning_lib","table":"asset.call_number","alias":"6d47a03270f761656e30bab94ee64d38","join":{"owning_lib-6d47a03270f761656e30bab94ee64d38":{"key":"id","path":"acp-call_number-acn-owning_lib-aou","table":"actor.org_unit","label":"Item -> Call Number/Volume :: Owning Library","alias":"bdd43e1440a00047b1e66cb9619865c0","idlclass":"aou","template_path":"acp-call_number.acn-owning_lib"}}},"call_number-7d74f3b92b19da5e606d737d339a9679":{"key":"id","path":"acp-call_number-acn-record","table":"asset.call_number","label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","idlclass":"acn","template_path":"acp-call_number","join":{"record-286d7899ae25bee8bdd7dcde49f9e0b7":{"key":"id","path":"acp-call_number-acn-record-bre-fixed_fields","table":"biblio.record_entry","alias":"933a4c0b6dfb193f677f4b100eb07d06","join":{"id-mrd-record-933a4c0b6dfb193f677f4b100eb07d06":{"key":"record","type":"left","path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang","table":"metabib.rec_descriptor","alias":"7f6d0d9dd1fd9c2d8ba4e854e89fb6d3","join":{"item_lang-7f6d0d9dd1fd9c2d8ba4e854e89fb6d3":{"type":"left","key":"code","path":"acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm","table":"config.language_map","label":"Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang","alias":"0316f02e4884d4f1cdc32e95d783045e","idlclass":"clm","template_path":"acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang"}}}}}}},"circ_modifier-7d74f3b92b19da5e606d737d339a9679":{"key":"code","path":"acp-circ_modifier-ccm","table":"config.circ_modifier","label":"Item :: Circulation Modifier","alias":"e237951dc5d20431723e6183173ea9b4","idlclass":"ccm","template_path":"acp-circ_modifier"}},"label":"Item","idlclass":"acp","template_path":"acp"},"where":[{"alias":"Is Deleted","field_doc":"","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"acp-deleted","relation":"7d74f3b92b19da5e606d737d339a9679","condition":{"=":"f"}},{"alias":"Owning Library","field_doc":"","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data"},"path":"acp-call_number-acn-owning_lib","relation":"286d7899ae25bee8bdd7dcde49f9e0b7","condition":{"in":"::P0"}}],"having":[],"order_by":[],"rel_cache":{"bdd43e1440a00047b1e66cb9619865c0":{"label":"Item -> Call Number/Volume :: Owning Library","alias":"bdd43e1440a00047b1e66cb9619865c0","path":"acp-call_number.acn-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"bdd43e1440a00047b1e66cb9619865c0","field":"shortname"},{"relation":"0316f02e4884d4f1cdc32e95d783045e","field":"value"},{"relation":"e237951dc5d20431723e6183173ea9b4","field":"name"},{"relation":"7d74f3b92b19da5e606d737d339a9679","field":"id"}],"7d74f3b92b19da5e606d737d339a9679":{"label":"Item","alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp","reltype":"","idlclass":"acp","table":"asset.copy","fields":{"dis_tab":{"id":{"colname":"id","transform":"count_distinct","aggregate":"true","transform_label":"Count Distinct","alias":"Copy ID","datatype":"id","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","alias":"Is Deleted","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"},"field_doc":""}},"aggfilter_tab":{}}},"286d7899ae25bee8bdd7dcde49f9e0b7":{"label":"Item :: Call Number/Volume","alias":"286d7899ae25bee8bdd7dcde49f9e0b7","path":"acp-call_number","reltype":"has_a","idlclass":"acn","table":"asset.call_number","fields":{"dis_tab":{},"filter_tab":{"owning_lib":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","alias":"Owning Library","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""}},"aggfilter_tab":{}}},"e237951dc5d20431723e6183173ea9b4":{"label":"Item :: Circulation Modifier","alias":"e237951dc5d20431723e6183173ea9b4","path":"acp-circ_modifier","join":"","reltype":"has_a","idlclass":"ccm","table":"config.circ_modifier","fields":{"dis_tab":{"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Circ Modifier","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"0316f02e4884d4f1cdc32e95d783045e":{"label":"Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang","alias":"0316f02e4884d4f1cdc32e95d783045e","path":"acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang","join":"","reltype":"has_a","idlclass":"clm","table":"config.language_map","fields":{"dis_tab":{"value":{"colname":"value","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Language","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+                          'owner' => 402541,
+                          'id' => 67254
+                        },
+          'description' => '',
+          'data' => '{"P0":["1","6","17","7","9","11","18","13","19","10","16","20","14","15","8","12","275","278","276","282","279","280","281","221","225","222","224","223","211","212","344","345","119","121","120","216","219","220","217","218","213","361","215","214","124","126","125","127","128","129","130","267","269","272","270","32","271","273","268","122","123","260","265","263","261","266","264","318","33","34","35","38","36","37","21","23","24","22","31","106","109","111","107","113","108","369","110","112","114","65","67","373","66","394","365","284","287","289","288","291","285","286","290","156","157","158","159","160","161","351","162","182","183","140","143","300","144","367","141","142","152","155","154","153","226","230","227","228","229","252","253","254","255","259","343","256","257","258","328","331","330","333","335","329","337","336","115","117","360","118","116","376","393","377","378","395","379","380","381","382","396","383","384","397","385","386","398","387","388","389","399","390","391","392","362","74","70","233","374","237","239","246","248","247","241","240","249","243","250","244","242","251","236","235","245","234","238","2","4","5","3","96","99","98","97","100","101","231","232","340","342","145","146","147","150","350","151","148","149","353","354","356","355","292","295","299","293","297","294","298","296","197","198","199","200","201","202","203","208","136","210","205","206","209","207","204","58","60","62","59","64","61","63","102","104","105","103","184","188","190","196","189","193","191","192","195","185","371","194","186","187","87","88","94","90","89","91","92","93","95","85","86","25","27","29","30","28","26","131","132","134","135","137","138","133","139","80","84","82","83","81","301","306","310","307","304","308","305","309","303","177","178","181","180","179","39","42","43","45","44","40","41","311","313","314","316","315","317","312","68","71","72","73","79","69","75","76","77","78","321","323","322","326","324","55","347","401","57","56","46","47","48","49","51","50","52","53","54","366","357","163","166","167","176","375","352","173","358","168","349","169","170","171","320","164","172","372","174","175","165","319","346","262"],"__pivot_label":"","__pivot_data":"4"}',
+          'create_time' => '2019-07-03 16:11:45.591434-04',
+          'name' => 'FY 2019 Count of Items by Language and Circ Mod',
+          'recur' => 0,
+          'folder' => 3901
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'core_class' => 'acp',
+          'from' => {
+                      'path' => 'acp-call_number',
+                      'template_path' => 'acp',
+                      'label' => 'Item',
+                      'join' => {
+                                  'call_number-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                      'path' => 'acp-call_number-acn-record',
+                                                                                      'join' => {
+                                                                                                  'record-286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-fixed_fields',
+                                                                                                                                                 'join' => {
+                                                                                                                                                             'id-mrd-record-933a4c0b6dfb193f677f4b100eb07d06' => {
+                                                                                                                                                                                                                   'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang',
+                                                                                                                                                                                                                   'join' => {
+                                                                                                                                                                                                                               'item_lang-7f6d0d9dd1fd9c2d8ba4e854e89fb6d3' => {
+                                                                                                                                                                                                                                                                                 'label' => 'Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang',
+                                                                                                                                                                                                                                                                                 'template_path' => 'acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang',
+                                                                                                                                                                                                                                                                                 'idlclass' => 'clm',
+                                                                                                                                                                                                                                                                                 'key' => 'code',
+                                                                                                                                                                                                                                                                                 'type' => 'left',
+                                                                                                                                                                                                                                                                                 'table' => 'config.language_map',
+                                                                                                                                                                                                                                                                                 'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm',
+                                                                                                                                                                                                                                                                                 'alias' => '0316f02e4884d4f1cdc32e95d783045e'
+                                                                                                                                                                                                                                                                               }
+                                                                                                                                                                                                                             },
+                                                                                                                                                                                                                   'table' => 'metabib.rec_descriptor',
+                                                                                                                                                                                                                   'type' => 'left',
+                                                                                                                                                                                                                   'key' => 'record',
+                                                                                                                                                                                                                   'alias' => '7f6d0d9dd1fd9c2d8ba4e854e89fb6d3'
+                                                                                                                                                                                                                 }
+                                                                                                                                                           },
+                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                 'key' => 'id',
+                                                                                                                                                 'alias' => '933a4c0b6dfb193f677f4b100eb07d06'
+                                                                                                                                               }
+                                                                                                },
+                                                                                      'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                                      'label' => 'Item :: Call Number/Volume',
+                                                                                      'template_path' => 'acp-call_number',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acn'
+                                                                                    },
+                                  'circ_modifier-7d74f3b92b19da5e606d737d339a9679' => {
+                                                                                        'path' => 'acp-circ_modifier-ccm',
+                                                                                        'label' => 'Item :: Circulation Modifier',
+                                                                                        'template_path' => 'acp-circ_modifier',
+                                                                                        'alias' => 'e237951dc5d20431723e6183173ea9b4',
+                                                                                        'table' => 'config.circ_modifier',
+                                                                                        'key' => 'code',
+                                                                                        'idlclass' => 'ccm'
+                                                                                      },
+                                  'call_number-ed55d72666ad50c3c4b9652f5627aba0' => {
+                                                                                      'alias' => '6d47a03270f761656e30bab94ee64d38',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'acp-call_number-acn-owning_lib',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-6d47a03270f761656e30bab94ee64d38' => {
+                                                                                                                                                     'path' => 'acp-call_number-acn-owning_lib-aou',
+                                                                                                                                                     'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                     'template_path' => 'acp-call_number.acn-owning_lib',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                     'idlclass' => 'aou'
+                                                                                                                                                   }
+                                                                                                }
+                                                                                    }
+                                },
+                      'table' => 'asset.copy',
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'idlclass' => 'acp'
+                    },
+          'doc_url' => '',
+          'where' => [
+                       {
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'path' => 'acp-deleted',
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'Is Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'owning_lib'
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Owning Library',
+                         'relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                         'path' => 'acp-call_number-acn-owning_lib'
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                          'path' => 'acp-call_number-acn-owning_lib-aou-shortname'
+                        },
+                        {
+                          'alias' => 'Language',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'value'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                          'path' => 'acp-call_number-acn-record-bre-fixed_fields-mrd-item_lang-clm-value'
+                        },
+                        {
+                          'relation' => 'e237951dc5d20431723e6183173ea9b4',
+                          'path' => 'acp-circ_modifier-ccm-name',
+                          'alias' => 'Circ Modifier',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'name'
+                                      }
+                        },
+                        {
+                          'path' => 'acp-id',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'alias' => 'Copy ID',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count Distinct',
+                                        'transform' => 'count_distinct'
+                                      }
+                        }
+                      ],
+          'rel_cache' => {
+                           '7d74f3b92b19da5e606d737d339a9679' => {
+                                                                   'label' => 'Item',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'alias' => 'Copy ID',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'transform' => 'count_distinct',
+                                                                                                          'aggregate' => 'true',
+                                                                                                          'op' => '=',
+                                                                                                          'op_value' => {},
+                                                                                                          'field_doc' => '',
+                                                                                                          'transform_label' => 'Count Distinct'
+                                                                                                        }
+                                                                                              },
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'op_value' => {
+                                                                                                                                  'value' => 'f',
+                                                                                                                                  'label' => 'False'
+                                                                                                                                },
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'alias' => 'Is Deleted',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'datatype' => 'bool'
+                                                                                                                }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'acp',
+                                                                   'idlclass' => 'acp',
+                                                                   'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                                                   'reltype' => '',
+                                                                   'table' => 'asset.copy'
+                                                                 },
+                           '286d7899ae25bee8bdd7dcde49f9e0b7' => {
+                                                                   'path' => 'acp-call_number',
+                                                                   'label' => 'Item :: Call Number/Volume',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'owning_lib' => {
+                                                                                                                     'alias' => 'Owning Library',
+                                                                                                                     'datatype' => 'org_unit',
+                                                                                                                     'op_label' => 'In list',
+                                                                                                                     'colname' => 'owning_lib',
+                                                                                                                     'transform' => 'Bare',
+                                                                                                                     'op' => 'in',
+                                                                                                                     'field_doc' => '',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'transform_label' => 'Raw Data'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'table' => 'asset.call_number',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                                                   'idlclass' => 'acn'
+                                                                 },
+                           'bdd43e1440a00047b1e66cb9619865c0' => {
+                                                                   'idlclass' => 'aou',
+                                                                   'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform_label' => 'Raw Data'
+                                                                                                               }
+                                                                                              }
+                                                                               },
+                                                                   'path' => 'acp-call_number.acn-owning_lib'
+                                                                 },
+                           'e237951dc5d20431723e6183173ea9b4' => {
+                                                                   'idlclass' => 'ccm',
+                                                                   'reltype' => 'has_a',
+                                                                   'table' => 'config.circ_modifier',
+                                                                   'label' => 'Item :: Circulation Modifier',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'alias' => 'Circ Modifier',
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'colname' => 'name',
+                                                                                                            'params' => undef,
+                                                                                                            'datatype' => 'text',
+                                                                                                            'field_doc' => '',
+                                                                                                            'op_value' => {},
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform_label' => 'Raw Data'
+                                                                                                          }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'alias' => 'e237951dc5d20431723e6183173ea9b4',
+                                                                   'join' => '',
+                                                                   'path' => 'acp-circ_modifier'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => 'bdd43e1440a00047b1e66cb9619865c0'
+                                           },
+                                           {
+                                             'relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                                             'field' => 'value'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => 'e237951dc5d20431723e6183173ea9b4'
+                                           },
+                                           {
+                                             'field' => 'id',
+                                             'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                           }
+                                         ],
+                           '0316f02e4884d4f1cdc32e95d783045e' => {
+                                                                   'label' => 'Item -> Call Number/Volume -> Bibliographic Record -> Basic Record Descriptor :: Lang',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'value' => {
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_value' => {},
+                                                                                                             'field_doc' => '',
+                                                                                                             'op' => '=',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'alias' => 'Language',
+                                                                                                             'params' => undef,
+                                                                                                             'datatype' => 'text',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'join' => '',
+                                                                                                             'op_label' => 'Equals',
+                                                                                                             'colname' => 'value'
+                                                                                                           }
+                                                                                              }
+                                                                               },
+                                                                   'idlclass' => 'clm',
+                                                                   'table' => 'config.language_map',
+                                                                   'reltype' => 'has_a',
+                                                                   'join' => '',
+                                                                   'path' => 'acp-call_number.acn-record.bre-fixed_fields.mrd-item_lang',
+                                                                   'alias' => '0316f02e4884d4f1cdc32e95d783045e'
+                                                                 }
+                         },
+          'having' => [],
+          'version' => 4
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-07-03 16:11:45.591434-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'deleted',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_builder' => bless( {
+                                                               '_sql' => undef,
+                                                               '_rels' => {
+                                                                            '7d74f3b92b19da5e606d737d339a9679' => bless( {
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_table' => 'asset.copy',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_sql' => 'asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN config.circ_modifier AS "e237951dc5d20431723e6183173ea9b4" ON ("7d74f3b92b19da5e606d737d339a9679"."circ_modifier" = "e237951dc5d20431723e6183173ea9b4"."code")
+	INNER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	INNER JOIN biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "933a4c0b6dfb193f677f4b100eb07d06"."id")
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")
+	INNER JOIN asset.call_number AS "6d47a03270f761656e30bab94ee64d38" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "6d47a03270f761656e30bab94ee64d38"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("6d47a03270f761656e30bab94ee64d38"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'circ_modifier',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_right_col' => 'code',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_table' => 'config.circ_modifier',
+                                                                                                                                                                          '_alias' => 'e237951dc5d20431723e6183173ea9b4',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_sql' => 'config.circ_modifier AS "e237951dc5d20431723e6183173ea9b4"',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_join_type' => 'inner'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN config.circ_modifier AS "e237951dc5d20431723e6183173ea9b4" ON ("7d74f3b92b19da5e606d737d339a9679"."circ_modifier" = "e237951dc5d20431723e6183173ea9b4"."code")'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'call_number',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                 '_sql' => '
+	INNER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	INNER JOIN biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "933a4c0b6dfb193f677f4b100eb07d06"."id")
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_nullable' => undef,
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_right_rel' => bless( {
+                                                                                                                                                                                                                         '_alias' => '933a4c0b6dfb193f677f4b100eb07d06',
+                                                                                                                                                                                                                         '_table' => 'biblio.record_entry',
+                                                                                                                                                                                                                         '_sql' => 'biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06"',
+                                                                                                                                                                                                                         '_join' => [
+                                                                                                                                                                                                                                      bless( {
+                                                                                                                                                                                                                                               '_left_col' => 'id',
+                                                                                                                                                                                                                                               '_join_type' => 'left',
+                                                                                                                                                                                                                                               '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                                                               '_right_col' => 'record',
+                                                                                                                                                                                                                                               '_right_rel' => bless( {
+                                                                                                                                                                                                                                                                        '_table' => 'metabib.rec_descriptor',
+                                                                                                                                                                                                                                                                        '_alias' => '7f6d0d9dd1fd9c2d8ba4e854e89fb6d3',
+                                                                                                                                                                                                                                                                        '_sql' => 'metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"',
+                                                                                                                                                                                                                                                                        '_join' => [
+                                                                                                                                                                                                                                                                                     bless( {
+                                                                                                                                                                                                                                                                                              '_sql' => '
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")',
+                                                                                                                                                                                                                                                                                              '_right_rel' => bless( {
+                                                                                                                                                                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                                                                                                                                                                       '_sql' => 'config.language_map AS "0316f02e4884d4f1cdc32e95d783045e"',
+                                                                                                                                                                                                                                                                                                                       '_table' => 'config.language_map',
+                                                                                                                                                                                                                                                                                                                       '_alias' => '0316f02e4884d4f1cdc32e95d783045e',
+                                                                                                                                                                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                                                                                                                                                                       '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                                                                                                                       '_nullable' => 'l',
+                                                                                                                                                                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                                                                                                                                                                       '_join_type' => 'left'
+                                                                                                                                                                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                                                                                                              '_right_col' => 'code',
+                                                                                                                                                                                                                                                                                              '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                                                                                                              '_join_type' => 'left',
+                                                                                                                                                                                                                                                                                              '_left_col' => 'item_lang'
+                                                                                                                                                                                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                                                                                                                                                                   ],
+                                                                                                                                                                                                                                                                        '_columns' => [],
+                                                                                                                                                                                                                                                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                                                                        '_join_type' => 'left',
+                                                                                                                                                                                                                                                                        '_nullable' => 'l',
+                                                                                                                                                                                                                                                                        '_is_join' => 1
+                                                                                                                                                                                                                                                                      }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                                                               '_sql' => '
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")'
+                                                                                                                                                                                                                                             }, 'OpenILS::Reporter::SQLBuilder::Join::left' )
+                                                                                                                                                                                                                                    ],
+                                                                                                                                                                                                                         '_is_join' => 1,
+                                                                                                                                                                                                                         '_join_type' => 'inner',
+                                                                                                                                                                                                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                         '_columns' => []
+                                                                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                '_sql' => '
+	INNER JOIN biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "933a4c0b6dfb193f677f4b100eb07d06"."id")
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")',
+                                                                                                                                                                                                '_right_col' => 'id',
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'},
+                                                                                                                                                                                                '_left_col' => 'record',
+                                                                                                                                                                                                '_join_type' => 'i'
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_sql' => 'asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7"',
+                                                                                                                                                                          '_table' => 'asset.call_number',
+                                                                                                                                                                          '_alias' => '286d7899ae25bee8bdd7dcde49f9e0b7'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_sql' => 'asset.call_number AS "6d47a03270f761656e30bab94ee64d38"',
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_right_rel' => bless( {
+                                                                                                                                                                                                                         '_join' => [],
+                                                                                                                                                                                                                         '_sql' => 'actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0"',
+                                                                                                                                                                                                                         '_alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                                                                                         '_table' => 'actor.org_unit',
+                                                                                                                                                                                                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                                                                         '_is_join' => 1,
+                                                                                                                                                                                                                         '_join_type' => 'inner',
+                                                                                                                                                                                                                         '_columns' => []
+                                                                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                '_sql' => '
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("6d47a03270f761656e30bab94ee64d38"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                                                                                                                                                                                '_right_col' => 'id',
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[2]{'_right_rel'},
+                                                                                                                                                                                                '_left_col' => 'owning_lib',
+                                                                                                                                                                                                '_join_type' => 'i'
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_alias' => '6d47a03270f761656e30bab94ee64d38',
+                                                                                                                                                                          '_table' => 'asset.call_number',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_nullable' => undef,
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_columns' => []
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN asset.call_number AS "6d47a03270f761656e30bab94ee64d38" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "6d47a03270f761656e30bab94ee64d38"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("6d47a03270f761656e30bab94ee64d38"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                                                                                                                                 '_left_col' => 'call_number',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ]
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '933a4c0b6dfb193f677f4b100eb07d06' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            '286d7899ae25bee8bdd7dcde49f9e0b7' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'},
+                                                                            'bdd43e1440a00047b1e66cb9619865c0' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[2]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            '6d47a03270f761656e30bab94ee64d38' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[2]{'_right_rel'},
+                                                                            'e237951dc5d20431723e6183173ea9b4' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[0]{'_right_rel'},
+                                                                            '7f6d0d9dd1fd9c2d8ba4e854e89fb6d3' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                            '0316f02e4884d4f1cdc32e95d783045e' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'}{'_join'}[1]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_params' => {
+                                                                              'P0' => [
+                                                                                        '1',
+                                                                                        '6',
+                                                                                        '17',
+                                                                                        '7',
+                                                                                        '9',
+                                                                                        '11',
+                                                                                        '18',
+                                                                                        '13',
+                                                                                        '19',
+                                                                                        '10',
+                                                                                        '16',
+                                                                                        '20',
+                                                                                        '14',
+                                                                                        '15',
+                                                                                        '8',
+                                                                                        '12',
+                                                                                        '275',
+                                                                                        '278',
+                                                                                        '276',
+                                                                                        '282',
+                                                                                        '279',
+                                                                                        '280',
+                                                                                        '281',
+                                                                                        '221',
+                                                                                        '225',
+                                                                                        '222',
+                                                                                        '224',
+                                                                                        '223',
+                                                                                        '211',
+                                                                                        '212',
+                                                                                        '344',
+                                                                                        '345',
+                                                                                        '119',
+                                                                                        '121',
+                                                                                        '120',
+                                                                                        '216',
+                                                                                        '219',
+                                                                                        '220',
+                                                                                        '217',
+                                                                                        '218',
+                                                                                        '213',
+                                                                                        '361',
+                                                                                        '215',
+                                                                                        '214',
+                                                                                        '124',
+                                                                                        '126',
+                                                                                        '125',
+                                                                                        '127',
+                                                                                        '128',
+                                                                                        '129',
+                                                                                        '130',
+                                                                                        '267',
+                                                                                        '269',
+                                                                                        '272',
+                                                                                        '270',
+                                                                                        '32',
+                                                                                        '271',
+                                                                                        '273',
+                                                                                        '268',
+                                                                                        '122',
+                                                                                        '123',
+                                                                                        '260',
+                                                                                        '265',
+                                                                                        '263',
+                                                                                        '261',
+                                                                                        '266',
+                                                                                        '264',
+                                                                                        '318',
+                                                                                        '33',
+                                                                                        '34',
+                                                                                        '35',
+                                                                                        '38',
+                                                                                        '36',
+                                                                                        '37',
+                                                                                        '21',
+                                                                                        '23',
+                                                                                        '24',
+                                                                                        '22',
+                                                                                        '31',
+                                                                                        '106',
+                                                                                        '109',
+                                                                                        '111',
+                                                                                        '107',
+                                                                                        '113',
+                                                                                        '108',
+                                                                                        '369',
+                                                                                        '110',
+                                                                                        '112',
+                                                                                        '114',
+                                                                                        '65',
+                                                                                        '67',
+                                                                                        '373',
+                                                                                        '66',
+                                                                                        '394',
+                                                                                        '365',
+                                                                                        '284',
+                                                                                        '287',
+                                                                                        '289',
+                                                                                        '288',
+                                                                                        '291',
+                                                                                        '285',
+                                                                                        '286',
+                                                                                        '290',
+                                                                                        '156',
+                                                                                        '157',
+                                                                                        '158',
+                                                                                        '159',
+                                                                                        '160',
+                                                                                        '161',
+                                                                                        '351',
+                                                                                        '162',
+                                                                                        '182',
+                                                                                        '183',
+                                                                                        '140',
+                                                                                        '143',
+                                                                                        '300',
+                                                                                        '144',
+                                                                                        '367',
+                                                                                        '141',
+                                                                                        '142',
+                                                                                        '152',
+                                                                                        '155',
+                                                                                        '154',
+                                                                                        '153',
+                                                                                        '226',
+                                                                                        '230',
+                                                                                        '227',
+                                                                                        '228',
+                                                                                        '229',
+                                                                                        '252',
+                                                                                        '253',
+                                                                                        '254',
+                                                                                        '255',
+                                                                                        '259',
+                                                                                        '343',
+                                                                                        '256',
+                                                                                        '257',
+                                                                                        '258',
+                                                                                        '328',
+                                                                                        '331',
+                                                                                        '330',
+                                                                                        '333',
+                                                                                        '335',
+                                                                                        '329',
+                                                                                        '337',
+                                                                                        '336',
+                                                                                        '115',
+                                                                                        '117',
+                                                                                        '360',
+                                                                                        '118',
+                                                                                        '116',
+                                                                                        '376',
+                                                                                        '393',
+                                                                                        '377',
+                                                                                        '378',
+                                                                                        '395',
+                                                                                        '379',
+                                                                                        '380',
+                                                                                        '381',
+                                                                                        '382',
+                                                                                        '396',
+                                                                                        '383',
+                                                                                        '384',
+                                                                                        '397',
+                                                                                        '385',
+                                                                                        '386',
+                                                                                        '398',
+                                                                                        '387',
+                                                                                        '388',
+                                                                                        '389',
+                                                                                        '399',
+                                                                                        '390',
+                                                                                        '391',
+                                                                                        '392',
+                                                                                        '362',
+                                                                                        '74',
+                                                                                        '70',
+                                                                                        '233',
+                                                                                        '374',
+                                                                                        '237',
+                                                                                        '239',
+                                                                                        '246',
+                                                                                        '248',
+                                                                                        '247',
+                                                                                        '241',
+                                                                                        '240',
+                                                                                        '249',
+                                                                                        '243',
+                                                                                        '250',
+                                                                                        '244',
+                                                                                        '242',
+                                                                                        '251',
+                                                                                        '236',
+                                                                                        '235',
+                                                                                        '245',
+                                                                                        '234',
+                                                                                        '238',
+                                                                                        '2',
+                                                                                        '4',
+                                                                                        '5',
+                                                                                        '3',
+                                                                                        '96',
+                                                                                        '99',
+                                                                                        '98',
+                                                                                        '97',
+                                                                                        '100',
+                                                                                        '101',
+                                                                                        '231',
+                                                                                        '232',
+                                                                                        '340',
+                                                                                        '342',
+                                                                                        '145',
+                                                                                        '146',
+                                                                                        '147',
+                                                                                        '150',
+                                                                                        '350',
+                                                                                        '151',
+                                                                                        '148',
+                                                                                        '149',
+                                                                                        '353',
+                                                                                        '354',
+                                                                                        '356',
+                                                                                        '355',
+                                                                                        '292',
+                                                                                        '295',
+                                                                                        '299',
+                                                                                        '293',
+                                                                                        '297',
+                                                                                        '294',
+                                                                                        '298',
+                                                                                        '296',
+                                                                                        '197',
+                                                                                        '198',
+                                                                                        '199',
+                                                                                        '200',
+                                                                                        '201',
+                                                                                        '202',
+                                                                                        '203',
+                                                                                        '208',
+                                                                                        '136',
+                                                                                        '210',
+                                                                                        '205',
+                                                                                        '206',
+                                                                                        '209',
+                                                                                        '207',
+                                                                                        '204',
+                                                                                        '58',
+                                                                                        '60',
+                                                                                        '62',
+                                                                                        '59',
+                                                                                        '64',
+                                                                                        '61',
+                                                                                        '63',
+                                                                                        '102',
+                                                                                        '104',
+                                                                                        '105',
+                                                                                        '103',
+                                                                                        '184',
+                                                                                        '188',
+                                                                                        '190',
+                                                                                        '196',
+                                                                                        '189',
+                                                                                        '193',
+                                                                                        '191',
+                                                                                        '192',
+                                                                                        '195',
+                                                                                        '185',
+                                                                                        '371',
+                                                                                        '194',
+                                                                                        '186',
+                                                                                        '187',
+                                                                                        '87',
+                                                                                        '88',
+                                                                                        '94',
+                                                                                        '90',
+                                                                                        '89',
+                                                                                        '91',
+                                                                                        '92',
+                                                                                        '93',
+                                                                                        '95',
+                                                                                        '85',
+                                                                                        '86',
+                                                                                        '25',
+                                                                                        '27',
+                                                                                        '29',
+                                                                                        '30',
+                                                                                        '28',
+                                                                                        '26',
+                                                                                        '131',
+                                                                                        '132',
+                                                                                        '134',
+                                                                                        '135',
+                                                                                        '137',
+                                                                                        '138',
+                                                                                        '133',
+                                                                                        '139',
+                                                                                        '80',
+                                                                                        '84',
+                                                                                        '82',
+                                                                                        '83',
+                                                                                        '81',
+                                                                                        '301',
+                                                                                        '306',
+                                                                                        '310',
+                                                                                        '307',
+                                                                                        '304',
+                                                                                        '308',
+                                                                                        '305',
+                                                                                        '309',
+                                                                                        '303',
+                                                                                        '177',
+                                                                                        '178',
+                                                                                        '181',
+                                                                                        '180',
+                                                                                        '179',
+                                                                                        '39',
+                                                                                        '42',
+                                                                                        '43',
+                                                                                        '45',
+                                                                                        '44',
+                                                                                        '40',
+                                                                                        '41',
+                                                                                        '311',
+                                                                                        '313',
+                                                                                        '314',
+                                                                                        '316',
+                                                                                        '315',
+                                                                                        '317',
+                                                                                        '312',
+                                                                                        '68',
+                                                                                        '71',
+                                                                                        '72',
+                                                                                        '73',
+                                                                                        '79',
+                                                                                        '69',
+                                                                                        '75',
+                                                                                        '76',
+                                                                                        '77',
+                                                                                        '78',
+                                                                                        '321',
+                                                                                        '323',
+                                                                                        '322',
+                                                                                        '326',
+                                                                                        '324',
+                                                                                        '55',
+                                                                                        '347',
+                                                                                        '401',
+                                                                                        '57',
+                                                                                        '56',
+                                                                                        '46',
+                                                                                        '47',
+                                                                                        '48',
+                                                                                        '49',
+                                                                                        '51',
+                                                                                        '50',
+                                                                                        '52',
+                                                                                        '53',
+                                                                                        '54',
+                                                                                        '366',
+                                                                                        '357',
+                                                                                        '163',
+                                                                                        '166',
+                                                                                        '167',
+                                                                                        '176',
+                                                                                        '375',
+                                                                                        '352',
+                                                                                        '173',
+                                                                                        '358',
+                                                                                        '168',
+                                                                                        '349',
+                                                                                        '169',
+                                                                                        '170',
+                                                                                        '171',
+                                                                                        '320',
+                                                                                        '164',
+                                                                                        '172',
+                                                                                        '372',
+                                                                                        '174',
+                                                                                        '175',
+                                                                                        '165',
+                                                                                        '319',
+                                                                                        '346',
+                                                                                        '262'
+                                                                                      ],
+                                                                              '__pivot_data' => '4',
+                                                                              '__pivot_label' => ''
+                                                                            },
+                                                               '_resultset_limit' => 1048575,
+                                                               '_pivot_data' => '4',
+                                                               '_relative_time' => '2019-07-03 16:11:45.591434-04'
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef,
+                                        '_sql' => '"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_41627$f$_41627$',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => '"286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_41627$1$_41627$,$_41627$6$_41627$,$_41627$17$_41627$,$_41627$7$_41627$,$_41627$9$_41627$,$_41627$11$_41627$,$_41627$18$_41627$,$_41627$13$_41627$,$_41627$19$_41627$,$_41627$10$_41627$,$_41627$16$_41627$,$_41627$20$_41627$,$_41627$14$_41627$,$_41627$15$_41627$,$_41627$8$_41627$,$_41627$12$_41627$,$_41627$275$_41627$,$_41627$278$_41627$,$_41627$276$_41627$,$_41627$282$_41627$,$_41627$279$_41627$,$_41627$280$_41627$,$_41627$281$_41627$,$_41627$221$_41627$,$_41627$225$_41627$,$_41627$222$_41627$,$_41627$224$_41627$,$_41627$223$_41627$,$_41627$211$_41627$,$_41627$212$_41627$,$_41627$344$_41627$,$_41627$345$_41627$,$_41627$119$_41627$,$_41627$121$_41627$,$_41627$120$_41627$,$_41627$216$_41627$,$_41627$219$_41627$,$_41627$220$_41627$,$_41627$217$_41627$,$_41627$218$_41627$,$_41627$213$_41627$,$_41627$361$_41627$,$_41627$215$_41627$,$_41627$214$_41627$,$_41627$124$_41627$,$_41627$126$_41627$,$_41627$125$_41627$,$_41627$127$_41627$,$_41627$128$_41627$,$_41627$129$_41627$,$_41627$130$_41627$,$_41627$267$_41627$,$_41627$269$_41627$,$_41627$272$_41627$,$_41627$270$_41627$,$_41627$32$_41627$,$_41627$271$_41627$,$_41627$273$_41627$,$_41627$268$_41627$,$_41627$122$_41627$,$_41627$123$_41627$,$_41627$260$_41627$,$_41627$265$_41627$,$_41627$263$_41627$,$_41627$261$_41627$,$_41627$266$_41627$,$_41627$264$_41627$,$_41627$318$_41627$,$_41627$33$_41627$,$_41627$34$_41627$,$_41627$35$_41627$,$_41627$38$_41627$,$_41627$36$_41627$,$_41627$37$_41627$,$_41627$21$_41627$,$_41627$23$_41627$,$_41627$24$_41627$,$_41627$22$_41627$,$_41627$31$_41627$,$_41627$106$_41627$,$_41627$109$_41627$,$_41627$111$_41627$,$_41627$107$_41627$,$_41627$113$_41627$,$_41627$108$_41627$,$_41627$369$_41627$,$_41627$110$_41627$,$_41627$112$_41627$,$_41627$114$_41627$,$_41627$65$_41627$,$_41627$67$_41627$,$_41627$373$_41627$,$_41627$66$_41627$,$_41627$394$_41627$,$_41627$365$_41627$,$_41627$284$_41627$,$_41627$287$_41627$,$_41627$289$_41627$,$_41627$288$_41627$,$_41627$291$_41627$,$_41627$285$_41627$,$_41627$286$_41627$,$_41627$290$_41627$,$_41627$156$_41627$,$_41627$157$_41627$,$_41627$158$_41627$,$_41627$159$_41627$,$_41627$160$_41627$,$_41627$161$_41627$,$_41627$351$_41627$,$_41627$162$_41627$,$_41627$182$_41627$,$_41627$183$_41627$,$_41627$140$_41627$,$_41627$143$_41627$,$_41627$300$_41627$,$_41627$144$_41627$,$_41627$367$_41627$,$_41627$141$_41627$,$_41627$142$_41627$,$_41627$152$_41627$,$_41627$155$_41627$,$_41627$154$_41627$,$_41627$153$_41627$,$_41627$226$_41627$,$_41627$230$_41627$,$_41627$227$_41627$,$_41627$228$_41627$,$_41627$229$_41627$,$_41627$252$_41627$,$_41627$253$_41627$,$_41627$254$_41627$,$_41627$255$_41627$,$_41627$259$_41627$,$_41627$343$_41627$,$_41627$256$_41627$,$_41627$257$_41627$,$_41627$258$_41627$,$_41627$328$_41627$,$_41627$331$_41627$,$_41627$330$_41627$,$_41627$333$_41627$,$_41627$335$_41627$,$_41627$329$_41627$,$_41627$337$_41627$,$_41627$336$_41627$,$_41627$115$_41627$,$_41627$117$_41627$,$_41627$360$_41627$,$_41627$118$_41627$,$_41627$116$_41627$,$_41627$376$_41627$,$_41627$393$_41627$,$_41627$377$_41627$,$_41627$378$_41627$,$_41627$395$_41627$,$_41627$379$_41627$,$_41627$380$_41627$,$_41627$381$_41627$,$_41627$382$_41627$,$_41627$396$_41627$,$_41627$383$_41627$,$_41627$384$_41627$,$_41627$397$_41627$,$_41627$385$_41627$,$_41627$386$_41627$,$_41627$398$_41627$,$_41627$387$_41627$,$_41627$388$_41627$,$_41627$389$_41627$,$_41627$399$_41627$,$_41627$390$_41627$,$_41627$391$_41627$,$_41627$392$_41627$,$_41627$362$_41627$,$_41627$74$_41627$,$_41627$70$_41627$,$_41627$233$_41627$,$_41627$374$_41627$,$_41627$237$_41627$,$_41627$239$_41627$,$_41627$246$_41627$,$_41627$248$_41627$,$_41627$247$_41627$,$_41627$241$_41627$,$_41627$240$_41627$,$_41627$249$_41627$,$_41627$243$_41627$,$_41627$250$_41627$,$_41627$244$_41627$,$_41627$242$_41627$,$_41627$251$_41627$,$_41627$236$_41627$,$_41627$235$_41627$,$_41627$245$_41627$,$_41627$234$_41627$,$_41627$238$_41627$,$_41627$2$_41627$,$_41627$4$_41627$,$_41627$5$_41627$,$_41627$3$_41627$,$_41627$96$_41627$,$_41627$99$_41627$,$_41627$98$_41627$,$_41627$97$_41627$,$_41627$100$_41627$,$_41627$101$_41627$,$_41627$231$_41627$,$_41627$232$_41627$,$_41627$340$_41627$,$_41627$342$_41627$,$_41627$145$_41627$,$_41627$146$_41627$,$_41627$147$_41627$,$_41627$150$_41627$,$_41627$350$_41627$,$_41627$151$_41627$,$_41627$148$_41627$,$_41627$149$_41627$,$_41627$353$_41627$,$_41627$354$_41627$,$_41627$356$_41627$,$_41627$355$_41627$,$_41627$292$_41627$,$_41627$295$_41627$,$_41627$299$_41627$,$_41627$293$_41627$,$_41627$297$_41627$,$_41627$294$_41627$,$_41627$298$_41627$,$_41627$296$_41627$,$_41627$197$_41627$,$_41627$198$_41627$,$_41627$199$_41627$,$_41627$200$_41627$,$_41627$201$_41627$,$_41627$202$_41627$,$_41627$203$_41627$,$_41627$208$_41627$,$_41627$136$_41627$,$_41627$210$_41627$,$_41627$205$_41627$,$_41627$206$_41627$,$_41627$209$_41627$,$_41627$207$_41627$,$_41627$204$_41627$,$_41627$58$_41627$,$_41627$60$_41627$,$_41627$62$_41627$,$_41627$59$_41627$,$_41627$64$_41627$,$_41627$61$_41627$,$_41627$63$_41627$,$_41627$102$_41627$,$_41627$104$_41627$,$_41627$105$_41627$,$_41627$103$_41627$,$_41627$184$_41627$,$_41627$188$_41627$,$_41627$190$_41627$,$_41627$196$_41627$,$_41627$189$_41627$,$_41627$193$_41627$,$_41627$191$_41627$,$_41627$192$_41627$,$_41627$195$_41627$,$_41627$185$_41627$,$_41627$371$_41627$,$_41627$194$_41627$,$_41627$186$_41627$,$_41627$187$_41627$,$_41627$87$_41627$,$_41627$88$_41627$,$_41627$94$_41627$,$_41627$90$_41627$,$_41627$89$_41627$,$_41627$91$_41627$,$_41627$92$_41627$,$_41627$93$_41627$,$_41627$95$_41627$,$_41627$85$_41627$,$_41627$86$_41627$,$_41627$25$_41627$,$_41627$27$_41627$,$_41627$29$_41627$,$_41627$30$_41627$,$_41627$28$_41627$,$_41627$26$_41627$,$_41627$131$_41627$,$_41627$132$_41627$,$_41627$134$_41627$,$_41627$135$_41627$,$_41627$137$_41627$,$_41627$138$_41627$,$_41627$133$_41627$,$_41627$139$_41627$,$_41627$80$_41627$,$_41627$84$_41627$,$_41627$82$_41627$,$_41627$83$_41627$,$_41627$81$_41627$,$_41627$301$_41627$,$_41627$306$_41627$,$_41627$310$_41627$,$_41627$307$_41627$,$_41627$304$_41627$,$_41627$308$_41627$,$_41627$305$_41627$,$_41627$309$_41627$,$_41627$303$_41627$,$_41627$177$_41627$,$_41627$178$_41627$,$_41627$181$_41627$,$_41627$180$_41627$,$_41627$179$_41627$,$_41627$39$_41627$,$_41627$42$_41627$,$_41627$43$_41627$,$_41627$45$_41627$,$_41627$44$_41627$,$_41627$40$_41627$,$_41627$41$_41627$,$_41627$311$_41627$,$_41627$313$_41627$,$_41627$314$_41627$,$_41627$316$_41627$,$_41627$315$_41627$,$_41627$317$_41627$,$_41627$312$_41627$,$_41627$68$_41627$,$_41627$71$_41627$,$_41627$72$_41627$,$_41627$73$_41627$,$_41627$79$_41627$,$_41627$69$_41627$,$_41627$75$_41627$,$_41627$76$_41627$,$_41627$77$_41627$,$_41627$78$_41627$,$_41627$321$_41627$,$_41627$323$_41627$,$_41627$322$_41627$,$_41627$326$_41627$,$_41627$324$_41627$,$_41627$55$_41627$,$_41627$347$_41627$,$_41627$401$_41627$,$_41627$57$_41627$,$_41627$56$_41627$,$_41627$46$_41627$,$_41627$47$_41627$,$_41627$48$_41627$,$_41627$49$_41627$,$_41627$51$_41627$,$_41627$50$_41627$,$_41627$52$_41627$,$_41627$53$_41627$,$_41627$54$_41627$,$_41627$366$_41627$,$_41627$357$_41627$,$_41627$163$_41627$,$_41627$166$_41627$,$_41627$167$_41627$,$_41627$176$_41627$,$_41627$375$_41627$,$_41627$352$_41627$,$_41627$173$_41627$,$_41627$358$_41627$,$_41627$168$_41627$,$_41627$349$_41627$,$_41627$169$_41627$,$_41627$170$_41627$,$_41627$171$_41627$,$_41627$320$_41627$,$_41627$164$_41627$,$_41627$172$_41627$,$_41627$372$_41627$,$_41627$174$_41627$,$_41627$175$_41627$,$_41627$165$_41627$,$_41627$319$_41627$,$_41627$346$_41627$,$_41627$262$_41627$)',
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_relation' => '286d7899ae25bee8bdd7dcde49f9e0b7',
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'owning_lib',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name",
+	"0316f02e4884d4f1cdc32e95d783045e"."value" AS "Language",
+	"e237951dc5d20431723e6183173ea9b4"."name" AS "Circ Modifier",
+	COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN config.circ_modifier AS "e237951dc5d20431723e6183173ea9b4" ON ("7d74f3b92b19da5e606d737d339a9679"."circ_modifier" = "e237951dc5d20431723e6183173ea9b4"."code")
+	INNER JOIN asset.call_number AS "286d7899ae25bee8bdd7dcde49f9e0b7" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "286d7899ae25bee8bdd7dcde49f9e0b7"."id")
+	INNER JOIN biblio.record_entry AS "933a4c0b6dfb193f677f4b100eb07d06" ON ("286d7899ae25bee8bdd7dcde49f9e0b7"."record" = "933a4c0b6dfb193f677f4b100eb07d06"."id")
+	LEFT OUTER JOIN metabib.rec_descriptor AS "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3" ON ("933a4c0b6dfb193f677f4b100eb07d06"."id" = "7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."record")
+	LEFT OUTER JOIN config.language_map AS "0316f02e4884d4f1cdc32e95d783045e" ON ("7f6d0d9dd1fd9c2d8ba4e854e89fb6d3"."item_lang" = "0316f02e4884d4f1cdc32e95d783045e"."code")
+	INNER JOIN asset.call_number AS "6d47a03270f761656e30bab94ee64d38" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "6d47a03270f761656e30bab94ee64d38"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("6d47a03270f761656e30bab94ee64d38"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")
+  WHERE	"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_41627$f$_41627$
+	AND "286d7899ae25bee8bdd7dcde49f9e0b7"."owning_lib" IN ($_41627$1$_41627$,$_41627$6$_41627$,$_41627$17$_41627$,$_41627$7$_41627$,$_41627$9$_41627$,$_41627$11$_41627$,$_41627$18$_41627$,$_41627$13$_41627$,$_41627$19$_41627$,$_41627$10$_41627$,$_41627$16$_41627$,$_41627$20$_41627$,$_41627$14$_41627$,$_41627$15$_41627$,$_41627$8$_41627$,$_41627$12$_41627$,$_41627$275$_41627$,$_41627$278$_41627$,$_41627$276$_41627$,$_41627$282$_41627$,$_41627$279$_41627$,$_41627$280$_41627$,$_41627$281$_41627$,$_41627$221$_41627$,$_41627$225$_41627$,$_41627$222$_41627$,$_41627$224$_41627$,$_41627$223$_41627$,$_41627$211$_41627$,$_41627$212$_41627$,$_41627$344$_41627$,$_41627$345$_41627$,$_41627$119$_41627$,$_41627$121$_41627$,$_41627$120$_41627$,$_41627$216$_41627$,$_41627$219$_41627$,$_41627$220$_41627$,$_41627$217$_41627$,$_41627$218$_41627$,$_41627$213$_41627$,$_41627$361$_41627$,$_41627$215$_41627$,$_41627$214$_41627$,$_41627$124$_41627$,$_41627$126$_41627$,$_41627$125$_41627$,$_41627$127$_41627$,$_41627$128$_41627$,$_41627$129$_41627$,$_41627$130$_41627$,$_41627$267$_41627$,$_41627$269$_41627$,$_41627$272$_41627$,$_41627$270$_41627$,$_41627$32$_41627$,$_41627$271$_41627$,$_41627$273$_41627$,$_41627$268$_41627$,$_41627$122$_41627$,$_41627$123$_41627$,$_41627$260$_41627$,$_41627$265$_41627$,$_41627$263$_41627$,$_41627$261$_41627$,$_41627$266$_41627$,$_41627$264$_41627$,$_41627$318$_41627$,$_41627$33$_41627$,$_41627$34$_41627$,$_41627$35$_41627$,$_41627$38$_41627$,$_41627$36$_41627$,$_41627$37$_41627$,$_41627$21$_41627$,$_41627$23$_41627$,$_41627$24$_41627$,$_41627$22$_41627$,$_41627$31$_41627$,$_41627$106$_41627$,$_41627$109$_41627$,$_41627$111$_41627$,$_41627$107$_41627$,$_41627$113$_41627$,$_41627$108$_41627$,$_41627$369$_41627$,$_41627$110$_41627$,$_41627$112$_41627$,$_41627$114$_41627$,$_41627$65$_41627$,$_41627$67$_41627$,$_41627$373$_41627$,$_41627$66$_41627$,$_41627$394$_41627$,$_41627$365$_41627$,$_41627$284$_41627$,$_41627$287$_41627$,$_41627$289$_41627$,$_41627$288$_41627$,$_41627$291$_41627$,$_41627$285$_41627$,$_41627$286$_41627$,$_41627$290$_41627$,$_41627$156$_41627$,$_41627$157$_41627$,$_41627$158$_41627$,$_41627$159$_41627$,$_41627$160$_41627$,$_41627$161$_41627$,$_41627$351$_41627$,$_41627$162$_41627$,$_41627$182$_41627$,$_41627$183$_41627$,$_41627$140$_41627$,$_41627$143$_41627$,$_41627$300$_41627$,$_41627$144$_41627$,$_41627$367$_41627$,$_41627$141$_41627$,$_41627$142$_41627$,$_41627$152$_41627$,$_41627$155$_41627$,$_41627$154$_41627$,$_41627$153$_41627$,$_41627$226$_41627$,$_41627$230$_41627$,$_41627$227$_41627$,$_41627$228$_41627$,$_41627$229$_41627$,$_41627$252$_41627$,$_41627$253$_41627$,$_41627$254$_41627$,$_41627$255$_41627$,$_41627$259$_41627$,$_41627$343$_41627$,$_41627$256$_41627$,$_41627$257$_41627$,$_41627$258$_41627$,$_41627$328$_41627$,$_41627$331$_41627$,$_41627$330$_41627$,$_41627$333$_41627$,$_41627$335$_41627$,$_41627$329$_41627$,$_41627$337$_41627$,$_41627$336$_41627$,$_41627$115$_41627$,$_41627$117$_41627$,$_41627$360$_41627$,$_41627$118$_41627$,$_41627$116$_41627$,$_41627$376$_41627$,$_41627$393$_41627$,$_41627$377$_41627$,$_41627$378$_41627$,$_41627$395$_41627$,$_41627$379$_41627$,$_41627$380$_41627$,$_41627$381$_41627$,$_41627$382$_41627$,$_41627$396$_41627$,$_41627$383$_41627$,$_41627$384$_41627$,$_41627$397$_41627$,$_41627$385$_41627$,$_41627$386$_41627$,$_41627$398$_41627$,$_41627$387$_41627$,$_41627$388$_41627$,$_41627$389$_41627$,$_41627$399$_41627$,$_41627$390$_41627$,$_41627$391$_41627$,$_41627$392$_41627$,$_41627$362$_41627$,$_41627$74$_41627$,$_41627$70$_41627$,$_41627$233$_41627$,$_41627$374$_41627$,$_41627$237$_41627$,$_41627$239$_41627$,$_41627$246$_41627$,$_41627$248$_41627$,$_41627$247$_41627$,$_41627$241$_41627$,$_41627$240$_41627$,$_41627$249$_41627$,$_41627$243$_41627$,$_41627$250$_41627$,$_41627$244$_41627$,$_41627$242$_41627$,$_41627$251$_41627$,$_41627$236$_41627$,$_41627$235$_41627$,$_41627$245$_41627$,$_41627$234$_41627$,$_41627$238$_41627$,$_41627$2$_41627$,$_41627$4$_41627$,$_41627$5$_41627$,$_41627$3$_41627$,$_41627$96$_41627$,$_41627$99$_41627$,$_41627$98$_41627$,$_41627$97$_41627$,$_41627$100$_41627$,$_41627$101$_41627$,$_41627$231$_41627$,$_41627$232$_41627$,$_41627$340$_41627$,$_41627$342$_41627$,$_41627$145$_41627$,$_41627$146$_41627$,$_41627$147$_41627$,$_41627$150$_41627$,$_41627$350$_41627$,$_41627$151$_41627$,$_41627$148$_41627$,$_41627$149$_41627$,$_41627$353$_41627$,$_41627$354$_41627$,$_41627$356$_41627$,$_41627$355$_41627$,$_41627$292$_41627$,$_41627$295$_41627$,$_41627$299$_41627$,$_41627$293$_41627$,$_41627$297$_41627$,$_41627$294$_41627$,$_41627$298$_41627$,$_41627$296$_41627$,$_41627$197$_41627$,$_41627$198$_41627$,$_41627$199$_41627$,$_41627$200$_41627$,$_41627$201$_41627$,$_41627$202$_41627$,$_41627$203$_41627$,$_41627$208$_41627$,$_41627$136$_41627$,$_41627$210$_41627$,$_41627$205$_41627$,$_41627$206$_41627$,$_41627$209$_41627$,$_41627$207$_41627$,$_41627$204$_41627$,$_41627$58$_41627$,$_41627$60$_41627$,$_41627$62$_41627$,$_41627$59$_41627$,$_41627$64$_41627$,$_41627$61$_41627$,$_41627$63$_41627$,$_41627$102$_41627$,$_41627$104$_41627$,$_41627$105$_41627$,$_41627$103$_41627$,$_41627$184$_41627$,$_41627$188$_41627$,$_41627$190$_41627$,$_41627$196$_41627$,$_41627$189$_41627$,$_41627$193$_41627$,$_41627$191$_41627$,$_41627$192$_41627$,$_41627$195$_41627$,$_41627$185$_41627$,$_41627$371$_41627$,$_41627$194$_41627$,$_41627$186$_41627$,$_41627$187$_41627$,$_41627$87$_41627$,$_41627$88$_41627$,$_41627$94$_41627$,$_41627$90$_41627$,$_41627$89$_41627$,$_41627$91$_41627$,$_41627$92$_41627$,$_41627$93$_41627$,$_41627$95$_41627$,$_41627$85$_41627$,$_41627$86$_41627$,$_41627$25$_41627$,$_41627$27$_41627$,$_41627$29$_41627$,$_41627$30$_41627$,$_41627$28$_41627$,$_41627$26$_41627$,$_41627$131$_41627$,$_41627$132$_41627$,$_41627$134$_41627$,$_41627$135$_41627$,$_41627$137$_41627$,$_41627$138$_41627$,$_41627$133$_41627$,$_41627$139$_41627$,$_41627$80$_41627$,$_41627$84$_41627$,$_41627$82$_41627$,$_41627$83$_41627$,$_41627$81$_41627$,$_41627$301$_41627$,$_41627$306$_41627$,$_41627$310$_41627$,$_41627$307$_41627$,$_41627$304$_41627$,$_41627$308$_41627$,$_41627$305$_41627$,$_41627$309$_41627$,$_41627$303$_41627$,$_41627$177$_41627$,$_41627$178$_41627$,$_41627$181$_41627$,$_41627$180$_41627$,$_41627$179$_41627$,$_41627$39$_41627$,$_41627$42$_41627$,$_41627$43$_41627$,$_41627$45$_41627$,$_41627$44$_41627$,$_41627$40$_41627$,$_41627$41$_41627$,$_41627$311$_41627$,$_41627$313$_41627$,$_41627$314$_41627$,$_41627$316$_41627$,$_41627$315$_41627$,$_41627$317$_41627$,$_41627$312$_41627$,$_41627$68$_41627$,$_41627$71$_41627$,$_41627$72$_41627$,$_41627$73$_41627$,$_41627$79$_41627$,$_41627$69$_41627$,$_41627$75$_41627$,$_41627$76$_41627$,$_41627$77$_41627$,$_41627$78$_41627$,$_41627$321$_41627$,$_41627$323$_41627$,$_41627$322$_41627$,$_41627$326$_41627$,$_41627$324$_41627$,$_41627$55$_41627$,$_41627$347$_41627$,$_41627$401$_41627$,$_41627$57$_41627$,$_41627$56$_41627$,$_41627$46$_41627$,$_41627$47$_41627$,$_41627$48$_41627$,$_41627$49$_41627$,$_41627$51$_41627$,$_41627$50$_41627$,$_41627$52$_41627$,$_41627$53$_41627$,$_41627$54$_41627$,$_41627$366$_41627$,$_41627$357$_41627$,$_41627$163$_41627$,$_41627$166$_41627$,$_41627$167$_41627$,$_41627$176$_41627$,$_41627$375$_41627$,$_41627$352$_41627$,$_41627$173$_41627$,$_41627$358$_41627$,$_41627$168$_41627$,$_41627$349$_41627$,$_41627$169$_41627$,$_41627$170$_41627$,$_41627$171$_41627$,$_41627$320$_41627$,$_41627$164$_41627$,$_41627$172$_41627$,$_41627$372$_41627$,$_41627$174$_41627$,$_41627$175$_41627$,$_41627$165$_41627$,$_41627$319$_41627$,$_41627$346$_41627$,$_41627$262$_41627$)
+  GROUP BY 1, 2, 3
+  ORDER BY "bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC, "0316f02e4884d4f1cdc32e95d783045e"."value" ASC, "e237951dc5d20431723e6183173ea9b4"."name" ASC, COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name"',
+                                         '_relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                                         '_sql' => '"0316f02e4884d4f1cdc32e95d783045e"."value" AS "Language"',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Language',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'value'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"e237951dc5d20431723e6183173ea9b4"."name" AS "Circ Modifier"',
+                                         '_relation' => 'e237951dc5d20431723e6183173ea9b4',
+                                         '_transform' => 'Bare',
+                                         '_alias' => 'Circ Modifier',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'name',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => 'COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"',
+                                         '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                         '_transform' => 'count_distinct',
+                                         '_column' => {
+                                                        'transform' => 'count_distinct',
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Count Distinct'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Copy ID',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7d74f3b92b19da5e606d737d339a9679'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                           '_sql' => '"bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"0316f02e4884d4f1cdc32e95d783045e"."value" ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => '0316f02e4884d4f1cdc32e95d783045e',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => 'e237951dc5d20431723e6183173ea9b4',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"e237951dc5d20431723e6183173ea9b4"."name" ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_aggregate' => undef,
+                                           '_sql' => 'COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC',
+                                           '_transform' => 'count_distinct',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

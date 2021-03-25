@@ -1,0 +1,848 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 	Items Currently Checked Out</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Lib",
+	date("fce458da5814089639960610c48d19d2"."due_date") AS "Due Date",
+	"7fb66fd46f5581428d27fcd56ad5c85f"."barcode" AS "Item Barcode",
+	"0eb4dff820ecdd948263886ce0b802a5"."barcode" AS "Patron barcode",
+	"86f25e0ea9e47a6f81e091242e5505ad"."street1" AS "Street",
+	"86f25e0ea9e47a6f81e091242e5505ad"."street2" AS "Street (2)",
+	"86f25e0ea9e47a6f81e091242e5505ad"."city" AS "City",
+	"86f25e0ea9e47a6f81e091242e5505ad"."state" AS "State",
+	"86f25e0ea9e47a6f81e091242e5505ad"."post_code" AS "Postal Code",
+	"368e5217195dff6167ce4d2373d18141"."day_phone" AS "Daytime Phone",
+	"368e5217195dff6167ce4d2373d18141"."email" AS "Email Address"
+  FROM	action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN actor.usr AS "368e5217195dff6167ce4d2373d18141" ON ("fce458da5814089639960610c48d19d2"."usr" = "368e5217195dff6167ce4d2373d18141"."id")
+	INNER JOIN actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad" ON ("368e5217195dff6167ce4d2373d18141"."mailing_address" = "86f25e0ea9e47a6f81e091242e5505ad"."id")
+	INNER JOIN actor.card AS "0eb4dff820ecdd948263886ce0b802a5" ON ("368e5217195dff6167ce4d2373d18141"."card" = "0eb4dff820ecdd948263886ce0b802a5"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")
+  WHERE	date("fce458da5814089639960610c48d19d2"."due_date") BETWEEN SYMMETRIC $_5804$2012-02-02$_5804$ AND $_5804$2012-03-01$_5804$
+	AND "6b89db56fc7d830b621fe56999f87eba"."id" IN ($_5804$147$_5804$)
+	AND "fce458da5814089639960610c48d19d2"."checkin_time" is NULL
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+  ORDER BY "6b89db56fc7d830b621fe56999f87eba"."shortname" ASC, date("fce458da5814089639960610c48d19d2"."due_date") ASC, "7fb66fd46f5581428d27fcd56ad5c85f"."barcode" ASC, "0eb4dff820ecdd948263886ce0b802a5"."barcode" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."street1" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."street2" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."city" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."state" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."post_code" ASC, "368e5217195dff6167ce4d2373d18141"."day_phone" ASC, "368e5217195dff6167ce4d2373d18141"."email" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'owner' => 1,
+          'description' => 'List of items checked out with a due date option for overdues.  List includes patron barcode, address, phone number, and email.',
+          'data' => '{"select":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-shortname","alias":"Lib","column":{"transform":"Bare","colname":"shortname"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-due_date","alias":"Due Date","column":{"transform":"date","colname":"due_date"}},{"relation":"7fb66fd46f5581428d27fcd56ad5c85f","path":"circ-target_copy-acp-barcode","alias":"Item Barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"0eb4dff820ecdd948263886ce0b802a5","path":"circ-usr-au-card-ac-barcode","alias":"Patron barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-street1","alias":"Street","column":{"transform":"Bare","colname":"street1"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-street2","alias":"Street (2)","column":{"transform":"Bare","colname":"street2"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-city","alias":"City","column":{"transform":"Bare","colname":"city"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-state","alias":"State","column":{"transform":"Bare","colname":"state"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-post_code","alias":"Postal Code","column":{"transform":"Bare","colname":"post_code"}},{"relation":"368e5217195dff6167ce4d2373d18141","path":"circ-usr-au-day_phone","alias":"Daytime Phone","column":{"transform":"Bare","colname":"day_phone"}},{"relation":"368e5217195dff6167ce4d2373d18141","path":"circ-usr-au-email","alias":"Email Address","column":{"transform":"Bare","colname":"email"}}],"from":{"table":"action.circulation","path":"circ","alias":"fce458da5814089639960610c48d19d2","join":{"circ_lib":{"key":"id","table":"actor.org_unit","path":"circ-circ_lib-aou","alias":"6b89db56fc7d830b621fe56999f87eba"},"target_copy":{"key":"id","table":"asset.copy","path":"circ-target_copy-acp","alias":"7fb66fd46f5581428d27fcd56ad5c85f"},"usr":{"key":"id","table":"actor.usr","path":"circ-usr-au","alias":"368e5217195dff6167ce4d2373d18141","join":{"card":{"key":"id","table":"actor.card","path":"circ-usr-au-card-ac","alias":"0eb4dff820ecdd948263886ce0b802a5"},"mailing_address":{"key":"id","table":"actor.usr_address","path":"circ-usr-au-mailing_address-aua","alias":"86f25e0ea9e47a6f81e091242e5505ad"}}}}},"where":[{"relation":"fce458da5814089639960610c48d19d2","path":"circ-due_date","column":{"transform":"date","colname":"due_date"},"condition":{"between":"::P0"}},{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P1"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-checkin_time","column":{"transform":"Bare","colname":"checkin_time"},"condition":{"is":null}}],"having":[],"order_by":[]}',
+          'folder' => 4,
+          'name' => 'Items Currently Checked Out',
+          'create_time' => '2006-10-17 16:05:13.423816-04',
+          'id' => 94
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'order_by' => [],
+          'from' => {
+                      'table' => 'action.circulation',
+                      'alias' => 'fce458da5814089639960610c48d19d2',
+                      'join' => {
+                                  'target_copy' => {
+                                                     'table' => 'asset.copy',
+                                                     'alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                     'key' => 'id',
+                                                     'path' => 'circ-target_copy-acp'
+                                                   },
+                                  'usr' => {
+                                             'alias' => '368e5217195dff6167ce4d2373d18141',
+                                             'table' => 'actor.usr',
+                                             'path' => 'circ-usr-au',
+                                             'join' => {
+                                                         'card' => {
+                                                                     'path' => 'circ-usr-au-card-ac',
+                                                                     'key' => 'id',
+                                                                     'alias' => '0eb4dff820ecdd948263886ce0b802a5',
+                                                                     'table' => 'actor.card'
+                                                                   },
+                                                         'mailing_address' => {
+                                                                                'table' => 'actor.usr_address',
+                                                                                'alias' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                                                                'key' => 'id',
+                                                                                'path' => 'circ-usr-au-mailing_address-aua'
+                                                                              }
+                                                       },
+                                             'key' => 'id'
+                                           },
+                                  'circ_lib' => {
+                                                  'path' => 'circ-circ_lib-aou',
+                                                  'key' => 'id',
+                                                  'alias' => '6b89db56fc7d830b621fe56999f87eba',
+                                                  'table' => 'actor.org_unit'
+                                                }
+                                },
+                      'path' => 'circ'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'date',
+                                       'colname' => 'due_date'
+                                     },
+                         'path' => 'circ-due_date',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'relation' => 'fce458da5814089639960610c48d19d2'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                         'path' => 'circ-circ_lib-aou-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'checkin_time',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'circ-checkin_time',
+                         'relation' => 'fce458da5814089639960610c48d19d2',
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       }
+                     ],
+          'select' => [
+                        {
+                          'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                          'path' => 'circ-circ_lib-aou-shortname',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'alias' => 'Lib'
+                        },
+                        {
+                          'alias' => 'Due Date',
+                          'column' => {
+                                        'colname' => 'due_date',
+                                        'transform' => 'date'
+                                      },
+                          'path' => 'circ-due_date',
+                          'relation' => 'fce458da5814089639960610c48d19d2'
+                        },
+                        {
+                          'alias' => 'Item Barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'path' => 'circ-target_copy-acp-barcode',
+                          'relation' => '7fb66fd46f5581428d27fcd56ad5c85f'
+                        },
+                        {
+                          'relation' => '0eb4dff820ecdd948263886ce0b802a5',
+                          'path' => 'circ-usr-au-card-ac-barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Patron barcode'
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-street1',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'Street',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'street1'
+                                      }
+                        },
+                        {
+                          'alias' => 'Street (2)',
+                          'column' => {
+                                        'colname' => 'street2',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'circ-usr-au-mailing_address-aua-street2',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad'
+                        },
+                        {
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'path' => 'circ-usr-au-mailing_address-aua-city',
+                          'column' => {
+                                        'colname' => 'city',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'City'
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-state',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'State',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'state'
+                                      }
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-post_code',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'Postal Code',
+                          'column' => {
+                                        'colname' => 'post_code',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '368e5217195dff6167ce4d2373d18141',
+                          'path' => 'circ-usr-au-day_phone',
+                          'column' => {
+                                        'colname' => 'day_phone',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Daytime Phone'
+                        },
+                        {
+                          'relation' => '368e5217195dff6167ce4d2373d18141',
+                          'path' => 'circ-usr-au-email',
+                          'column' => {
+                                        'colname' => 'email',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Email Address'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'recur' => 1,
+          'recurrence' => '7 days',
+          'owner' => 2872119,
+          'description' => 'List of items checked out with a due date option for overdues. List includes patron barcode, address, phone number, and email.',
+          'id' => 68691,
+          'create_time' => '2012-03-19 14:33:48.665723-04',
+          'folder' => 1644,
+          'name' => '	Items Currently Checked Out',
+          'data' => '{"P0":["2012-02-02","2012-03-01"],"P1":["147"]}',
+          'template' => {
+                          'owner' => 1,
+                          'description' => 'List of items checked out with a due date option for overdues.  List includes patron barcode, address, phone number, and email.',
+                          'data' => '{"select":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-shortname","alias":"Lib","column":{"transform":"Bare","colname":"shortname"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-due_date","alias":"Due Date","column":{"transform":"date","colname":"due_date"}},{"relation":"7fb66fd46f5581428d27fcd56ad5c85f","path":"circ-target_copy-acp-barcode","alias":"Item Barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"0eb4dff820ecdd948263886ce0b802a5","path":"circ-usr-au-card-ac-barcode","alias":"Patron barcode","column":{"transform":"Bare","colname":"barcode"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-street1","alias":"Street","column":{"transform":"Bare","colname":"street1"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-street2","alias":"Street (2)","column":{"transform":"Bare","colname":"street2"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-city","alias":"City","column":{"transform":"Bare","colname":"city"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-state","alias":"State","column":{"transform":"Bare","colname":"state"}},{"relation":"86f25e0ea9e47a6f81e091242e5505ad","path":"circ-usr-au-mailing_address-aua-post_code","alias":"Postal Code","column":{"transform":"Bare","colname":"post_code"}},{"relation":"368e5217195dff6167ce4d2373d18141","path":"circ-usr-au-day_phone","alias":"Daytime Phone","column":{"transform":"Bare","colname":"day_phone"}},{"relation":"368e5217195dff6167ce4d2373d18141","path":"circ-usr-au-email","alias":"Email Address","column":{"transform":"Bare","colname":"email"}}],"from":{"table":"action.circulation","path":"circ","alias":"fce458da5814089639960610c48d19d2","join":{"circ_lib":{"key":"id","table":"actor.org_unit","path":"circ-circ_lib-aou","alias":"6b89db56fc7d830b621fe56999f87eba"},"target_copy":{"key":"id","table":"asset.copy","path":"circ-target_copy-acp","alias":"7fb66fd46f5581428d27fcd56ad5c85f"},"usr":{"key":"id","table":"actor.usr","path":"circ-usr-au","alias":"368e5217195dff6167ce4d2373d18141","join":{"card":{"key":"id","table":"actor.card","path":"circ-usr-au-card-ac","alias":"0eb4dff820ecdd948263886ce0b802a5"},"mailing_address":{"key":"id","table":"actor.usr_address","path":"circ-usr-au-mailing_address-aua","alias":"86f25e0ea9e47a6f81e091242e5505ad"}}}}},"where":[{"relation":"fce458da5814089639960610c48d19d2","path":"circ-due_date","column":{"transform":"date","colname":"due_date"},"condition":{"between":"::P0"}},{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P1"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-checkin_time","column":{"transform":"Bare","colname":"checkin_time"},"condition":{"is":null}}],"having":[],"order_by":[]}',
+                          'folder' => 4,
+                          'name' => 'Items Currently Checked Out',
+                          'create_time' => '2006-10-17 16:05:13.423816-04',
+                          'id' => 94
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'order_by' => [],
+          'from' => {
+                      'table' => 'action.circulation',
+                      'alias' => 'fce458da5814089639960610c48d19d2',
+                      'join' => {
+                                  'target_copy' => {
+                                                     'table' => 'asset.copy',
+                                                     'alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                     'key' => 'id',
+                                                     'path' => 'circ-target_copy-acp'
+                                                   },
+                                  'usr' => {
+                                             'alias' => '368e5217195dff6167ce4d2373d18141',
+                                             'table' => 'actor.usr',
+                                             'path' => 'circ-usr-au',
+                                             'join' => {
+                                                         'card' => {
+                                                                     'path' => 'circ-usr-au-card-ac',
+                                                                     'key' => 'id',
+                                                                     'alias' => '0eb4dff820ecdd948263886ce0b802a5',
+                                                                     'table' => 'actor.card'
+                                                                   },
+                                                         'mailing_address' => {
+                                                                                'table' => 'actor.usr_address',
+                                                                                'alias' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                                                                'key' => 'id',
+                                                                                'path' => 'circ-usr-au-mailing_address-aua'
+                                                                              }
+                                                       },
+                                             'key' => 'id'
+                                           },
+                                  'circ_lib' => {
+                                                  'path' => 'circ-circ_lib-aou',
+                                                  'key' => 'id',
+                                                  'alias' => '6b89db56fc7d830b621fe56999f87eba',
+                                                  'table' => 'actor.org_unit'
+                                                }
+                                },
+                      'path' => 'circ'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'date',
+                                       'colname' => 'due_date'
+                                     },
+                         'path' => 'circ-due_date',
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'relation' => 'fce458da5814089639960610c48d19d2'
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                         'path' => 'circ-circ_lib-aou-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       },
+                       {
+                         'column' => {
+                                       'colname' => 'checkin_time',
+                                       'transform' => 'Bare'
+                                     },
+                         'path' => 'circ-checkin_time',
+                         'relation' => 'fce458da5814089639960610c48d19d2',
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       }
+                     ],
+          'select' => [
+                        {
+                          'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                          'path' => 'circ-circ_lib-aou-shortname',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'alias' => 'Lib'
+                        },
+                        {
+                          'alias' => 'Due Date',
+                          'column' => {
+                                        'colname' => 'due_date',
+                                        'transform' => 'date'
+                                      },
+                          'path' => 'circ-due_date',
+                          'relation' => 'fce458da5814089639960610c48d19d2'
+                        },
+                        {
+                          'alias' => 'Item Barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'path' => 'circ-target_copy-acp-barcode',
+                          'relation' => '7fb66fd46f5581428d27fcd56ad5c85f'
+                        },
+                        {
+                          'relation' => '0eb4dff820ecdd948263886ce0b802a5',
+                          'path' => 'circ-usr-au-card-ac-barcode',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Patron barcode'
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-street1',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'Street',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'street1'
+                                      }
+                        },
+                        {
+                          'alias' => 'Street (2)',
+                          'column' => {
+                                        'colname' => 'street2',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'circ-usr-au-mailing_address-aua-street2',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad'
+                        },
+                        {
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'path' => 'circ-usr-au-mailing_address-aua-city',
+                          'column' => {
+                                        'colname' => 'city',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'City'
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-state',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'State',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'state'
+                                      }
+                        },
+                        {
+                          'path' => 'circ-usr-au-mailing_address-aua-post_code',
+                          'relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                          'alias' => 'Postal Code',
+                          'column' => {
+                                        'colname' => 'post_code',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '368e5217195dff6167ce4d2373d18141',
+                          'path' => 'circ-usr-au-day_phone',
+                          'column' => {
+                                        'colname' => 'day_phone',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Daytime Phone'
+                        },
+                        {
+                          'relation' => '368e5217195dff6167ce4d2373d18141',
+                          'path' => 'circ-usr-au-email',
+                          'column' => {
+                                        'colname' => 'email',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Email Address'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-11-16 14:33:48.665723-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Lib',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Lib"',
+                                         '_relation' => '6b89db56fc7d830b621fe56999f87eba',
+                                         '_builder' => bless( {
+                                                                '_relative_time' => '2020-11-16 14:33:48.665723-05',
+                                                                '_rels' => {
+                                                                             'fce458da5814089639960610c48d19d2' => bless( {
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_sql' => 'action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN actor.usr AS "368e5217195dff6167ce4d2373d18141" ON ("fce458da5814089639960610c48d19d2"."usr" = "368e5217195dff6167ce4d2373d18141"."id")
+	INNER JOIN actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad" ON ("368e5217195dff6167ce4d2373d18141"."mailing_address" = "86f25e0ea9e47a6f81e091242e5505ad"."id")
+	INNER JOIN actor.card AS "0eb4dff820ecdd948263886ce0b802a5" ON ("368e5217195dff6167ce4d2373d18141"."card" = "0eb4dff820ecdd948263886ce0b802a5"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")',
+                                                                                                                            '_nullable' => undef,
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_sql' => 'actor.usr AS "368e5217195dff6167ce4d2373d18141"',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_join' => [
+                                                                                                                                                                                        bless( {
+                                                                                                                                                                                                 '_left_col' => 'mailing_address',
+                                                                                                                                                                                                 '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[0]{'_right_rel'},
+                                                                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad" ON ("368e5217195dff6167ce4d2373d18141"."mailing_address" = "86f25e0ea9e47a6f81e091242e5505ad"."id")',
+                                                                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                                                                          '_sql' => 'actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad"',
+                                                                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                                                                          '_table' => 'actor.usr_address',
+                                                                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                                                                          '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                                                                          '_alias' => '86f25e0ea9e47a6f81e091242e5505ad'
+                                                                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                                                                        bless( {
+                                                                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                                                                          '_alias' => '0eb4dff820ecdd948263886ce0b802a5',
+                                                                                                                                                                                                                          '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                                                                          '_table' => 'actor.card',
+                                                                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                                                                          '_sql' => 'actor.card AS "0eb4dff820ecdd948263886ce0b802a5"'
+                                                                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                                                                 '_left_col' => 'card',
+                                                                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.card AS "0eb4dff820ecdd948263886ce0b802a5" ON ("368e5217195dff6167ce4d2373d18141"."card" = "0eb4dff820ecdd948263886ce0b802a5"."id")',
+                                                                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                                                                 '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[0]{'_right_rel'}
+                                                                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                      ],
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_nullable' => undef,
+                                                                                                                                                                           '_alias' => '368e5217195dff6167ce4d2373d18141'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                                                                                                                                                  '_sql' => '
+	INNER JOIN actor.usr AS "368e5217195dff6167ce4d2373d18141" ON ("fce458da5814089639960610c48d19d2"."usr" = "368e5217195dff6167ce4d2373d18141"."id")
+	INNER JOIN actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad" ON ("368e5217195dff6167ce4d2373d18141"."mailing_address" = "86f25e0ea9e47a6f81e091242e5505ad"."id")
+	INNER JOIN actor.card AS "0eb4dff820ecdd948263886ce0b802a5" ON ("368e5217195dff6167ce4d2373d18141"."card" = "0eb4dff820ecdd948263886ce0b802a5"."id")',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_col' => 'usr'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_left_col' => 'circ_lib',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_sql' => 'actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba"',
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_table' => 'actor.org_unit',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_alias' => '6b89db56fc7d830b621fe56999f87eba'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_sql' => 'asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f"',
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_table' => 'asset.copy',
+                                                                                                                                                                           '_is_join' => 1
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_left_col' => 'target_copy',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                                                                                                                                                  '_right_col' => 'id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                       ],
+                                                                                                                            '_table' => 'action.circulation',
+                                                                                                                            '_alias' => 'fce458da5814089639960610c48d19d2'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '7fb66fd46f5581428d27fcd56ad5c85f' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[2]{'_right_rel'},
+                                                                             '368e5217195dff6167ce4d2373d18141' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[0]{'_right_rel'},
+                                                                             '86f25e0ea9e47a6f81e091242e5505ad' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[0]{'_right_rel'}{'_join'}[0]{'_right_rel'},
+                                                                             '6b89db56fc7d830b621fe56999f87eba' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[1]{'_right_rel'},
+                                                                             '0eb4dff820ecdd948263886ce0b802a5' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[0]{'_right_rel'}{'_join'}[1]{'_right_rel'}
+                                                                           },
+                                                                '_params' => {
+                                                                               'P0' => [
+                                                                                         '2012-02-02',
+                                                                                         '2012-03-01'
+                                                                                       ],
+                                                                               'P1' => [
+                                                                                         '147'
+                                                                                       ]
+                                                                             },
+                                                                '_resultset_limit' => 1048575,
+                                                                '_sql' => undef
+                                                              }, 'OpenILS::Reporter::SQLBuilder' ),
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Due Date',
+                                         '_column' => {
+                                                        'transform' => 'date',
+                                                        'colname' => 'due_date'
+                                                      },
+                                         '_transform' => 'GenericTransform',
+                                         '_sql' => 'date("fce458da5814089639960610c48d19d2"."due_date") AS "Due Date"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'fce458da5814089639960610c48d19d2'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Item Barcode',
+                                         '_column' => {
+                                                        'colname' => 'barcode',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"7fb66fd46f5581428d27fcd56ad5c85f"."barcode" AS "Item Barcode"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'barcode',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Patron barcode',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '0eb4dff820ecdd948263886ce0b802a5',
+                                         '_sql' => '"0eb4dff820ecdd948263886ce0b802a5"."barcode" AS "Patron barcode"',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."street1" AS "Street"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                         '_alias' => 'Street',
+                                         '_column' => {
+                                                        'colname' => 'street1',
+                                                        'transform' => 'Bare'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."street2" AS "Street (2)"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'street2'
+                                                      },
+                                         '_alias' => 'Street (2)'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'City',
+                                         '_column' => {
+                                                        'colname' => 'city',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."city" AS "City"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'state',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'State',
+                                         '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."state" AS "State"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                         '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."post_code" AS "Postal Code"',
+                                         '_alias' => 'Postal Code',
+                                         '_column' => {
+                                                        'colname' => 'post_code',
+                                                        'transform' => 'Bare'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"368e5217195dff6167ce4d2373d18141"."day_phone" AS "Daytime Phone"',
+                                         '_relation' => '368e5217195dff6167ce4d2373d18141',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'day_phone',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Daytime Phone'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"368e5217195dff6167ce4d2373d18141"."email" AS "Email Address"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => '368e5217195dff6167ce4d2373d18141',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Email Address',
+                                         '_column' => {
+                                                        'colname' => 'email',
+                                                        'transform' => 'Bare'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Lib",
+	date("fce458da5814089639960610c48d19d2"."due_date") AS "Due Date",
+	"7fb66fd46f5581428d27fcd56ad5c85f"."barcode" AS "Item Barcode",
+	"0eb4dff820ecdd948263886ce0b802a5"."barcode" AS "Patron barcode",
+	"86f25e0ea9e47a6f81e091242e5505ad"."street1" AS "Street",
+	"86f25e0ea9e47a6f81e091242e5505ad"."street2" AS "Street (2)",
+	"86f25e0ea9e47a6f81e091242e5505ad"."city" AS "City",
+	"86f25e0ea9e47a6f81e091242e5505ad"."state" AS "State",
+	"86f25e0ea9e47a6f81e091242e5505ad"."post_code" AS "Postal Code",
+	"368e5217195dff6167ce4d2373d18141"."day_phone" AS "Daytime Phone",
+	"368e5217195dff6167ce4d2373d18141"."email" AS "Email Address"
+  FROM	action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN actor.usr AS "368e5217195dff6167ce4d2373d18141" ON ("fce458da5814089639960610c48d19d2"."usr" = "368e5217195dff6167ce4d2373d18141"."id")
+	INNER JOIN actor.usr_address AS "86f25e0ea9e47a6f81e091242e5505ad" ON ("368e5217195dff6167ce4d2373d18141"."mailing_address" = "86f25e0ea9e47a6f81e091242e5505ad"."id")
+	INNER JOIN actor.card AS "0eb4dff820ecdd948263886ce0b802a5" ON ("368e5217195dff6167ce4d2373d18141"."card" = "0eb4dff820ecdd948263886ce0b802a5"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")
+  WHERE	date("fce458da5814089639960610c48d19d2"."due_date") BETWEEN SYMMETRIC $_5804$2012-02-02$_5804$ AND $_5804$2012-03-01$_5804$
+	AND "6b89db56fc7d830b621fe56999f87eba"."id" IN ($_5804$147$_5804$)
+	AND "fce458da5814089639960610c48d19d2"."checkin_time" is NULL
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+  ORDER BY "6b89db56fc7d830b621fe56999f87eba"."shortname" ASC, date("fce458da5814089639960610c48d19d2"."due_date") ASC, "7fb66fd46f5581428d27fcd56ad5c85f"."barcode" ASC, "0eb4dff820ecdd948263886ce0b802a5"."barcode" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."street1" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."street2" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."city" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."state" ASC, "86f25e0ea9e47a6f81e091242e5505ad"."post_code" ASC, "368e5217195dff6167ce4d2373d18141"."day_phone" ASC, "368e5217195dff6167ce4d2373d18141"."email" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                 '_where' => [
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_sql' => 'date("fce458da5814089639960610c48d19d2"."due_date") BETWEEN SYMMETRIC $_5804$2012-02-02$_5804$ AND $_5804$2012-03-01$_5804$',
+                                        '_relation' => 'fce458da5814089639960610c48d19d2',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'colname' => 'due_date'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."id" IN ($_5804$147$_5804$)',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => '6b89db56fc7d830b621fe56999f87eba'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"fce458da5814089639960610c48d19d2"."checkin_time" is NULL',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => 'fce458da5814089639960610c48d19d2',
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'checkin_time',
+                                                       'transform' => 'Bare'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '6b89db56fc7d830b621fe56999f87eba',
+                                           '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."shortname" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => 'fce458da5814089639960610c48d19d2',
+                                           '_sql' => 'date("fce458da5814089639960610c48d19d2"."due_date") ASC',
+                                           '_transform' => 'GenericTransform',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                           '_sql' => '"7fb66fd46f5581428d27fcd56ad5c85f"."barcode" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '0eb4dff820ecdd948263886ce0b802a5',
+                                           '_sql' => '"0eb4dff820ecdd948263886ce0b802a5"."barcode" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                           '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."street1" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."street2" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                           '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."city" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[7]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                           '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."state" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[8]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '86f25e0ea9e47a6f81e091242e5505ad',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"86f25e0ea9e47a6f81e091242e5505ad"."post_code" ASC',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '368e5217195dff6167ce4d2373d18141',
+                                           '_sql' => '"368e5217195dff6167ce4d2373d18141"."day_phone" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[9]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[10]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"368e5217195dff6167ce4d2373d18141"."email" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => '368e5217195dff6167ce4d2373d18141',
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

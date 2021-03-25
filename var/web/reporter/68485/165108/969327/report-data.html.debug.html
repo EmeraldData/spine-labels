@@ -1,0 +1,1094 @@
+<html><head><meta charset='utf-8'><title>DEBUG: Trial - Items deleted FY 2019</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name",
+	COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN asset.call_number AS "ed55d72666ad50c3c4b9652f5627aba0" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "ed55d72666ad50c3c4b9652f5627aba0"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("ed55d72666ad50c3c4b9652f5627aba0"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")
+  WHERE	"bdd43e1440a00047b1e66cb9619865c0"."id" IN ($_2638$47$_2638$,$_2638$48$_2638$,$_2638$49$_2638$,$_2638$51$_2638$,$_2638$50$_2638$,$_2638$52$_2638$,$_2638$53$_2638$,$_2638$54$_2638$,$_2638$366$_2638$,$_2638$357$_2638$)
+	AND "7d74f3b92b19da5e606d737d339a9679"."deleted" = $_2638$t$_2638$
+	AND date("7d74f3b92b19da5e606d737d339a9679"."edit_date") BETWEEN $_2638$2018-07-01$_2638$ AND $_2638$2019-06-30$_2638$
+  GROUP BY 1
+  ORDER BY "bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC, COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 2730,
+          'description' => 'Display: Item->Call number/volume->Owning Library->Short(Policy)Name
+Item->Copy ID->Count Distinct
+Filters:   Item->Call number/volume->Owning Library->Organizational Unit ID "In List"
+Item->Is Deleted "true"
+Item->Last Edit Date/Time-> "between"',
+          'data' => '{"version":5,"doc_url":"","core_class":"acp","select":[{"alias":"Short (Policy) Name","path":"aou-shortname","field_doc":"","relation":"bdd43e1440a00047b1e66cb9619865c0","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Copy ID","path":"acp-id","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct","aggregate":true}}],"from":{"alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp-acp","table":"asset.copy","idlclass":"acp","join":{"call_number-ed55d72666ad50c3c4b9652f5627aba0":{"type":"inner","key":"id","alias":"ed55d72666ad50c3c4b9652f5627aba0","path":"acp-call_number","table":"asset.call_number","idlclass":"acn","join":{"owning_lib-8ae2598e830aacad13ae04e7dcafeda3":{"type":"inner","key":"id","alias":"bdd43e1440a00047b1e66cb9619865c0","path":"acp-call_number-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Item -> Call Number/Volume :: Owning Library"}}}},"label":"Item"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"bdd43e1440a00047b1e66cb9619865c0","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Is Deleted","path":"acp-deleted","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"t"}},{"alias":"Last Edit Date/Time","path":"acp-edit_date","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"edit_date","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Organizational Unit","from":"acn","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acn.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Short (Policy) Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item -> Call Number/Volume :: Owning Library"},{"name":"id","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":1,"label":"Copy ID","datatype":"id","doc_text":"","transform":{"label":"Count Distinct","transform":"count_distinct","aggregate":"true"},"path_label":"Item"}],"filter_cols":[{"name":"id","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Organizational Unit","from":"acn","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acn.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":2,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item -> Call Number/Volume :: Owning Library"},{"name":"deleted","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":3,"label":"Is Deleted","datatype":"bool","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item","value":"t"},{"name":"edit_date","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":4,"label":"Last Edit Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Item"}]}',
+          'create_time' => '2019-08-16 17:21:24.066686-04',
+          'name' => 'URRLS Item Count of Items Deleted Items (converted from XUL) (clone)',
+          'owner' => 1275439,
+          'id' => 68485
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                          'path' => 'aou-shortname',
+                          'alias' => 'Short (Policy) Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                      }
+                        },
+                        {
+                          'path' => 'acp-id',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'alias' => 'Copy ID',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' )
+                                      },
+                          'field_doc' => ''
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'name' => 'id',
+                               'path_label' => 'Item -> Call Number/Volume :: Owning Library',
+                               'label' => 'Organizational Unit ID',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'index' => 2,
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'id' => 'acp',
+                                             'label' => 'Item',
+                                             'classname' => 'acp',
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'label' => 'Item',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'table' => 'asset.copy',
+                                                           'name' => 'acp',
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'asset.call_number',
+                                             'link' => {
+                                                         'name' => 'call_number',
+                                                         'type' => 'link',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Call Number/Volume',
+                                                         'class' => 'acn',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'label' => 'Call Number/Volume',
+                                             'classname' => 'acn',
+                                             'struct' => {
+                                                           'classname' => 'acn',
+                                                           'name' => 'acn',
+                                                           'table' => 'asset.call_number',
+                                                           'label' => 'Call Number/Volume',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'from' => 'acp',
+                                             'id' => 'acp.acn',
+                                             'jtype' => 'inner',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'class' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'type' => 'link',
+                                                           'name' => 'call_number'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'actor.org_unit',
+                                             'link' => {
+                                                         'datatype' => 'org_unit',
+                                                         'label' => 'Owning Library',
+                                                         'class' => 'aou',
+                                                         'reltype' => 'has_a',
+                                                         'type' => 'link',
+                                                         'key' => 'id',
+                                                         'name' => 'owning_lib'
+                                                       },
+                                             'label' => 'Organizational Unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'classname' => 'aou',
+                                                           'name' => 'aou',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'from' => 'acn',
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'label' => 'Owning Library',
+                                                           'class' => 'aou',
+                                                           'datatype' => 'org_unit',
+                                                           'name' => 'owning_lib',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'acn.aou',
+                                             'jtype' => 'inner'
+                                           }
+                                         ],
+                               'doc_text' => ''
+                             },
+                             {
+                               'index' => 3,
+                               'transform' => {
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'label' => 'Item',
+                                                           'table' => 'asset.copy',
+                                                           'name' => 'acp'
+                                                         },
+                                             'classname' => 'acp',
+                                             'id' => 'acp',
+                                             'jtype' => 'inner',
+                                             'label' => 'Item'
+                                           }
+                                         ],
+                               'datatype' => 'bool',
+                               'doc_text' => '',
+                               'name' => 'deleted',
+                               'value' => 't',
+                               'path_label' => 'Item',
+                               'label' => 'Is Deleted',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             }
+                             },
+                             {
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'label' => 'Last Edit Date/Time',
+                               'path_label' => 'Item',
+                               'name' => 'edit_date',
+                               'path' => [
+                                           {
+                                             'label' => 'Item',
+                                             'jtype' => 'inner',
+                                             'id' => 'acp',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'label' => 'Item',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'table' => 'asset.copy',
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp'
+                                                         },
+                                             'table' => 'asset.copy',
+                                             'classname' => 'acp'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'transform' => 'date',
+                                                'aggregate' => undef
+                                              },
+                               'index' => 4
+                             }
+                           ],
+          'version' => 5,
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'name' => 'shortname',
+                                'path_label' => 'Item -> Call Number/Volume :: Owning Library',
+                                'label' => 'Short (Policy) Name',
+                                'index' => 0,
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef
+                                               },
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                            'classname' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'name' => 'acp',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Item',
+                                                            'pkey_sequence' => 'asset.copy_id_seq'
+                                                          },
+                                              'classname' => 'acp',
+                                              'id' => 'acp',
+                                              'jtype' => 'inner',
+                                              'label' => 'Item'
+                                            },
+                                            {
+                                              'label' => 'Call Number/Volume',
+                                              'table' => 'asset.call_number',
+                                              'link' => {
+                                                          'label' => 'Call Number/Volume',
+                                                          'class' => 'acn',
+                                                          'datatype' => 'link',
+                                                          'name' => 'call_number',
+                                                          'reltype' => 'has_a',
+                                                          'type' => 'link',
+                                                          'key' => 'id'
+                                                        },
+                                              'uplink' => {
+                                                            'name' => 'call_number',
+                                                            'type' => 'link',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Call Number/Volume',
+                                                            'class' => 'acn',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'id' => 'acp.acn',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'asset.call_number',
+                                                            'name' => 'acn',
+                                                            'classname' => 'acn',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'asset.call_number_id_seq',
+                                                            'label' => 'Call Number/Volume'
+                                                          },
+                                              'from' => 'acp',
+                                              'classname' => 'acn'
+                                            },
+                                            {
+                                              'link' => {
+                                                          'name' => 'owning_lib',
+                                                          'reltype' => 'has_a',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'label' => 'Owning Library',
+                                                          'class' => 'aou',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'table' => 'actor.org_unit',
+                                              'label' => 'Organizational Unit',
+                                              'classname' => 'aou',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'classname' => 'aou',
+                                                            'name' => 'aou'
+                                                          },
+                                              'from' => 'acn',
+                                              'id' => 'acn.aou',
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'datatype' => 'org_unit',
+                                                            'class' => 'aou',
+                                                            'label' => 'Owning Library',
+                                                            'type' => 'link',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'owning_lib'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'transform' => {
+                                                 'label' => 'Count Distinct',
+                                                 'transform' => 'count_distinct',
+                                                 'aggregate' => 'true'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'id' => 'acp',
+                                              'jtype' => 'inner',
+                                              'label' => 'Item',
+                                              'classname' => 'acp',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'label' => 'Item',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'classname' => 'acp',
+                                                            'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'}
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'id',
+                                'name' => 'id',
+                                'path_label' => 'Item',
+                                'label' => 'Copy ID'
+                              }
+                            ],
+          'core_class' => 'acp',
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'path' => 'aou-id',
+                         'relation' => 'bdd43e1440a00047b1e66cb9619865c0'
+                       },
+                       {
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'acp-deleted',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                       },
+                       {
+                         'path' => 'acp-edit_date',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'column' => {
+                                       'colname' => 'edit_date',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'alias' => 'Last Edit Date/Time'
+                       }
+                     ],
+          'from' => {
+                      'path' => 'acp-acp',
+                      'join' => {
+                                  'call_number-ed55d72666ad50c3c4b9652f5627aba0' => {
+                                                                                      'idlclass' => 'acn',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'type' => 'inner',
+                                                                                      'key' => 'id',
+                                                                                      'alias' => 'ed55d72666ad50c3c4b9652f5627aba0',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-8ae2598e830aacad13ae04e7dcafeda3' => {
+                                                                                                                                                     'path' => 'acp-call_number-owning_lib',
+                                                                                                                                                     'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                     'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'type' => 'inner',
+                                                                                                                                                     'idlclass' => 'aou'
+                                                                                                                                                   }
+                                                                                                },
+                                                                                      'path' => 'acp-call_number'
+                                                                                    }
+                                },
+                      'label' => 'Item',
+                      'table' => 'asset.copy',
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'idlclass' => 'acp'
+                    },
+          'doc_url' => ''
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'folder' => 2566,
+          'recur' => 0,
+          'name' => 'Trial - Items deleted FY 2019',
+          'data' => '{"P0":["47","48","49","51","50","52","53","54","366","357"],"P1":["2018-07-01","2019-06-30"],"__pivot_label":"","__pivot_data":"2"}',
+          'create_time' => '2019-08-16 17:23:03.118529-04',
+          'owner' => 1275439,
+          'id' => 165108,
+          'description' => 'Trial from Test Server; Items Deleted from Dawn Dale, PINES year-end reports',
+          'recurrence' => '1 day',
+          'template' => {
+                          'folder' => 2730,
+                          'description' => 'Display: Item->Call number/volume->Owning Library->Short(Policy)Name
+Item->Copy ID->Count Distinct
+Filters:   Item->Call number/volume->Owning Library->Organizational Unit ID "In List"
+Item->Is Deleted "true"
+Item->Last Edit Date/Time-> "between"',
+                          'data' => '{"version":5,"doc_url":"","core_class":"acp","select":[{"alias":"Short (Policy) Name","path":"aou-shortname","field_doc":"","relation":"bdd43e1440a00047b1e66cb9619865c0","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Copy ID","path":"acp-id","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"id","transform":"count_distinct","transform_label":"Count Distinct","aggregate":true}}],"from":{"alias":"7d74f3b92b19da5e606d737d339a9679","path":"acp-acp","table":"asset.copy","idlclass":"acp","join":{"call_number-ed55d72666ad50c3c4b9652f5627aba0":{"type":"inner","key":"id","alias":"ed55d72666ad50c3c4b9652f5627aba0","path":"acp-call_number","table":"asset.call_number","idlclass":"acn","join":{"owning_lib-8ae2598e830aacad13ae04e7dcafeda3":{"type":"inner","key":"id","alias":"bdd43e1440a00047b1e66cb9619865c0","path":"acp-call_number-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Item -> Call Number/Volume :: Owning Library"}}}},"label":"Item"},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"bdd43e1440a00047b1e66cb9619865c0","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Is Deleted","path":"acp-deleted","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"t"}},{"alias":"Last Edit Date/Time","path":"acp-edit_date","field_doc":"","relation":"7d74f3b92b19da5e606d737d339a9679","column":{"colname":"edit_date","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"shortname","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Organizational Unit","from":"acn","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acn.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Short (Policy) Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item -> Call Number/Volume :: Owning Library"},{"name":"id","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":1,"label":"Copy ID","datatype":"id","doc_text":"","transform":{"label":"Count Distinct","transform":"count_distinct","aggregate":"true"},"path_label":"Item"}],"filter_cols":[{"name":"id","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"acp.acn","jtype":"inner","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Organizational Unit","from":"acn","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acn.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":2,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item -> Call Number/Volume :: Owning Library"},{"name":"deleted","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":3,"label":"Is Deleted","datatype":"bool","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Item","value":"t"},{"name":"edit_date","path":[{"label":"Item","id":"acp","jtype":"inner","classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"}],"index":4,"label":"Last Edit Date/Time","datatype":"timestamp","doc_text":"","operator":{"op":"between","label":"Between"},"transform":{"label":"Date","transform":"date","aggregate":null},"path_label":"Item"}]}',
+                          'create_time' => '2019-08-16 17:21:24.066686-04',
+                          'name' => 'URRLS Item Count of Items Deleted Items (converted from XUL) (clone)',
+                          'owner' => 1275439,
+                          'id' => 68485
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                          'path' => 'aou-shortname',
+                          'alias' => 'Short (Policy) Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                      }
+                        },
+                        {
+                          'path' => 'acp-id',
+                          'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                          'alias' => 'Copy ID',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'id',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' )
+                                      },
+                          'field_doc' => ''
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'name' => 'id',
+                               'path_label' => 'Item -> Call Number/Volume :: Owning Library',
+                               'label' => 'Organizational Unit ID',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'index' => 2,
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'id' => 'acp',
+                                             'label' => 'Item',
+                                             'classname' => 'acp',
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'label' => 'Item',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'table' => 'asset.copy',
+                                                           'name' => 'acp',
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'asset.call_number',
+                                             'link' => {
+                                                         'name' => 'call_number',
+                                                         'type' => 'link',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Call Number/Volume',
+                                                         'class' => 'acn',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'label' => 'Call Number/Volume',
+                                             'classname' => 'acn',
+                                             'struct' => {
+                                                           'classname' => 'acn',
+                                                           'name' => 'acn',
+                                                           'table' => 'asset.call_number',
+                                                           'label' => 'Call Number/Volume',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources'
+                                                         },
+                                             'from' => 'acp',
+                                             'id' => 'acp.acn',
+                                             'jtype' => 'inner',
+                                             'uplink' => {
+                                                           'datatype' => 'link',
+                                                           'class' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'type' => 'link',
+                                                           'name' => 'call_number'
+                                                         }
+                                           },
+                                           {
+                                             'table' => 'actor.org_unit',
+                                             'link' => {
+                                                         'datatype' => 'org_unit',
+                                                         'label' => 'Owning Library',
+                                                         'class' => 'aou',
+                                                         'reltype' => 'has_a',
+                                                         'type' => 'link',
+                                                         'key' => 'id',
+                                                         'name' => 'owning_lib'
+                                                       },
+                                             'label' => 'Organizational Unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'classname' => 'aou',
+                                                           'name' => 'aou',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'from' => 'acn',
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'label' => 'Owning Library',
+                                                           'class' => 'aou',
+                                                           'datatype' => 'org_unit',
+                                                           'name' => 'owning_lib',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'type' => 'link'
+                                                         },
+                                             'id' => 'acn.aou',
+                                             'jtype' => 'inner'
+                                           }
+                                         ],
+                               'doc_text' => ''
+                             },
+                             {
+                               'index' => 3,
+                               'transform' => {
+                                                'aggregate' => undef,
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'label' => 'Item',
+                                                           'table' => 'asset.copy',
+                                                           'name' => 'acp'
+                                                         },
+                                             'classname' => 'acp',
+                                             'id' => 'acp',
+                                             'jtype' => 'inner',
+                                             'label' => 'Item'
+                                           }
+                                         ],
+                               'datatype' => 'bool',
+                               'doc_text' => '',
+                               'name' => 'deleted',
+                               'value' => 't',
+                               'path_label' => 'Item',
+                               'label' => 'Is Deleted',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             }
+                             },
+                             {
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'label' => 'Last Edit Date/Time',
+                               'path_label' => 'Item',
+                               'name' => 'edit_date',
+                               'path' => [
+                                           {
+                                             'label' => 'Item',
+                                             'jtype' => 'inner',
+                                             'id' => 'acp',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'label' => 'Item',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'table' => 'asset.copy',
+                                                           'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                           'classname' => 'acp'
+                                                         },
+                                             'table' => 'asset.copy',
+                                             'classname' => 'acp'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Date',
+                                                'transform' => 'date',
+                                                'aggregate' => undef
+                                              },
+                               'index' => 4
+                             }
+                           ],
+          'version' => 5,
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'name' => 'shortname',
+                                'path_label' => 'Item -> Call Number/Volume :: Owning Library',
+                                'label' => 'Short (Policy) Name',
+                                'index' => 0,
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef
+                                               },
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'},
+                                                            'classname' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'name' => 'acp',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Item',
+                                                            'pkey_sequence' => 'asset.copy_id_seq'
+                                                          },
+                                              'classname' => 'acp',
+                                              'id' => 'acp',
+                                              'jtype' => 'inner',
+                                              'label' => 'Item'
+                                            },
+                                            {
+                                              'label' => 'Call Number/Volume',
+                                              'table' => 'asset.call_number',
+                                              'link' => {
+                                                          'label' => 'Call Number/Volume',
+                                                          'class' => 'acn',
+                                                          'datatype' => 'link',
+                                                          'name' => 'call_number',
+                                                          'reltype' => 'has_a',
+                                                          'type' => 'link',
+                                                          'key' => 'id'
+                                                        },
+                                              'uplink' => {
+                                                            'name' => 'call_number',
+                                                            'type' => 'link',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Call Number/Volume',
+                                                            'class' => 'acn',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'id' => 'acp.acn',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'asset.call_number',
+                                                            'name' => 'acn',
+                                                            'classname' => 'acn',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'asset.call_number_id_seq',
+                                                            'label' => 'Call Number/Volume'
+                                                          },
+                                              'from' => 'acp',
+                                              'classname' => 'acn'
+                                            },
+                                            {
+                                              'link' => {
+                                                          'name' => 'owning_lib',
+                                                          'reltype' => 'has_a',
+                                                          'type' => 'link',
+                                                          'key' => 'id',
+                                                          'label' => 'Owning Library',
+                                                          'class' => 'aou',
+                                                          'datatype' => 'org_unit'
+                                                        },
+                                              'table' => 'actor.org_unit',
+                                              'label' => 'Organizational Unit',
+                                              'classname' => 'aou',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'classname' => 'aou',
+                                                            'name' => 'aou'
+                                                          },
+                                              'from' => 'acn',
+                                              'id' => 'acn.aou',
+                                              'jtype' => 'inner',
+                                              'uplink' => {
+                                                            'datatype' => 'org_unit',
+                                                            'class' => 'aou',
+                                                            'label' => 'Owning Library',
+                                                            'type' => 'link',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'owning_lib'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 1,
+                                'transform' => {
+                                                 'label' => 'Count Distinct',
+                                                 'transform' => 'count_distinct',
+                                                 'aggregate' => 'true'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'id' => 'acp',
+                                              'jtype' => 'inner',
+                                              'label' => 'Item',
+                                              'classname' => 'acp',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'label' => 'Item',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'classname' => 'acp',
+                                                            'core' => $VAR1->{'select'}[1]{'column'}{'aggregate'}
+                                                          }
+                                            }
+                                          ],
+                                'datatype' => 'id',
+                                'name' => 'id',
+                                'path_label' => 'Item',
+                                'label' => 'Copy ID'
+                              }
+                            ],
+          'core_class' => 'acp',
+          'where' => [
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'field_doc' => '',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'path' => 'aou-id',
+                         'relation' => 'bdd43e1440a00047b1e66cb9619865c0'
+                       },
+                       {
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'alias' => 'Is Deleted',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'acp-deleted',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679'
+                       },
+                       {
+                         'path' => 'acp-edit_date',
+                         'relation' => '7d74f3b92b19da5e606d737d339a9679',
+                         'column' => {
+                                       'colname' => 'edit_date',
+                                       'transform_label' => 'Date',
+                                       'transform' => 'date',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'alias' => 'Last Edit Date/Time'
+                       }
+                     ],
+          'from' => {
+                      'path' => 'acp-acp',
+                      'join' => {
+                                  'call_number-ed55d72666ad50c3c4b9652f5627aba0' => {
+                                                                                      'idlclass' => 'acn',
+                                                                                      'table' => 'asset.call_number',
+                                                                                      'type' => 'inner',
+                                                                                      'key' => 'id',
+                                                                                      'alias' => 'ed55d72666ad50c3c4b9652f5627aba0',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-8ae2598e830aacad13ae04e7dcafeda3' => {
+                                                                                                                                                     'path' => 'acp-call_number-owning_lib',
+                                                                                                                                                     'label' => 'Item -> Call Number/Volume :: Owning Library',
+                                                                                                                                                     'alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'type' => 'inner',
+                                                                                                                                                     'idlclass' => 'aou'
+                                                                                                                                                   }
+                                                                                                },
+                                                                                      'path' => 'acp-call_number'
+                                                                                    }
+                                },
+                      'label' => 'Item',
+                      'table' => 'asset.copy',
+                      'alias' => '7d74f3b92b19da5e606d737d339a9679',
+                      'idlclass' => 'acp'
+                    },
+          'doc_url' => ''
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-08-16 17:23:03.118529-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_from' => bless( {
+                                     '_join' => [
+                                                  bless( {
+                                                           '_right_rel' => bless( {
+                                                                                    '_columns' => [],
+                                                                                    '_nullable' => undef,
+                                                                                    '_is_join' => 1,
+                                                                                    '_join_type' => 'inner',
+                                                                                    '_builder' => bless( {
+                                                                                                           '_relative_time' => '2019-08-16 17:23:03.118529-04',
+                                                                                                           '_pivot_data' => '2',
+                                                                                                           '_resultset_limit' => 1048575,
+                                                                                                           '_rels' => {
+                                                                                                                        'ed55d72666ad50c3c4b9652f5627aba0' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'},
+                                                                                                                        'bdd43e1440a00047b1e66cb9619865c0' => bless( {
+                                                                                                                                                                       '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                                                                                                                                                       '_join_type' => 'inner',
+                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                       '_sql' => 'actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0"',
+                                                                                                                                                                       '_alias' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                                                                                                                                                       '_table' => 'actor.org_unit'
+                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                        '7d74f3b92b19da5e606d737d339a9679' => $VAR1->{'_from'}
+                                                                                                                      },
+                                                                                                           '_params' => {
+                                                                                                                          'P1' => [
+                                                                                                                                    '2018-07-01',
+                                                                                                                                    '2019-06-30'
+                                                                                                                                  ],
+                                                                                                                          'P0' => [
+                                                                                                                                    '47',
+                                                                                                                                    '48',
+                                                                                                                                    '49',
+                                                                                                                                    '51',
+                                                                                                                                    '50',
+                                                                                                                                    '52',
+                                                                                                                                    '53',
+                                                                                                                                    '54',
+                                                                                                                                    '366',
+                                                                                                                                    '357'
+                                                                                                                                  ],
+                                                                                                                          '__pivot_label' => '',
+                                                                                                                          '__pivot_data' => '2'
+                                                                                                                        },
+                                                                                                           '_sql' => undef
+                                                                                                         }, 'OpenILS::Reporter::SQLBuilder' ),
+                                                                                    '_join' => [
+                                                                                                 bless( {
+                                                                                                          '_join_type' => 'i',
+                                                                                                          '_left_col' => 'owning_lib',
+                                                                                                          '_left_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'},
+                                                                                                          '_right_col' => 'id',
+                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("ed55d72666ad50c3c4b9652f5627aba0"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                                                                                          '_right_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}{'_rels'}{'bdd43e1440a00047b1e66cb9619865c0'}
+                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                               ],
+                                                                                    '_sql' => 'asset.call_number AS "ed55d72666ad50c3c4b9652f5627aba0"',
+                                                                                    '_table' => 'asset.call_number',
+                                                                                    '_alias' => 'ed55d72666ad50c3c4b9652f5627aba0'
+                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                           '_sql' => '
+	INNER JOIN asset.call_number AS "ed55d72666ad50c3c4b9652f5627aba0" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "ed55d72666ad50c3c4b9652f5627aba0"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("ed55d72666ad50c3c4b9652f5627aba0"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                                           '_right_col' => 'id',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_left_col' => 'call_number',
+                                                           '_join_type' => 'i'
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                ],
+                                     '_sql' => 'asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN asset.call_number AS "ed55d72666ad50c3c4b9652f5627aba0" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "ed55d72666ad50c3c4b9652f5627aba0"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("ed55d72666ad50c3c4b9652f5627aba0"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")',
+                                     '_table' => 'asset.copy',
+                                     '_columns' => [],
+                                     '_alias' => '7d74f3b92b19da5e606d737d339a9679',
+                                     '_nullable' => undef,
+                                     '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}
+                                   }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                 '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'shortname',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                                        },
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_column' => {
+                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                          'transform' => 'count_distinct',
+                                                          'colname' => 'id',
+                                                          'transform_label' => 'Count Distinct'
+                                                        },
+                                           '_aggregate' => undef,
+                                           '_sql' => 'COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC',
+                                           '_transform' => 'count_distinct',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"bdd43e1440a00047b1e66cb9619865c0"."id" IN ($_2638$47$_2638$,$_2638$48$_2638$,$_2638$49$_2638$,$_2638$51$_2638$,$_2638$50$_2638$,$_2638$52$_2638$,$_2638$53$_2638$,$_2638$54$_2638$,$_2638$366$_2638$,$_2638$357$_2638$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                        '_condition' => {
+                                                          '=' => 't'
+                                                        },
+                                        '_sql' => '"7d74f3b92b19da5e606d737d339a9679"."deleted" = $_2638$t$_2638$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'colname' => 'edit_date',
+                                                       'transform_label' => 'Date',
+                                                       'transform' => 'date'
+                                                     },
+                                        '_aggregate' => undef,
+                                        '_sql' => 'date("7d74f3b92b19da5e606d737d339a9679"."edit_date") BETWEEN $_2638$2018-07-01$_2638$ AND $_2638$2019-06-30$_2638$',
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_transform' => 'GenericTransform',
+                                        '_relation' => '7d74f3b92b19da5e606d737d339a9679'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name",
+	COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"
+  FROM	asset.copy AS "7d74f3b92b19da5e606d737d339a9679"
+	INNER JOIN asset.call_number AS "ed55d72666ad50c3c4b9652f5627aba0" ON ("7d74f3b92b19da5e606d737d339a9679"."call_number" = "ed55d72666ad50c3c4b9652f5627aba0"."id")
+	INNER JOIN actor.org_unit AS "bdd43e1440a00047b1e66cb9619865c0" ON ("ed55d72666ad50c3c4b9652f5627aba0"."owning_lib" = "bdd43e1440a00047b1e66cb9619865c0"."id")
+  WHERE	"bdd43e1440a00047b1e66cb9619865c0"."id" IN ($_2638$47$_2638$,$_2638$48$_2638$,$_2638$49$_2638$,$_2638$51$_2638$,$_2638$50$_2638$,$_2638$52$_2638$,$_2638$53$_2638$,$_2638$54$_2638$,$_2638$366$_2638$,$_2638$357$_2638$)
+	AND "7d74f3b92b19da5e606d737d339a9679"."deleted" = $_2638$t$_2638$
+	AND date("7d74f3b92b19da5e606d737d339a9679"."edit_date") BETWEEN $_2638$2018-07-01$_2638$ AND $_2638$2019-06-30$_2638$
+  GROUP BY 1
+  ORDER BY "bdd43e1440a00047b1e66cb9619865c0"."shortname" ASC, COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_relation' => 'bdd43e1440a00047b1e66cb9619865c0',
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"bdd43e1440a00047b1e66cb9619865c0"."shortname" AS "Short (Policy) Name"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Copy ID',
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'count_distinct',
+                                         '_relation' => '7d74f3b92b19da5e606d737d339a9679',
+                                         '_sql' => 'COUNT(DISTINCT "7d74f3b92b19da5e606d737d339a9679"."id") AS "Copy ID"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

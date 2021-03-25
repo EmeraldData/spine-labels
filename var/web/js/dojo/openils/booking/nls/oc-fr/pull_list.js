@@ -1,0 +1,21 @@
+{
+    "COPY_LOOKUP_NO_RESPONSE": "Pas de responsa al moment de la verificacion d\u2019una c\u00f2pia per c\u00f2de de barras",
+    "AUTO_th_call_number": "C\u00f2ta",
+    "FOR": "per",
+    "AUTO_th_copy_location": "Empla\u00e7ament del document",
+    "AUTO_owning_lib_selector": "Veire la lista desenrotlanta per las bibliot\u00e8cas",
+    "AUTO_interval_in_days": "Generar la lista per un nombre equivalent de jorns ",
+    "AUTO_th_title_or_name": "T\u00edtol o nom",
+    "AUTO_th_barcode": "C\u00f2de de barras",
+    "PULL_LIST_NO_RESPONSE": "Pas de responsa del servidor per la lista desenrotlanta !",
+    "COPY_MISSING": "Error imprevista : Pas cap d'informacion sul document : ",
+    "AUTO_ATTR_VALUE_fetch": "Cargar",
+    "PULL_LIST_ERROR": "Error al moment de l\u2019extraccion de la lista de desenrotlament ",
+    "AT": "a",
+    "AUTO_ATTR_VALUE_print": "Estampar",
+    "AUTO_th_pickup_lib": "Bibliot\u00e8ca de coll\u00e8cta",
+    "AUTO_th_resv_details": "Detalhs sus la reservacion",
+    "COPY_LOOKUP_ERROR": "Error al moment de la verificacion d\u2019un document per c\u00f2de de barras : ",
+    "AUTO_no_results": "Pas cap de resultat.",
+    "AUTO_pull_list_title": "Lista desenrotlanta per las reservacions"
+}

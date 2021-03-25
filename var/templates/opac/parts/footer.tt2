@@ -1,0 +1,70 @@
+[% IF !ctx.is_staff %]
+<div id="footer-wrap">
+<div id="footer">
+<div id="footer-menu-wrapper">
+    <a href="http://pines.georgialibraries.org/about">
+        <img alt="[% l('About PINES') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" /> [%- l('Learn More About PINES') %]</a>
+        &nbsp; &nbsp; &nbsp; &nbsp;
+    <a href="http://pines.georgialibraries.org/catalog-help">
+        <img alt="[% l('Help') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+        [% l('Help') %]</a>
+</div>
+<div id="footer-menu-slim">
+    <a href="/eg/opac/home">[% l("Home") %]</a><br/>
+    <a href="http://pines.georgialibraries.org/pinesLocator/locator.html">
+        [% l('Library Locations') %]</a><br/>
+    <a href="/eg/kpac/home">
+        [% l("Kids' Catalog") %]</a><br/>
+    [% IF ctx.get_org_setting(
+        ctx.physical_loc || ctx.aou_tree.id, 'opac.allow_pending_user') %]
+        <a href="[% mkurl(ctx.opac_root _ '/register') %]">
+        [% l('Request Library Card') %]</a><br/>
+    [% END %]   
+    [% IF ctx.physical_loc;
+        # patron is at the branch, no redirect needed
+        gurl = 'http://www.galileo.usg.edu/express';
+    ELSE;
+        # send patron to galileo auth redirector
+        gurl = mkurl(ctx.opac_root _ '/galileo', {}, 1);
+    END %]
+    <a href="[% gurl %]">
+        [% l('GALILEO Research Databases') %]</a><br/>
+    <a href="http://pines.georgialibraries.org/about">
+        [%- l('Learn More About PINES') %]</a><br/>
+    <a href="https://play.google.com/store/apps/details?id=net.kenstir.apps.pines">
+        PINES Android App</a><br/>
+    <a href="http://pines.georgialibraries.org/catalog-help">
+        [% l('Help') %]</a>
+
+    <hr style="margin-top:20px;">
+</div>
+
+    [% IF ctx.timing %]
+    <div id="timing">
+        [% FOR event IN ctx.timing %]
+        At <span class="timing-time">[% event.0 | format("%0.4f") %]</span>:
+        <span class="timing-event">[% event.1 %]</span><br />
+        [% END %]
+    </div>
+    [% END %]
+    <div id="copyright_text" style="margin-top: 2em;">
+        [% l('Copyright &copy; 2006-[_1] Georgia Public Library Service, and others', date.format(date.now, '%Y')) %]
+    </div>
+    <div id="footer_logo">
+        [% l('Powered by') %]
+        <a href="http://evergreen-ils.org">
+            <img src="[% ctx.media_prefix %]/opac/images/eg_tiny_logo.png[% ctx.cache_key %]"
+                style="border:none; width: 94px; height: 16px;"
+                alt="[% l('Evergreen') %]"
+            />
+        </a>
+        <br/> <br/>
+        <div style="float:left; margin:10px 10px 0px 0px;"><a href="http://www.imls.gov">
+            <img src="[% ctx.media_prefix %]/images/IMLS-logo.jpg" style="border:none; width: 150px;" alt="IMLS"></a>
+        </div>
+        <p style="font-weight:normal;font-style:italic;">
+        [% l('Funding Note') %]</p>
+    </div>
+</div>
+</div>
+[% END %]

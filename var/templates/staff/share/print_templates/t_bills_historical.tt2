@@ -1,0 +1,44 @@
+<center><img src="https://pines.georgialibraries.org/dokuwiki/lib/exe/fetch.php?media=logo.png" style="width:150px;"><br/>
+<b>www.gapines.org</b><br/>
+<b>{{current_location.name}}</b></center>
+<h3>Bill History</h3>
+<div ng-repeat="xact in transactions">
+    <br/>
+    <table> 
+      <tr>
+        <td valign="top"><b>Bill ID:</b></td>
+        <td valign="top"><b>{{xact.id}}</b></td>
+      </tr> 
+      <tr>
+        <td valign="top">Bill Start Date: &nbsp; </td>
+        <td valign="top">{{xact.xact_start | date:'M/d/yyyy'}}</td>
+      </tr> 
+        <tr>
+          <td valign="top">Last Billing Type: &nbsp; </td>
+          <td valign="top">{{xact.summary.last_billing_type}}</td>
+        </tr>
+        <tr ng-if="xact.title">
+          <td valign="top">Title:</td>
+          <td valign="top">{{xact.title}}</td>
+        </tr>
+        <tr ng-if="xact.copy_barcode">
+          <td valign="top">Barcode:</td>
+          <td valign="top">{{xact.copy_barcode}}</td>
+        </tr>
+      <tr>
+        <td valign="top">Total Billed:</td>
+        <td valign="top">{{xact.summary.total_owed | currency}}</td>
+      </tr> 
+      <tr>
+        <td valign="top">Total Paid:</td>
+        <td valign="top">{{xact.summary.total_paid | currency}}</td>
+      </tr> 
+      <tr>
+        <td valign="top"><b>Balance:</b></td>
+        <td valign="top"><b>{{xact.summary.balance_owed | currency}}</b></td>
+      </tr> 
+    </table>
+  </div><!-- ng-repeat -->
+<hr/>
+{{current_location.shortname}} {{today | date:'short'}}
+<br/>

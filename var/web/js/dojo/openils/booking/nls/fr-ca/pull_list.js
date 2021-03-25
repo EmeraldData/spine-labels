@@ -1,0 +1,21 @@
+{
+    "COPY_LOOKUP_NO_RESPONSE": "Pas de r\u00e9ponse lors de la v\u00e9rification d\u2019une copie par code \u00e0 barres",
+    "AUTO_th_call_number": "Cote du document",
+    "FOR": "pour",
+    "AUTO_th_copy_location": "Emplacement du document",
+    "AUTO_owning_lib_selector": "Voir la liste d\u00e9roulante pour les biblioth\u00e8ques",
+    "AUTO_interval_in_days": "G\u00e9n\u00e9rer la liste pour un nombre \u00e9quivalent de jours ",
+    "AUTO_th_title_or_name": "Titre ou nom",
+    "AUTO_th_barcode": "Code \u00e0 barres",
+    "PULL_LIST_NO_RESPONSE": "Pas de r\u00e9ponse du serveur pour la liste d\u00e9roulante!",
+    "COPY_MISSING": "Erreur inattendue : Aucune information sur le document : ",
+    "AUTO_ATTR_VALUE_fetch": "Extraire",
+    "PULL_LIST_ERROR": "Erreur lors de l\u2019extraction de la liste de d\u00e9roulement ",
+    "AT": "\u00e0",
+    "AUTO_ATTR_VALUE_print": "Imprimer",
+    "AUTO_th_pickup_lib": "biblioth\u00e8que de collecte",
+    "AUTO_th_resv_details": "D\u00e9tails sur la r\u00e9servation",
+    "COPY_LOOKUP_ERROR": "Erreur lors de la v\u00e9rification d\u2019un document par code \u00e0 barres : ",
+    "AUTO_no_results": "Aucun r\u00e9sultat.",
+    "AUTO_pull_list_title": "Liste d\u00e9roulante pour les r\u00e9servations"
+}

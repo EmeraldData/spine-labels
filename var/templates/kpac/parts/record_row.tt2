@@ -1,0 +1,71 @@
+<div class="search_results">
+    <div class="item_detail_image">
+        [%  img_src = ctx.media_prefix _ '/images/kpac/item_image.jpg' _ ctx.cache_key; # default image
+            ident = attrs.isbn_clean || attrs.upc; 
+            IF ident; 
+                img_src = ctx.media_prefix _ '/opac/extras/ac/jacket/medium/' _ ident;
+            END;
+        %]
+        <a href="[% mkurl(ctx.kpac_root _ '/record/' _ rec_id) %]"><img 
+            alt="[% l('Image of item') %]" width="167"
+            src='[% mkurl(img_src, {}, 1) %]' /></a><br />
+    </div>
+    <div class="item_detail_info">
+        <div class="item_detail_name"><a href="[% mkurl(ctx.kpac_root _ '/record/' _ rec_id) %]">[% attrs.title | html %]</a></div>
+        <div class="item_detail_author">[% l('by [_1]', attrs.author) | html %]</div>
+        <div class="item_detail_callnumber">[% attrs.holdings.0.label | html %]</div>
+        <div class="item_detail_extra_info">
+            [% l('[_1], [_2]', attrs.publisher, attrs.pubdate) | html %] <!-- TODO fix commas, etc. -->
+            [% IF attrs.phys_desc %]<br/>[% attrs.phys_desc | html; END %]
+        </div>
+		
+		<!-- added list annotations -->
+					[% IF ctx.bookbag;
+                        rec_id = rec.id;
+                        FOR note IN ctx.bookbag_items_by_bre_id.$rec_id.notes %]
+                        <div class="item_detail_extra_info" style="font-style:italic;margin-top:5px;">
+                            Note: [% note.note | html %]
+                        </div>
+                        [% END %]
+                    [% END %]
+		<!-- end list annotations -->
+        [%- IF attrs.format_label %]
+            [% FOR format IN attrs.all_formats %]
+			<div class="item_icon_wrapper">
+				<div class="item_icon">
+				    <img title="[% format.label | html %]" 
+                    alt="[% format.label | html %]" 
+                    src="[% format.icon %]" /><br/>
+                    [% format.label | html %]
+				</div>
+			</div>
+            [% END %]
+			<!-- link to add to b4 book log -->
+			<div class="item_icon_wrapper">
+				<div class="item_icon">
+					<script type="text/javascript">
+						var a = escape("[% attrs.title %]");
+						var b = escape("[% attrs.author %]");
+						var b4link = "http://b4.georgialibraries.org/cat_add.php?title=" + a + "&author=" + b;
+						document.write("<a href='" + b4link + "'>");
+					</script>
+					<img src="[% ctx.media_prefix %]/images/kpac/b4only.png" alt="Add to B4 Book Log" /><br/>
+					Add to B4<br/>Book Log</a>
+				</div>  
+			</div>	
+		    <div class="clear">&nbsp;</div>
+	    [% END %]
+	
+        [% IF show_actions %]
+        <div class="item_detail_actions">
+            <div class="button"><a href="[% mkurl(ctx.kpac_root _ '/record/' _ rec_id) %]"><img 
+                src="[% ctx.media_prefix %]/images/kpac/more_info_btn.png[% ctx.cache_key %]" alt="[% l('more info') %]" /></a></div>
+            <div class="button"><a href="[% mkurl(ctx.kpac_root _ '/getit/' _ rec_id) %]"><img 
+                src="[% ctx.media_prefix %]/images/kpac/get_it_btn_sm.png[% ctx.cache_key %]" alt="[% l('get it') %]" /></a></div>
+            <div class="clear">&nbsp;</div>
+        </div>
+        [% END %]
+    </div>
+    <div class="clear">&nbsp;</div>
+</div>
+

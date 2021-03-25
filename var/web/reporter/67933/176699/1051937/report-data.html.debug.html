@@ -1,0 +1,910 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 2020 closeout--invoices</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"466eadd40b3c10580e3ab4e8061161ce"."inv_ident" AS "Vendor Invoice ID",
+	date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") AS "Invoice Date",
+	"7e0846a364619a165b0af890c861db71"."code" AS "Provider"
+  FROM	acq.invoice AS "466eadd40b3c10580e3ab4e8061161ce"
+	INNER JOIN acq.provider AS "7e0846a364619a165b0af890c861db71" ON ("466eadd40b3c10580e3ab4e8061161ce"."provider" = "7e0846a364619a165b0af890c861db71"."id")
+	INNER JOIN actor.org_unit AS "6252c3f1aa8d0ac47d033994571807f2" ON ("466eadd40b3c10580e3ab4e8061161ce"."receiver" = "6252c3f1aa8d0ac47d033994571807f2"."id")
+  WHERE	"6252c3f1aa8d0ac47d033994571807f2"."id" IN ($_44304$65$_44304$,$_44304$67$_44304$,$_44304$373$_44304$,$_44304$66$_44304$,$_44304$394$_44304$)
+	AND "466eadd40b3c10580e3ab4e8061161ce"."close_date" is NULL
+  GROUP BY 1, 2, 3
+  ORDER BY "466eadd40b3c10580e3ab4e8061161ce"."inv_ident" ASC, date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") ASC, "7e0846a364619a165b0af890c861db71"."code" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'data' => '{"version":5,"doc_url":"","core_class":"acqinv","select":[{"alias":"Vendor Invoice ID","path":"acqinv-inv_ident","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"inv_ident","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Invoice Date","path":"acqinv-recv_date","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"recv_date","transform":"date","transform_label":"Date","aggregate":true}},{"alias":"Provider","path":"acqpro-code","field_doc":"","relation":"7e0846a364619a165b0af890c861db71","column":{"colname":"code","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"466eadd40b3c10580e3ab4e8061161ce","path":"acqinv-acqinv","table":"acq.invoice","idlclass":"acqinv","label":"Invoice","join":{"provider-4e0679c827027e0d67b2791323be942a":{"type":"inner","key":"id","alias":"7e0846a364619a165b0af890c861db71","path":"acqinv-provider","table":"acq.provider","idlclass":"acqpro","label":"Invoice :: Provider"},"receiver-d754cdb36fcb1b9c59b88298c5b37b06":{"type":"inner","key":"id","alias":"6252c3f1aa8d0ac47d033994571807f2","path":"acqinv-receiver","table":"actor.org_unit","idlclass":"aou","label":"Invoice :: Receiver"}}},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"Your library system","relation":"6252c3f1aa8d0ac47d033994571807f2","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Close Date","path":"acqinv-close_date","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"close_date","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}}],"having":[],"display_cols":[{"name":"inv_ident","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"index":0,"label":"Vendor Invoice ID","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice"},{"name":"recv_date","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"index":1,"label":"Invoice Date","datatype":"timestamp","doc_text":"","transform":{"label":"Date","transform":"date","aggregate":"undefined"},"path_label":"Invoice"},{"name":"code","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"},{"label":"Provider","from":"acqinv","link":{"name":"provider","label":"Provider","type":"link","key":"id","class":"acqpro","reltype":"has_a","datatype":"link"},"id":"acqinv.acqpro","jtype":"inner","uplink":{"name":"provider","label":"Provider","type":"link","key":"id","class":"acqpro","reltype":"has_a","datatype":"link"},"classname":"acqpro","struct":{"name":"acqpro","label":"Provider","table":"acq.provider","pkey":"id","pkey_sequence":"acq.provider_id_seq","core_label":"Non-core sources","classname":"acqpro"},"table":"acq.provider"}],"index":2,"label":"Provider","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice :: Provider"}],"filter_cols":[{"name":"id","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"},{"label":"Organizational Unit","from":"acqinv","link":{"name":"receiver","label":"Receiver","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqinv.aou","jtype":"inner","uplink":{"name":"receiver","label":"Receiver","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"Your library system","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice :: Receiver"},{"name":"close_date","label":"Close Date","datatype":"timestamp","index":1,"path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"path_label":"Invoice","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'folder' => 3151,
+          'name' => 'List of invoices that are not closed (3.2+)',
+          'owner' => 4009295,
+          'description' => 'Accounts for new Invoice Close Date and Closed By fields.',
+          'id' => 67933,
+          'create_time' => '2019-01-22 14:12:37.66635-05'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => 'Your library system',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'table' => 'acq.invoice',
+                                             'id' => 'acqinv',
+                                             'classname' => 'acqinv',
+                                             'label' => 'Invoice',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'acq.invoice_id_seq',
+                                                           'classname' => 'acqinv',
+                                                           'table' => 'acq.invoice',
+                                                           'label' => 'Invoice',
+                                                           'name' => 'acqinv',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         }
+                                           },
+                                           {
+                                             'jtype' => 'inner',
+                                             'from' => 'acqinv',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'classname' => 'aou',
+                                                           'table' => 'actor.org_unit',
+                                                           'label' => 'Organizational Unit',
+                                                           'name' => 'aou',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'label' => 'Organizational Unit',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'label' => 'Receiver',
+                                                         'class' => 'aou',
+                                                         'name' => 'receiver',
+                                                         'key' => 'id',
+                                                         'datatype' => 'org_unit',
+                                                         'reltype' => 'has_a'
+                                                       },
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'Receiver',
+                                                           'key' => 'id',
+                                                           'class' => 'aou',
+                                                           'name' => 'receiver',
+                                                           'reltype' => 'has_a',
+                                                           'datatype' => 'org_unit'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'id' => 'acqinv.aou'
+                                           }
+                                         ],
+                               'name' => 'id',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'datatype' => 'org_unit',
+                               'label' => 'Organizational Unit ID',
+                               'path_label' => 'Invoice :: Receiver'
+                             },
+                             {
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path_label' => 'Invoice',
+                               'label' => 'Close Date',
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'label' => 'Is NULL',
+                                               'op' => 'is'
+                                             },
+                               'name' => 'close_date',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'transform' => 'Bare'
+                                              },
+                               'path' => [
+                                           {
+                                             'label' => 'Invoice',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqinv',
+                                                           'pkey' => 'id',
+                                                           'table' => 'acq.invoice',
+                                                           'classname' => 'acqinv',
+                                                           'pkey_sequence' => 'acq.invoice_id_seq',
+                                                           'label' => 'Invoice'
+                                                         },
+                                             'table' => 'acq.invoice',
+                                             'classname' => 'acqinv',
+                                             'id' => 'acqinv',
+                                             'jtype' => 'inner'
+                                           }
+                                         ]
+                             }
+                           ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'field_doc' => 'Your library system',
+                         'path' => 'aou-id',
+                         'alias' => 'Organizational Unit ID',
+                         'relation' => '6252c3f1aa8d0ac47d033994571807f2',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'field_doc' => '',
+                         'path' => 'acqinv-close_date',
+                         'alias' => 'Close Date',
+                         'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'colname' => 'close_date',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Invoice',
+                      'table' => 'acq.invoice',
+                      'idlclass' => 'acqinv',
+                      'alias' => '466eadd40b3c10580e3ab4e8061161ce',
+                      'join' => {
+                                  'receiver-d754cdb36fcb1b9c59b88298c5b37b06' => {
+                                                                                   'alias' => '6252c3f1aa8d0ac47d033994571807f2',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acqinv-receiver',
+                                                                                   'label' => 'Invoice :: Receiver',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'type' => 'inner'
+                                                                                 },
+                                  'provider-4e0679c827027e0d67b2791323be942a' => {
+                                                                                   'table' => 'acq.provider',
+                                                                                   'type' => 'inner',
+                                                                                   'idlclass' => 'acqpro',
+                                                                                   'label' => 'Invoice :: Provider',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acqinv-provider',
+                                                                                   'alias' => '7e0846a364619a165b0af890c861db71'
+                                                                                 }
+                                },
+                      'path' => 'acqinv-acqinv'
+                    },
+          'display_cols' => [
+                              {
+                                'index' => 0,
+                                'doc_text' => '',
+                                'label' => 'Vendor Invoice ID',
+                                'path_label' => 'Invoice',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'id' => 'acqinv',
+                                              'classname' => 'acqinv',
+                                              'table' => 'acq.invoice',
+                                              'label' => 'Invoice',
+                                              'struct' => {
+                                                            'name' => 'acqinv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acqinv',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'table' => 'acq.invoice',
+                                                            'label' => 'Invoice'
+                                                          }
+                                            }
+                                          ],
+                                'name' => 'inv_ident',
+                                'datatype' => 'text'
+                              },
+                              {
+                                'label' => 'Invoice Date',
+                                'path_label' => 'Invoice',
+                                'path' => [
+                                            {
+                                              'label' => 'Invoice',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqinv',
+                                                            'label' => 'Invoice',
+                                                            'table' => 'acq.invoice',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'classname' => 'acqinv'
+                                                          },
+                                              'table' => 'acq.invoice',
+                                              'id' => 'acqinv',
+                                              'classname' => 'acqinv',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'date',
+                                                 'aggregate' => 'undefined',
+                                                 'label' => 'Date'
+                                               },
+                                'name' => 'recv_date',
+                                'datatype' => 'timestamp',
+                                'doc_text' => '',
+                                'index' => 1
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'table' => 'acq.invoice',
+                                              'classname' => 'acqinv',
+                                              'id' => 'acqinv',
+                                              'struct' => {
+                                                            'name' => 'acqinv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'classname' => 'acqinv',
+                                                            'table' => 'acq.invoice',
+                                                            'label' => 'Invoice'
+                                                          },
+                                              'label' => 'Invoice'
+                                            },
+                                            {
+                                              'id' => 'acqinv.acqpro',
+                                              'table' => 'acq.provider',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'class' => 'acqpro',
+                                                            'name' => 'provider',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Provider'
+                                                          },
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'label' => 'Provider',
+                                                          'key' => 'id',
+                                                          'class' => 'acqpro',
+                                                          'name' => 'provider',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'label' => 'Provider',
+                                              'from' => 'acqinv',
+                                              'struct' => {
+                                                            'table' => 'acq.provider',
+                                                            'classname' => 'acqpro',
+                                                            'pkey_sequence' => 'acq.provider_id_seq',
+                                                            'label' => 'Provider',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpro',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'classname' => 'acqpro',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'name' => 'code',
+                                'datatype' => 'text',
+                                'label' => 'Provider',
+                                'path_label' => 'Invoice :: Provider',
+                                'doc_text' => '',
+                                'index' => 2
+                              }
+                            ],
+          'having' => [],
+          'doc_url' => '',
+          'core_class' => 'acqinv',
+          'select' => [
+                        {
+                          'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                          'column' => {
+                                        'colname' => 'inv_ident',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[1]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'acqinv-inv_ident',
+                          'field_doc' => '',
+                          'alias' => 'Vendor Invoice ID'
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'colname' => 'recv_date',
+                                        'transform' => 'date',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' )
+                                      },
+                          'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                          'alias' => 'Invoice Date',
+                          'field_doc' => '',
+                          'path' => 'acqinv-recv_date'
+                        },
+                        {
+                          'relation' => '7e0846a364619a165b0af890c861db71',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'code',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[1]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Provider',
+                          'path' => 'acqpro-code',
+                          'field_doc' => ''
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'name' => '2020 closeout--invoices',
+          'recur' => 0,
+          'owner' => 863206,
+          'create_time' => '2020-05-11 13:06:57.597879-04',
+          'template' => {
+                          'data' => '{"version":5,"doc_url":"","core_class":"acqinv","select":[{"alias":"Vendor Invoice ID","path":"acqinv-inv_ident","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"inv_ident","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Invoice Date","path":"acqinv-recv_date","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"recv_date","transform":"date","transform_label":"Date","aggregate":true}},{"alias":"Provider","path":"acqpro-code","field_doc":"","relation":"7e0846a364619a165b0af890c861db71","column":{"colname":"code","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"466eadd40b3c10580e3ab4e8061161ce","path":"acqinv-acqinv","table":"acq.invoice","idlclass":"acqinv","label":"Invoice","join":{"provider-4e0679c827027e0d67b2791323be942a":{"type":"inner","key":"id","alias":"7e0846a364619a165b0af890c861db71","path":"acqinv-provider","table":"acq.provider","idlclass":"acqpro","label":"Invoice :: Provider"},"receiver-d754cdb36fcb1b9c59b88298c5b37b06":{"type":"inner","key":"id","alias":"6252c3f1aa8d0ac47d033994571807f2","path":"acqinv-receiver","table":"actor.org_unit","idlclass":"aou","label":"Invoice :: Receiver"}}},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"Your library system","relation":"6252c3f1aa8d0ac47d033994571807f2","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Close Date","path":"acqinv-close_date","field_doc":"","relation":"466eadd40b3c10580e3ab4e8061161ce","column":{"colname":"close_date","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}}],"having":[],"display_cols":[{"name":"inv_ident","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"index":0,"label":"Vendor Invoice ID","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice"},{"name":"recv_date","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"index":1,"label":"Invoice Date","datatype":"timestamp","doc_text":"","transform":{"label":"Date","transform":"date","aggregate":"undefined"},"path_label":"Invoice"},{"name":"code","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"},{"label":"Provider","from":"acqinv","link":{"name":"provider","label":"Provider","type":"link","key":"id","class":"acqpro","reltype":"has_a","datatype":"link"},"id":"acqinv.acqpro","jtype":"inner","uplink":{"name":"provider","label":"Provider","type":"link","key":"id","class":"acqpro","reltype":"has_a","datatype":"link"},"classname":"acqpro","struct":{"name":"acqpro","label":"Provider","table":"acq.provider","pkey":"id","pkey_sequence":"acq.provider_id_seq","core_label":"Non-core sources","classname":"acqpro"},"table":"acq.provider"}],"index":2,"label":"Provider","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice :: Provider"}],"filter_cols":[{"name":"id","path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"},{"label":"Organizational Unit","from":"acqinv","link":{"name":"receiver","label":"Receiver","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqinv.aou","jtype":"inner","uplink":{"name":"receiver","label":"Receiver","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":0,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"Your library system","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Invoice :: Receiver"},{"name":"close_date","label":"Close Date","datatype":"timestamp","index":1,"path":[{"label":"Invoice","id":"acqinv","jtype":"inner","classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"path_label":"Invoice","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'folder' => 3151,
+                          'name' => 'List of invoices that are not closed (3.2+)',
+                          'owner' => 4009295,
+                          'description' => 'Accounts for new Invoice Close Date and Closed By fields.',
+                          'id' => 67933,
+                          'create_time' => '2019-01-22 14:12:37.66635-05'
+                        },
+          'folder' => 3869,
+          'data' => '{"P0":["65","67","373","66","394"]}',
+          'recurrence' => '1 day',
+          'description' => '',
+          'id' => 176699
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => 'Your library system',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef,
+                                                'label' => 'Raw Data'
+                                              },
+                               'path' => [
+                                           {
+                                             'jtype' => 'inner',
+                                             'table' => 'acq.invoice',
+                                             'id' => 'acqinv',
+                                             'classname' => 'acqinv',
+                                             'label' => 'Invoice',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'acq.invoice_id_seq',
+                                                           'classname' => 'acqinv',
+                                                           'table' => 'acq.invoice',
+                                                           'label' => 'Invoice',
+                                                           'name' => 'acqinv',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         }
+                                           },
+                                           {
+                                             'jtype' => 'inner',
+                                             'from' => 'acqinv',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'classname' => 'aou',
+                                                           'table' => 'actor.org_unit',
+                                                           'label' => 'Organizational Unit',
+                                                           'name' => 'aou',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'label' => 'Organizational Unit',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'label' => 'Receiver',
+                                                         'class' => 'aou',
+                                                         'name' => 'receiver',
+                                                         'key' => 'id',
+                                                         'datatype' => 'org_unit',
+                                                         'reltype' => 'has_a'
+                                                       },
+                                             'classname' => 'aou',
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'Receiver',
+                                                           'key' => 'id',
+                                                           'class' => 'aou',
+                                                           'name' => 'receiver',
+                                                           'reltype' => 'has_a',
+                                                           'datatype' => 'org_unit'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'id' => 'acqinv.aou'
+                                           }
+                                         ],
+                               'name' => 'id',
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'datatype' => 'org_unit',
+                               'label' => 'Organizational Unit ID',
+                               'path_label' => 'Invoice :: Receiver'
+                             },
+                             {
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path_label' => 'Invoice',
+                               'label' => 'Close Date',
+                               'datatype' => 'timestamp',
+                               'operator' => {
+                                               'label' => 'Is NULL',
+                                               'op' => 'is'
+                                             },
+                               'name' => 'close_date',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'transform' => 'Bare'
+                                              },
+                               'path' => [
+                                           {
+                                             'label' => 'Invoice',
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqinv',
+                                                           'pkey' => 'id',
+                                                           'table' => 'acq.invoice',
+                                                           'classname' => 'acqinv',
+                                                           'pkey_sequence' => 'acq.invoice_id_seq',
+                                                           'label' => 'Invoice'
+                                                         },
+                                             'table' => 'acq.invoice',
+                                             'classname' => 'acqinv',
+                                             'id' => 'acqinv',
+                                             'jtype' => 'inner'
+                                           }
+                                         ]
+                             }
+                           ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'field_doc' => 'Your library system',
+                         'path' => 'aou-id',
+                         'alias' => 'Organizational Unit ID',
+                         'relation' => '6252c3f1aa8d0ac47d033994571807f2',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'field_doc' => '',
+                         'path' => 'acqinv-close_date',
+                         'alias' => 'Close Date',
+                         'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'colname' => 'close_date',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       }
+                     ],
+          'from' => {
+                      'label' => 'Invoice',
+                      'table' => 'acq.invoice',
+                      'idlclass' => 'acqinv',
+                      'alias' => '466eadd40b3c10580e3ab4e8061161ce',
+                      'join' => {
+                                  'receiver-d754cdb36fcb1b9c59b88298c5b37b06' => {
+                                                                                   'alias' => '6252c3f1aa8d0ac47d033994571807f2',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acqinv-receiver',
+                                                                                   'label' => 'Invoice :: Receiver',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'table' => 'actor.org_unit',
+                                                                                   'type' => 'inner'
+                                                                                 },
+                                  'provider-4e0679c827027e0d67b2791323be942a' => {
+                                                                                   'table' => 'acq.provider',
+                                                                                   'type' => 'inner',
+                                                                                   'idlclass' => 'acqpro',
+                                                                                   'label' => 'Invoice :: Provider',
+                                                                                   'key' => 'id',
+                                                                                   'path' => 'acqinv-provider',
+                                                                                   'alias' => '7e0846a364619a165b0af890c861db71'
+                                                                                 }
+                                },
+                      'path' => 'acqinv-acqinv'
+                    },
+          'display_cols' => [
+                              {
+                                'index' => 0,
+                                'doc_text' => '',
+                                'label' => 'Vendor Invoice ID',
+                                'path_label' => 'Invoice',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'id' => 'acqinv',
+                                              'classname' => 'acqinv',
+                                              'table' => 'acq.invoice',
+                                              'label' => 'Invoice',
+                                              'struct' => {
+                                                            'name' => 'acqinv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acqinv',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'table' => 'acq.invoice',
+                                                            'label' => 'Invoice'
+                                                          }
+                                            }
+                                          ],
+                                'name' => 'inv_ident',
+                                'datatype' => 'text'
+                              },
+                              {
+                                'label' => 'Invoice Date',
+                                'path_label' => 'Invoice',
+                                'path' => [
+                                            {
+                                              'label' => 'Invoice',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqinv',
+                                                            'label' => 'Invoice',
+                                                            'table' => 'acq.invoice',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'classname' => 'acqinv'
+                                                          },
+                                              'table' => 'acq.invoice',
+                                              'id' => 'acqinv',
+                                              'classname' => 'acqinv',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'date',
+                                                 'aggregate' => 'undefined',
+                                                 'label' => 'Date'
+                                               },
+                                'name' => 'recv_date',
+                                'datatype' => 'timestamp',
+                                'doc_text' => '',
+                                'index' => 1
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'table' => 'acq.invoice',
+                                              'classname' => 'acqinv',
+                                              'id' => 'acqinv',
+                                              'struct' => {
+                                                            'name' => 'acqinv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'classname' => 'acqinv',
+                                                            'table' => 'acq.invoice',
+                                                            'label' => 'Invoice'
+                                                          },
+                                              'label' => 'Invoice'
+                                            },
+                                            {
+                                              'id' => 'acqinv.acqpro',
+                                              'table' => 'acq.provider',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'class' => 'acqpro',
+                                                            'name' => 'provider',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Provider'
+                                                          },
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'label' => 'Provider',
+                                                          'key' => 'id',
+                                                          'class' => 'acqpro',
+                                                          'name' => 'provider',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'label' => 'Provider',
+                                              'from' => 'acqinv',
+                                              'struct' => {
+                                                            'table' => 'acq.provider',
+                                                            'classname' => 'acqpro',
+                                                            'pkey_sequence' => 'acq.provider_id_seq',
+                                                            'label' => 'Provider',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqpro',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'classname' => 'acqpro',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'name' => 'code',
+                                'datatype' => 'text',
+                                'label' => 'Provider',
+                                'path_label' => 'Invoice :: Provider',
+                                'doc_text' => '',
+                                'index' => 2
+                              }
+                            ],
+          'having' => [],
+          'doc_url' => '',
+          'core_class' => 'acqinv',
+          'select' => [
+                        {
+                          'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                          'column' => {
+                                        'colname' => 'inv_ident',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[1]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'acqinv-inv_ident',
+                          'field_doc' => '',
+                          'alias' => 'Vendor Invoice ID'
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Date',
+                                        'colname' => 'recv_date',
+                                        'transform' => 'date',
+                                        'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' )
+                                      },
+                          'relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                          'alias' => 'Invoice Date',
+                          'field_doc' => '',
+                          'path' => 'acqinv-recv_date'
+                        },
+                        {
+                          'relation' => '7e0846a364619a165b0af890c861db71',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'code',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'filter_cols'}[1]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Provider',
+                          'path' => 'acqpro-code',
+                          'field_doc' => ''
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-05-11 13:06:57.597879-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_builder' => bless( {
+                                                               '_resultset_limit' => 1048575,
+                                                               '_params' => {
+                                                                              'P0' => [
+                                                                                        '65',
+                                                                                        '67',
+                                                                                        '373',
+                                                                                        '66',
+                                                                                        '394'
+                                                                                      ]
+                                                                            },
+                                                               '_relative_time' => '2020-05-11 13:06:57.597879-04',
+                                                               '_rels' => {
+                                                                            '6252c3f1aa8d0ac47d033994571807f2' => bless( {
+                                                                                                                           '_alias' => '6252c3f1aa8d0ac47d033994571807f2',
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_sql' => 'actor.org_unit AS "6252c3f1aa8d0ac47d033994571807f2"',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_join' => [],
+                                                                                                                           '_table' => 'actor.org_unit'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '466eadd40b3c10580e3ab4e8061161ce' => bless( {
+                                                                                                                           '_alias' => '466eadd40b3c10580e3ab4e8061161ce',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_sql' => 'acq.provider AS "7e0846a364619a165b0af890c861db71"',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_table' => 'acq.provider',
+                                                                                                                                                                          '_alias' => '7e0846a364619a165b0af890c861db71',
+                                                                                                                                                                          '_join_type' => 'inner'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN acq.provider AS "7e0846a364619a165b0af890c861db71" ON ("466eadd40b3c10580e3ab4e8061161ce"."provider" = "7e0846a364619a165b0af890c861db71"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'466eadd40b3c10580e3ab4e8061161ce'},
+                                                                                                                                                 '_left_col' => 'provider'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'466eadd40b3c10580e3ab4e8061161ce'},
+                                                                                                                                                 '_left_col' => 'receiver',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "6252c3f1aa8d0ac47d033994571807f2" ON ("466eadd40b3c10580e3ab4e8061161ce"."receiver" = "6252c3f1aa8d0ac47d033994571807f2"."id")',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'6252c3f1aa8d0ac47d033994571807f2'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'acq.invoice',
+                                                                                                                           '_sql' => 'acq.invoice AS "466eadd40b3c10580e3ab4e8061161ce"
+	INNER JOIN acq.provider AS "7e0846a364619a165b0af890c861db71" ON ("466eadd40b3c10580e3ab4e8061161ce"."provider" = "7e0846a364619a165b0af890c861db71"."id")
+	INNER JOIN actor.org_unit AS "6252c3f1aa8d0ac47d033994571807f2" ON ("466eadd40b3c10580e3ab4e8061161ce"."receiver" = "6252c3f1aa8d0ac47d033994571807f2"."id")',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '7e0846a364619a165b0af890c861db71' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'466eadd40b3c10580e3ab4e8061161ce'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_sql' => undef
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_transform' => 'Bare',
+                                        '_relation' => '6252c3f1aa8d0ac47d033994571807f2',
+                                        '_sql' => '"6252c3f1aa8d0ac47d033994571807f2"."id" IN ($_44304$65$_44304$,$_44304$67$_44304$,$_44304$373$_44304$,$_44304$66$_44304$,$_44304$394$_44304$)',
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                                        '_sql' => '"466eadd40b3c10580e3ab4e8061161ce"."close_date" is NULL',
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'close_date',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"466eadd40b3c10580e3ab4e8061161ce"."inv_ident" AS "Vendor Invoice ID",
+	date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") AS "Invoice Date",
+	"7e0846a364619a165b0af890c861db71"."code" AS "Provider"
+  FROM	acq.invoice AS "466eadd40b3c10580e3ab4e8061161ce"
+	INNER JOIN acq.provider AS "7e0846a364619a165b0af890c861db71" ON ("466eadd40b3c10580e3ab4e8061161ce"."provider" = "7e0846a364619a165b0af890c861db71"."id")
+	INNER JOIN actor.org_unit AS "6252c3f1aa8d0ac47d033994571807f2" ON ("466eadd40b3c10580e3ab4e8061161ce"."receiver" = "6252c3f1aa8d0ac47d033994571807f2"."id")
+  WHERE	"6252c3f1aa8d0ac47d033994571807f2"."id" IN ($_44304$65$_44304$,$_44304$67$_44304$,$_44304$373$_44304$,$_44304$66$_44304$,$_44304$394$_44304$)
+	AND "466eadd40b3c10580e3ab4e8061161ce"."close_date" is NULL
+  GROUP BY 1, 2, 3
+  ORDER BY "466eadd40b3c10580e3ab4e8061161ce"."inv_ident" ASC, date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") ASC, "7e0846a364619a165b0af890c861db71"."code" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_order_by' => [
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"466eadd40b3c10580e3ab4e8061161ce"."inv_ident" ASC',
+                                           '_relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'inv_ident',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Date',
+                                                          'transform' => 'date',
+                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                          'colname' => 'recv_date'
+                                                        },
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_transform' => 'GenericTransform',
+                                           '_sql' => 'date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") ASC',
+                                           '_relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '7e0846a364619a165b0af890c861db71',
+                                           '_sql' => '"7e0846a364619a165b0af890c861db71"."code" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'code',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_relation' => '466eadd40b3c10580e3ab4e8061161ce',
+                                         '_sql' => '"466eadd40b3c10580e3ab4e8061161ce"."inv_ident" AS "Vendor Invoice ID"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Vendor Invoice ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Invoice Date',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'GenericTransform',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => 'date("466eadd40b3c10580e3ab4e8061161ce"."recv_date") AS "Invoice Date"',
+                                         '_relation' => '466eadd40b3c10580e3ab4e8061161ce'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Provider',
+                                         '_aggregate' => undef,
+                                         '_relation' => '7e0846a364619a165b0af890c861db71',
+                                         '_sql' => '"7e0846a364619a165b0af890c861db71"."code" AS "Provider"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'466eadd40b3c10580e3ab4e8061161ce'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>[% l('Get an eCard') %]</title>
+    [% INCLUDE 'opac/parts/googalytics_new.tt2' %]
+    [% INCLUDE 'opac/parts/goog_tag_manager.tt2' %]
+
+    <!-- NOTE: BootstrapCSS v4 does not play nicely with BC headers -->
+    <link rel="stylesheet" href="/js/ui/default/staff/build/css/bootstrap.min.css" />
+
+    <!-- QUIPU CSS -->
+    <link rel="stylesheet" href="https://ecard.quipugroup.net/css/eCARD.css">
+    <link rel="stylesheet"
+      href="https://ecard.quipugroup.net/js/jqueryUI/css/ui-lightness/jquery-ui-1.10.4.custom.min.css">
+    <!-- END QUIPU CSS -->
+
+    <!-- local CSS -->
+    <style>
+      /* BC screen reader links are not correctly hidden via their API.
+         Add some additional CSS to hide them */
+      .screen_reader_nav {
+        position: absolute;
+        top: -1000px;
+        left: -1000px;
+        z-index: 0;
+      }
+      #ecard-container-wrapper {
+        width: 98%;
+      }
+      #ecard-container {
+        margin-bottom: 20px;
+        color: #585d5e;
+        font-family: 'Open Sans', sans-serif;
+        letter-spacing: .5pt;
+        font-size: 15px;
+        width: 900px; /* to match bibliocms */
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+
+    <!-- BC CSS -->
+    [% ctx.bc_css %]
+    <!-- BC END CSS -->
+
+  </head>
+  <body>
+
+    [% INCLUDE 'opac/parts/goog_tag_manager_noscript.tt2' %]
+
+    <!-- BC SCREEN READER NAVIGATION -->
+    [% ctx.bc_screen_reader_navigation %]
+    <!-- BC END SCREEN READER NAVIGATION -->
+
+    <!-- BC HEADER -->
+    [% ctx.bc_header %]
+    <!-- BC END HEADER -->
+
+    <div id='ecard-container-wrapper'>
+      <div id='ecard-container'>
+
+        <div id='ecard-preamble'>
+
+          <h1>Get a KCLS eCard</h1>
+
+          <p>
+            Please fill out the application below to get immediate 24/7
+            access to King County Library System’s online services
+            including e-books and audiobooks, movies and music, online
+            classes, exam prep and research databases, and magazines.
+          </p>
+          <!--
+          <p>
+            Please apply <a title="Get A Library Card"
+              href="https://w3.kcls.org/get-a-library-card">here</a>
+            if you would prefer a card with full library privileges 
+            including check out, computer use and printing.
+          </p>
+          -->
+          <p>
+            If your eCard application is successful we will mail
+            a confirmation letter to you in order to verify your
+            address. You must follow the instructions in the letter so
+            that the account remains open.
+          </p>
+          <p>
+            Want more information about the eCard and who qualifies to
+            use it? Read the <a href="https://kcls.org/faq/ecards/#ecards">FAQ</a>.
+          </p>
+          <p><b>KCLS eCard is not available to City of Seattle residents.</b></p>
+        </div>
+
+        <div id="eCARD" data-language="en" data-branchid="">
+          <!-- eCARD requires JavaScript in order to display the registration form -->
+          <!-- The following will detect if JavaScript is enabled on the patron's browser -->
+          <noscript>
+            <h2 style="color:red;">Warning - JavaScript Required</h2>
+            <p>
+             For full functionality of this web page it is necessary to enable 
+             JavaScript in your browser. For more information on most browsers, try 
+             <a href="http://www.enable-javascript.com/" target="_blank">How to enable JavaScript</a> 
+             OR <a href="http://activatejavascript.org/en/instructions" target="_blank">activatejavascript.org</a>
+            </p>
+          </noscript>
+        </div>
+      </div>
+    </div>
+
+    <!-- BC FOOTER -->
+    [% ctx.bc_footer %]
+    <!-- BC END FOOTER -->
+
+
+    <!-- QUIPU JS -->
+    <script type="text/javascript" src="https://ecard.quipugroup.net/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://ecard.quipugroup.net/js/jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="https://ecard.quipugroup.net/js/jquery.xdomainrequest.min.js"></script>
+    <script type="text/javascript" src="https://ecard.quipugroup.net/js/jquery.PrintArea.js"></script>
+    <script type="text/javascript" src="https://ecard.quipugroup.net/js/eCARDMain.js"></script>
+    <script type="text/javascript" src="https://ecard.quipugroup.net/Libraries/22/eCARDLibrary.js"></script>
+    <!-- END QUIPU JS -->
+
+    <!-- BC requires jquery, loaded from quipu (above) in this form -->
+    <!-- BC JS -->
+    [% ctx.bc_js %]
+    <!-- BC END JS -->
+
+  </body>
+</html>
+

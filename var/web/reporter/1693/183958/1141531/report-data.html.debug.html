@@ -1,0 +1,336 @@
+<html><head><meta charset='utf-8'><title>DEBUG: Patron count  BPL June 2020</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name",
+	COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"
+  FROM	actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")
+  WHERE	"b312819df8fe889b50f70ea9fa054e72"."id" IN ($_21296$157$_21296$)
+	AND "8bcc25c96aa5a71f7a76309077753e67"."active" = $_21296$t$_21296$
+	AND "8bcc25c96aa5a71f7a76309077753e67"."deleted" = $_21296$t$_21296$
+  GROUP BY 1
+  ORDER BY "b312819df8fe889b50f70ea9fa054e72"."shortname" ASC, COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'name' => 'Total Users by Library',
+          'folder' => 5,
+          'create_time' => '2007-01-22 11:04:46-05',
+          'id' => 1693,
+          'owner' => 1,
+          'description' => 'Count of Users at selected libraries.',
+          'data' => '{"select":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"actor.usr","path":"au","alias":"8bcc25c96aa5a71f7a76309077753e67","join":{"home_ou":{"key":"id","table":"actor.org_unit","path":"au-home_ou-aou","alias":"b312819df8fe889b50f70ea9fa054e72"}}},"where":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P3"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-active","column":{"transform":"Bare","colname":"active"},"condition":{"=":"::P4"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-deleted","column":{"transform":"Bare","colname":"deleted"},"condition":{"=":"::P5"}}],"having":[],"order_by":[]}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'alias' => 'Library Short (Policy) Name',
+                          'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                          'path' => 'au-home_ou-aou-shortname'
+                        },
+                        {
+                          'path' => 'au-id',
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'alias' => 'Count',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'path' => 'au-home_ou-aou-id',
+                         'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                         'condition' => {
+                                          'in' => '::P3'
+                                        }
+                       },
+                       {
+                         'path' => 'au-active',
+                         'condition' => {
+                                          '=' => '::P4'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'active'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '=' => '::P5'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                         'path' => 'au-deleted',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ],
+          'order_by' => [],
+          'from' => {
+                      'path' => 'au',
+                      'join' => {
+                                  'home_ou' => {
+                                                 'alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                 'table' => 'actor.org_unit',
+                                                 'path' => 'au-home_ou-aou',
+                                                 'key' => 'id'
+                                               }
+                                },
+                      'alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                      'table' => 'actor.usr'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'name' => 'Total Users by Library',
+                          'folder' => 5,
+                          'create_time' => '2007-01-22 11:04:46-05',
+                          'id' => 1693,
+                          'owner' => 1,
+                          'description' => 'Count of Users at selected libraries.',
+                          'data' => '{"select":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"actor.usr","path":"au","alias":"8bcc25c96aa5a71f7a76309077753e67","join":{"home_ou":{"key":"id","table":"actor.org_unit","path":"au-home_ou-aou","alias":"b312819df8fe889b50f70ea9fa054e72"}}},"where":[{"relation":"b312819df8fe889b50f70ea9fa054e72","path":"au-home_ou-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P3"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-active","column":{"transform":"Bare","colname":"active"},"condition":{"=":"::P4"}},{"relation":"8bcc25c96aa5a71f7a76309077753e67","path":"au-deleted","column":{"transform":"Bare","colname":"deleted"},"condition":{"=":"::P5"}}],"having":[],"order_by":[]}'
+                        },
+          'data' => '{"P3":["157"],"P4":"t","P5":"t","__pivot_label":"","__pivot_data":"2"}',
+          'recurrence' => '1 day',
+          'recur' => 1,
+          'description' => '',
+          'owner' => 182892,
+          'name' => 'Patron count  BPL June 2020',
+          'folder' => 4552,
+          'id' => 183958,
+          'create_time' => '2020-08-12 16:25:57.607084-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'having' => [],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'alias' => 'Library Short (Policy) Name',
+                          'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                          'path' => 'au-home_ou-aou-shortname'
+                        },
+                        {
+                          'path' => 'au-id',
+                          'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                          'alias' => 'Count',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'colname' => 'id'
+                                      }
+                        }
+                      ],
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'id'
+                                     },
+                         'path' => 'au-home_ou-aou-id',
+                         'relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                         'condition' => {
+                                          'in' => '::P3'
+                                        }
+                       },
+                       {
+                         'path' => 'au-active',
+                         'condition' => {
+                                          '=' => '::P4'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'active'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '=' => '::P5'
+                                        },
+                         'relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                         'path' => 'au-deleted',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ],
+          'order_by' => [],
+          'from' => {
+                      'path' => 'au',
+                      'join' => {
+                                  'home_ou' => {
+                                                 'alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                 'table' => 'actor.org_unit',
+                                                 'path' => 'au-home_ou-aou',
+                                                 'key' => 'id'
+                                               }
+                                },
+                      'alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                      'table' => 'actor.usr'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-11-16 16:25:57.607084-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name",
+	COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"
+  FROM	actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")
+  WHERE	"b312819df8fe889b50f70ea9fa054e72"."id" IN ($_21296$157$_21296$)
+	AND "8bcc25c96aa5a71f7a76309077753e67"."active" = $_21296$t$_21296$
+	AND "8bcc25c96aa5a71f7a76309077753e67"."deleted" = $_21296$t$_21296$
+  GROUP BY 1
+  ORDER BY "b312819df8fe889b50f70ea9fa054e72"."shortname" ASC, COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => bless( {
+                                     '_nullable' => undef,
+                                     '_alias' => '8bcc25c96aa5a71f7a76309077753e67',
+                                     '_columns' => [],
+                                     '_join' => [
+                                                  bless( {
+                                                           '_right_rel' => bless( {
+                                                                                    '_table' => 'actor.org_unit',
+                                                                                    '_columns' => [],
+                                                                                    '_join' => [],
+                                                                                    '_is_join' => 1,
+                                                                                    '_sql' => 'actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72"',
+                                                                                    '_join_type' => 'inner',
+                                                                                    '_alias' => 'b312819df8fe889b50f70ea9fa054e72',
+                                                                                    '_builder' => bless( {
+                                                                                                           '_pivot_data' => '2',
+                                                                                                           '_rels' => {
+                                                                                                                        'b312819df8fe889b50f70ea9fa054e72' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'},
+                                                                                                                        '8bcc25c96aa5a71f7a76309077753e67' => $VAR1->{'_from'}
+                                                                                                                      },
+                                                                                                           '_relative_time' => '2020-11-16 16:25:57.607084-05',
+                                                                                                           '_params' => {
+                                                                                                                          'P3' => [
+                                                                                                                                    '157'
+                                                                                                                                  ],
+                                                                                                                          '__pivot_label' => '',
+                                                                                                                          'P4' => 't',
+                                                                                                                          '__pivot_data' => '2',
+                                                                                                                          'P5' => 't'
+                                                                                                                        },
+                                                                                                           '_resultset_limit' => 1048575,
+                                                                                                           '_sql' => undef
+                                                                                                         }, 'OpenILS::Reporter::SQLBuilder' )
+                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                           '_left_col' => 'home_ou',
+                                                           '_sql' => '
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")',
+                                                           '_join_type' => 'i',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_right_col' => 'id'
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                ],
+                                     '_table' => 'actor.usr',
+                                     '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                     '_sql' => 'actor.usr AS "8bcc25c96aa5a71f7a76309077753e67"
+	INNER JOIN actor.org_unit AS "b312819df8fe889b50f70ea9fa054e72" ON ("8bcc25c96aa5a71f7a76309077753e67"."home_ou" = "b312819df8fe889b50f70ea9fa054e72"."id")'
+                                   }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                 '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Library Short (Policy) Name',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                         '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."shortname" AS "Library Short (Policy) Name"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => 'COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") AS "Count"',
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                         '_transform' => 'count',
+                                         '_column' => {
+                                                        'transform' => 'count',
+                                                        'colname' => 'id'
+                                                      },
+                                         '_alias' => 'Count'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_where' => [
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P3'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."id" IN ($_21296$157$_21296$)',
+                                        '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'active'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => '::P4'
+                                                        },
+                                        '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"8bcc25c96aa5a71f7a76309077753e67"."active" = $_21296$t$_21296$',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          '=' => '::P5'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"8bcc25c96aa5a71f7a76309077753e67"."deleted" = $_21296$t$_21296$',
+                                        '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_relation' => 'b312819df8fe889b50f70ea9fa054e72',
+                                           '_sql' => '"b312819df8fe889b50f70ea9fa054e72"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => 'COUNT("8bcc25c96aa5a71f7a76309077753e67"."id") ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_relation' => '8bcc25c96aa5a71f7a76309077753e67',
+                                           '_transform' => 'count'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

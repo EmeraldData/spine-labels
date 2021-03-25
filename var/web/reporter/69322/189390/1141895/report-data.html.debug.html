@@ -1,0 +1,583 @@
+<html><head><meta charset='utf-8'><title>DEBUG: test run </title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" AS "Owning Library",
+	"92d3a56e45f42d8178a4d201b14d6a1c"."name" AS "Workstation Name"
+  FROM	actor.workstation AS "92d3a56e45f42d8178a4d201b14d6a1c"
+	INNER JOIN actor.org_unit AS "7cee800584fc7d1b82e50e097497b2ad" ON ("92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" = "7cee800584fc7d1b82e50e097497b2ad"."id")
+  WHERE	"7cee800584fc7d1b82e50e097497b2ad"."id" IN ($_85078$394$_85078$)
+  GROUP BY 1, 2
+  ORDER BY "92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" ASC, "92d3a56e45f42d8178a4d201b14d6a1c"."name" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'data' => '{"version":5,"core_class":"aws","select":[{"alias":"Owning Library","path":"aws-owning_lib","field_doc":"","relation":"92d3a56e45f42d8178a4d201b14d6a1c","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Workstation Name","path":"aws-name","field_doc":"","relation":"92d3a56e45f42d8178a4d201b14d6a1c","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"92d3a56e45f42d8178a4d201b14d6a1c","path":"aws-aws","table":"actor.workstation","idlclass":"aws","label":"Workstation","join":{"owning_lib-7ddaea150c3d0193bf07636a4f458f4f":{"type":"inner","key":"id","alias":"7cee800584fc7d1b82e50e097497b2ad","path":"aws-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Workstation -> Owning Library (inner)"}}},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"7cee800584fc7d1b82e50e097497b2ad","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":0,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Workstation","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"name","label":"Workstation Name","datatype":"text","index":1,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Workstation","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":0,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"},{"label":"Owning Library","from":"aws","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"aws.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Workstation -> Owning Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'description' => 'Display:
+Workstation -> Owning Library
+Workstation -> Workstation Name
+Filters:
+Workstation -> Owning Library (inner) -> Organizational Unit ID (In List)',
+          'owner' => 2923364,
+          'id' => 69322,
+          'create_time' => '2020-05-04 12:24:33.790477-04',
+          'name' => 'List of Workstations',
+          'folder' => 2569
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'core_class' => 'aws',
+          'from' => {
+                      'path' => 'aws-aws',
+                      'idlclass' => 'aws',
+                      'label' => 'Workstation',
+                      'join' => {
+                                  'owning_lib-7ddaea150c3d0193bf07636a4f458f4f' => {
+                                                                                     'alias' => '7cee800584fc7d1b82e50e097497b2ad',
+                                                                                     'type' => 'inner',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'path' => 'aws-owning_lib',
+                                                                                     'label' => 'Workstation -> Owning Library (inner)',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'key' => 'id'
+                                                                                   }
+                                },
+                      'alias' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                      'table' => 'actor.workstation'
+                    },
+          'filter_cols' => [
+                             {
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'id',
+                               'index' => 0,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'path_label' => 'Workstation -> Owning Library (inner)',
+                               'selector' => 'shortname',
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'id' => 'aws',
+                                             'label' => 'Workstation',
+                                             'table' => 'actor.workstation',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'actor.workstation_id_seq',
+                                                           'table' => 'actor.workstation',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aws',
+                                                           'name' => 'aws',
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Workstation'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'aws'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'class' => 'aou',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'owning_lib',
+                                                           'label' => 'Owning Library'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit',
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'link' => {
+                                                         'class' => 'aou',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'label' => 'Owning Library',
+                                                         'name' => 'owning_lib',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id'
+                                                       },
+                                             'id' => 'aws.aou',
+                                             'classname' => 'aou',
+                                             'from' => 'aws',
+                                             'label' => 'Owning Library'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Organizational Unit ID'
+                             }
+                           ],
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Owning Library',
+                          'relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                          'path' => 'aws-owning_lib'
+                        },
+                        {
+                          'relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                          'path' => 'aws-name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'name'
+                                      },
+                          'alias' => 'Workstation Name'
+                        }
+                      ],
+          'display_cols' => [
+                              {
+                                'path' => [
+                                            {
+                                              'label' => 'Workstation',
+                                              'id' => 'aws',
+                                              'jtype' => 'inner',
+                                              'classname' => 'aws',
+                                              'table' => 'actor.workstation',
+                                              'struct' => {
+                                                            'label' => 'Workstation',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aws',
+                                                            'classname' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.workstation',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Owning Library',
+                                'reltype' => 'has_a',
+                                'index' => 0,
+                                'path_label' => 'Workstation',
+                                'datatype' => 'org_unit',
+                                'name' => 'owning_lib',
+                                'key' => 'id',
+                                'class' => 'aou',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'type' => 'link'
+                              },
+                              {
+                                'label' => 'Workstation Name',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'label' => 'Workstation',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aws',
+                                                            'classname' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.workstation',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq'
+                                                          },
+                                              'table' => 'actor.workstation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'aws',
+                                              'id' => 'aws',
+                                              'label' => 'Workstation'
+                                            }
+                                          ],
+                                'index' => 1,
+                                'datatype' => 'text',
+                                'path_label' => 'Workstation',
+                                'name' => 'name',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               }
+                              }
+                            ],
+          'having' => [],
+          'where' => [
+                       {
+                         'path' => 'aou-id',
+                         'relation' => '7cee800584fc7d1b82e50e097497b2ad',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       }
+                     ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'recur' => 0,
+          'recurrence' => undef,
+          'owner' => 2923364,
+          'description' => '',
+          'create_time' => '2021-01-07 12:40:15.074293-05',
+          'id' => 189390,
+          'name' => 'test run ',
+          'folder' => 5527,
+          'data' => '{"P0":["394"]}',
+          'template' => {
+                          'data' => '{"version":5,"core_class":"aws","select":[{"alias":"Owning Library","path":"aws-owning_lib","field_doc":"","relation":"92d3a56e45f42d8178a4d201b14d6a1c","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Workstation Name","path":"aws-name","field_doc":"","relation":"92d3a56e45f42d8178a4d201b14d6a1c","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"92d3a56e45f42d8178a4d201b14d6a1c","path":"aws-aws","table":"actor.workstation","idlclass":"aws","label":"Workstation","join":{"owning_lib-7ddaea150c3d0193bf07636a4f458f4f":{"type":"inner","key":"id","alias":"7cee800584fc7d1b82e50e097497b2ad","path":"aws-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Workstation -> Owning Library (inner)"}}},"where":[{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"7cee800584fc7d1b82e50e097497b2ad","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":0,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Workstation","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"name","label":"Workstation Name","datatype":"text","index":1,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"}],"path_label":"Workstation","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":0,"path":[{"label":"Workstation","id":"aws","jtype":"inner","classname":"aws","struct":{"name":"aws","label":"Workstation","table":"actor.workstation","pkey":"id","pkey_sequence":"actor.workstation_id_seq","core_label":"Non-core sources","classname":"aws"},"table":"actor.workstation"},{"label":"Owning Library","from":"aws","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"aws.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Workstation -> Owning Library (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'description' => 'Display:
+Workstation -> Owning Library
+Workstation -> Workstation Name
+Filters:
+Workstation -> Owning Library (inner) -> Organizational Unit ID (In List)',
+                          'owner' => 2923364,
+                          'id' => 69322,
+                          'create_time' => '2020-05-04 12:24:33.790477-04',
+                          'name' => 'List of Workstations',
+                          'folder' => 2569
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'core_class' => 'aws',
+          'from' => {
+                      'path' => 'aws-aws',
+                      'idlclass' => 'aws',
+                      'label' => 'Workstation',
+                      'join' => {
+                                  'owning_lib-7ddaea150c3d0193bf07636a4f458f4f' => {
+                                                                                     'alias' => '7cee800584fc7d1b82e50e097497b2ad',
+                                                                                     'type' => 'inner',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'path' => 'aws-owning_lib',
+                                                                                     'label' => 'Workstation -> Owning Library (inner)',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'key' => 'id'
+                                                                                   }
+                                },
+                      'alias' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                      'table' => 'actor.workstation'
+                    },
+          'filter_cols' => [
+                             {
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'id',
+                               'index' => 0,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'path_label' => 'Workstation -> Owning Library (inner)',
+                               'selector' => 'shortname',
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'id' => 'aws',
+                                             'label' => 'Workstation',
+                                             'table' => 'actor.workstation',
+                                             'struct' => {
+                                                           'pkey_sequence' => 'actor.workstation_id_seq',
+                                                           'table' => 'actor.workstation',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aws',
+                                                           'name' => 'aws',
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Workstation'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'classname' => 'aws'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'class' => 'aou',
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'owning_lib',
+                                                           'label' => 'Owning Library'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit',
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'link' => {
+                                                         'class' => 'aou',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link',
+                                                         'label' => 'Owning Library',
+                                                         'name' => 'owning_lib',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id'
+                                                       },
+                                             'id' => 'aws.aou',
+                                             'classname' => 'aou',
+                                             'from' => 'aws',
+                                             'label' => 'Owning Library'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Organizational Unit ID'
+                             }
+                           ],
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib',
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Owning Library',
+                          'relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                          'path' => 'aws-owning_lib'
+                        },
+                        {
+                          'relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                          'path' => 'aws-name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'name'
+                                      },
+                          'alias' => 'Workstation Name'
+                        }
+                      ],
+          'display_cols' => [
+                              {
+                                'path' => [
+                                            {
+                                              'label' => 'Workstation',
+                                              'id' => 'aws',
+                                              'jtype' => 'inner',
+                                              'classname' => 'aws',
+                                              'table' => 'actor.workstation',
+                                              'struct' => {
+                                                            'label' => 'Workstation',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aws',
+                                                            'classname' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.workstation',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq'
+                                                          }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Owning Library',
+                                'reltype' => 'has_a',
+                                'index' => 0,
+                                'path_label' => 'Workstation',
+                                'datatype' => 'org_unit',
+                                'name' => 'owning_lib',
+                                'key' => 'id',
+                                'class' => 'aou',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'type' => 'link'
+                              },
+                              {
+                                'label' => 'Workstation Name',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'label' => 'Workstation',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aws',
+                                                            'classname' => 'aws',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.workstation',
+                                                            'pkey_sequence' => 'actor.workstation_id_seq'
+                                                          },
+                                              'table' => 'actor.workstation',
+                                              'jtype' => 'inner',
+                                              'classname' => 'aws',
+                                              'id' => 'aws',
+                                              'label' => 'Workstation'
+                                            }
+                                          ],
+                                'index' => 1,
+                                'datatype' => 'text',
+                                'path_label' => 'Workstation',
+                                'name' => 'name',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'filter_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               }
+                              }
+                            ],
+          'having' => [],
+          'where' => [
+                       {
+                         'path' => 'aou-id',
+                         'relation' => '7cee800584fc7d1b82e50e097497b2ad',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'alias' => 'Organizational Unit ID',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       }
+                     ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2021-01-07 12:40:15.074293-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"7cee800584fc7d1b82e50e097497b2ad"."id" IN ($_85078$394$_85078$)',
+                                        '_builder' => bless( {
+                                                               '_sql' => undef,
+                                                               '_resultset_limit' => 1048575,
+                                                               '_params' => {
+                                                                              'P0' => [
+                                                                                        '394'
+                                                                                      ]
+                                                                            },
+                                                               '_rels' => {
+                                                                            '92d3a56e45f42d8178a4d201b14d6a1c' => bless( {
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_sql' => 'actor.workstation AS "92d3a56e45f42d8178a4d201b14d6a1c"
+	INNER JOIN actor.org_unit AS "7cee800584fc7d1b82e50e097497b2ad" ON ("92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" = "7cee800584fc7d1b82e50e097497b2ad"."id")',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_table' => 'actor.workstation',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "7cee800584fc7d1b82e50e097497b2ad"',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_alias' => '7cee800584fc7d1b82e50e097497b2ad',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'92d3a56e45f42d8178a4d201b14d6a1c'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "7cee800584fc7d1b82e50e097497b2ad" ON ("92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" = "7cee800584fc7d1b82e50e097497b2ad"."id")',
+                                                                                                                                                 '_left_col' => 'owning_lib'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_alias' => '92d3a56e45f42d8178a4d201b14d6a1c'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '7cee800584fc7d1b82e50e097497b2ad' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'92d3a56e45f42d8178a4d201b14d6a1c'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_relative_time' => '2021-01-07 12:40:15.074293-05'
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef,
+                                        '_relation' => '7cee800584fc7d1b82e50e097497b2ad'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => {
+                                                          'colname' => 'owning_lib',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" ASC',
+                                           '_relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                                           '_sql' => '"92d3a56e45f42d8178a4d201b14d6a1c"."name" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'name',
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'}
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" AS "Owning Library"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Owning Library'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Workstation Name',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '92d3a56e45f42d8178a4d201b14d6a1c',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"92d3a56e45f42d8178a4d201b14d6a1c"."name" AS "Workstation Name"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'92d3a56e45f42d8178a4d201b14d6a1c'},
+                 '_sql' => 'SELECT * FROM (SELECT	"92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" AS "Owning Library",
+	"92d3a56e45f42d8178a4d201b14d6a1c"."name" AS "Workstation Name"
+  FROM	actor.workstation AS "92d3a56e45f42d8178a4d201b14d6a1c"
+	INNER JOIN actor.org_unit AS "7cee800584fc7d1b82e50e097497b2ad" ON ("92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" = "7cee800584fc7d1b82e50e097497b2ad"."id")
+  WHERE	"7cee800584fc7d1b82e50e097497b2ad"."id" IN ($_85078$394$_85078$)
+  GROUP BY 1, 2
+  ORDER BY "92d3a56e45f42d8178a4d201b14d6a1c"."owning_lib" ASC, "92d3a56e45f42d8178a4d201b14d6a1c"."name" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

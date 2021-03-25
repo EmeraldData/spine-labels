@@ -1,0 +1,1792 @@
+<html><head><meta charset='utf-8'><title>DEBUG: with filters this time</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"414670e53075be8a2daa9a68d230f8ac"."fund_id" AS "Fund ID",
+	"414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" AS "Fund Debit Amount",
+	"414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" AS "Fund Debit ID",
+	"414670e53075be8a2daa9a68d230f8ac"."encumbrance" AS "Fund Debit Encumbrance",
+	"52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" AS "Debit Type",
+	"1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" AS "Vendor Invoice ID",
+	"60095fba561ea6828836a1e3a609ec51"."id" AS "ID",
+	"bd361b71984e81d61e7d5e7b4c194558"."id" AS "ID",
+	"4c2a0691a8c9dac8acc2085164261cde"."purchase_order" AS "Purchase Order"
+  FROM	reporter.acq_fund_debit_view AS "414670e53075be8a2daa9a68d230f8ac"
+	INNER JOIN acq.lineitem AS "4c2a0691a8c9dac8acc2085164261cde" ON ("414670e53075be8a2daa9a68d230f8ac"."lineitem_id" = "4c2a0691a8c9dac8acc2085164261cde"."id")
+	INNER JOIN acq.invoice_item AS "bd361b71984e81d61e7d5e7b4c194558" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "bd361b71984e81d61e7d5e7b4c194558"."id")
+	INNER JOIN acq.po_item AS "60095fba561ea6828836a1e3a609ec51" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "60095fba561ea6828836a1e3a609ec51"."id")
+	INNER JOIN acq.invoice AS "1d77291b4f5a4e9a9a5efc17fb705245" ON ("414670e53075be8a2daa9a68d230f8ac"."inv_id" = "1d77291b4f5a4e9a9a5efc17fb705245"."id")
+	INNER JOIN acq.fund_debit AS "52b4410cf2dd8bb31fbcb1f6b1321e66" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "52b4410cf2dd8bb31fbcb1f6b1321e66"."id")
+  WHERE	"414670e53075be8a2daa9a68d230f8ac"."fund_id" = $_30366$2946$_30366$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+  ORDER BY "414670e53075be8a2daa9a68d230f8ac"."fund_id" ASC, "414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" ASC, "414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" ASC, "414670e53075be8a2daa9a68d230f8ac"."encumbrance" ASC, "52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" ASC, "1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" ASC, "60095fba561ea6828836a1e3a609ec51"."id" ASC, "bd361b71984e81d61e7d5e7b4c194558"."id" ASC, "4c2a0691a8c9dac8acc2085164261cde"."purchase_order" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'create_time' => '2019-06-25 11:44:14.782363-04',
+          'id' => 68458,
+          'owner' => 4009295,
+          'description' => 'With filtesr',
+          'name' => 'fund debit view test (clone)',
+          'data' => '{"version":5,"core_class":"rafdv","select":[{"alias":"Fund ID","path":"rafdv-fund_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit Amount","path":"rafdv-fund_debit_amount","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_debit_amount","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit ID","path":"rafdv-fund_debit_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_debit_id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit Encumbrance","path":"rafdv-encumbrance","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"encumbrance","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Debit Type","path":"acqfdeb-debit_type","field_doc":"","relation":"52b4410cf2dd8bb31fbcb1f6b1321e66","column":{"colname":"debit_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Vendor Invoice ID","path":"acqinv-inv_ident","field_doc":"","relation":"1d77291b4f5a4e9a9a5efc17fb705245","column":{"colname":"inv_ident","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"ID","path":"acqpoi-id","field_doc":"","relation":"60095fba561ea6828836a1e3a609ec51","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"ID","path":"acqii-id","field_doc":"","relation":"bd361b71984e81d61e7d5e7b4c194558","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Purchase Order","path":"jub-purchase_order","field_doc":"","relation":"4c2a0691a8c9dac8acc2085164261cde","column":{"colname":"purchase_order","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"414670e53075be8a2daa9a68d230f8ac","path":"rafdv-rafdv","table":"reporter.acq_fund_debit_view","idlclass":"rafdv","label":"Acq Fund Debit View","join":{"fund_id-fund_debit_id-8b581f6abe70b41386c2c225be89d03b":{"type":"inner","key":"id","alias":"52b4410cf2dd8bb31fbcb1f6b1321e66","path":"rafdv-fund_id-fund_debit_id","table":"acq.fund_debit","idlclass":"acqfdeb","label":"Acq Fund Debit View -> Fund Debit ID (inner)"},"inv_id-b86324deeef471ec9e8c48fff3a229d3":{"type":"inner","key":"id","alias":"1d77291b4f5a4e9a9a5efc17fb705245","path":"rafdv-inv_id","table":"acq.invoice","idlclass":"acqinv","label":"Acq Fund Debit View -> Internal Invoice ID (inner)"},"fund_id-po_item_id-3fb64ef892afc6f94bad4b466f18cfe1":{"type":"inner","key":"id","alias":"60095fba561ea6828836a1e3a609ec51","path":"rafdv-fund_id-po_item_id","table":"acq.po_item","idlclass":"acqpoi","label":"Acq Fund Debit View -> PO Direct Charge ID (inner)"},"fund_id-invoice_item_id-efa34e576d827ec8f0de47014db91381":{"type":"inner","key":"id","alias":"bd361b71984e81d61e7d5e7b4c194558","path":"rafdv-fund_id-invoice_item_id","table":"acq.invoice_item","idlclass":"acqii","label":"Acq Fund Debit View -> Invoice Direct Charge ID (inner)"},"lineitem_id-e83b9e753d193938b63a7a8067da2c30":{"type":"inner","key":"id","alias":"4c2a0691a8c9dac8acc2085164261cde","path":"rafdv-lineitem_id","table":"acq.lineitem","idlclass":"jub","label":"Acq Fund Debit View -> Line Item ID (inner)"}}},"where":[{"alias":"Fund ID","path":"rafdv-fund_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"fund_id","label":"Fund ID","type":"link","key":"id","class":"acqf","reltype":"has_a","datatype":"id","index":0,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"fund_debit_amount","label":"Fund Debit Amount","datatype":"money","index":1,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link","index":2,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"encumbrance","label":"Fund Debit Encumbrance","datatype":"bool","index":3,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"debit_type","label":"Debit Type","datatype":"text","index":4,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Fund Debit ID","from":"rafdv","link":{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link"},"id":"rafdv.acqfdeb","jtype":"inner","uplink":{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link"},"classname":"acqfdeb","struct":{"name":"acqfdeb","label":"Debit From Fund","table":"acq.fund_debit","pkey":"id","pkey_sequence":"acq.fund_debit_id_seq","core_label":"Non-core sources","classname":"acqfdeb"},"table":"acq.fund_debit"}],"path_label":"Acq Fund Debit View -> Fund Debit ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"inv_ident","label":"Vendor Invoice ID","datatype":"text","index":5,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Internal Invoice ID","from":"rafdv","link":{"name":"inv_id","label":"Internal Invoice ID","type":"link","key":"id","class":"acqinv","reltype":"has_a","datatype":"link"},"id":"rafdv.acqinv","jtype":"inner","uplink":{"name":"inv_id","label":"Internal Invoice ID","type":"link","key":"id","class":"acqinv","reltype":"has_a","datatype":"link"},"classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"path_label":"Acq Fund Debit View -> Internal Invoice ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"ID","datatype":"id","index":6,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"PO Direct Charge ID","from":"rafdv","link":{"name":"po_item_id","label":"PO Direct Charge ID","type":"link","key":"id","class":"acqpoi","reltype":"has_many","datatype":"link"},"id":"rafdv.acqpoi","jtype":"inner","uplink":{"name":"po_item_id","label":"PO Direct Charge ID","type":"link","key":"id","class":"acqpoi","reltype":"has_many","datatype":"link"},"classname":"acqpoi","struct":{"name":"acqpoi","label":"Purchase Order Item","table":"acq.po_item","pkey":"id","pkey_sequence":"acq.po_item_id_seq","core_label":"Non-core sources","classname":"acqpoi"},"table":"acq.po_item"}],"path_label":"Acq Fund Debit View -> PO Direct Charge ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"ID","datatype":"id","index":7,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Invoice Direct Charge ID","from":"rafdv","link":{"name":"invoice_item_id","label":"Invoice Direct Charge ID","type":"link","key":"id","class":"acqii","reltype":"has_many","datatype":"link"},"id":"rafdv.acqii","jtype":"inner","uplink":{"name":"invoice_item_id","label":"Invoice Direct Charge ID","type":"link","key":"id","class":"acqii","reltype":"has_many","datatype":"link"},"classname":"acqii","struct":{"name":"acqii","label":"Non-bibliographic Invoice Item","table":"acq.invoice_item","pkey":"id","pkey_sequence":"acq.invoice_item_id_seq","core_label":"Non-core sources","classname":"acqii"},"table":"acq.invoice_item"}],"path_label":"Acq Fund Debit View -> Invoice Direct Charge ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link","index":8,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Line Item ID","from":"rafdv","link":{"name":"lineitem_id","label":"Line Item ID","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"rafdv.jub","jtype":"inner","uplink":{"name":"lineitem_id","label":"Line Item ID","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Acq Fund Debit View -> Line Item ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"fund_id","label":"Fund ID","type":"link","key":"id","class":"acqf","reltype":"has_a","datatype":"id","index":0,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'folder' => 3270
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'colname' => 'fund_id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'rafdv-fund_id',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund ID'
+                        },
+                        {
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund Debit Amount',
+                          'path' => 'rafdv-fund_debit_amount',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'fund_debit_amount',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'fund_debit_id',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'rafdv-fund_debit_id',
+                          'alias' => 'Fund Debit ID',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac'
+                        },
+                        {
+                          'path' => 'rafdv-encumbrance',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund Debit Encumbrance',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'encumbrance',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '52b4410cf2dd8bb31fbcb1f6b1321e66',
+                          'alias' => 'Debit Type',
+                          'path' => 'acqfdeb-debit_type',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'debit_type'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'inv_ident'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                          'alias' => 'Vendor Invoice ID',
+                          'path' => 'acqinv-inv_ident'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '60095fba561ea6828836a1e3a609ec51',
+                          'alias' => 'ID',
+                          'path' => 'acqpoi-id'
+                        },
+                        {
+                          'path' => 'acqii-id',
+                          'relation' => 'bd361b71984e81d61e7d5e7b4c194558',
+                          'alias' => 'ID',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'purchase_order',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Purchase Order',
+                          'relation' => '4c2a0691a8c9dac8acc2085164261cde',
+                          'path' => 'jub-purchase_order'
+                        }
+                      ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'fund_id',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'path' => 'rafdv-fund_id',
+                         'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                         'alias' => 'Fund ID'
+                       }
+                     ],
+          'filter_cols' => [
+                             {
+                               'name' => 'fund_id',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'path_label' => 'Acq Fund Debit View',
+                               'label' => 'Fund ID',
+                               'key' => 'id',
+                               'doc_text' => '',
+                               'reltype' => 'has_a',
+                               'type' => 'link',
+                               'index' => 0,
+                               'path' => [
+                                           {
+                                             'classname' => 'rafdv',
+                                             'struct' => {
+                                                           'name' => 'rafdv',
+                                                           'table' => 'reporter.acq_fund_debit_view',
+                                                           'classname' => 'rafdv',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'fund_id',
+                                                           'label' => 'Acq Fund Debit View'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Acq Fund Debit View',
+                                             'table' => 'reporter.acq_fund_debit_view',
+                                             'id' => 'rafdv'
+                                           }
+                                         ],
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'datatype' => 'id',
+                               'class' => 'acqf'
+                             }
+                           ],
+          'having' => [],
+          'core_class' => 'rafdv',
+          'display_cols' => [
+                              {
+                                'name' => 'fund_id',
+                                'type' => 'link',
+                                'label' => 'Fund ID',
+                                'path_label' => 'Acq Fund Debit View',
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'key' => 'id',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'id' => 'rafdv',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Acq Fund Debit View'
+                                            }
+                                          ],
+                                'class' => 'acqf',
+                                'datatype' => 'id'
+                              },
+                              {
+                                'index' => 1,
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'struct' => {
+                                                            'classname' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'classname' => 'rafdv',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'datatype' => 'money',
+                                'name' => 'fund_debit_amount',
+                                'doc_text' => '',
+                                'label' => 'Fund Debit Amount',
+                                'path_label' => 'Acq Fund Debit View'
+                              },
+                              {
+                                'class' => 'acqfdeb',
+                                'datatype' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'classname' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'index' => 2,
+                                'type' => 'link',
+                                'doc_text' => '',
+                                'reltype' => 'has_many',
+                                'key' => 'id',
+                                'label' => 'Fund Debit ID',
+                                'path_label' => 'Acq Fund Debit View',
+                                'name' => 'fund_debit_id'
+                              },
+                              {
+                                'datatype' => 'bool',
+                                'index' => 3,
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv',
+                                                            'classname' => 'rafdv',
+                                                            'pkey' => 'fund_id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path_label' => 'Acq Fund Debit View',
+                                'label' => 'Fund Debit Encumbrance',
+                                'name' => 'encumbrance'
+                              },
+                              {
+                                'datatype' => 'text',
+                                'index' => 4,
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'classname' => 'rafdv',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'fund_debit_id',
+                                                            'class' => 'acqfdeb',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Fund Debit ID',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_many'
+                                                          },
+                                              'classname' => 'acqfdeb',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Debit From Fund',
+                                                            'classname' => 'acqfdeb',
+                                                            'name' => 'acqfdeb',
+                                                            'pkey_sequence' => 'acq.fund_debit_id_seq',
+                                                            'table' => 'acq.fund_debit'
+                                                          },
+                                              'from' => 'rafdv',
+                                              'link' => {
+                                                          'name' => 'fund_debit_id',
+                                                          'reltype' => 'has_many',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Fund Debit ID',
+                                                          'type' => 'link',
+                                                          'class' => 'acqfdeb'
+                                                        },
+                                              'table' => 'acq.fund_debit',
+                                              'id' => 'rafdv.acqfdeb',
+                                              'jtype' => 'inner',
+                                              'label' => 'Fund Debit ID'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path_label' => 'Acq Fund Debit View -> Fund Debit ID (inner)',
+                                'label' => 'Debit Type',
+                                'name' => 'debit_type'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'label' => 'Internal Invoice ID',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv.acqinv',
+                                              'table' => 'acq.invoice',
+                                              'from' => 'rafdv',
+                                              'struct' => {
+                                                            'classname' => 'acqinv',
+                                                            'label' => 'Invoice',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'table' => 'acq.invoice',
+                                                            'name' => 'acqinv'
+                                                          },
+                                              'classname' => 'acqinv',
+                                              'link' => {
+                                                          'name' => 'inv_id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Internal Invoice ID',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'class' => 'acqinv',
+                                                          'type' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'label' => 'Internal Invoice ID',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'acqinv',
+                                                            'type' => 'link',
+                                                            'name' => 'inv_id'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 5,
+                                'datatype' => 'text',
+                                'name' => 'inv_ident',
+                                'doc_text' => '',
+                                'label' => 'Vendor Invoice ID',
+                                'path_label' => 'Acq Fund Debit View -> Internal Invoice ID (inner)'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'id' => 'rafdv',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'pkey' => 'fund_id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'classname' => 'rafdv',
+                                              'label' => 'Acq Fund Debit View'
+                                            },
+                                            {
+                                              'label' => 'PO Direct Charge ID',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv.acqpoi',
+                                              'table' => 'acq.po_item',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'acq.po_item_id_seq',
+                                                            'table' => 'acq.po_item',
+                                                            'name' => 'acqpoi',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Purchase Order Item',
+                                                            'classname' => 'acqpoi'
+                                                          },
+                                              'link' => {
+                                                          'label' => 'PO Direct Charge ID',
+                                                          'datatype' => 'link',
+                                                          'reltype' => 'has_many',
+                                                          'key' => 'id',
+                                                          'class' => 'acqpoi',
+                                                          'type' => 'link',
+                                                          'name' => 'po_item_id'
+                                                        },
+                                              'classname' => 'acqpoi',
+                                              'from' => 'rafdv',
+                                              'uplink' => {
+                                                            'label' => 'PO Direct Charge ID',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_many',
+                                                            'key' => 'id',
+                                                            'class' => 'acqpoi',
+                                                            'type' => 'link',
+                                                            'name' => 'po_item_id'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 6,
+                                'datatype' => 'id',
+                                'name' => 'id',
+                                'path_label' => 'Acq Fund Debit View -> PO Direct Charge ID (inner)',
+                                'label' => 'ID',
+                                'doc_text' => ''
+                              },
+                              {
+                                'datatype' => 'id',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'class' => 'acqii',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Invoice Direct Charge ID',
+                                                            'reltype' => 'has_many',
+                                                            'key' => 'id',
+                                                            'name' => 'invoice_item_id'
+                                                          },
+                                              'link' => {
+                                                          'name' => 'invoice_item_id',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_many',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Invoice Direct Charge ID',
+                                                          'type' => 'link',
+                                                          'class' => 'acqii'
+                                                        },
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Non-bibliographic Invoice Item',
+                                                            'classname' => 'acqii',
+                                                            'table' => 'acq.invoice_item',
+                                                            'pkey_sequence' => 'acq.invoice_item_id_seq',
+                                                            'name' => 'acqii'
+                                                          },
+                                              'classname' => 'acqii',
+                                              'from' => 'rafdv',
+                                              'id' => 'rafdv.acqii',
+                                              'table' => 'acq.invoice_item',
+                                              'label' => 'Invoice Direct Charge ID',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'index' => 7,
+                                'label' => 'ID',
+                                'path_label' => 'Acq Fund Debit View -> Invoice Direct Charge ID (inner)',
+                                'doc_text' => '',
+                                'name' => 'id'
+                              },
+                              {
+                                'class' => 'acqpo',
+                                'datatype' => 'link',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'index' => 8,
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'pkey' => 'fund_id',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'classname' => 'rafdv'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'name' => 'jub',
+                                                            'table' => 'acq.lineitem',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Line Item'
+                                                          },
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'name' => 'lineitem_id',
+                                                          'type' => 'link',
+                                                          'class' => 'jub',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Line Item ID'
+                                                        },
+                                              'from' => 'rafdv',
+                                              'uplink' => {
+                                                            'name' => 'lineitem_id',
+                                                            'label' => 'Line Item ID',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'jub',
+                                                            'type' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item ID',
+                                              'table' => 'acq.lineitem',
+                                              'id' => 'rafdv.jub'
+                                            }
+                                          ],
+                                'type' => 'link',
+                                'label' => 'Purchase Order',
+                                'path_label' => 'Acq Fund Debit View -> Line Item ID (inner)',
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'key' => 'id',
+                                'name' => 'purchase_order'
+                              }
+                            ],
+          'from' => {
+                      'path' => 'rafdv-rafdv',
+                      'alias' => '414670e53075be8a2daa9a68d230f8ac',
+                      'table' => 'reporter.acq_fund_debit_view',
+                      'join' => {
+                                  'fund_id-invoice_item_id-efa34e576d827ec8f0de47014db91381' => {
+                                                                                                  'key' => 'id',
+                                                                                                  'idlclass' => 'acqii',
+                                                                                                  'label' => 'Acq Fund Debit View -> Invoice Direct Charge ID (inner)',
+                                                                                                  'type' => 'inner',
+                                                                                                  'path' => 'rafdv-fund_id-invoice_item_id',
+                                                                                                  'table' => 'acq.invoice_item',
+                                                                                                  'alias' => 'bd361b71984e81d61e7d5e7b4c194558'
+                                                                                                },
+                                  'inv_id-b86324deeef471ec9e8c48fff3a229d3' => {
+                                                                                 'table' => 'acq.invoice',
+                                                                                 'alias' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                                                                                 'path' => 'rafdv-inv_id',
+                                                                                 'type' => 'inner',
+                                                                                 'key' => 'id',
+                                                                                 'label' => 'Acq Fund Debit View -> Internal Invoice ID (inner)',
+                                                                                 'idlclass' => 'acqinv'
+                                                                               },
+                                  'fund_id-po_item_id-3fb64ef892afc6f94bad4b466f18cfe1' => {
+                                                                                             'type' => 'inner',
+                                                                                             'key' => 'id',
+                                                                                             'idlclass' => 'acqpoi',
+                                                                                             'label' => 'Acq Fund Debit View -> PO Direct Charge ID (inner)',
+                                                                                             'table' => 'acq.po_item',
+                                                                                             'alias' => '60095fba561ea6828836a1e3a609ec51',
+                                                                                             'path' => 'rafdv-fund_id-po_item_id'
+                                                                                           },
+                                  'fund_id-fund_debit_id-8b581f6abe70b41386c2c225be89d03b' => {
+                                                                                                'key' => 'id',
+                                                                                                'label' => 'Acq Fund Debit View -> Fund Debit ID (inner)',
+                                                                                                'idlclass' => 'acqfdeb',
+                                                                                                'type' => 'inner',
+                                                                                                'path' => 'rafdv-fund_id-fund_debit_id',
+                                                                                                'table' => 'acq.fund_debit',
+                                                                                                'alias' => '52b4410cf2dd8bb31fbcb1f6b1321e66'
+                                                                                              },
+                                  'lineitem_id-e83b9e753d193938b63a7a8067da2c30' => {
+                                                                                      'alias' => '4c2a0691a8c9dac8acc2085164261cde',
+                                                                                      'table' => 'acq.lineitem',
+                                                                                      'path' => 'rafdv-lineitem_id',
+                                                                                      'type' => 'inner',
+                                                                                      'idlclass' => 'jub',
+                                                                                      'label' => 'Acq Fund Debit View -> Line Item ID (inner)',
+                                                                                      'key' => 'id'
+                                                                                    }
+                                },
+                      'idlclass' => 'rafdv',
+                      'label' => 'Acq Fund Debit View'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":"2946"}',
+          'owner' => 4009295,
+          'name' => 'with filters this time',
+          'id' => 164773,
+          'recurrence' => '1 day',
+          'folder' => 3883,
+          'description' => '',
+          'create_time' => '2019-06-25 11:44:44.040158-04',
+          'recur' => 0,
+          'template' => {
+                          'create_time' => '2019-06-25 11:44:14.782363-04',
+                          'id' => 68458,
+                          'owner' => 4009295,
+                          'description' => 'With filtesr',
+                          'name' => 'fund debit view test (clone)',
+                          'data' => '{"version":5,"core_class":"rafdv","select":[{"alias":"Fund ID","path":"rafdv-fund_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit Amount","path":"rafdv-fund_debit_amount","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_debit_amount","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit ID","path":"rafdv-fund_debit_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_debit_id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Fund Debit Encumbrance","path":"rafdv-encumbrance","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"encumbrance","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Debit Type","path":"acqfdeb-debit_type","field_doc":"","relation":"52b4410cf2dd8bb31fbcb1f6b1321e66","column":{"colname":"debit_type","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Vendor Invoice ID","path":"acqinv-inv_ident","field_doc":"","relation":"1d77291b4f5a4e9a9a5efc17fb705245","column":{"colname":"inv_ident","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"ID","path":"acqpoi-id","field_doc":"","relation":"60095fba561ea6828836a1e3a609ec51","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"ID","path":"acqii-id","field_doc":"","relation":"bd361b71984e81d61e7d5e7b4c194558","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Purchase Order","path":"jub-purchase_order","field_doc":"","relation":"4c2a0691a8c9dac8acc2085164261cde","column":{"colname":"purchase_order","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"414670e53075be8a2daa9a68d230f8ac","path":"rafdv-rafdv","table":"reporter.acq_fund_debit_view","idlclass":"rafdv","label":"Acq Fund Debit View","join":{"fund_id-fund_debit_id-8b581f6abe70b41386c2c225be89d03b":{"type":"inner","key":"id","alias":"52b4410cf2dd8bb31fbcb1f6b1321e66","path":"rafdv-fund_id-fund_debit_id","table":"acq.fund_debit","idlclass":"acqfdeb","label":"Acq Fund Debit View -> Fund Debit ID (inner)"},"inv_id-b86324deeef471ec9e8c48fff3a229d3":{"type":"inner","key":"id","alias":"1d77291b4f5a4e9a9a5efc17fb705245","path":"rafdv-inv_id","table":"acq.invoice","idlclass":"acqinv","label":"Acq Fund Debit View -> Internal Invoice ID (inner)"},"fund_id-po_item_id-3fb64ef892afc6f94bad4b466f18cfe1":{"type":"inner","key":"id","alias":"60095fba561ea6828836a1e3a609ec51","path":"rafdv-fund_id-po_item_id","table":"acq.po_item","idlclass":"acqpoi","label":"Acq Fund Debit View -> PO Direct Charge ID (inner)"},"fund_id-invoice_item_id-efa34e576d827ec8f0de47014db91381":{"type":"inner","key":"id","alias":"bd361b71984e81d61e7d5e7b4c194558","path":"rafdv-fund_id-invoice_item_id","table":"acq.invoice_item","idlclass":"acqii","label":"Acq Fund Debit View -> Invoice Direct Charge ID (inner)"},"lineitem_id-e83b9e753d193938b63a7a8067da2c30":{"type":"inner","key":"id","alias":"4c2a0691a8c9dac8acc2085164261cde","path":"rafdv-lineitem_id","table":"acq.lineitem","idlclass":"jub","label":"Acq Fund Debit View -> Line Item ID (inner)"}}},"where":[{"alias":"Fund ID","path":"rafdv-fund_id","field_doc":"","relation":"414670e53075be8a2daa9a68d230f8ac","column":{"colname":"fund_id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"::P0"}}],"having":[],"display_cols":[{"name":"fund_id","label":"Fund ID","type":"link","key":"id","class":"acqf","reltype":"has_a","datatype":"id","index":0,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"fund_debit_amount","label":"Fund Debit Amount","datatype":"money","index":1,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link","index":2,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"encumbrance","label":"Fund Debit Encumbrance","datatype":"bool","index":3,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"debit_type","label":"Debit Type","datatype":"text","index":4,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Fund Debit ID","from":"rafdv","link":{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link"},"id":"rafdv.acqfdeb","jtype":"inner","uplink":{"name":"fund_debit_id","label":"Fund Debit ID","type":"link","key":"id","class":"acqfdeb","reltype":"has_many","datatype":"link"},"classname":"acqfdeb","struct":{"name":"acqfdeb","label":"Debit From Fund","table":"acq.fund_debit","pkey":"id","pkey_sequence":"acq.fund_debit_id_seq","core_label":"Non-core sources","classname":"acqfdeb"},"table":"acq.fund_debit"}],"path_label":"Acq Fund Debit View -> Fund Debit ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"inv_ident","label":"Vendor Invoice ID","datatype":"text","index":5,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Internal Invoice ID","from":"rafdv","link":{"name":"inv_id","label":"Internal Invoice ID","type":"link","key":"id","class":"acqinv","reltype":"has_a","datatype":"link"},"id":"rafdv.acqinv","jtype":"inner","uplink":{"name":"inv_id","label":"Internal Invoice ID","type":"link","key":"id","class":"acqinv","reltype":"has_a","datatype":"link"},"classname":"acqinv","struct":{"name":"acqinv","label":"Invoice","table":"acq.invoice","pkey":"id","pkey_sequence":"acq.invoice_id_seq","core_label":"Non-core sources","classname":"acqinv"},"table":"acq.invoice"}],"path_label":"Acq Fund Debit View -> Internal Invoice ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"ID","datatype":"id","index":6,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"PO Direct Charge ID","from":"rafdv","link":{"name":"po_item_id","label":"PO Direct Charge ID","type":"link","key":"id","class":"acqpoi","reltype":"has_many","datatype":"link"},"id":"rafdv.acqpoi","jtype":"inner","uplink":{"name":"po_item_id","label":"PO Direct Charge ID","type":"link","key":"id","class":"acqpoi","reltype":"has_many","datatype":"link"},"classname":"acqpoi","struct":{"name":"acqpoi","label":"Purchase Order Item","table":"acq.po_item","pkey":"id","pkey_sequence":"acq.po_item_id_seq","core_label":"Non-core sources","classname":"acqpoi"},"table":"acq.po_item"}],"path_label":"Acq Fund Debit View -> PO Direct Charge ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"ID","datatype":"id","index":7,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Invoice Direct Charge ID","from":"rafdv","link":{"name":"invoice_item_id","label":"Invoice Direct Charge ID","type":"link","key":"id","class":"acqii","reltype":"has_many","datatype":"link"},"id":"rafdv.acqii","jtype":"inner","uplink":{"name":"invoice_item_id","label":"Invoice Direct Charge ID","type":"link","key":"id","class":"acqii","reltype":"has_many","datatype":"link"},"classname":"acqii","struct":{"name":"acqii","label":"Non-bibliographic Invoice Item","table":"acq.invoice_item","pkey":"id","pkey_sequence":"acq.invoice_item_id_seq","core_label":"Non-core sources","classname":"acqii"},"table":"acq.invoice_item"}],"path_label":"Acq Fund Debit View -> Invoice Direct Charge ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link","index":8,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"},{"label":"Line Item ID","from":"rafdv","link":{"name":"lineitem_id","label":"Line Item ID","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"rafdv.jub","jtype":"inner","uplink":{"name":"lineitem_id","label":"Line Item ID","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Acq Fund Debit View -> Line Item ID (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"fund_id","label":"Fund ID","type":"link","key":"id","class":"acqf","reltype":"has_a","datatype":"id","index":0,"path":[{"label":"Acq Fund Debit View","id":"rafdv","jtype":"inner","classname":"rafdv","struct":{"name":"rafdv","label":"Acq Fund Debit View","table":"reporter.acq_fund_debit_view","pkey":"fund_id","core_label":"Non-core sources","classname":"rafdv"},"table":"reporter.acq_fund_debit_view"}],"path_label":"Acq Fund Debit View","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'folder' => 3270
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'colname' => 'fund_id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'rafdv-fund_id',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund ID'
+                        },
+                        {
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund Debit Amount',
+                          'path' => 'rafdv-fund_debit_amount',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'fund_debit_amount',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'fund_debit_id',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'rafdv-fund_debit_id',
+                          'alias' => 'Fund Debit ID',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac'
+                        },
+                        {
+                          'path' => 'rafdv-encumbrance',
+                          'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                          'alias' => 'Fund Debit Encumbrance',
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'encumbrance',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'relation' => '52b4410cf2dd8bb31fbcb1f6b1321e66',
+                          'alias' => 'Debit Type',
+                          'path' => 'acqfdeb-debit_type',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'debit_type'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'inv_ident'
+                                      },
+                          'field_doc' => '',
+                          'relation' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                          'alias' => 'Vendor Invoice ID',
+                          'path' => 'acqinv-inv_ident'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'id',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => '60095fba561ea6828836a1e3a609ec51',
+                          'alias' => 'ID',
+                          'path' => 'acqpoi-id'
+                        },
+                        {
+                          'path' => 'acqii-id',
+                          'relation' => 'bd361b71984e81d61e7d5e7b4c194558',
+                          'alias' => 'ID',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'purchase_order',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Purchase Order',
+                          'relation' => '4c2a0691a8c9dac8acc2085164261cde',
+                          'path' => 'jub-purchase_order'
+                        }
+                      ],
+          'version' => 5,
+          'where' => [
+                       {
+                         'condition' => {
+                                          '=' => '::P0'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'fund_id',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'path' => 'rafdv-fund_id',
+                         'relation' => '414670e53075be8a2daa9a68d230f8ac',
+                         'alias' => 'Fund ID'
+                       }
+                     ],
+          'filter_cols' => [
+                             {
+                               'name' => 'fund_id',
+                               'operator' => {
+                                               'op' => '=',
+                                               'label' => 'Equals'
+                                             },
+                               'path_label' => 'Acq Fund Debit View',
+                               'label' => 'Fund ID',
+                               'key' => 'id',
+                               'doc_text' => '',
+                               'reltype' => 'has_a',
+                               'type' => 'link',
+                               'index' => 0,
+                               'path' => [
+                                           {
+                                             'classname' => 'rafdv',
+                                             'struct' => {
+                                                           'name' => 'rafdv',
+                                                           'table' => 'reporter.acq_fund_debit_view',
+                                                           'classname' => 'rafdv',
+                                                           'core_label' => 'Non-core sources',
+                                                           'pkey' => 'fund_id',
+                                                           'label' => 'Acq Fund Debit View'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'label' => 'Acq Fund Debit View',
+                                             'table' => 'reporter.acq_fund_debit_view',
+                                             'id' => 'rafdv'
+                                           }
+                                         ],
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'datatype' => 'id',
+                               'class' => 'acqf'
+                             }
+                           ],
+          'having' => [],
+          'core_class' => 'rafdv',
+          'display_cols' => [
+                              {
+                                'name' => 'fund_id',
+                                'type' => 'link',
+                                'label' => 'Fund ID',
+                                'path_label' => 'Acq Fund Debit View',
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'key' => 'id',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'id' => 'rafdv',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Acq Fund Debit View'
+                                            }
+                                          ],
+                                'class' => 'acqf',
+                                'datatype' => 'id'
+                              },
+                              {
+                                'index' => 1,
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'struct' => {
+                                                            'classname' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'classname' => 'rafdv',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'datatype' => 'money',
+                                'name' => 'fund_debit_amount',
+                                'doc_text' => '',
+                                'label' => 'Fund Debit Amount',
+                                'path_label' => 'Acq Fund Debit View'
+                              },
+                              {
+                                'class' => 'acqfdeb',
+                                'datatype' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'classname' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'index' => 2,
+                                'type' => 'link',
+                                'doc_text' => '',
+                                'reltype' => 'has_many',
+                                'key' => 'id',
+                                'label' => 'Fund Debit ID',
+                                'path_label' => 'Acq Fund Debit View',
+                                'name' => 'fund_debit_id'
+                              },
+                              {
+                                'datatype' => 'bool',
+                                'index' => 3,
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv',
+                                                            'classname' => 'rafdv',
+                                                            'pkey' => 'fund_id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path_label' => 'Acq Fund Debit View',
+                                'label' => 'Fund Debit Encumbrance',
+                                'name' => 'encumbrance'
+                              },
+                              {
+                                'datatype' => 'text',
+                                'index' => 4,
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'classname' => 'rafdv',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'fund_debit_id',
+                                                            'class' => 'acqfdeb',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Fund Debit ID',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_many'
+                                                          },
+                                              'classname' => 'acqfdeb',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Debit From Fund',
+                                                            'classname' => 'acqfdeb',
+                                                            'name' => 'acqfdeb',
+                                                            'pkey_sequence' => 'acq.fund_debit_id_seq',
+                                                            'table' => 'acq.fund_debit'
+                                                          },
+                                              'from' => 'rafdv',
+                                              'link' => {
+                                                          'name' => 'fund_debit_id',
+                                                          'reltype' => 'has_many',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Fund Debit ID',
+                                                          'type' => 'link',
+                                                          'class' => 'acqfdeb'
+                                                        },
+                                              'table' => 'acq.fund_debit',
+                                              'id' => 'rafdv.acqfdeb',
+                                              'jtype' => 'inner',
+                                              'label' => 'Fund Debit ID'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'doc_text' => '',
+                                'path_label' => 'Acq Fund Debit View -> Fund Debit ID (inner)',
+                                'label' => 'Debit Type',
+                                'name' => 'debit_type'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'label' => 'Internal Invoice ID',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv.acqinv',
+                                              'table' => 'acq.invoice',
+                                              'from' => 'rafdv',
+                                              'struct' => {
+                                                            'classname' => 'acqinv',
+                                                            'label' => 'Invoice',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.invoice_id_seq',
+                                                            'table' => 'acq.invoice',
+                                                            'name' => 'acqinv'
+                                                          },
+                                              'classname' => 'acqinv',
+                                              'link' => {
+                                                          'name' => 'inv_id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Internal Invoice ID',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'class' => 'acqinv',
+                                                          'type' => 'link'
+                                                        },
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'label' => 'Internal Invoice ID',
+                                                            'key' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'acqinv',
+                                                            'type' => 'link',
+                                                            'name' => 'inv_id'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 5,
+                                'datatype' => 'text',
+                                'name' => 'inv_ident',
+                                'doc_text' => '',
+                                'label' => 'Vendor Invoice ID',
+                                'path_label' => 'Acq Fund Debit View -> Internal Invoice ID (inner)'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'path' => [
+                                            {
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'id' => 'rafdv',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'pkey' => 'fund_id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'classname' => 'rafdv',
+                                              'label' => 'Acq Fund Debit View'
+                                            },
+                                            {
+                                              'label' => 'PO Direct Charge ID',
+                                              'jtype' => 'inner',
+                                              'id' => 'rafdv.acqpoi',
+                                              'table' => 'acq.po_item',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'acq.po_item_id_seq',
+                                                            'table' => 'acq.po_item',
+                                                            'name' => 'acqpoi',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Purchase Order Item',
+                                                            'classname' => 'acqpoi'
+                                                          },
+                                              'link' => {
+                                                          'label' => 'PO Direct Charge ID',
+                                                          'datatype' => 'link',
+                                                          'reltype' => 'has_many',
+                                                          'key' => 'id',
+                                                          'class' => 'acqpoi',
+                                                          'type' => 'link',
+                                                          'name' => 'po_item_id'
+                                                        },
+                                              'classname' => 'acqpoi',
+                                              'from' => 'rafdv',
+                                              'uplink' => {
+                                                            'label' => 'PO Direct Charge ID',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_many',
+                                                            'key' => 'id',
+                                                            'class' => 'acqpoi',
+                                                            'type' => 'link',
+                                                            'name' => 'po_item_id'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 6,
+                                'datatype' => 'id',
+                                'name' => 'id',
+                                'path_label' => 'Acq Fund Debit View -> PO Direct Charge ID (inner)',
+                                'label' => 'ID',
+                                'doc_text' => ''
+                              },
+                              {
+                                'datatype' => 'id',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rafdv',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'fund_id',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'classname' => 'rafdv',
+                                                            'name' => 'rafdv',
+                                                            'table' => 'reporter.acq_fund_debit_view'
+                                                          },
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'class' => 'acqii',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Invoice Direct Charge ID',
+                                                            'reltype' => 'has_many',
+                                                            'key' => 'id',
+                                                            'name' => 'invoice_item_id'
+                                                          },
+                                              'link' => {
+                                                          'name' => 'invoice_item_id',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_many',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Invoice Direct Charge ID',
+                                                          'type' => 'link',
+                                                          'class' => 'acqii'
+                                                        },
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Non-bibliographic Invoice Item',
+                                                            'classname' => 'acqii',
+                                                            'table' => 'acq.invoice_item',
+                                                            'pkey_sequence' => 'acq.invoice_item_id_seq',
+                                                            'name' => 'acqii'
+                                                          },
+                                              'classname' => 'acqii',
+                                              'from' => 'rafdv',
+                                              'id' => 'rafdv.acqii',
+                                              'table' => 'acq.invoice_item',
+                                              'label' => 'Invoice Direct Charge ID',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'index' => 7,
+                                'label' => 'ID',
+                                'path_label' => 'Acq Fund Debit View -> Invoice Direct Charge ID (inner)',
+                                'doc_text' => '',
+                                'name' => 'id'
+                              },
+                              {
+                                'class' => 'acqpo',
+                                'datatype' => 'link',
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare'
+                                               },
+                                'index' => 8,
+                                'path' => [
+                                            {
+                                              'id' => 'rafdv',
+                                              'table' => 'reporter.acq_fund_debit_view',
+                                              'label' => 'Acq Fund Debit View',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.acq_fund_debit_view',
+                                                            'name' => 'rafdv',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Acq Fund Debit View',
+                                                            'pkey' => 'fund_id',
+                                                            'classname' => 'rafdv'
+                                                          },
+                                              'classname' => 'rafdv'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'name' => 'jub',
+                                                            'table' => 'acq.lineitem',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'label' => 'Line Item'
+                                                          },
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'name' => 'lineitem_id',
+                                                          'type' => 'link',
+                                                          'class' => 'jub',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'label' => 'Line Item ID'
+                                                        },
+                                              'from' => 'rafdv',
+                                              'uplink' => {
+                                                            'name' => 'lineitem_id',
+                                                            'label' => 'Line Item ID',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'jub',
+                                                            'type' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item ID',
+                                              'table' => 'acq.lineitem',
+                                              'id' => 'rafdv.jub'
+                                            }
+                                          ],
+                                'type' => 'link',
+                                'label' => 'Purchase Order',
+                                'path_label' => 'Acq Fund Debit View -> Line Item ID (inner)',
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'key' => 'id',
+                                'name' => 'purchase_order'
+                              }
+                            ],
+          'from' => {
+                      'path' => 'rafdv-rafdv',
+                      'alias' => '414670e53075be8a2daa9a68d230f8ac',
+                      'table' => 'reporter.acq_fund_debit_view',
+                      'join' => {
+                                  'fund_id-invoice_item_id-efa34e576d827ec8f0de47014db91381' => {
+                                                                                                  'key' => 'id',
+                                                                                                  'idlclass' => 'acqii',
+                                                                                                  'label' => 'Acq Fund Debit View -> Invoice Direct Charge ID (inner)',
+                                                                                                  'type' => 'inner',
+                                                                                                  'path' => 'rafdv-fund_id-invoice_item_id',
+                                                                                                  'table' => 'acq.invoice_item',
+                                                                                                  'alias' => 'bd361b71984e81d61e7d5e7b4c194558'
+                                                                                                },
+                                  'inv_id-b86324deeef471ec9e8c48fff3a229d3' => {
+                                                                                 'table' => 'acq.invoice',
+                                                                                 'alias' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                                                                                 'path' => 'rafdv-inv_id',
+                                                                                 'type' => 'inner',
+                                                                                 'key' => 'id',
+                                                                                 'label' => 'Acq Fund Debit View -> Internal Invoice ID (inner)',
+                                                                                 'idlclass' => 'acqinv'
+                                                                               },
+                                  'fund_id-po_item_id-3fb64ef892afc6f94bad4b466f18cfe1' => {
+                                                                                             'type' => 'inner',
+                                                                                             'key' => 'id',
+                                                                                             'idlclass' => 'acqpoi',
+                                                                                             'label' => 'Acq Fund Debit View -> PO Direct Charge ID (inner)',
+                                                                                             'table' => 'acq.po_item',
+                                                                                             'alias' => '60095fba561ea6828836a1e3a609ec51',
+                                                                                             'path' => 'rafdv-fund_id-po_item_id'
+                                                                                           },
+                                  'fund_id-fund_debit_id-8b581f6abe70b41386c2c225be89d03b' => {
+                                                                                                'key' => 'id',
+                                                                                                'label' => 'Acq Fund Debit View -> Fund Debit ID (inner)',
+                                                                                                'idlclass' => 'acqfdeb',
+                                                                                                'type' => 'inner',
+                                                                                                'path' => 'rafdv-fund_id-fund_debit_id',
+                                                                                                'table' => 'acq.fund_debit',
+                                                                                                'alias' => '52b4410cf2dd8bb31fbcb1f6b1321e66'
+                                                                                              },
+                                  'lineitem_id-e83b9e753d193938b63a7a8067da2c30' => {
+                                                                                      'alias' => '4c2a0691a8c9dac8acc2085164261cde',
+                                                                                      'table' => 'acq.lineitem',
+                                                                                      'path' => 'rafdv-lineitem_id',
+                                                                                      'type' => 'inner',
+                                                                                      'idlclass' => 'jub',
+                                                                                      'label' => 'Acq Fund Debit View -> Line Item ID (inner)',
+                                                                                      'key' => 'id'
+                                                                                    }
+                                },
+                      'idlclass' => 'rafdv',
+                      'label' => 'Acq Fund Debit View'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-06-25 11:44:44.040158-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_select' => [
+                                bless( {
+                                         '_alias' => 'Fund ID',
+                                         '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                         '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_id" AS "Fund ID"',
+                                         '_builder' => bless( {
+                                                                '_relative_time' => '2019-06-25 11:44:44.040158-04',
+                                                                '_sql' => undef,
+                                                                '_rels' => {
+                                                                             'bd361b71984e81d61e7d5e7b4c194558' => bless( {
+                                                                                                                            '_sql' => 'acq.invoice_item AS "bd361b71984e81d61e7d5e7b4c194558"',
+                                                                                                                            '_alias' => 'bd361b71984e81d61e7d5e7b4c194558',
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_table' => 'acq.invoice_item',
+                                                                                                                            '_join' => [],
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_join_type' => 'inner'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '1d77291b4f5a4e9a9a5efc17fb705245' => bless( {
+                                                                                                                            '_join_type' => 'inner',
+                                                                                                                            '_table' => 'acq.invoice',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_join' => [],
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_alias' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                                                                                                                            '_sql' => 'acq.invoice AS "1d77291b4f5a4e9a9a5efc17fb705245"'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '4c2a0691a8c9dac8acc2085164261cde' => bless( {
+                                                                                                                            '_join_type' => 'inner',
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_join' => [],
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_table' => 'acq.lineitem',
+                                                                                                                            '_alias' => '4c2a0691a8c9dac8acc2085164261cde',
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_sql' => 'acq.lineitem AS "4c2a0691a8c9dac8acc2085164261cde"'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '60095fba561ea6828836a1e3a609ec51' => bless( {
+                                                                                                                            '_sql' => 'acq.po_item AS "60095fba561ea6828836a1e3a609ec51"',
+                                                                                                                            '_alias' => '60095fba561ea6828836a1e3a609ec51',
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_join' => [],
+                                                                                                                            '_table' => 'acq.po_item',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join_type' => 'inner'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '414670e53075be8a2daa9a68d230f8ac' => bless( {
+                                                                                                                            '_nullable' => undef,
+                                                                                                                            '_table' => 'reporter.acq_fund_debit_view',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN acq.lineitem AS "4c2a0691a8c9dac8acc2085164261cde" ON ("414670e53075be8a2daa9a68d230f8ac"."lineitem_id" = "4c2a0691a8c9dac8acc2085164261cde"."id")',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_col' => 'lineitem_id',
+                                                                                                                                                  '_right_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'4c2a0691a8c9dac8acc2085164261cde'}
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                                                                                                                                                  '_right_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'bd361b71984e81d61e7d5e7b4c194558'},
+                                                                                                                                                  '_left_col' => 'fund_id',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN acq.invoice_item AS "bd361b71984e81d61e7d5e7b4c194558" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "bd361b71984e81d61e7d5e7b4c194558"."id")',
+                                                                                                                                                  '_right_col' => 'id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_sql' => '
+	INNER JOIN acq.po_item AS "60095fba561ea6828836a1e3a609ec51" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "60095fba561ea6828836a1e3a609ec51"."id")',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                                                                                                                                                  '_right_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'60095fba561ea6828836a1e3a609ec51'},
+                                                                                                                                                  '_left_col' => 'fund_id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                                                                                                                                                  '_right_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'1d77291b4f5a4e9a9a5efc17fb705245'},
+                                                                                                                                                  '_left_col' => 'inv_id',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN acq.invoice AS "1d77291b4f5a4e9a9a5efc17fb705245" ON ("414670e53075be8a2daa9a68d230f8ac"."inv_id" = "1d77291b4f5a4e9a9a5efc17fb705245"."id")',
+                                                                                                                                                  '_right_col' => 'id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_sql' => '
+	INNER JOIN acq.fund_debit AS "52b4410cf2dd8bb31fbcb1f6b1321e66" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "52b4410cf2dd8bb31fbcb1f6b1321e66"."id")',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_sql' => 'acq.fund_debit AS "52b4410cf2dd8bb31fbcb1f6b1321e66"',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_alias' => '52b4410cf2dd8bb31fbcb1f6b1321e66',
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_table' => 'acq.fund_debit',
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_join_type' => 'inner'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_left_col' => 'fund_id'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                       ],
+                                                                                                                            '_sql' => 'reporter.acq_fund_debit_view AS "414670e53075be8a2daa9a68d230f8ac"
+	INNER JOIN acq.lineitem AS "4c2a0691a8c9dac8acc2085164261cde" ON ("414670e53075be8a2daa9a68d230f8ac"."lineitem_id" = "4c2a0691a8c9dac8acc2085164261cde"."id")
+	INNER JOIN acq.invoice_item AS "bd361b71984e81d61e7d5e7b4c194558" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "bd361b71984e81d61e7d5e7b4c194558"."id")
+	INNER JOIN acq.po_item AS "60095fba561ea6828836a1e3a609ec51" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "60095fba561ea6828836a1e3a609ec51"."id")
+	INNER JOIN acq.invoice AS "1d77291b4f5a4e9a9a5efc17fb705245" ON ("414670e53075be8a2daa9a68d230f8ac"."inv_id" = "1d77291b4f5a4e9a9a5efc17fb705245"."id")
+	INNER JOIN acq.fund_debit AS "52b4410cf2dd8bb31fbcb1f6b1321e66" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "52b4410cf2dd8bb31fbcb1f6b1321e66"."id")',
+                                                                                                                            '_alias' => '414670e53075be8a2daa9a68d230f8ac'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '52b4410cf2dd8bb31fbcb1f6b1321e66' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'}{'_join'}[4]{'_right_rel'}
+                                                                           },
+                                                                '_params' => {
+                                                                               'P0' => '2946'
+                                                                             },
+                                                                '_resultset_limit' => 1048575
+                                                              }, 'OpenILS::Reporter::SQLBuilder' ),
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'fund_id',
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" AS "Fund Debit Amount"',
+                                         '_column' => {
+                                                        'colname' => 'fund_debit_amount',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Fund Debit Amount',
+                                         '_relation' => '414670e53075be8a2daa9a68d230f8ac'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'fund_debit_id',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'}
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" AS "Fund Debit ID"',
+                                         '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                         '_alias' => 'Fund Debit ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."encumbrance" AS "Fund Debit Encumbrance"',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'encumbrance'
+                                                      },
+                                         '_alias' => 'Fund Debit Encumbrance',
+                                         '_relation' => '414670e53075be8a2daa9a68d230f8ac'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'debit_type',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" AS "Debit Type"',
+                                         '_relation' => '52b4410cf2dd8bb31fbcb1f6b1321e66',
+                                         '_alias' => 'Debit Type'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'inv_ident',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'}
+                                                      },
+                                         '_sql' => '"1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" AS "Vendor Invoice ID"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                                         '_alias' => 'Vendor Invoice ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"60095fba561ea6828836a1e3a609ec51"."id" AS "ID"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'id'
+                                                      },
+                                         '_alias' => 'ID',
+                                         '_relation' => '60095fba561ea6828836a1e3a609ec51'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => 'bd361b71984e81d61e7d5e7b4c194558',
+                                         '_alias' => 'ID',
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'id',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"bd361b71984e81d61e7d5e7b4c194558"."id" AS "ID"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => '4c2a0691a8c9dac8acc2085164261cde',
+                                         '_alias' => 'Purchase Order',
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'purchase_order',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_sql' => '"4c2a0691a8c9dac8acc2085164261cde"."purchase_order" AS "Purchase Order"',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_where' => [
+                               bless( {
+                                        '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_id" = $_30366$2946$_30366$',
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_condition' => {
+                                                          '=' => '::P0'
+                                                        },
+                                        '_aggregate' => undef,
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'fund_id',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_relation' => '414670e53075be8a2daa9a68d230f8ac'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_id" ASC',
+                                           '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" ASC',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" ASC',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '414670e53075be8a2daa9a68d230f8ac',
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"414670e53075be8a2daa9a68d230f8ac"."encumbrance" ASC',
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_relation' => '52b4410cf2dd8bb31fbcb1f6b1321e66',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_sql' => '"52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_relation' => '1d77291b4f5a4e9a9a5efc17fb705245',
+                                           '_sql' => '"1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_sql' => '"60095fba561ea6828836a1e3a609ec51"."id" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '60095fba561ea6828836a1e3a609ec51'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => 'bd361b71984e81d61e7d5e7b4c194558',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"bd361b71984e81d61e7d5e7b4c194558"."id" ASC',
+                                           '_column' => $VAR1->{'_select'}[7]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_relation' => '4c2a0691a8c9dac8acc2085164261cde',
+                                           '_sql' => '"4c2a0691a8c9dac8acc2085164261cde"."purchase_order" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[8]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_sql' => 'SELECT * FROM (SELECT	"414670e53075be8a2daa9a68d230f8ac"."fund_id" AS "Fund ID",
+	"414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" AS "Fund Debit Amount",
+	"414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" AS "Fund Debit ID",
+	"414670e53075be8a2daa9a68d230f8ac"."encumbrance" AS "Fund Debit Encumbrance",
+	"52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" AS "Debit Type",
+	"1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" AS "Vendor Invoice ID",
+	"60095fba561ea6828836a1e3a609ec51"."id" AS "ID",
+	"bd361b71984e81d61e7d5e7b4c194558"."id" AS "ID",
+	"4c2a0691a8c9dac8acc2085164261cde"."purchase_order" AS "Purchase Order"
+  FROM	reporter.acq_fund_debit_view AS "414670e53075be8a2daa9a68d230f8ac"
+	INNER JOIN acq.lineitem AS "4c2a0691a8c9dac8acc2085164261cde" ON ("414670e53075be8a2daa9a68d230f8ac"."lineitem_id" = "4c2a0691a8c9dac8acc2085164261cde"."id")
+	INNER JOIN acq.invoice_item AS "bd361b71984e81d61e7d5e7b4c194558" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "bd361b71984e81d61e7d5e7b4c194558"."id")
+	INNER JOIN acq.po_item AS "60095fba561ea6828836a1e3a609ec51" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "60095fba561ea6828836a1e3a609ec51"."id")
+	INNER JOIN acq.invoice AS "1d77291b4f5a4e9a9a5efc17fb705245" ON ("414670e53075be8a2daa9a68d230f8ac"."inv_id" = "1d77291b4f5a4e9a9a5efc17fb705245"."id")
+	INNER JOIN acq.fund_debit AS "52b4410cf2dd8bb31fbcb1f6b1321e66" ON ("414670e53075be8a2daa9a68d230f8ac"."fund_id" = "52b4410cf2dd8bb31fbcb1f6b1321e66"."id")
+  WHERE	"414670e53075be8a2daa9a68d230f8ac"."fund_id" = $_30366$2946$_30366$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9
+  ORDER BY "414670e53075be8a2daa9a68d230f8ac"."fund_id" ASC, "414670e53075be8a2daa9a68d230f8ac"."fund_debit_amount" ASC, "414670e53075be8a2daa9a68d230f8ac"."fund_debit_id" ASC, "414670e53075be8a2daa9a68d230f8ac"."encumbrance" ASC, "52b4410cf2dd8bb31fbcb1f6b1321e66"."debit_type" ASC, "1d77291b4f5a4e9a9a5efc17fb705245"."inv_ident" ASC, "60095fba561ea6828836a1e3a609ec51"."id" ASC, "bd361b71984e81d61e7d5e7b4c194558"."id" ASC, "4c2a0691a8c9dac8acc2085164261cde"."purchase_order" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'414670e53075be8a2daa9a68d230f8ac'},
+                 '_builder' => $VAR1->{'_select'}[0]{'_builder'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

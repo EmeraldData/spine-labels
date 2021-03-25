@@ -1,0 +1,654 @@
+<html><head><meta charset='utf-8'><title>DEBUG: chris is cool</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Lib Name",
+	"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name",
+	COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") AS "Total Items"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_28974$f$_28974$
+	AND "93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_28974$394$_28974$)
+  GROUP BY 1, 2
+  ORDER BY "ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC, "ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC, COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 2790,
+          'name' => 'List of a Library\'s Shelving Locations',
+          'id' => 67141,
+          'create_time' => '2018-05-29 13:26:31.389951-04',
+          'owner' => 3983472,
+          'description' => '
+Shows all shelving locations that are in use at a selected library with the number of items belonging to those shelving locations.  You may use this report to identify items which may be using out of date or otherwise incorrect shelving locations, or to identify the proper spelling of a shelving location requested when running other reports.
+
+Updated 5/29/2018
+
+Uses Classic Item List source.
+
+Display Filters:
+Classic Item List > Owning Lib Name
+Classic Item List > Shelving Location Name
+Classic Item List > Barcode as "Total Items" (Count Distinct)
+
+Base Filters:
+Classic Item List > Deleted (Equals False)
+Classic Item List > Owning Lib -> Organizational Unit ID (In list)
+',
+          'data' => '{"version":4,"doc_url":"","core_class":"rocit","select":[{"alias":"Owning Lib Name","field_doc":"","column":{"colname":"owning_lib_name","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib_name","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Shelving Location Name","field_doc":"","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-shelving_location","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Total Items","field_doc":"","column":{"colname":"barcode","transform":"count_distinct","transform_label":"Count Distinct"},"path":"rocit-barcode","relation":"ffcaba321e8cae3469a746eab807d7ff"}],"from":{"path":"rocit-owning_lib","table":"reporter.classic_item_list","label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","idlclass":"rocit","template_path":"rocit","join":{"owning_lib-ffcaba321e8cae3469a746eab807d7ff":{"key":"id","path":"rocit-owning_lib-aou","table":"actor.org_unit","label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","idlclass":"aou","template_path":"rocit-owning_lib"}}},"where":[{"alias":"Deleted","field_doc":"","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-deleted","relation":"ffcaba321e8cae3469a746eab807d7ff","condition":{"=":"f"}},{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-id","relation":"93a33d246f9fc5d840a6330d99d2e850","condition":{"in":"::P0"}}],"having":[],"order_by":[],"rel_cache":{"ffcaba321e8cae3469a746eab807d7ff":{"label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit","join":"","reltype":"","idlclass":"rocit","table":"reporter.classic_item_list","fields":{"dis_tab":{"owning_lib_name":{"colname":"owning_lib_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Owning Lib Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"shelving_location":{"colname":"shelving_location","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Shelving Location Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"barcode":{"colname":"barcode","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Total Items","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Deleted","field_doc":"","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"order_by":[{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"owning_lib_name"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"shelving_location"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"barcode"}],"93a33d246f9fc5d840a6330d99d2e850":{"label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","field_doc":"","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'owning_lib_name'
+                                           },
+                                           {
+                                             'field' => 'shelving_location',
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           '93a33d246f9fc5d840a6330d99d2e850' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'params' => undef,
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'field_doc' => '',
+                                                                                                             'join' => '',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'datatype' => 'org_unit'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'join' => '',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Classic Item List :: Owning Lib',
+                                                                   'path' => 'rocit-owning_lib',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'alias' => '93a33d246f9fc5d840a6330d99d2e850'
+                                                                 },
+                           'ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                   'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                   'table' => 'reporter.classic_item_list',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'join' => '',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'params' => undef,
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'alias' => 'Deleted'
+                                                                                                                }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shelving_location' => {
+                                                                                                                         'join' => '',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'params' => undef,
+                                                                                                                         'op_value' => {},
+                                                                                                                         'colname' => 'shelving_location',
+                                                                                                                         'op' => '=',
+                                                                                                                         'alias' => 'Shelving Location Name',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'field_doc' => ''
+                                                                                                                       },
+                                                                                                'barcode' => {
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'alias' => 'Total Items',
+                                                                                                               'field_doc' => '',
+                                                                                                               'transform' => 'count_distinct',
+                                                                                                               'join' => '',
+                                                                                                               'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                               'transform_label' => 'Count Distinct',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'datatype' => 'text'
+                                                                                                             },
+                                                                                                'owning_lib_name' => {
+                                                                                                                       'datatype' => 'text',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'aggregate' => undef,
+                                                                                                                       'join' => '',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'alias' => 'Owning Lib Name',
+                                                                                                                       'colname' => 'owning_lib_name',
+                                                                                                                       'op_value' => {},
+                                                                                                                       'op' => '=',
+                                                                                                                       'params' => undef
+                                                                                                                     }
+                                                                                              }
+                                                                               },
+                                                                   'idlclass' => 'rocit',
+                                                                   'label' => 'Classic Item List',
+                                                                   'path' => 'rocit',
+                                                                   'join' => '',
+                                                                   'reltype' => ''
+                                                                 }
+                         },
+          'from' => {
+                      'idlclass' => 'rocit',
+                      'label' => 'Classic Item List',
+                      'template_path' => 'rocit',
+                      'path' => 'rocit-owning_lib',
+                      'join' => {
+                                  'owning_lib-ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'rocit-owning_lib-aou',
+                                                                                     'template_path' => 'rocit-owning_lib',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'label' => 'Classic Item List :: Owning Lib'
+                                                                                   }
+                                },
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'table' => 'reporter.classic_item_list'
+                    },
+          'select' => [
+                        {
+                          'alias' => 'Owning Lib Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib_name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'rocit-owning_lib_name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'alias' => 'Shelving Location Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shelving_location'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'rocit-shelving_location',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Total Items'
+                        }
+                      ],
+          'core_class' => 'rocit',
+          'order_by' => [],
+          'where' => [
+                       {
+                         'path' => 'rocit-deleted',
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Deleted',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'rocit-owning_lib-aou-id',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'Organizational Unit ID'
+                       }
+                     ],
+          'version' => 4,
+          'doc_url' => '',
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'folder' => 2790,
+                          'name' => 'List of a Library\'s Shelving Locations',
+                          'id' => 67141,
+                          'create_time' => '2018-05-29 13:26:31.389951-04',
+                          'owner' => 3983472,
+                          'description' => '
+Shows all shelving locations that are in use at a selected library with the number of items belonging to those shelving locations.  You may use this report to identify items which may be using out of date or otherwise incorrect shelving locations, or to identify the proper spelling of a shelving location requested when running other reports.
+
+Updated 5/29/2018
+
+Uses Classic Item List source.
+
+Display Filters:
+Classic Item List > Owning Lib Name
+Classic Item List > Shelving Location Name
+Classic Item List > Barcode as "Total Items" (Count Distinct)
+
+Base Filters:
+Classic Item List > Deleted (Equals False)
+Classic Item List > Owning Lib -> Organizational Unit ID (In list)
+',
+                          'data' => '{"version":4,"doc_url":"","core_class":"rocit","select":[{"alias":"Owning Lib Name","field_doc":"","column":{"colname":"owning_lib_name","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib_name","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Shelving Location Name","field_doc":"","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-shelving_location","relation":"ffcaba321e8cae3469a746eab807d7ff"},{"alias":"Total Items","field_doc":"","column":{"colname":"barcode","transform":"count_distinct","transform_label":"Count Distinct"},"path":"rocit-barcode","relation":"ffcaba321e8cae3469a746eab807d7ff"}],"from":{"path":"rocit-owning_lib","table":"reporter.classic_item_list","label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","idlclass":"rocit","template_path":"rocit","join":{"owning_lib-ffcaba321e8cae3469a746eab807d7ff":{"key":"id","path":"rocit-owning_lib-aou","table":"actor.org_unit","label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","idlclass":"aou","template_path":"rocit-owning_lib"}}},"where":[{"alias":"Deleted","field_doc":"","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-deleted","relation":"ffcaba321e8cae3469a746eab807d7ff","condition":{"=":"f"}},{"alias":"Organizational Unit ID","field_doc":"","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rocit-owning_lib-aou-id","relation":"93a33d246f9fc5d840a6330d99d2e850","condition":{"in":"::P0"}}],"having":[],"order_by":[],"rel_cache":{"ffcaba321e8cae3469a746eab807d7ff":{"label":"Classic Item List","alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit","join":"","reltype":"","idlclass":"rocit","table":"reporter.classic_item_list","fields":{"dis_tab":{"owning_lib_name":{"colname":"owning_lib_name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Owning Lib Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"shelving_location":{"colname":"shelving_location","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Shelving Location Name","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"barcode":{"colname":"barcode","transform":"count_distinct","aggregate":true,"params":null,"transform_label":"Count Distinct","alias":"Total Items","field_doc":"","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"deleted":{"colname":"deleted","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Deleted","field_doc":"","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}}},"aggfilter_tab":{}}},"order_by":[{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"owning_lib_name"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"shelving_location"},{"relation":"ffcaba321e8cae3469a746eab807d7ff","field":"barcode"}],"93a33d246f9fc5d840a6330d99d2e850":{"label":"Classic Item List :: Owning Lib","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{},"filter_tab":{"id":{"colname":"id","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Organizational Unit ID","field_doc":"","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}'
+                        },
+          'data' => '{"P0":["394"],"__pivot_label":"","__pivot_data":"3"}',
+          'owner' => 2554624,
+          'description' => '',
+          'recurrence' => undef,
+          'recur' => 0,
+          'name' => 'chris is cool',
+          'folder' => 3846,
+          'id' => 189386,
+          'create_time' => '2020-12-17 10:37:27.950684-05'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'owning_lib_name'
+                                           },
+                                           {
+                                             'field' => 'shelving_location',
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                           },
+                                           {
+                                             'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                             'field' => 'barcode'
+                                           }
+                                         ],
+                           '93a33d246f9fc5d840a6330d99d2e850' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {},
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'params' => undef,
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'field_doc' => '',
+                                                                                                             'join' => '',
+                                                                                                             'aggregate' => undef,
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'datatype' => 'org_unit'
+                                                                                                           }
+                                                                                                 }
+                                                                               },
+                                                                   'join' => '',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Classic Item List :: Owning Lib',
+                                                                   'path' => 'rocit-owning_lib',
+                                                                   'table' => 'actor.org_unit',
+                                                                   'alias' => '93a33d246f9fc5d840a6330d99d2e850'
+                                                                 },
+                           'ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                   'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                   'table' => 'reporter.classic_item_list',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'deleted' => {
+                                                                                                                  'join' => '',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'datatype' => 'bool',
+                                                                                                                  'aggregate' => undef,
+                                                                                                                  'params' => undef,
+                                                                                                                  'op_value' => {
+                                                                                                                                  'label' => 'False',
+                                                                                                                                  'value' => 'f'
+                                                                                                                                },
+                                                                                                                  'colname' => 'deleted',
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'field_doc' => '',
+                                                                                                                  'alias' => 'Deleted'
+                                                                                                                }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shelving_location' => {
+                                                                                                                         'join' => '',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'params' => undef,
+                                                                                                                         'op_value' => {},
+                                                                                                                         'colname' => 'shelving_location',
+                                                                                                                         'op' => '=',
+                                                                                                                         'alias' => 'Shelving Location Name',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'field_doc' => ''
+                                                                                                                       },
+                                                                                                'barcode' => {
+                                                                                                               'op_value' => {},
+                                                                                                               'op' => '=',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'params' => undef,
+                                                                                                               'alias' => 'Total Items',
+                                                                                                               'field_doc' => '',
+                                                                                                               'transform' => 'count_distinct',
+                                                                                                               'join' => '',
+                                                                                                               'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                                                                               'transform_label' => 'Count Distinct',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'datatype' => 'text'
+                                                                                                             },
+                                                                                                'owning_lib_name' => {
+                                                                                                                       'datatype' => 'text',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'aggregate' => undef,
+                                                                                                                       'join' => '',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'alias' => 'Owning Lib Name',
+                                                                                                                       'colname' => 'owning_lib_name',
+                                                                                                                       'op_value' => {},
+                                                                                                                       'op' => '=',
+                                                                                                                       'params' => undef
+                                                                                                                     }
+                                                                                              }
+                                                                               },
+                                                                   'idlclass' => 'rocit',
+                                                                   'label' => 'Classic Item List',
+                                                                   'path' => 'rocit',
+                                                                   'join' => '',
+                                                                   'reltype' => ''
+                                                                 }
+                         },
+          'from' => {
+                      'idlclass' => 'rocit',
+                      'label' => 'Classic Item List',
+                      'template_path' => 'rocit',
+                      'path' => 'rocit-owning_lib',
+                      'join' => {
+                                  'owning_lib-ffcaba321e8cae3469a746eab807d7ff' => {
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'key' => 'id',
+                                                                                     'path' => 'rocit-owning_lib-aou',
+                                                                                     'template_path' => 'rocit-owning_lib',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'label' => 'Classic Item List :: Owning Lib'
+                                                                                   }
+                                },
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'table' => 'reporter.classic_item_list'
+                    },
+          'select' => [
+                        {
+                          'alias' => 'Owning Lib Name',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib_name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'path' => 'rocit-owning_lib_name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'alias' => 'Shelving Location Name',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shelving_location'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'rocit-shelving_location',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count_distinct',
+                                        'transform_label' => 'Count Distinct',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Total Items'
+                        }
+                      ],
+          'core_class' => 'rocit',
+          'order_by' => [],
+          'where' => [
+                       {
+                         'path' => 'rocit-deleted',
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Deleted',
+                         'column' => {
+                                       'colname' => 'deleted',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => ''
+                       },
+                       {
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'rocit-owning_lib-aou-id',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'alias' => 'Organizational Unit ID'
+                       }
+                     ],
+          'version' => 4,
+          'doc_url' => '',
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-12-17 10:37:27.950684-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_builder' => bless( {
+                                        '_params' => {
+                                                       '__pivot_label' => '',
+                                                       'P0' => [
+                                                                 '394'
+                                                               ],
+                                                       '__pivot_data' => '3'
+                                                     },
+                                        '_resultset_limit' => 1048575,
+                                        '_sql' => undef,
+                                        '_pivot_data' => '3',
+                                        '_rels' => {
+                                                     '93a33d246f9fc5d840a6330d99d2e850' => bless( {
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_sql' => 'actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850"',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_columns' => [],
+                                                                                                    '_table' => 'actor.org_unit',
+                                                                                                    '_join' => [],
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_alias' => '93a33d246f9fc5d840a6330d99d2e850'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'ffcaba321e8cae3469a746eab807d7ff' => bless( {
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'93a33d246f9fc5d840a6330d99d2e850'},
+                                                                                                                          '_left_col' => 'owning_lib',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                                                                                                                          '_right_col' => 'id'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                                                    '_table' => 'reporter.classic_item_list',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_sql' => 'reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                   },
+                                        '_relative_time' => '2020-12-17 10:37:27.950684-05'
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                 '_sql' => 'SELECT * FROM (SELECT	"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Lib Name",
+	"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name",
+	COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") AS "Total Items"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_28974$f$_28974$
+	AND "93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_28974$394$_28974$)
+  GROUP BY 1, 2
+  ORDER BY "ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC, "ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC, COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_select' => [
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'owning_lib_name',
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Owning Lib Name',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Lib Name"',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name"',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shelving_location'
+                                                      },
+                                         '_alias' => 'Shelving Location Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'transform' => 'count_distinct',
+                                                        'transform_label' => 'Count Distinct',
+                                                        'colname' => 'barcode'
+                                                      },
+                                         '_alias' => 'Total Items',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_aggregate' => undef,
+                                         '_sql' => 'COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") AS "Total Items"',
+                                         '_transform' => 'count_distinct'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'deleted',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                        '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_28974$f$_28974$',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                                        '_aggregate' => undef,
+                                        '_sql' => '"93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_28974$394$_28974$)',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_aggregate' => undef,
+                                           '_sql' => 'COUNT(DISTINCT "ffcaba321e8cae3469a746eab807d7ff"."barcode") ASC',
+                                           '_transform' => 'count_distinct'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

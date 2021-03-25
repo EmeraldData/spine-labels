@@ -1,0 +1,1381 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY Circulation y Library and TCN   </title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" AS "TCN Value",
+	"f3fe90a34c53b72b1c1cd7606d043898"."shortname" AS "Circulating Library",
+	COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") AS "Circ Count"
+  FROM	action.all_circulation AS "a28abd4e77ad39f3bff5d8d720b02230"
+	INNER JOIN actor.org_unit AS "f3fe90a34c53b72b1c1cd7606d043898" ON ("a28abd4e77ad39f3bff5d8d720b02230"."circ_lib" = "f3fe90a34c53b72b1c1cd7606d043898"."id")
+	INNER JOIN asset.copy AS "cb6a3c5e73dcc3e2804950e0b8c0cc9d" ON ("a28abd4e77ad39f3bff5d8d720b02230"."target_copy" = "cb6a3c5e73dcc3e2804950e0b8c0cc9d"."id")
+	INNER JOIN asset.call_number AS "2bb388793157a14da8b4716d4675e44e" ON ("cb6a3c5e73dcc3e2804950e0b8c0cc9d"."call_number" = "2bb388793157a14da8b4716d4675e44e"."id")
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")
+  WHERE	"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" IN ($_22028$ocn318546654$_22028$,$_22028$ocn768193195$_22028$,$_22028$ocn773696004$_22028$,$_22028$ocn820812661$_22028$,$_22028$ocn959235255$_22028$,$_22028$ocn847868072$_22028$,$_22028$ocn990339650$_22028$,$_22028$on1090412625$_22028$,$_22028$on1089134174$_22028$,$_22028$on1102636078$_22028$,$_22028$on1042815159$_22028$)
+	AND date("a28abd4e77ad39f3bff5d8d720b02230"."xact_start") BETWEEN $_22028$2019-07-01$_22028$ AND $_22028$2020-06-30$_22028$
+  GROUP BY 1, 2
+  ORDER BY "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" ASC, "f3fe90a34c53b72b1c1cd7606d043898"."shortname" ASC, COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 3590,
+          'name' => 'FY Circulation by Library and TCN (2020 version)',
+          'id' => 69467,
+          'data' => '{"version":5,"core_class":"combcirc","select":[{"alias":"TCN Value","path":"bre-tcn_value","field_doc":"","relation":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","column":{"colname":"tcn_value","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circulating Library","path":"aou-shortname","field_doc":"","relation":"f3fe90a34c53b72b1c1cd7606d043898","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ Count","path":"combcirc-id","field_doc":"","relation":"a28abd4e77ad39f3bff5d8d720b02230","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"a28abd4e77ad39f3bff5d8d720b02230","path":"combcirc-combcirc","table":"action.all_circulation","idlclass":"combcirc","join":{"target_copy-cb6a3c5e73dcc3e2804950e0b8c0cc9d":{"type":"inner","key":"id","alias":"cb6a3c5e73dcc3e2804950e0b8c0cc9d","path":"combcirc-target_copy","table":"asset.copy","idlclass":"acp","join":{"call_number-2bb388793157a14da8b4716d4675e44e":{"type":"inner","key":"id","alias":"2bb388793157a14da8b4716d4675e44e","path":"combcirc-target_copy-call_number","table":"asset.call_number","idlclass":"acn","join":{"record-07f896b6102c5c7e88a21480ea9bd1d0":{"type":"inner","key":"id","alias":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","path":"combcirc-target_copy-call_number-record","table":"biblio.record_entry","idlclass":"bre","label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record"}}}}},"circ_lib-263aa52fdbafbf72e40ca2fee5002703":{"type":"inner","key":"id","alias":"f3fe90a34c53b72b1c1cd7606d043898","path":"combcirc-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Combined Aged and Active Circulations -> Circulating Library"}},"label":"Combined Aged and Active Circulations"},"where":[{"alias":"TCN Value","path":"bre-tcn_value","field_doc":"","relation":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","column":{"colname":"tcn_value","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Checkout Date/Time","path":"combcirc-xact_start","field_doc":"","relation":"a28abd4e77ad39f3bff5d8d720b02230","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"tcn_value","label":"TCN Value","datatype":"text","index":0,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Item","from":"combcirc","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"combcirc.acp","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"combcirc.acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bib Record","from":"combcirc.acp.acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn.bre","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"}],"path_label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Circulating Library","required":true,"datatype":"text","index":1,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Library","from":"combcirc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"combcirc.aou","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Combined Aged and Active Circulations -> Circulating Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Circ Count","datatype":"id","index":2,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"}],"path_label":"Combined Aged and Active Circulations","transform":{"label":"Count","transform":"count","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"tcn_value","label":"TCN Value","datatype":"text","index":0,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Item","from":"combcirc","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"combcirc.acp","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"combcirc.acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bib Record","from":"combcirc.acp.acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn.bre","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"}],"path_label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"xact_start","label":"Checkout Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"}],"path_label":"Combined Aged and Active Circulations","operator":{"label":"Between","op":"between"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""}]}',
+          'create_time' => '2020-07-09 15:15:21.355579-04',
+          'description' => 'Uses Combined Aged and Active Circulations Source.
+
+Display Fields:
+
+Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record -> TCN Value
+Combined Aged and Active Circulations -> Circulating Library -> Short (Policy) Name as "Circulating Library"
+Combined Aged and Active Circulations -> Circ ID (Count) as "Circ Count"
+
+Filters:
+
+Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record -> TCN Value (In list)
+Combined Aged and Active Circulations -> Checkout Date/Time (Date) (Between)',
+          'owner' => 402541
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'tcn_value',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'path' => 'bre-tcn_value',
+                         'relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                         'alias' => 'TCN Value',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'combcirc-xact_start',
+                         'alias' => 'Checkout Date/Time',
+                         'relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'aggregate' => 0,
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'table' => 'action.all_circulation',
+                      'join' => {
+                                  'circ_lib-263aa52fdbafbf72e40ca2fee5002703' => {
+                                                                                   'key' => 'id',
+                                                                                   'label' => 'Combined Aged and Active Circulations -> Circulating Library',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'path' => 'combcirc-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 },
+                                  'target_copy-cb6a3c5e73dcc3e2804950e0b8c0cc9d' => {
+                                                                                      'alias' => 'cb6a3c5e73dcc3e2804950e0b8c0cc9d',
+                                                                                      'type' => 'inner',
+                                                                                      'path' => 'combcirc-target_copy',
+                                                                                      'join' => {
+                                                                                                  'call_number-2bb388793157a14da8b4716d4675e44e' => {
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'idlclass' => 'acn',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'record-07f896b6102c5c7e88a21480ea9bd1d0' => {
+                                                                                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                                                                                 'path' => 'combcirc-target_copy-call_number-record',
+                                                                                                                                                                                                                 'alias' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                                                                                                                                                                                                 'type' => 'inner',
+                                                                                                                                                                                                                 'label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record',
+                                                                                                                                                                                                                 'idlclass' => 'bre',
+                                                                                                                                                                                                                 'key' => 'id'
+                                                                                                                                                                                                               }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'alias' => '2bb388793157a14da8b4716d4675e44e',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'path' => 'combcirc-target_copy-call_number'
+                                                                                                                                                    }
+                                                                                                },
+                                                                                      'table' => 'asset.copy',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acp'
+                                                                                    }
+                                },
+                      'path' => 'combcirc-combcirc',
+                      'alias' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                      'idlclass' => 'combcirc',
+                      'label' => 'Combined Aged and Active Circulations'
+                    },
+          'core_class' => 'combcirc',
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'action.all_circulation',
+                                              'struct' => {
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'action.all_circulation',
+                                                            'name' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations',
+                                                            'classname' => 'combcirc',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'combcirc',
+                                              'classname' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'target_copy',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Circulating Item',
+                                                            'class' => 'acp',
+                                                            'key' => 'id',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'table' => 'asset.copy',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acp',
+                                                            'classname' => 'acp',
+                                                            'label' => 'Item'
+                                                          },
+                                              'from' => 'combcirc',
+                                              'id' => 'combcirc.acp',
+                                              'label' => 'Circulating Item',
+                                              'link' => {
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Circulating Item',
+                                                          'key' => 'id',
+                                                          'name' => 'target_copy',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'acp'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'name' => 'call_number',
+                                                            'class' => 'acn',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Call Number/Volume',
+                                                            'key' => 'id'
+                                                          },
+                                              'table' => 'asset.call_number',
+                                              'struct' => {
+                                                            'label' => 'Call Number/Volume',
+                                                            'classname' => 'acn',
+                                                            'name' => 'acn',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'asset.call_number_id_seq',
+                                                            'table' => 'asset.call_number'
+                                                          },
+                                              'from' => 'combcirc.acp',
+                                              'id' => 'combcirc.acp.acn',
+                                              'label' => 'Call Number/Volume',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Call Number/Volume',
+                                                          'class' => 'acn',
+                                                          'key' => 'id',
+                                                          'name' => 'call_number'
+                                                        },
+                                              'classname' => 'acn'
+                                            },
+                                            {
+                                              'table' => 'biblio.record_entry',
+                                              'uplink' => {
+                                                            'name' => 'record',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'label' => 'Bib Record',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'classname' => 'bre',
+                                              'link' => {
+                                                          'name' => 'record',
+                                                          'class' => 'bre',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Bib Record',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'label' => 'Bib Record',
+                                              'struct' => {
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'bre',
+                                                            'classname' => 'bre',
+                                                            'label' => 'Bibliographic Record',
+                                                            'table' => 'biblio.record_entry',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          },
+                                              'id' => 'combcirc.acp.acn.bre',
+                                              'from' => 'combcirc.acp.acn'
+                                            }
+                                          ],
+                                'index' => 0,
+                                'path_label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                               },
+                                'label' => 'TCN Value',
+                                'name' => 'tcn_value',
+                                'doc_text' => ''
+                              },
+                              {
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'table' => 'action.all_circulation',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations',
+                                                            'classname' => 'combcirc'
+                                                          },
+                                              'table' => 'action.all_circulation',
+                                              'id' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations',
+                                              'classname' => 'combcirc'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'label' => 'Circulating Library',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib',
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'label' => 'Circulating Library',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'aou',
+                                                          'label' => 'Circulating Library',
+                                                          'key' => 'id',
+                                                          'name' => 'circ_lib',
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'aou',
+                                              'from' => 'combcirc',
+                                              'id' => 'combcirc.aou',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 1,
+                                'path_label' => 'Combined Aged and Active Circulations -> Circulating Library',
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'label' => 'Circulating Library'
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'action.all_circulation',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'combcirc',
+                                                            'classname' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations'
+                                                          },
+                                              'table' => 'action.all_circulation',
+                                              'id' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations',
+                                              'classname' => 'combcirc'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'name' => 'id',
+                                'transform' => {
+                                                 'label' => 'Count',
+                                                 'transform' => 'count',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                               },
+                                'label' => 'Circ Count',
+                                'path_label' => 'Combined Aged and Active Circulations'
+                              }
+                            ],
+          'select' => [
+                        {
+                          'alias' => 'TCN Value',
+                          'relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                          'path' => 'bre-tcn_value',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'tcn_value',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'alias' => 'Circulating Library',
+                          'relation' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                          'path' => 'aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count'
+                                      },
+                          'alias' => 'Circ Count',
+                          'relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                          'path' => 'combcirc-id'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'datatype' => 'text',
+                               'path' => [
+                                           {
+                                             'label' => 'Combined Aged and Active Circulations',
+                                             'classname' => 'combcirc',
+                                             'struct' => {
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'combcirc',
+                                                           'label' => 'Combined Aged and Active Circulations',
+                                                           'classname' => 'combcirc',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'table' => 'action.all_circulation'
+                                                         },
+                                             'table' => 'action.all_circulation',
+                                             'id' => 'combcirc'
+                                           },
+                                           {
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'asset.copy',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'label' => 'Item',
+                                                           'classname' => 'acp'
+                                                         },
+                                             'id' => 'combcirc.acp',
+                                             'from' => 'combcirc',
+                                             'classname' => 'acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'class' => 'acp',
+                                                         'label' => 'Circulating Item',
+                                                         'name' => 'target_copy'
+                                                       },
+                                             'label' => 'Circulating Item',
+                                             'table' => 'asset.copy',
+                                             'uplink' => {
+                                                           'name' => 'target_copy',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'key' => 'id',
+                                                           'label' => 'Circulating Item',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'name' => 'call_number',
+                                                           'label' => 'Call Number/Volume',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acn',
+                                                           'key' => 'id',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         },
+                                             'table' => 'asset.call_number',
+                                             'struct' => {
+                                                           'name' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'classname' => 'acn',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'core_label' => 'Non-core sources',
+                                                           'table' => 'asset.call_number',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'from' => 'combcirc.acp',
+                                             'id' => 'combcirc.acp.acn',
+                                             'label' => 'Call Number/Volume',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'class' => 'acn',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Call Number/Volume',
+                                                         'key' => 'id',
+                                                         'name' => 'call_number'
+                                                       },
+                                             'classname' => 'acn'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'class' => 'bre',
+                                                           'label' => 'Bib Record',
+                                                           'name' => 'record'
+                                                         },
+                                             'table' => 'biblio.record_entry',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                           'table' => 'biblio.record_entry',
+                                                           'label' => 'Bibliographic Record',
+                                                           'classname' => 'bre',
+                                                           'name' => 'bre',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'from' => 'combcirc.acp.acn',
+                                             'id' => 'combcirc.acp.acn.bre',
+                                             'label' => 'Bib Record',
+                                             'classname' => 'bre',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'bre',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Bib Record',
+                                                         'key' => 'id',
+                                                         'name' => 'record'
+                                                       }
+                                           }
+                                         ],
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'label' => 'TCN Value',
+                               'doc_text' => '',
+                               'name' => 'tcn_value',
+                               'path_label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record'
+                             },
+                             {
+                               'index' => 1,
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'path' => [
+                                           {
+                                             'label' => 'Combined Aged and Active Circulations',
+                                             'classname' => 'combcirc',
+                                             'struct' => {
+                                                           'table' => 'action.all_circulation',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'combcirc',
+                                                           'label' => 'Combined Aged and Active Circulations',
+                                                           'name' => 'combcirc',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.all_circulation',
+                                             'id' => 'combcirc'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'label' => 'Checkout Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'date',
+                                                'label' => 'Date'
+                                              },
+                               'path_label' => 'Combined Aged and Active Circulations'
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'owner' => 402541,
+          'id' => 181497,
+          'template' => {
+                          'folder' => 3590,
+                          'name' => 'FY Circulation by Library and TCN (2020 version)',
+                          'id' => 69467,
+                          'data' => '{"version":5,"core_class":"combcirc","select":[{"alias":"TCN Value","path":"bre-tcn_value","field_doc":"","relation":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","column":{"colname":"tcn_value","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circulating Library","path":"aou-shortname","field_doc":"","relation":"f3fe90a34c53b72b1c1cd7606d043898","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Circ Count","path":"combcirc-id","field_doc":"","relation":"a28abd4e77ad39f3bff5d8d720b02230","column":{"colname":"id","transform":"count","transform_label":"Count","aggregate":true}}],"from":{"alias":"a28abd4e77ad39f3bff5d8d720b02230","path":"combcirc-combcirc","table":"action.all_circulation","idlclass":"combcirc","join":{"target_copy-cb6a3c5e73dcc3e2804950e0b8c0cc9d":{"type":"inner","key":"id","alias":"cb6a3c5e73dcc3e2804950e0b8c0cc9d","path":"combcirc-target_copy","table":"asset.copy","idlclass":"acp","join":{"call_number-2bb388793157a14da8b4716d4675e44e":{"type":"inner","key":"id","alias":"2bb388793157a14da8b4716d4675e44e","path":"combcirc-target_copy-call_number","table":"asset.call_number","idlclass":"acn","join":{"record-07f896b6102c5c7e88a21480ea9bd1d0":{"type":"inner","key":"id","alias":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","path":"combcirc-target_copy-call_number-record","table":"biblio.record_entry","idlclass":"bre","label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record"}}}}},"circ_lib-263aa52fdbafbf72e40ca2fee5002703":{"type":"inner","key":"id","alias":"f3fe90a34c53b72b1c1cd7606d043898","path":"combcirc-circ_lib","table":"actor.org_unit","idlclass":"aou","label":"Combined Aged and Active Circulations -> Circulating Library"}},"label":"Combined Aged and Active Circulations"},"where":[{"alias":"TCN Value","path":"bre-tcn_value","field_doc":"","relation":"0db6a68c9f76e6e3ec8b2d5b1f8aeb12","column":{"colname":"tcn_value","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Checkout Date/Time","path":"combcirc-xact_start","field_doc":"","relation":"a28abd4e77ad39f3bff5d8d720b02230","column":{"colname":"xact_start","transform":"date","transform_label":"Date","aggregate":0},"condition":{"between":"::P1"}}],"having":[],"display_cols":[{"name":"tcn_value","label":"TCN Value","datatype":"text","index":0,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Item","from":"combcirc","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"combcirc.acp","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"combcirc.acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bib Record","from":"combcirc.acp.acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn.bre","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"}],"path_label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Circulating Library","required":true,"datatype":"text","index":1,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Library","from":"combcirc","link":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"combcirc.aou","uplink":{"name":"circ_lib","label":"Circulating Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Combined Aged and Active Circulations -> Circulating Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Circ Count","datatype":"id","index":2,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"}],"path_label":"Combined Aged and Active Circulations","transform":{"label":"Count","transform":"count","aggregate":true},"doc_text":""}],"filter_cols":[{"name":"tcn_value","label":"TCN Value","datatype":"text","index":0,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"},{"label":"Circulating Item","from":"combcirc","link":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"id":"combcirc.acp","uplink":{"name":"target_copy","label":"Circulating Item","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"link"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Call Number/Volume","from":"combcirc.acp","link":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn","uplink":{"name":"call_number","label":"Call Number/Volume","type":"link","key":"id","class":"acn","reltype":"has_a","datatype":"link"},"classname":"acn","struct":{"name":"acn","label":"Call Number/Volume","table":"asset.call_number","pkey":"id","pkey_sequence":"asset.call_number_id_seq","core_label":"Non-core sources","classname":"acn"},"table":"asset.call_number"},{"label":"Bib Record","from":"combcirc.acp.acn","link":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"id":"combcirc.acp.acn.bre","uplink":{"name":"record","label":"Bib Record","type":"link","key":"id","class":"bre","reltype":"has_a","datatype":"link"},"classname":"bre","struct":{"name":"bre","label":"Bibliographic Record","table":"biblio.record_entry","core":true,"pkey":"id","pkey_sequence":"biblio.record_entry_id_seq","core_label":"Core sources","classname":"bre"},"table":"biblio.record_entry"}],"path_label":"Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"xact_start","label":"Checkout Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Combined Aged and Active Circulations","id":"combcirc","classname":"combcirc","struct":{"name":"combcirc","label":"Combined Aged and Active Circulations","table":"action.all_circulation","core":true,"pkey":"id","pkey_sequence":"money.billable_xact_id_seq","core_label":"Core sources","classname":"combcirc"},"table":"action.all_circulation"}],"path_label":"Combined Aged and Active Circulations","operator":{"label":"Between","op":"between"},"transform":{"label":"Date","transform":"date","aggregate":false},"doc_text":""}]}',
+                          'create_time' => '2020-07-09 15:15:21.355579-04',
+                          'description' => 'Uses Combined Aged and Active Circulations Source.
+
+Display Fields:
+
+Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record -> TCN Value
+Combined Aged and Active Circulations -> Circulating Library -> Short (Policy) Name as "Circulating Library"
+Combined Aged and Active Circulations -> Circ ID (Count) as "Circ Count"
+
+Filters:
+
+Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record -> TCN Value (In list)
+Combined Aged and Active Circulations -> Checkout Date/Time (Date) (Between)',
+                          'owner' => 402541
+                        },
+          'description' => '',
+          'create_time' => '2020-07-09 16:01:09.565784-04',
+          'recur' => 0,
+          'name' => 'FY Circulation y Library and TCN   ',
+          'recurrence' => '1 day',
+          'data' => '{"P0":["ocn318546654","ocn768193195","ocn773696004","ocn820812661","ocn959235255","ocn847868072","ocn990339650","on1090412625","on1089134174","on1102636078","on1042815159"],"P1":["2019-07-01","2020-06-30"],"__pivot_label":"1","__pivot_data":"3"}',
+          'folder' => 5379
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'tcn_value',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'path' => 'bre-tcn_value',
+                         'relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                         'alias' => 'TCN Value',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'between' => '::P1'
+                                        },
+                         'path' => 'combcirc-xact_start',
+                         'alias' => 'Checkout Date/Time',
+                         'relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'xact_start',
+                                       'transform_label' => 'Date',
+                                       'aggregate' => 0,
+                                       'transform' => 'date'
+                                     }
+                       }
+                     ],
+          'from' => {
+                      'table' => 'action.all_circulation',
+                      'join' => {
+                                  'circ_lib-263aa52fdbafbf72e40ca2fee5002703' => {
+                                                                                   'key' => 'id',
+                                                                                   'label' => 'Combined Aged and Active Circulations -> Circulating Library',
+                                                                                   'idlclass' => 'aou',
+                                                                                   'path' => 'combcirc-circ_lib',
+                                                                                   'type' => 'inner',
+                                                                                   'alias' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                                                                                   'table' => 'actor.org_unit'
+                                                                                 },
+                                  'target_copy-cb6a3c5e73dcc3e2804950e0b8c0cc9d' => {
+                                                                                      'alias' => 'cb6a3c5e73dcc3e2804950e0b8c0cc9d',
+                                                                                      'type' => 'inner',
+                                                                                      'path' => 'combcirc-target_copy',
+                                                                                      'join' => {
+                                                                                                  'call_number-2bb388793157a14da8b4716d4675e44e' => {
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'idlclass' => 'acn',
+                                                                                                                                                      'join' => {
+                                                                                                                                                                  'record-07f896b6102c5c7e88a21480ea9bd1d0' => {
+                                                                                                                                                                                                                 'table' => 'biblio.record_entry',
+                                                                                                                                                                                                                 'path' => 'combcirc-target_copy-call_number-record',
+                                                                                                                                                                                                                 'alias' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                                                                                                                                                                                                 'type' => 'inner',
+                                                                                                                                                                                                                 'label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record',
+                                                                                                                                                                                                                 'idlclass' => 'bre',
+                                                                                                                                                                                                                 'key' => 'id'
+                                                                                                                                                                                                               }
+                                                                                                                                                                },
+                                                                                                                                                      'table' => 'asset.call_number',
+                                                                                                                                                      'alias' => '2bb388793157a14da8b4716d4675e44e',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'path' => 'combcirc-target_copy-call_number'
+                                                                                                                                                    }
+                                                                                                },
+                                                                                      'table' => 'asset.copy',
+                                                                                      'key' => 'id',
+                                                                                      'idlclass' => 'acp'
+                                                                                    }
+                                },
+                      'path' => 'combcirc-combcirc',
+                      'alias' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                      'idlclass' => 'combcirc',
+                      'label' => 'Combined Aged and Active Circulations'
+                    },
+          'core_class' => 'combcirc',
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'table' => 'action.all_circulation',
+                                              'struct' => {
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'table' => 'action.all_circulation',
+                                                            'name' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations',
+                                                            'classname' => 'combcirc',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'combcirc',
+                                              'classname' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'name' => 'target_copy',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Circulating Item',
+                                                            'class' => 'acp',
+                                                            'key' => 'id',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'table' => 'asset.copy',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acp',
+                                                            'classname' => 'acp',
+                                                            'label' => 'Item'
+                                                          },
+                                              'from' => 'combcirc',
+                                              'id' => 'combcirc.acp',
+                                              'label' => 'Circulating Item',
+                                              'link' => {
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Circulating Item',
+                                                          'key' => 'id',
+                                                          'name' => 'target_copy',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'acp'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'name' => 'call_number',
+                                                            'class' => 'acn',
+                                                            'reltype' => 'has_a',
+                                                            'label' => 'Call Number/Volume',
+                                                            'key' => 'id'
+                                                          },
+                                              'table' => 'asset.call_number',
+                                              'struct' => {
+                                                            'label' => 'Call Number/Volume',
+                                                            'classname' => 'acn',
+                                                            'name' => 'acn',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'asset.call_number_id_seq',
+                                                            'table' => 'asset.call_number'
+                                                          },
+                                              'from' => 'combcirc.acp',
+                                              'id' => 'combcirc.acp.acn',
+                                              'label' => 'Call Number/Volume',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'link',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Call Number/Volume',
+                                                          'class' => 'acn',
+                                                          'key' => 'id',
+                                                          'name' => 'call_number'
+                                                        },
+                                              'classname' => 'acn'
+                                            },
+                                            {
+                                              'table' => 'biblio.record_entry',
+                                              'uplink' => {
+                                                            'name' => 'record',
+                                                            'class' => 'bre',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'label' => 'Bib Record',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link'
+                                                          },
+                                              'classname' => 'bre',
+                                              'link' => {
+                                                          'name' => 'record',
+                                                          'class' => 'bre',
+                                                          'reltype' => 'has_a',
+                                                          'label' => 'Bib Record',
+                                                          'key' => 'id',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'label' => 'Bib Record',
+                                              'struct' => {
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'bre',
+                                                            'classname' => 'bre',
+                                                            'label' => 'Bibliographic Record',
+                                                            'table' => 'biblio.record_entry',
+                                                            'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          },
+                                              'id' => 'combcirc.acp.acn.bre',
+                                              'from' => 'combcirc.acp.acn'
+                                            }
+                                          ],
+                                'index' => 0,
+                                'path_label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' )
+                                               },
+                                'label' => 'TCN Value',
+                                'name' => 'tcn_value',
+                                'doc_text' => ''
+                              },
+                              {
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'table' => 'action.all_circulation',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations',
+                                                            'classname' => 'combcirc'
+                                                          },
+                                              'table' => 'action.all_circulation',
+                                              'id' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations',
+                                              'classname' => 'combcirc'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'label' => 'Circulating Library',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'name' => 'circ_lib',
+                                                            'type' => 'link',
+                                                            'datatype' => 'org_unit'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'label' => 'Circulating Library',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'class' => 'aou',
+                                                          'label' => 'Circulating Library',
+                                                          'key' => 'id',
+                                                          'name' => 'circ_lib',
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link'
+                                                        },
+                                              'classname' => 'aou',
+                                              'from' => 'combcirc',
+                                              'id' => 'combcirc.aou',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'core_label' => 'Non-core sources',
+                                                            'classname' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou'
+                                                          }
+                                            }
+                                          ],
+                                'index' => 1,
+                                'path_label' => 'Combined Aged and Active Circulations -> Circulating Library',
+                                'doc_text' => '',
+                                'name' => 'shortname',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'label' => 'Circulating Library'
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'action.all_circulation',
+                                                            'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'pkey' => 'id',
+                                                            'name' => 'combcirc',
+                                                            'classname' => 'combcirc',
+                                                            'label' => 'Combined Aged and Active Circulations'
+                                                          },
+                                              'table' => 'action.all_circulation',
+                                              'id' => 'combcirc',
+                                              'label' => 'Combined Aged and Active Circulations',
+                                              'classname' => 'combcirc'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'name' => 'id',
+                                'transform' => {
+                                                 'label' => 'Count',
+                                                 'transform' => 'count',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                               },
+                                'label' => 'Circ Count',
+                                'path_label' => 'Combined Aged and Active Circulations'
+                              }
+                            ],
+          'select' => [
+                        {
+                          'alias' => 'TCN Value',
+                          'relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                          'path' => 'bre-tcn_value',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'tcn_value',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'alias' => 'Circulating Library',
+                          'relation' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                          'path' => 'aou-shortname',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform' => 'count',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                        'colname' => 'id',
+                                        'transform_label' => 'Count'
+                                      },
+                          'alias' => 'Circ Count',
+                          'relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                          'path' => 'combcirc-id'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'datatype' => 'text',
+                               'path' => [
+                                           {
+                                             'label' => 'Combined Aged and Active Circulations',
+                                             'classname' => 'combcirc',
+                                             'struct' => {
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'combcirc',
+                                                           'label' => 'Combined Aged and Active Circulations',
+                                                           'classname' => 'combcirc',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'table' => 'action.all_circulation'
+                                                         },
+                                             'table' => 'action.all_circulation',
+                                             'id' => 'combcirc'
+                                           },
+                                           {
+                                             'struct' => {
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'table' => 'asset.copy',
+                                                           'core_label' => 'Core sources',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'label' => 'Item',
+                                                           'classname' => 'acp'
+                                                         },
+                                             'id' => 'combcirc.acp',
+                                             'from' => 'combcirc',
+                                             'classname' => 'acp',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'reltype' => 'has_a',
+                                                         'key' => 'id',
+                                                         'class' => 'acp',
+                                                         'label' => 'Circulating Item',
+                                                         'name' => 'target_copy'
+                                                       },
+                                             'label' => 'Circulating Item',
+                                             'table' => 'asset.copy',
+                                             'uplink' => {
+                                                           'name' => 'target_copy',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acp',
+                                                           'key' => 'id',
+                                                           'label' => 'Circulating Item',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link'
+                                                         }
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'name' => 'call_number',
+                                                           'label' => 'Call Number/Volume',
+                                                           'reltype' => 'has_a',
+                                                           'class' => 'acn',
+                                                           'key' => 'id',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link'
+                                                         },
+                                             'table' => 'asset.call_number',
+                                             'struct' => {
+                                                           'name' => 'acn',
+                                                           'label' => 'Call Number/Volume',
+                                                           'classname' => 'acn',
+                                                           'pkey_sequence' => 'asset.call_number_id_seq',
+                                                           'core_label' => 'Non-core sources',
+                                                           'table' => 'asset.call_number',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'from' => 'combcirc.acp',
+                                             'id' => 'combcirc.acp.acn',
+                                             'label' => 'Call Number/Volume',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'class' => 'acn',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Call Number/Volume',
+                                                         'key' => 'id',
+                                                         'name' => 'call_number'
+                                                       },
+                                             'classname' => 'acn'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'class' => 'bre',
+                                                           'label' => 'Bib Record',
+                                                           'name' => 'record'
+                                                         },
+                                             'table' => 'biblio.record_entry',
+                                             'struct' => {
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'biblio.record_entry_id_seq',
+                                                           'table' => 'biblio.record_entry',
+                                                           'label' => 'Bibliographic Record',
+                                                           'classname' => 'bre',
+                                                           'name' => 'bre',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'from' => 'combcirc.acp.acn',
+                                             'id' => 'combcirc.acp.acn.bre',
+                                             'label' => 'Bib Record',
+                                             'classname' => 'bre',
+                                             'link' => {
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'class' => 'bre',
+                                                         'reltype' => 'has_a',
+                                                         'label' => 'Bib Record',
+                                                         'key' => 'id',
+                                                         'name' => 'record'
+                                                       }
+                                           }
+                                         ],
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare'
+                                              },
+                               'label' => 'TCN Value',
+                               'doc_text' => '',
+                               'name' => 'tcn_value',
+                               'path_label' => 'Combined Aged and Active Circulations -> Circulating Item -> Call Number/Volume -> Bib Record'
+                             },
+                             {
+                               'index' => 1,
+                               'operator' => {
+                                               'label' => 'Between',
+                                               'op' => 'between'
+                                             },
+                               'path' => [
+                                           {
+                                             'label' => 'Combined Aged and Active Circulations',
+                                             'classname' => 'combcirc',
+                                             'struct' => {
+                                                           'table' => 'action.all_circulation',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey_sequence' => 'money.billable_xact_id_seq',
+                                                           'classname' => 'combcirc',
+                                                           'label' => 'Combined Aged and Active Circulations',
+                                                           'name' => 'combcirc',
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Core sources'
+                                                         },
+                                             'table' => 'action.all_circulation',
+                                             'id' => 'combcirc'
+                                           }
+                                         ],
+                               'datatype' => 'timestamp',
+                               'doc_text' => '',
+                               'name' => 'xact_start',
+                               'label' => 'Checkout Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'date',
+                                                'label' => 'Date'
+                                              },
+                               'path_label' => 'Combined Aged and Active Circulations'
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-07-09 16:01:09.565784-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" AS "TCN Value",
+	"f3fe90a34c53b72b1c1cd7606d043898"."shortname" AS "Circulating Library",
+	COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") AS "Circ Count"
+  FROM	action.all_circulation AS "a28abd4e77ad39f3bff5d8d720b02230"
+	INNER JOIN actor.org_unit AS "f3fe90a34c53b72b1c1cd7606d043898" ON ("a28abd4e77ad39f3bff5d8d720b02230"."circ_lib" = "f3fe90a34c53b72b1c1cd7606d043898"."id")
+	INNER JOIN asset.copy AS "cb6a3c5e73dcc3e2804950e0b8c0cc9d" ON ("a28abd4e77ad39f3bff5d8d720b02230"."target_copy" = "cb6a3c5e73dcc3e2804950e0b8c0cc9d"."id")
+	INNER JOIN asset.call_number AS "2bb388793157a14da8b4716d4675e44e" ON ("cb6a3c5e73dcc3e2804950e0b8c0cc9d"."call_number" = "2bb388793157a14da8b4716d4675e44e"."id")
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")
+  WHERE	"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" IN ($_22028$ocn318546654$_22028$,$_22028$ocn768193195$_22028$,$_22028$ocn773696004$_22028$,$_22028$ocn820812661$_22028$,$_22028$ocn959235255$_22028$,$_22028$ocn847868072$_22028$,$_22028$ocn990339650$_22028$,$_22028$on1090412625$_22028$,$_22028$on1089134174$_22028$,$_22028$on1102636078$_22028$,$_22028$on1042815159$_22028$)
+	AND date("a28abd4e77ad39f3bff5d8d720b02230"."xact_start") BETWEEN $_22028$2019-07-01$_22028$ AND $_22028$2020-06-30$_22028$
+  GROUP BY 1, 2
+  ORDER BY "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" ASC, "f3fe90a34c53b72b1c1cd7606d043898"."shortname" ASC, COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_having' => [],
+                 '_builder' => bless( {
+                                        '_resultset_limit' => 1048575,
+                                        '_pivot_label' => '1',
+                                        '_sql' => undef,
+                                        '_pivot_data' => '3',
+                                        '_params' => {
+                                                       'P0' => [
+                                                                 'ocn318546654',
+                                                                 'ocn768193195',
+                                                                 'ocn773696004',
+                                                                 'ocn820812661',
+                                                                 'ocn959235255',
+                                                                 'ocn847868072',
+                                                                 'ocn990339650',
+                                                                 'on1090412625',
+                                                                 'on1089134174',
+                                                                 'on1102636078',
+                                                                 'on1042815159'
+                                                               ],
+                                                       '__pivot_label' => '1',
+                                                       'P1' => [
+                                                                 '2019-07-01',
+                                                                 '2020-06-30'
+                                                               ],
+                                                       '__pivot_data' => '3'
+                                                     },
+                                        '_rels' => {
+                                                     '0db6a68c9f76e6e3ec8b2d5b1f8aeb12' => bless( {
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_join' => [],
+                                                                                                    '_columns' => [],
+                                                                                                    '_alias' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_table' => 'biblio.record_entry',
+                                                                                                    '_sql' => 'biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"',
+                                                                                                    '_join_type' => 'inner'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     '2bb388793157a14da8b4716d4675e44e' => bless( {
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_alias' => '2bb388793157a14da8b4716d4675e44e',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'record',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'0db6a68c9f76e6e3ec8b2d5b1f8aeb12'},
+                                                                                                                          '_sql' => '
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'2bb388793157a14da8b4716d4675e44e'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_sql' => 'asset.call_number AS "2bb388793157a14da8b4716d4675e44e"',
+                                                                                                    '_table' => 'asset.call_number'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'a28abd4e77ad39f3bff5d8d720b02230' => bless( {
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_sql' => 'action.all_circulation AS "a28abd4e77ad39f3bff5d8d720b02230"
+	INNER JOIN actor.org_unit AS "f3fe90a34c53b72b1c1cd7606d043898" ON ("a28abd4e77ad39f3bff5d8d720b02230"."circ_lib" = "f3fe90a34c53b72b1c1cd7606d043898"."id")
+	INNER JOIN asset.copy AS "cb6a3c5e73dcc3e2804950e0b8c0cc9d" ON ("a28abd4e77ad39f3bff5d8d720b02230"."target_copy" = "cb6a3c5e73dcc3e2804950e0b8c0cc9d"."id")
+	INNER JOIN asset.call_number AS "2bb388793157a14da8b4716d4675e44e" ON ("cb6a3c5e73dcc3e2804950e0b8c0cc9d"."call_number" = "2bb388793157a14da8b4716d4675e44e"."id")
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")',
+                                                                                                    '_alias' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_table' => 'action.all_circulation',
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'circ_lib',
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_join' => [],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_alias' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_table' => 'actor.org_unit',
+                                                                                                                                                   '_sql' => 'actor.org_unit AS "f3fe90a34c53b72b1c1cd7606d043898"'
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "f3fe90a34c53b72b1c1cd7606d043898" ON ("a28abd4e77ad39f3bff5d8d720b02230"."circ_lib" = "f3fe90a34c53b72b1c1cd7606d043898"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'}
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_sql' => '
+	INNER JOIN asset.copy AS "cb6a3c5e73dcc3e2804950e0b8c0cc9d" ON ("a28abd4e77ad39f3bff5d8d720b02230"."target_copy" = "cb6a3c5e73dcc3e2804950e0b8c0cc9d"."id")
+	INNER JOIN asset.call_number AS "2bb388793157a14da8b4716d4675e44e" ON ("cb6a3c5e73dcc3e2804950e0b8c0cc9d"."call_number" = "2bb388793157a14da8b4716d4675e44e"."id")
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'},
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_table' => 'asset.copy',
+                                                                                                                                                   '_sql' => 'asset.copy AS "cb6a3c5e73dcc3e2804950e0b8c0cc9d"',
+                                                                                                                                                   '_nullable' => undef,
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_join' => [
+                                                                                                                                                                bless( {
+                                                                                                                                                                         '_right_col' => 'id',
+                                                                                                                                                                         '_left_col' => 'call_number',
+                                                                                                                                                                         '_join_type' => 'i',
+                                                                                                                                                                         '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'2bb388793157a14da8b4716d4675e44e'},
+                                                                                                                                                                         '_sql' => '
+	INNER JOIN asset.call_number AS "2bb388793157a14da8b4716d4675e44e" ON ("cb6a3c5e73dcc3e2804950e0b8c0cc9d"."call_number" = "2bb388793157a14da8b4716d4675e44e"."id")
+	INNER JOIN biblio.record_entry AS "0db6a68c9f76e6e3ec8b2d5b1f8aeb12" ON ("2bb388793157a14da8b4716d4675e44e"."record" = "0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."id")',
+                                                                                                                                                                         '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'}{'_join'}[1]{'_right_rel'}
+                                                                                                                                                                       }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                              ],
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_alias' => 'cb6a3c5e73dcc3e2804950e0b8c0cc9d',
+                                                                                                                                                   '_is_join' => 1
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'target_copy'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ]
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'f3fe90a34c53b72b1c1cd7606d043898' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'}{'_join'}[0]{'_right_rel'},
+                                                     'cb6a3c5e73dcc3e2804950e0b8c0cc9d' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'}{'_join'}[1]{'_right_rel'}
+                                                   },
+                                        '_relative_time' => '2020-07-09 16:01:09.565784-04'
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => {
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'tcn_value',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                           '_sql' => '"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_relation' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                                           '_sql' => '"f3fe90a34c53b72b1c1cd7606d043898"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'count',
+                                           '_relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                                           '_sql' => 'COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") ASC',
+                                           '_column' => {
+                                                          'transform' => 'count',
+                                                          'aggregate' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                          'colname' => 'id',
+                                                          'transform_label' => 'Count'
+                                                        },
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_where' => [
+                               bless( {
+                                        '_sql' => '"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" IN ($_22028$ocn318546654$_22028$,$_22028$ocn768193195$_22028$,$_22028$ocn773696004$_22028$,$_22028$ocn820812661$_22028$,$_22028$ocn959235255$_22028$,$_22028$ocn847868072$_22028$,$_22028$ocn990339650$_22028$,$_22028$on1090412625$_22028$,$_22028$on1089134174$_22028$,$_22028$on1102636078$_22028$,$_22028$on1042815159$_22028$)',
+                                        '_relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'tcn_value',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'GenericTransform',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_condition' => {
+                                                          'between' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'xact_start',
+                                                       'transform_label' => 'Date'
+                                                     },
+                                        '_relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                                        '_sql' => 'date("a28abd4e77ad39f3bff5d8d720b02230"."xact_start") BETWEEN $_22028$2019-07-01$_22028$ AND $_22028$2020-06-30$_22028$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_alias' => 'TCN Value',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_relation' => '0db6a68c9f76e6e3ec8b2d5b1f8aeb12',
+                                         '_sql' => '"0db6a68c9f76e6e3ec8b2d5b1f8aeb12"."tcn_value" AS "TCN Value"',
+                                         '_builder' => $VAR1->{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_alias' => 'Circulating Library',
+                                         '_sql' => '"f3fe90a34c53b72b1c1cd7606d043898"."shortname" AS "Circulating Library"',
+                                         '_relation' => 'f3fe90a34c53b72b1c1cd7606d043898',
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_sql' => 'COUNT("a28abd4e77ad39f3bff5d8d720b02230"."id") AS "Circ Count"',
+                                         '_relation' => 'a28abd4e77ad39f3bff5d8d720b02230',
+                                         '_alias' => 'Circ Count',
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_transform' => 'count',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'a28abd4e77ad39f3bff5d8d720b02230'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

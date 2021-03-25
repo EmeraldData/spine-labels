@@ -1,0 +1,73 @@
+[% PROCESS 'kpac/parts/util.tt2'; 
+   PROCESS "opac/parts/org_selector.tt2";
+   WRAPPER "kpac/parts/base.tt2" %]
+
+<!-- subpage is the main wrapper page for everything except 'home' -->
+
+ <div class="search_wrapper">
+                <h1>Search The Libraries</h1>
+                <form action="[% ctx.kpac_root _ '/results' %]">
+                    [% qtype = CGI.param('qtype') %]
+                    <table cellpadding="0" cellspacing="0" border="0" align="center" class="search_box_wrapper">
+                        <tr>
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="keyword" id="st_word" class="st_word" 
+                                [% IF !qtype OR qtype == 'keyword' %]checked="checked"[% END %]/></td>
+                            <td class="st_label"><label for="st_word">Word</label></td>
+
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="title" id="st_title" class="st_title" 
+                                [% IF qtype == 'title' %]checked="checked"[% END %]/></td>
+                            <td class="st_label"><label for="st_title">Title</label></td>
+
+                            <td class="st_radio_btn"><input type="radio" name="qtype" value="author" id="st_author" class="st_author"
+                                [% IF qtype == 'author' %]checked="checked"[% END %]/></td>
+                            <td class="st_label st_author_box"><label for="st_author">Author</label></td>
+
+                            <td><input type="text" class="search_box" name="query" 
+                                value="[% CGI.param('nosprop') ? '' : CGI.param('query') | html  %]"/></td>
+                            <td></td>
+                        </tr>
+						<tr>
+						    <td colspan="6" align="right" class="st_label st_author_box"><label>Search Location:</label></td>
+							<td align="left">[% INCLUDE build_org_selector show_loc_groups=1 %]</td>						
+                            <td><input type="image" src="[% ctx.media_prefix %]/images/kpac/search_btn.png" alt="[% l('search') %]"  style="margin-top:4px;"  /></td>
+						</tr>
+                    </table>
+                </form>
+            </div>
+
+
+</div> <!-- this ends the main_header_wrapper div that was started in header.tt2 -->
+
+<div class="main_top_shadow_sub">
+    <div class="main_mid_top_sub">
+        [% INCLUDE 'kpac/parts/breadcrumb.tt2' %]
+    </div>
+</div>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td valign="top" class="main_inside_cell" valign="top" height="300">
+            <div class="main_content_wrapper">
+                [% content %] 
+                <div class="clear">&nbsp;</div>
+            </div>
+        </td>
+        
+        [% currPage = CGI.request_uri;
+           IF (matches = currPage.match('/results?'));
+                sidebarpic = 'goat.png';
+           ELSE;
+                sidebarpic = 'quack.png';
+           END %]
+
+        <td width="266" height="600" valign="top" class="sub_sidebar" style="background:url('/images/kpac/[%- sidebarpic -%]') no-repeat right bottom;">
+            <div class="sub_sidebar_inner">
+                     [% INCLUDE 'kpac/parts/searchlimits.tt2' %]
+            </div>
+        </td>
+    </tr>
+</table>
+
+[% END %]  
+  
+

@@ -1,0 +1,2117 @@
+<html><head><meta charset='utf-8'><title>DEBUG: Test #44</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."request_time" AS "Request Date/Time",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."target" AS "Target Object ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."frozen" AS "Currently Frozen",
+	"413df8472eb3495de6137209d94c2539"."shortname" AS "Pickup Lib",
+	"462716f66fc7b046f1eb8a64b9beff2b"."shortname" AS "Request Lib",
+	"0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" AS "Hold User",
+	"21dac70a3544f1b89d90c251302902ad"."id" AS "User Placed the Hold"
+  FROM	action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	INNER JOIN actor.org_unit AS "462716f66fc7b046f1eb8a64b9beff2b" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."request_lib" = "462716f66fc7b046f1eb8a64b9beff2b"."id")
+	INNER JOIN actor.usr AS "21dac70a3544f1b89d90c251302902ad" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."requestor" = "21dac70a3544f1b89d90c251302902ad"."id")
+	INNER JOIN actor.usr AS "0d692e82dd1cfc230f6c9d0b5f9c76ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id")
+	INNER JOIN actor.org_unit AS "413df8472eb3495de6137209d94c2539" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."pickup_lib" = "413df8472eb3495de6137209d94c2539"."id")
+  WHERE	"3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" = $_77840$T$_77840$
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."capture_time" is NULL
+	AND "462716f66fc7b046f1eb8a64b9beff2b"."id" IN ($_77840$394$_77840$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+  ORDER BY "3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."request_time" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."target" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."frozen" ASC, "413df8472eb3495de6137209d94c2539"."shortname" ASC, "462716f66fc7b046f1eb8a64b9beff2b"."shortname" ASC, "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" ASC, "21dac70a3544f1b89d90c251302902ad"."id" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'owner' => 863206,
+          'description' => '',
+          'data' => '{"version":5,"core_class":"ahr","select":[{"alias":"Hold ID","path":"ahr-id","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Request Date/Time","path":"ahr-request_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"request_time","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Target Object ID","path":"ahr-target","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"target","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Currently Frozen","path":"ahr-frozen","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"frozen","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Pickup Lib","path":"aou-shortname","field_doc":"","relation":"413df8472eb3495de6137209d94c2539","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Request Lib","path":"aou-shortname","field_doc":"","relation":"462716f66fc7b046f1eb8a64b9beff2b","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold User","path":"au-id","field_doc":"","relation":"0d692e82dd1cfc230f6c9d0b5f9c76ee","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"User Placed the Hold","path":"au-id","field_doc":"","relation":"21dac70a3544f1b89d90c251302902ad","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"3b0d7d05c65006de7b2ca20f5fe39690","path":"ahr-ahr","table":"action.hold_request","idlclass":"ahr","label":"Hold Request","join":{"pickup_lib-a83aec92287ef2eed487e52c74b46f81":{"type":"inner","key":"id","alias":"413df8472eb3495de6137209d94c2539","path":"ahr-pickup_lib","table":"actor.org_unit","idlclass":"aou","label":"Hold Request -> Pickup Library"},"request_lib-1c6ab274a890bb96a1991321619cfea5":{"type":"inner","key":"id","alias":"462716f66fc7b046f1eb8a64b9beff2b","path":"ahr-request_lib","table":"actor.org_unit","idlclass":"aou","label":"Hold Request -> Requesting Library"},"usr-4e09cff1d200f1b2657c55ddd4fdf2ee":{"type":"inner","key":"id","alias":"0d692e82dd1cfc230f6c9d0b5f9c76ee","path":"ahr-usr","table":"actor.usr","idlclass":"au","label":"Hold Request -> Hold User"},"requestor-ec37b94ce77dcc7440f642f250a33297":{"type":"inner","key":"id","alias":"21dac70a3544f1b89d90c251302902ad","path":"ahr-requestor","table":"actor.usr","idlclass":"au","label":"Hold Request -> Requesting User"}}},"where":[{"alias":"Fulfillment Date/Time","path":"ahr-fulfillment_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"fulfillment_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Hold Cancel Date/Time","path":"ahr-cancel_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"cancel_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Hold Type","path":"ahr-hold_type","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"hold_type","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"T"}},{"alias":"Capture Date/Time","path":"ahr-capture_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"capture_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"462716f66fc7b046f1eb8a64b9beff2b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"id","label":"Hold ID","datatype":"id","index":0,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"request_time","label":"Request Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"target","label":"Target Object ID","datatype":"link","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"frozen","label":"Currently Frozen","datatype":"bool","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Pickup Lib","required":true,"datatype":"text","index":4,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Pickup Library","from":"ahr","link":{"name":"pickup_lib","label":"Pickup Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"pickup_lib","label":"Pickup Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Pickup Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Request Lib","required":true,"datatype":"text","index":5,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting Library","from":"ahr","link":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Requesting Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Hold User","selector":"usrname","datatype":"id","index":6,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold User","from":"ahr","link":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"}],"path_label":"Hold Request -> Hold User","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"User Placed the Hold","selector":"usrname","datatype":"id","index":7,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting User","from":"ahr","link":{"name":"requestor","label":"Requesting User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"requestor","label":"Requesting User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"}],"path_label":"Hold Request -> Requesting User","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"fulfillment_time","label":"Fulfillment Date/Time","datatype":"timestamp","index":0,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"cancel_time","label":"Hold Cancel Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"hold_type","label":"Hold Type","type":"link","key":"hold_type","class":"cht","reltype":"has_a","datatype":"text","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"T"},{"name":"capture_time","label":"Capture Date/Time","datatype":"timestamp","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":4,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting Library","from":"ahr","link":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Requesting Library","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'folder' => 3588,
+          'name' => 'All open title-level holds at a system',
+          'id' => 69393,
+          'create_time' => '2020-06-11 11:14:43-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'path' => 'ahr-fulfillment_time',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'fulfillment_time'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Fulfillment Date/Time'
+                       },
+                       {
+                         'path' => 'ahr-cancel_time',
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'alias' => 'Hold Cancel Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'cancel_time',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          '=' => 'T'
+                                        },
+                         'path' => 'ahr-hold_type',
+                         'column' => {
+                                       'colname' => 'hold_type',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Hold Type'
+                       },
+                       {
+                         'alias' => 'Capture Date/Time',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'capture_time'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'ahr-capture_time',
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                         'path' => 'aou-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID'
+                       }
+                     ],
+          'version' => 5,
+          'display_cols' => [
+                              {
+                                'path_label' => 'Hold Request',
+                                'datatype' => 'id',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request'
+                                                          },
+                                              'classname' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold ID',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'name' => 'request_time',
+                                'path_label' => 'Hold Request',
+                                'datatype' => 'timestamp',
+                                'index' => 1,
+                                'label' => 'Request Date/Time',
+                                'path' => [
+                                            {
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'link',
+                                'path_label' => 'Hold Request',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Target Object ID',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'target'
+                              },
+                              {
+                                'name' => 'frozen',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'label' => 'Currently Frozen',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            }
+                                          ],
+                                'datatype' => 'bool',
+                                'path_label' => 'Hold Request',
+                                'index' => 3
+                              },
+                              {
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'index' => 4,
+                                'path_label' => 'Hold Request -> Pickup Library',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request'
+                                                          },
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link',
+                                                            'class' => 'aou',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'pickup_lib',
+                                                            'label' => 'Pickup Library'
+                                                          },
+                                              'id' => 'ahr.aou',
+                                              'link' => {
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'class' => 'aou',
+                                                          'name' => 'pickup_lib',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'label' => 'Pickup Library'
+                                                        },
+                                              'from' => 'ahr',
+                                              'classname' => 'aou',
+                                              'label' => 'Pickup Library'
+                                            }
+                                          ],
+                                'label' => 'Pickup Lib'
+                              },
+                              {
+                                'label' => 'Request Lib',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'classname' => 'aou',
+                                              'from' => 'ahr',
+                                              'label' => 'Requesting Library',
+                                              'uplink' => {
+                                                            'label' => 'Requesting Library',
+                                                            'name' => 'request_lib',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'aou',
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'struct' => {
+                                                            'name' => 'aou',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'ahr.aou',
+                                              'link' => {
+                                                          'class' => 'aou',
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'label' => 'Requesting Library',
+                                                          'name' => 'request_lib',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'path_label' => 'Hold Request -> Requesting Library',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'index' => 5,
+                                'name' => 'shortname',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               }
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id',
+                                'selector' => 'usrname',
+                                'path_label' => 'Hold Request -> Hold User',
+                                'datatype' => 'id',
+                                'index' => 6,
+                                'path' => [
+                                            {
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr',
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'table' => 'action.hold_request'
+                                            },
+                                            {
+                                              'from' => 'ahr',
+                                              'classname' => 'au',
+                                              'label' => 'Hold User',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'ILS User',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id',
+                                                            'name' => 'au'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Hold User',
+                                                            'name' => 'usr',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'id' => 'ahr.au',
+                                              'link' => {
+                                                          'class' => 'au',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'Hold User',
+                                                          'name' => 'usr',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold User'
+                              },
+                              {
+                                'name' => 'id',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr'
+                                            },
+                                            {
+                                              'id' => 'ahr.au',
+                                              'link' => {
+                                                          'label' => 'Requesting User',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'requestor',
+                                                          'class' => 'au',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'ILS User',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'name' => 'au',
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Requesting User',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'requestor',
+                                                            'key' => 'id'
+                                                          },
+                                              'label' => 'Requesting User',
+                                              'from' => 'ahr',
+                                              'classname' => 'au'
+                                            }
+                                          ],
+                                'label' => 'User Placed the Hold',
+                                'path_label' => 'Hold Request -> Requesting User',
+                                'selector' => 'usrname',
+                                'datatype' => 'id',
+                                'index' => 7
+                              }
+                            ],
+          'having' => [],
+          'from' => {
+                      'label' => 'Hold Request',
+                      'idlclass' => 'ahr',
+                      'path' => 'ahr-ahr',
+                      'join' => {
+                                  'request_lib-1c6ab274a890bb96a1991321619cfea5' => {
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'ahr-request_lib',
+                                                                                      'idlclass' => 'aou',
+                                                                                      'label' => 'Hold Request -> Requesting Library',
+                                                                                      'type' => 'inner',
+                                                                                      'table' => 'actor.org_unit',
+                                                                                      'alias' => '462716f66fc7b046f1eb8a64b9beff2b'
+                                                                                    },
+                                  'pickup_lib-a83aec92287ef2eed487e52c74b46f81' => {
+                                                                                     'key' => 'id',
+                                                                                     'label' => 'Hold Request -> Pickup Library',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'path' => 'ahr-pickup_lib',
+                                                                                     'type' => 'inner',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'alias' => '413df8472eb3495de6137209d94c2539'
+                                                                                   },
+                                  'requestor-ec37b94ce77dcc7440f642f250a33297' => {
+                                                                                    'key' => 'id',
+                                                                                    'idlclass' => 'au',
+                                                                                    'label' => 'Hold Request -> Requesting User',
+                                                                                    'path' => 'ahr-requestor',
+                                                                                    'type' => 'inner',
+                                                                                    'table' => 'actor.usr',
+                                                                                    'alias' => '21dac70a3544f1b89d90c251302902ad'
+                                                                                  },
+                                  'usr-4e09cff1d200f1b2657c55ddd4fdf2ee' => {
+                                                                              'idlclass' => 'au',
+                                                                              'label' => 'Hold Request -> Hold User',
+                                                                              'path' => 'ahr-usr',
+                                                                              'key' => 'id',
+                                                                              'alias' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                                                                              'table' => 'actor.usr',
+                                                                              'type' => 'inner'
+                                                                            }
+                                },
+                      'alias' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                      'table' => 'action.hold_request'
+                    },
+          'filter_cols' => [
+                             {
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'fulfillment_time',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 0,
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'timestamp',
+                               'label' => 'Fulfillment Date/Time',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Hold Request',
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ]
+                             },
+                             {
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr',
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                         },
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ],
+                               'label' => 'Hold Cancel Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'cancel_time'
+                             },
+                             {
+                               'key' => 'hold_type',
+                               'name' => 'hold_type',
+                               'value' => 'T',
+                               'type' => 'link',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'class' => 'cht',
+                               'reltype' => 'has_a',
+                               'label' => 'Hold Type',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'name' => 'ahr',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq'
+                                                         }
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'text',
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'index' => 2
+                             },
+                             {
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request'
+                                           }
+                                         ],
+                               'label' => 'Capture Date/Time',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 3,
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'timestamp',
+                               'name' => 'capture_time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              }
+                             },
+                             {
+                               'label' => 'Organizational Unit ID',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'name' => 'ahr',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq'
+                                                         },
+                                             'table' => 'action.hold_request'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'request_lib',
+                                                           'label' => 'Requesting Library',
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'class' => 'aou'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'link' => {
+                                                         'label' => 'Requesting Library',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'request_lib',
+                                                         'key' => 'id',
+                                                         'class' => 'aou',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link'
+                                                       },
+                                             'id' => 'ahr.aou',
+                                             'classname' => 'aou',
+                                             'from' => 'ahr',
+                                             'label' => 'Requesting Library'
+                                           }
+                                         ],
+                               'path_label' => 'Hold Request -> Requesting Library',
+                               'datatype' => 'org_unit',
+                               'selector' => 'shortname',
+                               'index' => 4,
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'name' => 'id',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              }
+                             }
+                           ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'id'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold ID',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-id'
+                        },
+                        {
+                          'path' => 'ahr-request_time',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'alias' => 'Request Date/Time',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'request_time'
+                                      }
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-target',
+                          'column' => {
+                                        'colname' => 'target',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Target Object ID'
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-frozen',
+                          'column' => {
+                                        'colname' => 'frozen',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Currently Frozen'
+                        },
+                        {
+                          'path' => 'aou-shortname',
+                          'relation' => '413df8472eb3495de6137209d94c2539',
+                          'alias' => 'Pickup Lib',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Request Lib',
+                          'relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold User',
+                          'relation' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                          'path' => 'au-id'
+                        },
+                        {
+                          'relation' => '21dac70a3544f1b89d90c251302902ad',
+                          'path' => 'au-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'id'
+                                      },
+                          'alias' => 'User Placed the Hold'
+                        }
+                      ],
+          'core_class' => 'ahr'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P0":["394"]}',
+          'template' => {
+                          'owner' => 863206,
+                          'description' => '',
+                          'data' => '{"version":5,"core_class":"ahr","select":[{"alias":"Hold ID","path":"ahr-id","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Request Date/Time","path":"ahr-request_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"request_time","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Target Object ID","path":"ahr-target","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"target","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Currently Frozen","path":"ahr-frozen","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"frozen","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Pickup Lib","path":"aou-shortname","field_doc":"","relation":"413df8472eb3495de6137209d94c2539","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Request Lib","path":"aou-shortname","field_doc":"","relation":"462716f66fc7b046f1eb8a64b9beff2b","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Hold User","path":"au-id","field_doc":"","relation":"0d692e82dd1cfc230f6c9d0b5f9c76ee","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"User Placed the Hold","path":"au-id","field_doc":"","relation":"21dac70a3544f1b89d90c251302902ad","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"3b0d7d05c65006de7b2ca20f5fe39690","path":"ahr-ahr","table":"action.hold_request","idlclass":"ahr","label":"Hold Request","join":{"pickup_lib-a83aec92287ef2eed487e52c74b46f81":{"type":"inner","key":"id","alias":"413df8472eb3495de6137209d94c2539","path":"ahr-pickup_lib","table":"actor.org_unit","idlclass":"aou","label":"Hold Request -> Pickup Library"},"request_lib-1c6ab274a890bb96a1991321619cfea5":{"type":"inner","key":"id","alias":"462716f66fc7b046f1eb8a64b9beff2b","path":"ahr-request_lib","table":"actor.org_unit","idlclass":"aou","label":"Hold Request -> Requesting Library"},"usr-4e09cff1d200f1b2657c55ddd4fdf2ee":{"type":"inner","key":"id","alias":"0d692e82dd1cfc230f6c9d0b5f9c76ee","path":"ahr-usr","table":"actor.usr","idlclass":"au","label":"Hold Request -> Hold User"},"requestor-ec37b94ce77dcc7440f642f250a33297":{"type":"inner","key":"id","alias":"21dac70a3544f1b89d90c251302902ad","path":"ahr-requestor","table":"actor.usr","idlclass":"au","label":"Hold Request -> Requesting User"}}},"where":[{"alias":"Fulfillment Date/Time","path":"ahr-fulfillment_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"fulfillment_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Hold Cancel Date/Time","path":"ahr-cancel_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"cancel_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Hold Type","path":"ahr-hold_type","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"hold_type","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"T"}},{"alias":"Capture Date/Time","path":"ahr-capture_time","field_doc":"","relation":"3b0d7d05c65006de7b2ca20f5fe39690","column":{"colname":"capture_time","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"is":null}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"462716f66fc7b046f1eb8a64b9beff2b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"id","label":"Hold ID","datatype":"id","index":0,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"request_time","label":"Request Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"target","label":"Target Object ID","datatype":"link","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"frozen","label":"Currently Frozen","datatype":"bool","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Pickup Lib","required":true,"datatype":"text","index":4,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Pickup Library","from":"ahr","link":{"name":"pickup_lib","label":"Pickup Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"pickup_lib","label":"Pickup Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Pickup Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Request Lib","required":true,"datatype":"text","index":5,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting Library","from":"ahr","link":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Requesting Library","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Hold User","selector":"usrname","datatype":"id","index":6,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Hold User","from":"ahr","link":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"usr","label":"Hold User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"}],"path_label":"Hold Request -> Hold User","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"User Placed the Hold","selector":"usrname","datatype":"id","index":7,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting User","from":"ahr","link":{"name":"requestor","label":"Requesting User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"id":"ahr.au","uplink":{"name":"requestor","label":"Requesting User","type":"link","key":"id","class":"au","reltype":"has_a","datatype":"link"},"classname":"au","struct":{"name":"au","label":"ILS User","table":"actor.usr","core":true,"pkey":"id","pkey_sequence":"actor.usr_id_seq","core_label":"Core sources","classname":"au"},"table":"actor.usr"}],"path_label":"Hold Request -> Requesting User","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"fulfillment_time","label":"Fulfillment Date/Time","datatype":"timestamp","index":0,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"cancel_time","label":"Hold Cancel Date/Time","datatype":"timestamp","index":1,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"hold_type","label":"Hold Type","type":"link","key":"hold_type","class":"cht","reltype":"has_a","datatype":"text","index":2,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"op":"=","label":"Equals"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"T"},{"name":"capture_time","label":"Capture Date/Time","datatype":"timestamp","index":3,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"}],"path_label":"Hold Request","operator":{"label":"Is NULL","op":"is"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Organizational Unit ID","selector":"shortname","datatype":"org_unit","index":4,"path":[{"label":"Hold Request","id":"ahr","classname":"ahr","struct":{"name":"ahr","label":"Hold Request","table":"action.hold_request","core":true,"pkey":"id","pkey_sequence":"action.hold_request_id_seq","core_label":"Core sources","classname":"ahr"},"table":"action.hold_request"},{"label":"Requesting Library","from":"ahr","link":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"ahr.aou","uplink":{"name":"request_lib","label":"Requesting Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Hold Request -> Requesting Library","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'folder' => 3588,
+                          'name' => 'All open title-level holds at a system',
+                          'id' => 69393,
+                          'create_time' => '2020-06-11 11:14:43-04'
+                        },
+          'id' => 189389,
+          'create_time' => '2021-01-07 12:35:15.069641-05',
+          'folder' => 5526,
+          'name' => 'Test #44',
+          'recur' => 0,
+          'recurrence' => undef,
+          'owner' => 4380542,
+          'description' => 'Test report by Adam'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'path' => 'ahr-fulfillment_time',
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'fulfillment_time'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Fulfillment Date/Time'
+                       },
+                       {
+                         'path' => 'ahr-cancel_time',
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          'is' => undef
+                                        },
+                         'alias' => 'Hold Cancel Date/Time',
+                         'field_doc' => '',
+                         'column' => {
+                                       'colname' => 'cancel_time',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     }
+                       },
+                       {
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          '=' => 'T'
+                                        },
+                         'path' => 'ahr-hold_type',
+                         'column' => {
+                                       'colname' => 'hold_type',
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Hold Type'
+                       },
+                       {
+                         'alias' => 'Capture Date/Time',
+                         'column' => {
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare',
+                                       'colname' => 'capture_time'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'ahr-capture_time',
+                         'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                         'condition' => {
+                                          'is' => undef
+                                        }
+                       },
+                       {
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                         'path' => 'aou-id',
+                         'column' => {
+                                       'colname' => 'id',
+                                       'aggregate' => 0,
+                                       'transform_label' => 'Raw Data',
+                                       'transform' => 'Bare'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID'
+                       }
+                     ],
+          'version' => 5,
+          'display_cols' => [
+                              {
+                                'path_label' => 'Hold Request',
+                                'datatype' => 'id',
+                                'index' => 0,
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request'
+                                                          },
+                                              'classname' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold ID',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'name' => 'request_time',
+                                'path_label' => 'Hold Request',
+                                'datatype' => 'timestamp',
+                                'index' => 1,
+                                'label' => 'Request Date/Time',
+                                'path' => [
+                                            {
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 2,
+                                'datatype' => 'link',
+                                'path_label' => 'Hold Request',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Target Object ID',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare'
+                                               },
+                                'name' => 'target'
+                              },
+                              {
+                                'name' => 'frozen',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               },
+                                'label' => 'Currently Frozen',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            }
+                                          ],
+                                'datatype' => 'bool',
+                                'path_label' => 'Hold Request',
+                                'index' => 3
+                              },
+                              {
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'index' => 4,
+                                'path_label' => 'Hold Request -> Pickup Library',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request'
+                                                          },
+                                              'classname' => 'ahr',
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit',
+                                                            'name' => 'aou',
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link',
+                                                            'class' => 'aou',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'pickup_lib',
+                                                            'label' => 'Pickup Library'
+                                                          },
+                                              'id' => 'ahr.aou',
+                                              'link' => {
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'class' => 'aou',
+                                                          'name' => 'pickup_lib',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id',
+                                                          'label' => 'Pickup Library'
+                                                        },
+                                              'from' => 'ahr',
+                                              'classname' => 'aou',
+                                              'label' => 'Pickup Library'
+                                            }
+                                          ],
+                                'label' => 'Pickup Lib'
+                              },
+                              {
+                                'label' => 'Request Lib',
+                                'path' => [
+                                            {
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'action.hold_request',
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr'
+                                            },
+                                            {
+                                              'classname' => 'aou',
+                                              'from' => 'ahr',
+                                              'label' => 'Requesting Library',
+                                              'uplink' => {
+                                                            'label' => 'Requesting Library',
+                                                            'name' => 'request_lib',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'aou',
+                                                            'datatype' => 'org_unit',
+                                                            'type' => 'link'
+                                                          },
+                                              'table' => 'actor.org_unit',
+                                              'struct' => {
+                                                            'name' => 'aou',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'classname' => 'aou',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'ahr.aou',
+                                              'link' => {
+                                                          'class' => 'aou',
+                                                          'datatype' => 'org_unit',
+                                                          'type' => 'link',
+                                                          'label' => 'Requesting Library',
+                                                          'name' => 'request_lib',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'path_label' => 'Hold Request -> Requesting Library',
+                                'required' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                'datatype' => 'text',
+                                'index' => 5,
+                                'name' => 'shortname',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                               }
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id',
+                                'selector' => 'usrname',
+                                'path_label' => 'Hold Request -> Hold User',
+                                'datatype' => 'id',
+                                'index' => 6,
+                                'path' => [
+                                            {
+                                              'label' => 'Hold Request',
+                                              'id' => 'ahr',
+                                              'classname' => 'ahr',
+                                              'struct' => {
+                                                            'name' => 'ahr',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Hold Request',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr'
+                                                          },
+                                              'table' => 'action.hold_request'
+                                            },
+                                            {
+                                              'from' => 'ahr',
+                                              'classname' => 'au',
+                                              'label' => 'Hold User',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'ILS User',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id',
+                                                            'name' => 'au'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'label' => 'Hold User',
+                                                            'name' => 'usr',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id'
+                                                          },
+                                              'id' => 'ahr.au',
+                                              'link' => {
+                                                          'class' => 'au',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'Hold User',
+                                                          'name' => 'usr',
+                                                          'reltype' => 'has_a',
+                                                          'key' => 'id'
+                                                        }
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Hold User'
+                              },
+                              {
+                                'name' => 'id',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'id' => 'ahr',
+                                              'label' => 'Hold Request',
+                                              'table' => 'action.hold_request',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'action.hold_request_id_seq',
+                                                            'classname' => 'ahr',
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Hold Request',
+                                                            'table' => 'action.hold_request',
+                                                            'pkey' => 'id',
+                                                            'name' => 'ahr'
+                                                          },
+                                              'classname' => 'ahr'
+                                            },
+                                            {
+                                              'id' => 'ahr.au',
+                                              'link' => {
+                                                          'label' => 'Requesting User',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'requestor',
+                                                          'class' => 'au',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'ILS User',
+                                                            'pkey_sequence' => 'actor.usr_id_seq',
+                                                            'classname' => 'au',
+                                                            'name' => 'au',
+                                                            'table' => 'actor.usr',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'actor.usr',
+                                              'uplink' => {
+                                                            'class' => 'au',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Requesting User',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'requestor',
+                                                            'key' => 'id'
+                                                          },
+                                              'label' => 'Requesting User',
+                                              'from' => 'ahr',
+                                              'classname' => 'au'
+                                            }
+                                          ],
+                                'label' => 'User Placed the Hold',
+                                'path_label' => 'Hold Request -> Requesting User',
+                                'selector' => 'usrname',
+                                'datatype' => 'id',
+                                'index' => 7
+                              }
+                            ],
+          'having' => [],
+          'from' => {
+                      'label' => 'Hold Request',
+                      'idlclass' => 'ahr',
+                      'path' => 'ahr-ahr',
+                      'join' => {
+                                  'request_lib-1c6ab274a890bb96a1991321619cfea5' => {
+                                                                                      'key' => 'id',
+                                                                                      'path' => 'ahr-request_lib',
+                                                                                      'idlclass' => 'aou',
+                                                                                      'label' => 'Hold Request -> Requesting Library',
+                                                                                      'type' => 'inner',
+                                                                                      'table' => 'actor.org_unit',
+                                                                                      'alias' => '462716f66fc7b046f1eb8a64b9beff2b'
+                                                                                    },
+                                  'pickup_lib-a83aec92287ef2eed487e52c74b46f81' => {
+                                                                                     'key' => 'id',
+                                                                                     'label' => 'Hold Request -> Pickup Library',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'path' => 'ahr-pickup_lib',
+                                                                                     'type' => 'inner',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'alias' => '413df8472eb3495de6137209d94c2539'
+                                                                                   },
+                                  'requestor-ec37b94ce77dcc7440f642f250a33297' => {
+                                                                                    'key' => 'id',
+                                                                                    'idlclass' => 'au',
+                                                                                    'label' => 'Hold Request -> Requesting User',
+                                                                                    'path' => 'ahr-requestor',
+                                                                                    'type' => 'inner',
+                                                                                    'table' => 'actor.usr',
+                                                                                    'alias' => '21dac70a3544f1b89d90c251302902ad'
+                                                                                  },
+                                  'usr-4e09cff1d200f1b2657c55ddd4fdf2ee' => {
+                                                                              'idlclass' => 'au',
+                                                                              'label' => 'Hold Request -> Hold User',
+                                                                              'path' => 'ahr-usr',
+                                                                              'key' => 'id',
+                                                                              'alias' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                                                                              'table' => 'actor.usr',
+                                                                              'type' => 'inner'
+                                                                            }
+                                },
+                      'alias' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                      'table' => 'action.hold_request'
+                    },
+          'filter_cols' => [
+                             {
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'fulfillment_time',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 0,
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'timestamp',
+                               'label' => 'Fulfillment Date/Time',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'classname' => 'ahr',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Hold Request',
+                                                           'table' => 'action.hold_request',
+                                                           'pkey' => 'id',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request',
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ]
+                             },
+                             {
+                               'datatype' => 'timestamp',
+                               'path_label' => 'Hold Request',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 1,
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr',
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                         },
+                                             'classname' => 'ahr',
+                                             'id' => 'ahr',
+                                             'label' => 'Hold Request'
+                                           }
+                                         ],
+                               'label' => 'Hold Cancel Date/Time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              },
+                               'name' => 'cancel_time'
+                             },
+                             {
+                               'key' => 'hold_type',
+                               'name' => 'hold_type',
+                               'value' => 'T',
+                               'type' => 'link',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              },
+                               'class' => 'cht',
+                               'reltype' => 'has_a',
+                               'label' => 'Hold Type',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'table' => 'action.hold_request',
+                                             'struct' => {
+                                                           'name' => 'ahr',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq'
+                                                         }
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'text',
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'index' => 2
+                             },
+                             {
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'name' => 'ahr'
+                                                         },
+                                             'table' => 'action.hold_request'
+                                           }
+                                         ],
+                               'label' => 'Capture Date/Time',
+                               'operator' => {
+                                               'op' => 'is',
+                                               'label' => 'Is NULL'
+                                             },
+                               'index' => 3,
+                               'path_label' => 'Hold Request',
+                               'datatype' => 'timestamp',
+                               'name' => 'capture_time',
+                               'transform' => {
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'transform' => 'Bare',
+                                                'label' => 'Raw Data'
+                                              }
+                             },
+                             {
+                               'label' => 'Organizational Unit ID',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'label' => 'Hold Request',
+                                             'id' => 'ahr',
+                                             'classname' => 'ahr',
+                                             'struct' => {
+                                                           'name' => 'ahr',
+                                                           'pkey' => 'id',
+                                                           'table' => 'action.hold_request',
+                                                           'label' => 'Hold Request',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'display_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'ahr',
+                                                           'pkey_sequence' => 'action.hold_request_id_seq'
+                                                         },
+                                             'table' => 'action.hold_request'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'key' => 'id',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'request_lib',
+                                                           'label' => 'Requesting Library',
+                                                           'datatype' => 'org_unit',
+                                                           'type' => 'link',
+                                                           'class' => 'aou'
+                                                         },
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'link' => {
+                                                         'label' => 'Requesting Library',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'request_lib',
+                                                         'key' => 'id',
+                                                         'class' => 'aou',
+                                                         'datatype' => 'org_unit',
+                                                         'type' => 'link'
+                                                       },
+                                             'id' => 'ahr.aou',
+                                             'classname' => 'aou',
+                                             'from' => 'ahr',
+                                             'label' => 'Requesting Library'
+                                           }
+                                         ],
+                               'path_label' => 'Hold Request -> Requesting Library',
+                               'datatype' => 'org_unit',
+                               'selector' => 'shortname',
+                               'index' => 4,
+                               'operator' => {
+                                               'op' => 'in',
+                                               'label' => 'In list'
+                                             },
+                               'name' => 'id',
+                               'transform' => {
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                                'label' => 'Raw Data'
+                                              }
+                             }
+                           ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'id'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold ID',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-id'
+                        },
+                        {
+                          'path' => 'ahr-request_time',
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'alias' => 'Request Date/Time',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'request_time'
+                                      }
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-target',
+                          'column' => {
+                                        'colname' => 'target',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Target Object ID'
+                        },
+                        {
+                          'relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                          'path' => 'ahr-frozen',
+                          'column' => {
+                                        'colname' => 'frozen',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Currently Frozen'
+                        },
+                        {
+                          'path' => 'aou-shortname',
+                          'relation' => '413df8472eb3495de6137209d94c2539',
+                          'alias' => 'Pickup Lib',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'alias' => 'Request Lib',
+                          'relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                          'path' => 'aou-shortname'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'}
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Hold User',
+                          'relation' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                          'path' => 'au-id'
+                        },
+                        {
+                          'relation' => '21dac70a3544f1b89d90c251302902ad',
+                          'path' => 'au-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'display_cols'}[0]{'transform'}{'aggregate'},
+                                        'colname' => 'id'
+                                      },
+                          'alias' => 'User Placed the Hold'
+                        }
+                      ],
+          'core_class' => 'ahr'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2021-01-07 12:35:15.069641-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_builder' => bless( {
+                                                               '_relative_time' => '2021-01-07 12:35:15.069641-05',
+                                                               '_rels' => {
+                                                                            '0d692e82dd1cfc230f6c9d0b5f9c76ee' => bless( {
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_join' => [],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_sql' => 'actor.usr AS "0d692e82dd1cfc230f6c9d0b5f9c76ee"',
+                                                                                                                           '_alias' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '21dac70a3544f1b89d90c251302902ad' => bless( {
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_alias' => '21dac70a3544f1b89d90c251302902ad',
+                                                                                                                           '_sql' => 'actor.usr AS "21dac70a3544f1b89d90c251302902ad"',
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_join' => [],
+                                                                                                                           '_is_join' => 1
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '3b0d7d05c65006de7b2ca20f5fe39690' => bless( {
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "462716f66fc7b046f1eb8a64b9beff2b"',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_alias' => '462716f66fc7b046f1eb8a64b9beff2b'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_col' => 'request_lib',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "462716f66fc7b046f1eb8a64b9beff2b" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."request_lib" = "462716f66fc7b046f1eb8a64b9beff2b"."id")',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_right_col' => 'id'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'21dac70a3544f1b89d90c251302902ad'},
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "21dac70a3544f1b89d90c251302902ad" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."requestor" = "21dac70a3544f1b89d90c251302902ad"."id")',
+                                                                                                                                                 '_left_col' => 'requestor'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "0d692e82dd1cfc230f6c9d0b5f9c76ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id")',
+                                                                                                                                                 '_left_col' => 'usr',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'0d692e82dd1cfc230f6c9d0b5f9c76ee'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'pickup_lib',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "413df8472eb3495de6137209d94c2539" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."pickup_lib" = "413df8472eb3495de6137209d94c2539"."id")',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "413df8472eb3495de6137209d94c2539"',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_alias' => '413df8472eb3495de6137209d94c2539'
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_table' => 'action.hold_request',
+                                                                                                                           '_alias' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_sql' => 'action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	INNER JOIN actor.org_unit AS "462716f66fc7b046f1eb8a64b9beff2b" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."request_lib" = "462716f66fc7b046f1eb8a64b9beff2b"."id")
+	INNER JOIN actor.usr AS "21dac70a3544f1b89d90c251302902ad" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."requestor" = "21dac70a3544f1b89d90c251302902ad"."id")
+	INNER JOIN actor.usr AS "0d692e82dd1cfc230f6c9d0b5f9c76ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id")
+	INNER JOIN actor.org_unit AS "413df8472eb3495de6137209d94c2539" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."pickup_lib" = "413df8472eb3495de6137209d94c2539"."id")'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '413df8472eb3495de6137209d94c2539' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'}{'_join'}[3]{'_right_rel'},
+                                                                            '462716f66fc7b046f1eb8a64b9beff2b' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_sql' => undef,
+                                                               '_params' => {
+                                                                              'P0' => [
+                                                                                        '394'
+                                                                                      ]
+                                                                            },
+                                                               '_resultset_limit' => 1048575
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef,
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'colname' => 'fulfillment_time',
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                        '_transform' => 'Bare',
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'cancel_time'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                        '_aggregate' => undef,
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" = $_77840$T$_77840$',
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'colname' => 'hold_type',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 'T'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'is' => undef
+                                                        },
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'capture_time'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."capture_time" is NULL',
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"462716f66fc7b046f1eb8a64b9beff2b"."id" IN ($_77840$394$_77840$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                          'colname' => 'id'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."request_time" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'request_time',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => {
+                                                          'colname' => 'target',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'}
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."target" ASC',
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."frozen" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'colname' => 'frozen'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"413df8472eb3495de6137209d94c2539"."shortname" ASC',
+                                           '_relation' => '413df8472eb3495de6137209d94c2539',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'colname' => 'shortname'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"462716f66fc7b046f1eb8a64b9beff2b"."shortname" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'id',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'},
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '21dac70a3544f1b89d90c251302902ad',
+                                           '_sql' => '"21dac70a3544f1b89d90c251302902ad"."id" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'id',
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'aggregate' => $VAR1->{'_order_by'}[0]{'_column'}{'aggregate'}
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID"',
+                                         '_transform' => 'Bare',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'},
+                                         '_alias' => 'Hold ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'},
+                                         '_alias' => 'Request Date/Time',
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."request_time" AS "Request Date/Time"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Target Object ID',
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."target" AS "Target Object ID"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '3b0d7d05c65006de7b2ca20f5fe39690',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"3b0d7d05c65006de7b2ca20f5fe39690"."frozen" AS "Currently Frozen"',
+                                         '_alias' => 'Currently Frozen',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"413df8472eb3495de6137209d94c2539"."shortname" AS "Pickup Lib"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '413df8472eb3495de6137209d94c2539',
+                                         '_alias' => 'Pickup Lib',
+                                         '_column' => $VAR1->{'_order_by'}[4]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Request Lib',
+                                         '_column' => $VAR1->{'_order_by'}[5]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"462716f66fc7b046f1eb8a64b9beff2b"."shortname" AS "Request Lib"',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '462716f66fc7b046f1eb8a64b9beff2b',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" AS "Hold User"',
+                                         '_relation' => '0d692e82dd1cfc230f6c9d0b5f9c76ee',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Hold User',
+                                         '_column' => $VAR1->{'_order_by'}[6]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'User Placed the Hold',
+                                         '_column' => $VAR1->{'_order_by'}[7]{'_column'},
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '21dac70a3544f1b89d90c251302902ad',
+                                         '_sql' => '"21dac70a3544f1b89d90c251302902ad"."id" AS "User Placed the Hold"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_sql' => 'SELECT * FROM (SELECT	"3b0d7d05c65006de7b2ca20f5fe39690"."id" AS "Hold ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."request_time" AS "Request Date/Time",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."target" AS "Target Object ID",
+	"3b0d7d05c65006de7b2ca20f5fe39690"."frozen" AS "Currently Frozen",
+	"413df8472eb3495de6137209d94c2539"."shortname" AS "Pickup Lib",
+	"462716f66fc7b046f1eb8a64b9beff2b"."shortname" AS "Request Lib",
+	"0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" AS "Hold User",
+	"21dac70a3544f1b89d90c251302902ad"."id" AS "User Placed the Hold"
+  FROM	action.hold_request AS "3b0d7d05c65006de7b2ca20f5fe39690"
+	INNER JOIN actor.org_unit AS "462716f66fc7b046f1eb8a64b9beff2b" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."request_lib" = "462716f66fc7b046f1eb8a64b9beff2b"."id")
+	INNER JOIN actor.usr AS "21dac70a3544f1b89d90c251302902ad" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."requestor" = "21dac70a3544f1b89d90c251302902ad"."id")
+	INNER JOIN actor.usr AS "0d692e82dd1cfc230f6c9d0b5f9c76ee" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."usr" = "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id")
+	INNER JOIN actor.org_unit AS "413df8472eb3495de6137209d94c2539" ON ("3b0d7d05c65006de7b2ca20f5fe39690"."pickup_lib" = "413df8472eb3495de6137209d94c2539"."id")
+  WHERE	"3b0d7d05c65006de7b2ca20f5fe39690"."fulfillment_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."cancel_time" is NULL
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."hold_type" = $_77840$T$_77840$
+	AND "3b0d7d05c65006de7b2ca20f5fe39690"."capture_time" is NULL
+	AND "462716f66fc7b046f1eb8a64b9beff2b"."id" IN ($_77840$394$_77840$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+  ORDER BY "3b0d7d05c65006de7b2ca20f5fe39690"."id" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."request_time" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."target" ASC, "3b0d7d05c65006de7b2ca20f5fe39690"."frozen" ASC, "413df8472eb3495de6137209d94c2539"."shortname" ASC, "462716f66fc7b046f1eb8a64b9beff2b"."shortname" ASC, "0d692e82dd1cfc230f6c9d0b5f9c76ee"."id" ASC, "21dac70a3544f1b89d90c251302902ad"."id" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'3b0d7d05c65006de7b2ca20f5fe39690'},
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

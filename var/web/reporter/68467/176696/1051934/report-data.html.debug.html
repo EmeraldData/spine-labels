@@ -1,0 +1,1842 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 2020 closeout-lineitems</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"8ca487ac32632172b9cad7a61be0214b"."id" AS "Lineitem ID",
+	"696e242d5caead753e2983b179f90c85"."shortname" AS "Branch",
+	"488118d5f4356a27222fe6db353b8957"."id" AS "Item Detail ID",
+	"6a0b60090a901efa0ba0307ab71d09c4"."label" AS "Cancel Reason",
+	"8ca487ac32632172b9cad7a61be0214b"."purchase_order" AS "Purchase Order",
+	date("ba66ba1fd9b1b6f9764325301952d444"."order_date") AS "Order Date"
+  FROM	acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN acq.lineitem AS "8ca487ac32632172b9cad7a61be0214b" ON ("488118d5f4356a27222fe6db353b8957"."lineitem" = "8ca487ac32632172b9cad7a61be0214b"."id")
+	INNER JOIN acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444" ON ("8ca487ac32632172b9cad7a61be0214b"."purchase_order" = "ba66ba1fd9b1b6f9764325301952d444"."id")
+	INNER JOIN acq.cancel_reason AS "6a0b60090a901efa0ba0307ab71d09c4" ON ("488118d5f4356a27222fe6db353b8957"."cancel_reason" = "6a0b60090a901efa0ba0307ab71d09c4"."id")
+	INNER JOIN actor.org_unit AS "696e242d5caead753e2983b179f90c85" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "696e242d5caead753e2983b179f90c85"."id")
+  WHERE	"6a0b60090a901efa0ba0307ab71d09c4"."label" LIKE $_37788$%Delayed%$_37788$
+	AND "ba66ba1fd9b1b6f9764325301952d444"."ordering_agency" IN ($_37788$65$_37788$,$_37788$67$_37788$,$_37788$373$_37788$,$_37788$66$_37788$,$_37788$394$_37788$)
+  GROUP BY 1, 2, 3, 4, 5, 6
+  ORDER BY "8ca487ac32632172b9cad7a61be0214b"."id" ASC, "696e242d5caead753e2983b179f90c85"."shortname" ASC, "488118d5f4356a27222fe6db353b8957"."id" ASC, "6a0b60090a901efa0ba0307ab71d09c4"."label" ASC, "8ca487ac32632172b9cad7a61be0214b"."purchase_order" ASC, date("ba66ba1fd9b1b6f9764325301952d444"."order_date") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'data' => '{"version":5,"core_class":"acqlid","select":[{"alias":"Lineitem ID","path":"jub-id","field_doc":"","relation":"8ca487ac32632172b9cad7a61be0214b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Branch","path":"aou-shortname","field_doc":"","relation":"696e242d5caead753e2983b179f90c85","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Item Detail ID","path":"acqlid-id","field_doc":"","relation":"488118d5f4356a27222fe6db353b8957","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Cancel Reason","path":"acqcr-label","field_doc":"","relation":"6a0b60090a901efa0ba0307ab71d09c4","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Purchase Order","path":"jub-purchase_order","field_doc":"","relation":"8ca487ac32632172b9cad7a61be0214b","column":{"colname":"purchase_order","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Order Date","path":"acqpo-order_date","field_doc":"","relation":"ba66ba1fd9b1b6f9764325301952d444","column":{"colname":"order_date","transform":"date","transform_label":"Date","aggregate":false}}],"from":{"alias":"488118d5f4356a27222fe6db353b8957","path":"acqlid-acqlid","table":"acq.lineitem_detail","idlclass":"acqlid","join":{"lineitem-410573fea357223b54939d8d41c7bf64":{"type":"inner","key":"id","alias":"8ca487ac32632172b9cad7a61be0214b","path":"acqlid-lineitem","table":"acq.lineitem","idlclass":"jub","label":"Line Item Detail -> PO Line Item (inner)","join":{"purchase_order-b7e849bfd8fe5a79522f757be924c373":{"type":"inner","key":"id","alias":"ba66ba1fd9b1b6f9764325301952d444","path":"acqlid-lineitem-purchase_order","table":"acq.purchase_order","idlclass":"acqpo","label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)"}}},"owning_lib-77989a9ad94901e5f1358b65db88a85d":{"type":"inner","key":"id","alias":"696e242d5caead753e2983b179f90c85","path":"acqlid-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Line Item Detail -> Owning Library (inner)"},"cancel_reason-4fd8b33dca35aaf64707950c27e3a449":{"type":"inner","key":"id","alias":"6a0b60090a901efa0ba0307ab71d09c4","path":"acqlid-cancel_reason","table":"acq.cancel_reason","idlclass":"acqcr","label":"Line Item Detail -> Cancel Reason (inner)"}},"label":"Line Item Detail"},"where":[{"alias":"Label","path":"acqcr-label","field_doc":"","relation":"6a0b60090a901efa0ba0307ab71d09c4","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"like":"Delayed"}},{"alias":"Ordering Agency","path":"acqpo-ordering_agency","field_doc":"","relation":"ba66ba1fd9b1b6f9764325301952d444","column":{"colname":"ordering_agency","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"id","label":"Lineitem ID","datatype":"id","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Line Item Detail -> PO Line Item (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Branch","required":true,"datatype":"text","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Owning Library","from":"acqlid","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqlid.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Line Item Detail -> Owning Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Item Detail ID","datatype":"id","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"}],"path_label":"Line Item Detail","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"label","label":"Cancel Reason","i18n":true,"datatype":"text","index":3,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Cancel Reason","from":"acqlid","link":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"id":"acqlid.acqcr","jtype":"inner","uplink":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"classname":"acqcr","struct":{"name":"acqcr","label":"Cancel Reason","table":"acq.cancel_reason","pkey":"id","pkey_sequence":"acq.cancel_reason_id_seq","core_label":"Non-core sources","classname":"acqcr"},"table":"acq.cancel_reason"}],"path_label":"Line Item Detail -> Cancel Reason (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link","index":4,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Line Item Detail -> PO Line Item (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"order_date","label":"Order Date","datatype":"timestamp","index":5,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"},{"label":"Purchase Order","from":"acqlid.jub","link":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"id":"acqlid.jub.acqpo","jtype":"inner","uplink":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"path_label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)","transform":{"transform":"date","label":"Date","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"label","label":"Label","i18n":true,"datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Cancel Reason","from":"acqlid","link":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"id":"acqlid.acqcr","jtype":"inner","uplink":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"classname":"acqcr","struct":{"name":"acqcr","label":"Cancel Reason","table":"acq.cancel_reason","pkey":"id","pkey_sequence":"acq.cancel_reason_id_seq","core_label":"Non-core sources","classname":"acqcr"},"table":"acq.cancel_reason"}],"path_label":"Line Item Detail -> Cancel Reason (inner)","operator":{"label":"Contains Matching substring","op":"like"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"Delayed"},{"name":"ordering_agency","label":"Ordering Agency","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"},{"label":"Purchase Order","from":"acqlid.jub","link":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"id":"acqlid.jub.acqpo","jtype":"inner","uplink":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"path_label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'folder' => 3151,
+          'name' => 'Copies that are still backordered, delayed, etc.',
+          'owner' => 4009295,
+          'description' => 'Finds copies that are marked as backordered, delayed, etc.',
+          'id' => 68467,
+          'create_time' => '2019-06-26 14:27:21.406379-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'core_class' => 'acqlid',
+          'select' => [
+                        {
+                          'relation' => '8ca487ac32632172b9cad7a61be0214b',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'jub-id',
+                          'alias' => 'Lineitem ID'
+                        },
+                        {
+                          'path' => 'aou-shortname',
+                          'field_doc' => '',
+                          'alias' => 'Branch',
+                          'relation' => '696e242d5caead753e2983b179f90c85',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item Detail ID',
+                          'path' => 'acqlid-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'id'
+                                      },
+                          'relation' => '488118d5f4356a27222fe6db353b8957'
+                        },
+                        {
+                          'path' => 'acqcr-label',
+                          'field_doc' => '',
+                          'alias' => 'Cancel Reason',
+                          'relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'relation' => '8ca487ac32632172b9cad7a61be0214b',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'purchase_order',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Purchase Order',
+                          'path' => 'jub-purchase_order',
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Order Date',
+                          'path' => 'acqpo-order_date',
+                          'field_doc' => '',
+                          'relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                          'column' => {
+                                        'colname' => 'order_date',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'date',
+                                        'transform_label' => 'Date'
+                                      }
+                        }
+                      ],
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'doc_text' => '',
+                                'index' => 0,
+                                'label' => 'Lineitem ID',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner)',
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'acq.lineitem_detail',
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqlid',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Line Item Detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'table' => 'acq.lineitem_detail'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem',
+                                              'uplink' => {
+                                                            'label' => 'PO Line Item',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'jub',
+                                                            'name' => 'lineitem',
+                                                            'key' => 'id'
+                                                          },
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'label' => 'PO Line Item',
+                                                          'key' => 'id',
+                                                          'class' => 'jub',
+                                                          'name' => 'lineitem',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'name' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Line Item',
+                                                            'classname' => 'jub',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'table' => 'acq.lineitem'
+                                                          },
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'label' => 'Branch',
+                                'path_label' => 'Line Item Detail -> Owning Library (inner)',
+                                'path' => [
+                                            {
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'struct' => {
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'id' => 'acqlid.aou',
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'name' => 'owning_lib',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'datatype' => 'org_unit',
+                                                            'reltype' => 'has_a',
+                                                            'type' => 'link',
+                                                            'label' => 'Owning Library'
+                                                          },
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'label' => 'Owning Library',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'owning_lib',
+                                                          'class' => 'aou',
+                                                          'key' => 'id'
+                                                        },
+                                              'label' => 'Owning Library',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'classname' => 'aou'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'datatype' => 'text',
+                                'required' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                'doc_text' => '',
+                                'index' => 1
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'label' => 'Line Item Detail',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'name' => 'id',
+                                'datatype' => 'id',
+                                'label' => 'Item Detail ID',
+                                'path_label' => 'Line Item Detail',
+                                'doc_text' => '',
+                                'index' => 2
+                              },
+                              {
+                                'datatype' => 'text',
+                                'name' => 'label',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'class' => 'acqcr',
+                                                            'name' => 'cancel_reason',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Cancel Reason'
+                                                          },
+                                              'table' => 'acq.cancel_reason',
+                                              'id' => 'acqlid.acqcr',
+                                              'jtype' => 'inner',
+                                              'classname' => 'acqcr',
+                                              'label' => 'Cancel Reason',
+                                              'from' => 'acqlid',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'acq.cancel_reason_id_seq',
+                                                            'classname' => 'acqcr',
+                                                            'table' => 'acq.cancel_reason',
+                                                            'label' => 'Cancel Reason',
+                                                            'name' => 'acqcr',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'link' => {
+                                                          'label' => 'Cancel Reason',
+                                                          'type' => 'link',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'name' => 'cancel_reason',
+                                                          'class' => 'acqcr'
+                                                        }
+                                            }
+                                          ],
+                                'path_label' => 'Line Item Detail -> Cancel Reason (inner)',
+                                'label' => 'Cancel Reason',
+                                'i18n' => $VAR1->{'display_cols'}[1]{'required'},
+                                'index' => 3,
+                                'doc_text' => ''
+                              },
+                              {
+                                'key' => 'id',
+                                'doc_text' => '',
+                                'index' => 4,
+                                'reltype' => 'has_a',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail'
+                                            },
+                                            {
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'name' => 'lineitem',
+                                                          'class' => 'jub',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'PO Line Item'
+                                                        },
+                                              'struct' => {
+                                                            'name' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub',
+                                                            'table' => 'acq.lineitem',
+                                                            'label' => 'Line Item'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'classname' => 'jub',
+                                              'jtype' => 'inner',
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'jub',
+                                                            'name' => 'lineitem',
+                                                            'key' => 'id',
+                                                            'label' => 'PO Line Item',
+                                                            'type' => 'link'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'class' => 'acqpo',
+                                'name' => 'purchase_order',
+                                'datatype' => 'link',
+                                'type' => 'link',
+                                'label' => 'Purchase Order',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner)'
+                              },
+                              {
+                                'name' => 'order_date',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail'
+                                                          },
+                                              'table' => 'acq.lineitem_detail',
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid'
+                                            },
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'class' => 'jub',
+                                                          'name' => 'lineitem',
+                                                          'label' => 'PO Line Item',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'jub',
+                                                            'label' => 'Line Item',
+                                                            'table' => 'acq.lineitem',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'name' => 'lineitem',
+                                                            'class' => 'jub',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'PO Line Item'
+                                                          },
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem'
+                                            },
+                                            {
+                                              'classname' => 'acqpo',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'name' => 'purchase_order',
+                                                          'class' => 'acqpo',
+                                                          'label' => 'Purchase Order',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'label' => 'Purchase Order',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'table' => 'acq.purchase_order',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources'
+                                                          },
+                                              'from' => 'acqlid.jub',
+                                              'label' => 'Purchase Order',
+                                              'jtype' => 'inner',
+                                              'id' => 'acqlid.jub.acqpo',
+                                              'table' => 'acq.purchase_order',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'purchase_order',
+                                                            'class' => 'acqpo',
+                                                            'key' => 'id',
+                                                            'label' => 'Purchase Order',
+                                                            'type' => 'link'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'label' => 'Date',
+                                                 'transform' => 'date',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)',
+                                'label' => 'Order Date',
+                                'doc_text' => '',
+                                'index' => 5
+                              }
+                            ],
+          'from' => {
+                      'path' => 'acqlid-acqlid',
+                      'alias' => '488118d5f4356a27222fe6db353b8957',
+                      'join' => {
+                                  'owning_lib-77989a9ad94901e5f1358b65db88a85d' => {
+                                                                                     'label' => 'Line Item Detail -> Owning Library (inner)',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'type' => 'inner',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'alias' => '696e242d5caead753e2983b179f90c85',
+                                                                                     'path' => 'acqlid-owning_lib',
+                                                                                     'key' => 'id'
+                                                                                   },
+                                  'cancel_reason-4fd8b33dca35aaf64707950c27e3a449' => {
+                                                                                        'idlclass' => 'acqcr',
+                                                                                        'table' => 'acq.cancel_reason',
+                                                                                        'type' => 'inner',
+                                                                                        'label' => 'Line Item Detail -> Cancel Reason (inner)',
+                                                                                        'path' => 'acqlid-cancel_reason',
+                                                                                        'key' => 'id',
+                                                                                        'alias' => '6a0b60090a901efa0ba0307ab71d09c4'
+                                                                                      },
+                                  'lineitem-410573fea357223b54939d8d41c7bf64' => {
+                                                                                   'path' => 'acqlid-lineitem',
+                                                                                   'join' => {
+                                                                                               'purchase_order-b7e849bfd8fe5a79522f757be924c373' => {
+                                                                                                                                                      'path' => 'acqlid-lineitem-purchase_order',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'alias' => 'ba66ba1fd9b1b6f9764325301952d444',
+                                                                                                                                                      'table' => 'acq.purchase_order',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'idlclass' => 'acqpo',
+                                                                                                                                                      'label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)'
+                                                                                                                                                    }
+                                                                                             },
+                                                                                   'alias' => '8ca487ac32632172b9cad7a61be0214b',
+                                                                                   'idlclass' => 'jub',
+                                                                                   'type' => 'inner',
+                                                                                   'label' => 'Line Item Detail -> PO Line Item (inner)',
+                                                                                   'key' => 'id',
+                                                                                   'table' => 'acq.lineitem'
+                                                                                 }
+                                },
+                      'table' => 'acq.lineitem_detail',
+                      'idlclass' => 'acqlid',
+                      'label' => 'Line Item Detail'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'label',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                         'condition' => {
+                                          'like' => 'Delayed'
+                                        },
+                         'path' => 'acqcr-label',
+                         'field_doc' => '',
+                         'alias' => 'Label'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'ordering_agency',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'acqpo-ordering_agency',
+                         'field_doc' => '',
+                         'alias' => 'Ordering Agency'
+                       }
+                     ],
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => '',
+                               'value' => 'Delayed',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'classname' => 'acqlid',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'label' => 'Line Item Detail',
+                                             'table' => 'acq.lineitem_detail',
+                                             'id' => 'acqlid',
+                                             'classname' => 'acqlid',
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'label' => 'Cancel Reason',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'cancel_reason',
+                                                           'class' => 'acqcr',
+                                                           'key' => 'id'
+                                                         },
+                                             'id' => 'acqlid.acqcr',
+                                             'table' => 'acq.cancel_reason',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acqcr',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'label' => 'Cancel Reason',
+                                                         'key' => 'id',
+                                                         'name' => 'cancel_reason',
+                                                         'class' => 'acqcr',
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'label' => 'Cancel Reason',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqcr',
+                                                           'label' => 'Cancel Reason',
+                                                           'table' => 'acq.cancel_reason',
+                                                           'classname' => 'acqcr',
+                                                           'pkey_sequence' => 'acq.cancel_reason_id_seq'
+                                                         },
+                                             'from' => 'acqlid'
+                                           }
+                                         ],
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'label',
+                               'operator' => {
+                                               'label' => 'Contains Matching substring',
+                                               'op' => 'like'
+                                             },
+                               'datatype' => 'text',
+                               'i18n' => $VAR1->{'display_cols'}[1]{'required'},
+                               'label' => 'Label',
+                               'path_label' => 'Line Item Detail -> Cancel Reason (inner)'
+                             },
+                             {
+                               'reltype' => 'has_a',
+                               'index' => 1,
+                               'doc_text' => '',
+                               'key' => 'id',
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'table' => 'acq.lineitem_detail',
+                                             'classname' => 'acqlid',
+                                             'id' => 'acqlid',
+                                             'label' => 'Line Item Detail',
+                                             'struct' => {
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqlid',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'classname' => 'jub',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link',
+                                                         'key' => 'id',
+                                                         'class' => 'jub',
+                                                         'name' => 'lineitem',
+                                                         'label' => 'PO Line Item',
+                                                         'type' => 'link'
+                                                       },
+                                             'from' => 'acqlid',
+                                             'label' => 'PO Line Item',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'name' => 'jub',
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Line Item',
+                                                           'classname' => 'jub',
+                                                           'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                           'table' => 'acq.lineitem'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'id' => 'acqlid.jub',
+                                             'table' => 'acq.lineitem',
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'PO Line Item',
+                                                           'class' => 'jub',
+                                                           'name' => 'lineitem',
+                                                           'key' => 'id',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a'
+                                                         }
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'Purchase Order',
+                                                           'key' => 'id',
+                                                           'name' => 'purchase_order',
+                                                           'class' => 'acqpo',
+                                                           'reltype' => 'has_a',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'table' => 'acq.purchase_order',
+                                             'id' => 'acqlid.jub.acqpo',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acqpo',
+                                             'from' => 'acqlid.jub',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqpo',
+                                                           'label' => 'Purchase Order',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo'
+                                                         },
+                                             'link' => {
+                                                         'key' => 'id',
+                                                         'name' => 'purchase_order',
+                                                         'class' => 'acqpo',
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'label' => 'Purchase Order'
+                                                       }
+                                           }
+                                         ],
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'ordering_agency',
+                               'class' => 'aou',
+                               'label' => 'Ordering Agency',
+                               'path_label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)',
+                               'type' => 'link'
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'name' => '2020 closeout-lineitems',
+          'template' => {
+                          'data' => '{"version":5,"core_class":"acqlid","select":[{"alias":"Lineitem ID","path":"jub-id","field_doc":"","relation":"8ca487ac32632172b9cad7a61be0214b","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Branch","path":"aou-shortname","field_doc":"","relation":"696e242d5caead753e2983b179f90c85","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Item Detail ID","path":"acqlid-id","field_doc":"","relation":"488118d5f4356a27222fe6db353b8957","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Cancel Reason","path":"acqcr-label","field_doc":"","relation":"6a0b60090a901efa0ba0307ab71d09c4","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Purchase Order","path":"jub-purchase_order","field_doc":"","relation":"8ca487ac32632172b9cad7a61be0214b","column":{"colname":"purchase_order","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Order Date","path":"acqpo-order_date","field_doc":"","relation":"ba66ba1fd9b1b6f9764325301952d444","column":{"colname":"order_date","transform":"date","transform_label":"Date","aggregate":false}}],"from":{"alias":"488118d5f4356a27222fe6db353b8957","path":"acqlid-acqlid","table":"acq.lineitem_detail","idlclass":"acqlid","join":{"lineitem-410573fea357223b54939d8d41c7bf64":{"type":"inner","key":"id","alias":"8ca487ac32632172b9cad7a61be0214b","path":"acqlid-lineitem","table":"acq.lineitem","idlclass":"jub","label":"Line Item Detail -> PO Line Item (inner)","join":{"purchase_order-b7e849bfd8fe5a79522f757be924c373":{"type":"inner","key":"id","alias":"ba66ba1fd9b1b6f9764325301952d444","path":"acqlid-lineitem-purchase_order","table":"acq.purchase_order","idlclass":"acqpo","label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)"}}},"owning_lib-77989a9ad94901e5f1358b65db88a85d":{"type":"inner","key":"id","alias":"696e242d5caead753e2983b179f90c85","path":"acqlid-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Line Item Detail -> Owning Library (inner)"},"cancel_reason-4fd8b33dca35aaf64707950c27e3a449":{"type":"inner","key":"id","alias":"6a0b60090a901efa0ba0307ab71d09c4","path":"acqlid-cancel_reason","table":"acq.cancel_reason","idlclass":"acqcr","label":"Line Item Detail -> Cancel Reason (inner)"}},"label":"Line Item Detail"},"where":[{"alias":"Label","path":"acqcr-label","field_doc":"","relation":"6a0b60090a901efa0ba0307ab71d09c4","column":{"colname":"label","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"like":"Delayed"}},{"alias":"Ordering Agency","path":"acqpo-ordering_agency","field_doc":"","relation":"ba66ba1fd9b1b6f9764325301952d444","column":{"colname":"ordering_agency","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}}],"having":[],"display_cols":[{"name":"id","label":"Lineitem ID","datatype":"id","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Line Item Detail -> PO Line Item (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"shortname","label":"Branch","required":true,"datatype":"text","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Owning Library","from":"acqlid","link":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"id":"acqlid.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Library","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"path_label":"Line Item Detail -> Owning Library (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"id","label":"Item Detail ID","datatype":"id","index":2,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"}],"path_label":"Line Item Detail","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"label","label":"Cancel Reason","i18n":true,"datatype":"text","index":3,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Cancel Reason","from":"acqlid","link":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"id":"acqlid.acqcr","jtype":"inner","uplink":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"classname":"acqcr","struct":{"name":"acqcr","label":"Cancel Reason","table":"acq.cancel_reason","pkey":"id","pkey_sequence":"acq.cancel_reason_id_seq","core_label":"Non-core sources","classname":"acqcr"},"table":"acq.cancel_reason"}],"path_label":"Line Item Detail -> Cancel Reason (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link","index":4,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"}],"path_label":"Line Item Detail -> PO Line Item (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"order_date","label":"Order Date","datatype":"timestamp","index":5,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"},{"label":"Purchase Order","from":"acqlid.jub","link":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"id":"acqlid.jub.acqpo","jtype":"inner","uplink":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"path_label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)","transform":{"transform":"date","label":"Date","aggregate":false},"doc_text":""}],"filter_cols":[{"name":"label","label":"Label","i18n":true,"datatype":"text","index":0,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"Cancel Reason","from":"acqlid","link":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"id":"acqlid.acqcr","jtype":"inner","uplink":{"name":"cancel_reason","label":"Cancel Reason","type":"link","key":"id","class":"acqcr","reltype":"has_a","datatype":"link"},"classname":"acqcr","struct":{"name":"acqcr","label":"Cancel Reason","table":"acq.cancel_reason","pkey":"id","pkey_sequence":"acq.cancel_reason_id_seq","core_label":"Non-core sources","classname":"acqcr"},"table":"acq.cancel_reason"}],"path_label":"Line Item Detail -> Cancel Reason (inner)","operator":{"label":"Contains Matching substring","op":"like"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":"","value":"Delayed"},{"name":"ordering_agency","label":"Ordering Agency","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":1,"path":[{"label":"Line Item Detail","id":"acqlid","jtype":"inner","classname":"acqlid","struct":{"name":"acqlid","label":"Line Item Detail","table":"acq.lineitem_detail","pkey":"id","pkey_sequence":"acq.lineitem_detail_id_seq","core_label":"Non-core sources","classname":"acqlid"},"table":"acq.lineitem_detail"},{"label":"PO Line Item","from":"acqlid","link":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"id":"acqlid.jub","jtype":"inner","uplink":{"name":"lineitem","label":"PO Line Item","type":"link","key":"id","class":"jub","reltype":"has_a","datatype":"link"},"classname":"jub","struct":{"name":"jub","label":"Line Item","table":"acq.lineitem","pkey":"id","pkey_sequence":"acq.lineitem_id_seq","core_label":"Non-core sources","classname":"jub"},"table":"acq.lineitem"},{"label":"Purchase Order","from":"acqlid.jub","link":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"id":"acqlid.jub.acqpo","jtype":"inner","uplink":{"name":"purchase_order","label":"Purchase Order","type":"link","key":"id","class":"acqpo","reltype":"has_a","datatype":"link"},"classname":"acqpo","struct":{"name":"acqpo","label":"Purchase Order","table":"acq.purchase_order","pkey":"id","pkey_sequence":"acq.purchase_order_id_seq","core_label":"Non-core sources","classname":"acqpo"},"table":"acq.purchase_order"}],"path_label":"Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)","operator":{"label":"In list","op":"in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'folder' => 3151,
+                          'name' => 'Copies that are still backordered, delayed, etc.',
+                          'owner' => 4009295,
+                          'description' => 'Finds copies that are marked as backordered, delayed, etc.',
+                          'id' => 68467,
+                          'create_time' => '2019-06-26 14:27:21.406379-04'
+                        },
+          'owner' => 863206,
+          'recur' => 0,
+          'create_time' => '2020-05-11 10:19:59.016779-04',
+          'recurrence' => '1 day',
+          'data' => '{"P0":["65","67","373","66","394"]}',
+          'folder' => 3869,
+          'description' => '',
+          'id' => 176696
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'core_class' => 'acqlid',
+          'select' => [
+                        {
+                          'relation' => '8ca487ac32632172b9cad7a61be0214b',
+                          'column' => {
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform' => 'Bare',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'jub-id',
+                          'alias' => 'Lineitem ID'
+                        },
+                        {
+                          'path' => 'aou-shortname',
+                          'field_doc' => '',
+                          'alias' => 'Branch',
+                          'relation' => '696e242d5caead753e2983b179f90c85',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'shortname',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'alias' => 'Item Detail ID',
+                          'path' => 'acqlid-id',
+                          'field_doc' => '',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'id'
+                                      },
+                          'relation' => '488118d5f4356a27222fe6db353b8957'
+                        },
+                        {
+                          'path' => 'acqcr-label',
+                          'field_doc' => '',
+                          'alias' => 'Cancel Reason',
+                          'relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                          'column' => {
+                                        'colname' => 'label',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'relation' => '8ca487ac32632172b9cad7a61be0214b',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'colname' => 'purchase_order',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Purchase Order',
+                          'path' => 'jub-purchase_order',
+                          'field_doc' => ''
+                        },
+                        {
+                          'alias' => 'Order Date',
+                          'path' => 'acqpo-order_date',
+                          'field_doc' => '',
+                          'relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                          'column' => {
+                                        'colname' => 'order_date',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'date',
+                                        'transform_label' => 'Date'
+                                      }
+                        }
+                      ],
+          'having' => [],
+          'display_cols' => [
+                              {
+                                'doc_text' => '',
+                                'index' => 0,
+                                'label' => 'Lineitem ID',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner)',
+                                'datatype' => 'id',
+                                'path' => [
+                                            {
+                                              'table' => 'acq.lineitem_detail',
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqlid',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Line Item Detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'table' => 'acq.lineitem_detail'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem',
+                                              'uplink' => {
+                                                            'label' => 'PO Line Item',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'jub',
+                                                            'name' => 'lineitem',
+                                                            'key' => 'id'
+                                                          },
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'label' => 'PO Line Item',
+                                                          'key' => 'id',
+                                                          'class' => 'jub',
+                                                          'name' => 'lineitem',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link'
+                                                        },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'name' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'label' => 'Line Item',
+                                                            'classname' => 'jub',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'table' => 'acq.lineitem'
+                                                          },
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'id'
+                              },
+                              {
+                                'label' => 'Branch',
+                                'path_label' => 'Line Item Detail -> Owning Library (inner)',
+                                'path' => [
+                                            {
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'struct' => {
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'id' => 'acqlid.aou',
+                                              'table' => 'actor.org_unit',
+                                              'uplink' => {
+                                                            'name' => 'owning_lib',
+                                                            'class' => 'aou',
+                                                            'key' => 'id',
+                                                            'datatype' => 'org_unit',
+                                                            'reltype' => 'has_a',
+                                                            'type' => 'link',
+                                                            'label' => 'Owning Library'
+                                                          },
+                                              'classname' => 'aou',
+                                              'link' => {
+                                                          'label' => 'Owning Library',
+                                                          'type' => 'link',
+                                                          'datatype' => 'org_unit',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'owning_lib',
+                                                          'class' => 'aou',
+                                                          'key' => 'id'
+                                                        },
+                                              'label' => 'Owning Library',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'aou',
+                                                            'label' => 'Organizational Unit',
+                                                            'table' => 'actor.org_unit',
+                                                            'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                            'classname' => 'aou'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'shortname',
+                                'datatype' => 'text',
+                                'required' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                'doc_text' => '',
+                                'index' => 1
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'path' => [
+                                            {
+                                              'struct' => {
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'label' => 'Line Item Detail',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'label' => 'Line Item Detail',
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'jtype' => 'inner'
+                                            }
+                                          ],
+                                'name' => 'id',
+                                'datatype' => 'id',
+                                'label' => 'Item Detail ID',
+                                'path_label' => 'Line Item Detail',
+                                'doc_text' => '',
+                                'index' => 2
+                              },
+                              {
+                                'datatype' => 'text',
+                                'name' => 'label',
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'path' => [
+                                            {
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'classname' => 'acqlid',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                          },
+                                              'jtype' => 'inner'
+                                            },
+                                            {
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'class' => 'acqcr',
+                                                            'name' => 'cancel_reason',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'Cancel Reason'
+                                                          },
+                                              'table' => 'acq.cancel_reason',
+                                              'id' => 'acqlid.acqcr',
+                                              'jtype' => 'inner',
+                                              'classname' => 'acqcr',
+                                              'label' => 'Cancel Reason',
+                                              'from' => 'acqlid',
+                                              'struct' => {
+                                                            'pkey_sequence' => 'acq.cancel_reason_id_seq',
+                                                            'classname' => 'acqcr',
+                                                            'table' => 'acq.cancel_reason',
+                                                            'label' => 'Cancel Reason',
+                                                            'name' => 'acqcr',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'link' => {
+                                                          'label' => 'Cancel Reason',
+                                                          'type' => 'link',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'name' => 'cancel_reason',
+                                                          'class' => 'acqcr'
+                                                        }
+                                            }
+                                          ],
+                                'path_label' => 'Line Item Detail -> Cancel Reason (inner)',
+                                'label' => 'Cancel Reason',
+                                'i18n' => $VAR1->{'display_cols'}[1]{'required'},
+                                'index' => 3,
+                                'doc_text' => ''
+                              },
+                              {
+                                'key' => 'id',
+                                'doc_text' => '',
+                                'index' => 4,
+                                'reltype' => 'has_a',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'id' => 'acqlid',
+                                              'classname' => 'acqlid',
+                                              'table' => 'acq.lineitem_detail'
+                                            },
+                                            {
+                                              'link' => {
+                                                          'key' => 'id',
+                                                          'name' => 'lineitem',
+                                                          'class' => 'jub',
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'label' => 'PO Line Item'
+                                                        },
+                                              'struct' => {
+                                                            'name' => 'jub',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey' => 'id',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub',
+                                                            'table' => 'acq.lineitem',
+                                                            'label' => 'Line Item'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'classname' => 'jub',
+                                              'jtype' => 'inner',
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'class' => 'jub',
+                                                            'name' => 'lineitem',
+                                                            'key' => 'id',
+                                                            'label' => 'PO Line Item',
+                                                            'type' => 'link'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                 'label' => 'Raw Data'
+                                               },
+                                'class' => 'acqpo',
+                                'name' => 'purchase_order',
+                                'datatype' => 'link',
+                                'type' => 'link',
+                                'label' => 'Purchase Order',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner)'
+                              },
+                              {
+                                'name' => 'order_date',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'label' => 'Line Item Detail',
+                                              'struct' => {
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'acqlid',
+                                                            'pkey' => 'id',
+                                                            'table' => 'acq.lineitem_detail',
+                                                            'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                            'classname' => 'acqlid',
+                                                            'label' => 'Line Item Detail'
+                                                          },
+                                              'table' => 'acq.lineitem_detail',
+                                              'classname' => 'acqlid',
+                                              'id' => 'acqlid'
+                                            },
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'jub',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'class' => 'jub',
+                                                          'name' => 'lineitem',
+                                                          'label' => 'PO Line Item',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'pkey' => 'id',
+                                                            'core_label' => 'Non-core sources',
+                                                            'name' => 'jub',
+                                                            'label' => 'Line Item',
+                                                            'table' => 'acq.lineitem',
+                                                            'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                            'classname' => 'jub'
+                                                          },
+                                              'from' => 'acqlid',
+                                              'label' => 'PO Line Item',
+                                              'uplink' => {
+                                                            'key' => 'id',
+                                                            'name' => 'lineitem',
+                                                            'class' => 'jub',
+                                                            'reltype' => 'has_a',
+                                                            'datatype' => 'link',
+                                                            'type' => 'link',
+                                                            'label' => 'PO Line Item'
+                                                          },
+                                              'id' => 'acqlid.jub',
+                                              'table' => 'acq.lineitem'
+                                            },
+                                            {
+                                              'classname' => 'acqpo',
+                                              'link' => {
+                                                          'reltype' => 'has_a',
+                                                          'datatype' => 'link',
+                                                          'key' => 'id',
+                                                          'name' => 'purchase_order',
+                                                          'class' => 'acqpo',
+                                                          'label' => 'Purchase Order',
+                                                          'type' => 'link'
+                                                        },
+                                              'struct' => {
+                                                            'label' => 'Purchase Order',
+                                                            'classname' => 'acqpo',
+                                                            'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                            'table' => 'acq.purchase_order',
+                                                            'pkey' => 'id',
+                                                            'name' => 'acqpo',
+                                                            'core_label' => 'Non-core sources'
+                                                          },
+                                              'from' => 'acqlid.jub',
+                                              'label' => 'Purchase Order',
+                                              'jtype' => 'inner',
+                                              'id' => 'acqlid.jub.acqpo',
+                                              'table' => 'acq.purchase_order',
+                                              'uplink' => {
+                                                            'datatype' => 'link',
+                                                            'reltype' => 'has_a',
+                                                            'name' => 'purchase_order',
+                                                            'class' => 'acqpo',
+                                                            'key' => 'id',
+                                                            'label' => 'Purchase Order',
+                                                            'type' => 'link'
+                                                          }
+                                            }
+                                          ],
+                                'transform' => {
+                                                 'label' => 'Date',
+                                                 'transform' => 'date',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)',
+                                'label' => 'Order Date',
+                                'doc_text' => '',
+                                'index' => 5
+                              }
+                            ],
+          'from' => {
+                      'path' => 'acqlid-acqlid',
+                      'alias' => '488118d5f4356a27222fe6db353b8957',
+                      'join' => {
+                                  'owning_lib-77989a9ad94901e5f1358b65db88a85d' => {
+                                                                                     'label' => 'Line Item Detail -> Owning Library (inner)',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'type' => 'inner',
+                                                                                     'idlclass' => 'aou',
+                                                                                     'alias' => '696e242d5caead753e2983b179f90c85',
+                                                                                     'path' => 'acqlid-owning_lib',
+                                                                                     'key' => 'id'
+                                                                                   },
+                                  'cancel_reason-4fd8b33dca35aaf64707950c27e3a449' => {
+                                                                                        'idlclass' => 'acqcr',
+                                                                                        'table' => 'acq.cancel_reason',
+                                                                                        'type' => 'inner',
+                                                                                        'label' => 'Line Item Detail -> Cancel Reason (inner)',
+                                                                                        'path' => 'acqlid-cancel_reason',
+                                                                                        'key' => 'id',
+                                                                                        'alias' => '6a0b60090a901efa0ba0307ab71d09c4'
+                                                                                      },
+                                  'lineitem-410573fea357223b54939d8d41c7bf64' => {
+                                                                                   'path' => 'acqlid-lineitem',
+                                                                                   'join' => {
+                                                                                               'purchase_order-b7e849bfd8fe5a79522f757be924c373' => {
+                                                                                                                                                      'path' => 'acqlid-lineitem-purchase_order',
+                                                                                                                                                      'key' => 'id',
+                                                                                                                                                      'alias' => 'ba66ba1fd9b1b6f9764325301952d444',
+                                                                                                                                                      'table' => 'acq.purchase_order',
+                                                                                                                                                      'type' => 'inner',
+                                                                                                                                                      'idlclass' => 'acqpo',
+                                                                                                                                                      'label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)'
+                                                                                                                                                    }
+                                                                                             },
+                                                                                   'alias' => '8ca487ac32632172b9cad7a61be0214b',
+                                                                                   'idlclass' => 'jub',
+                                                                                   'type' => 'inner',
+                                                                                   'label' => 'Line Item Detail -> PO Line Item (inner)',
+                                                                                   'key' => 'id',
+                                                                                   'table' => 'acq.lineitem'
+                                                                                 }
+                                },
+                      'table' => 'acq.lineitem_detail',
+                      'idlclass' => 'acqlid',
+                      'label' => 'Line Item Detail'
+                    },
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'label',
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0
+                                     },
+                         'relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                         'condition' => {
+                                          'like' => 'Delayed'
+                                        },
+                         'path' => 'acqcr-label',
+                         'field_doc' => '',
+                         'alias' => 'Label'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'aggregate' => 0,
+                                       'colname' => 'ordering_agency',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'acqpo-ordering_agency',
+                         'field_doc' => '',
+                         'alias' => 'Ordering Agency'
+                       }
+                     ],
+          'filter_cols' => [
+                             {
+                               'index' => 0,
+                               'doc_text' => '',
+                               'value' => 'Delayed',
+                               'path' => [
+                                           {
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'classname' => 'acqlid',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq'
+                                                         },
+                                             'label' => 'Line Item Detail',
+                                             'table' => 'acq.lineitem_detail',
+                                             'id' => 'acqlid',
+                                             'classname' => 'acqlid',
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'label' => 'Cancel Reason',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'cancel_reason',
+                                                           'class' => 'acqcr',
+                                                           'key' => 'id'
+                                                         },
+                                             'id' => 'acqlid.acqcr',
+                                             'table' => 'acq.cancel_reason',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acqcr',
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'label' => 'Cancel Reason',
+                                                         'key' => 'id',
+                                                         'name' => 'cancel_reason',
+                                                         'class' => 'acqcr',
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link'
+                                                       },
+                                             'label' => 'Cancel Reason',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqcr',
+                                                           'label' => 'Cancel Reason',
+                                                           'table' => 'acq.cancel_reason',
+                                                           'classname' => 'acqcr',
+                                                           'pkey_sequence' => 'acq.cancel_reason_id_seq'
+                                                         },
+                                             'from' => 'acqlid'
+                                           }
+                                         ],
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'label',
+                               'operator' => {
+                                               'label' => 'Contains Matching substring',
+                                               'op' => 'like'
+                                             },
+                               'datatype' => 'text',
+                               'i18n' => $VAR1->{'display_cols'}[1]{'required'},
+                               'label' => 'Label',
+                               'path_label' => 'Line Item Detail -> Cancel Reason (inner)'
+                             },
+                             {
+                               'reltype' => 'has_a',
+                               'index' => 1,
+                               'doc_text' => '',
+                               'key' => 'id',
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             },
+                               'datatype' => 'org_unit',
+                               'path' => [
+                                           {
+                                             'table' => 'acq.lineitem_detail',
+                                             'classname' => 'acqlid',
+                                             'id' => 'acqlid',
+                                             'label' => 'Line Item Detail',
+                                             'struct' => {
+                                                           'table' => 'acq.lineitem_detail',
+                                                           'pkey_sequence' => 'acq.lineitem_detail_id_seq',
+                                                           'classname' => 'acqlid',
+                                                           'label' => 'Line Item Detail',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqlid',
+                                                           'pkey' => 'id'
+                                                         },
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'classname' => 'jub',
+                                             'link' => {
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link',
+                                                         'key' => 'id',
+                                                         'class' => 'jub',
+                                                         'name' => 'lineitem',
+                                                         'label' => 'PO Line Item',
+                                                         'type' => 'link'
+                                                       },
+                                             'from' => 'acqlid',
+                                             'label' => 'PO Line Item',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'name' => 'jub',
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Line Item',
+                                                           'classname' => 'jub',
+                                                           'pkey_sequence' => 'acq.lineitem_id_seq',
+                                                           'table' => 'acq.lineitem'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'id' => 'acqlid.jub',
+                                             'table' => 'acq.lineitem',
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'PO Line Item',
+                                                           'class' => 'jub',
+                                                           'name' => 'lineitem',
+                                                           'key' => 'id',
+                                                           'datatype' => 'link',
+                                                           'reltype' => 'has_a'
+                                                         }
+                                           },
+                                           {
+                                             'uplink' => {
+                                                           'type' => 'link',
+                                                           'label' => 'Purchase Order',
+                                                           'key' => 'id',
+                                                           'name' => 'purchase_order',
+                                                           'class' => 'acqpo',
+                                                           'reltype' => 'has_a',
+                                                           'datatype' => 'link'
+                                                         },
+                                             'table' => 'acq.purchase_order',
+                                             'id' => 'acqlid.jub.acqpo',
+                                             'jtype' => 'inner',
+                                             'classname' => 'acqpo',
+                                             'from' => 'acqlid.jub',
+                                             'label' => 'Purchase Order',
+                                             'struct' => {
+                                                           'pkey' => 'id',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'acqpo',
+                                                           'label' => 'Purchase Order',
+                                                           'table' => 'acq.purchase_order',
+                                                           'pkey_sequence' => 'acq.purchase_order_id_seq',
+                                                           'classname' => 'acqpo'
+                                                         },
+                                             'link' => {
+                                                         'key' => 'id',
+                                                         'name' => 'purchase_order',
+                                                         'class' => 'acqpo',
+                                                         'reltype' => 'has_a',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'label' => 'Purchase Order'
+                                                       }
+                                           }
+                                         ],
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                                'transform' => 'Bare'
+                                              },
+                               'name' => 'ordering_agency',
+                               'class' => 'aou',
+                               'label' => 'Ordering Agency',
+                               'path_label' => 'Line Item Detail -> PO Line Item (inner) -> Purchase Order (inner)',
+                               'type' => 'link'
+                             }
+                           ],
+          'version' => 5
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-05-11 10:19:59.016779-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_from' => bless( {
+                                     '_join' => [
+                                                  bless( {
+                                                           '_left_col' => 'lineitem',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_join_type' => 'i',
+                                                           '_right_col' => 'id',
+                                                           '_sql' => '
+	INNER JOIN acq.lineitem AS "8ca487ac32632172b9cad7a61be0214b" ON ("488118d5f4356a27222fe6db353b8957"."lineitem" = "8ca487ac32632172b9cad7a61be0214b"."id")
+	INNER JOIN acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444" ON ("8ca487ac32632172b9cad7a61be0214b"."purchase_order" = "ba66ba1fd9b1b6f9764325301952d444"."id")',
+                                                           '_right_rel' => bless( {
+                                                                                    '_is_join' => 1,
+                                                                                    '_sql' => 'acq.lineitem AS "8ca487ac32632172b9cad7a61be0214b"',
+                                                                                    '_builder' => bless( {
+                                                                                                           '_relative_time' => '2020-05-11 10:19:59.016779-04',
+                                                                                                           '_rels' => {
+                                                                                                                        '696e242d5caead753e2983b179f90c85' => bless( {
+                                                                                                                                                                       '_table' => 'actor.org_unit',
+                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                       '_sql' => 'actor.org_unit AS "696e242d5caead753e2983b179f90c85"',
+                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                       '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                       '_join_type' => 'inner',
+                                                                                                                                                                       '_alias' => '696e242d5caead753e2983b179f90c85'
+                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                        'ba66ba1fd9b1b6f9764325301952d444' => bless( {
+                                                                                                                                                                       '_table' => 'acq.purchase_order',
+                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                       '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                       '_sql' => 'acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444"',
+                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                       '_join_type' => 'inner',
+                                                                                                                                                                       '_alias' => 'ba66ba1fd9b1b6f9764325301952d444'
+                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                        '6a0b60090a901efa0ba0307ab71d09c4' => bless( {
+                                                                                                                                                                       '_join' => [],
+                                                                                                                                                                       '_table' => 'acq.cancel_reason',
+                                                                                                                                                                       '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                                                                                                                                                       '_columns' => [],
+                                                                                                                                                                       '_is_join' => 1,
+                                                                                                                                                                       '_sql' => 'acq.cancel_reason AS "6a0b60090a901efa0ba0307ab71d09c4"',
+                                                                                                                                                                       '_alias' => '6a0b60090a901efa0ba0307ab71d09c4',
+                                                                                                                                                                       '_join_type' => 'inner'
+                                                                                                                                                                     }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                        '8ca487ac32632172b9cad7a61be0214b' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'},
+                                                                                                                        '488118d5f4356a27222fe6db353b8957' => $VAR1->{'_from'}
+                                                                                                                      },
+                                                                                                           '_sql' => undef,
+                                                                                                           '_params' => {
+                                                                                                                          'P0' => [
+                                                                                                                                    '65',
+                                                                                                                                    '67',
+                                                                                                                                    '373',
+                                                                                                                                    '66',
+                                                                                                                                    '394'
+                                                                                                                                  ]
+                                                                                                                        },
+                                                                                                           '_resultset_limit' => 1048575
+                                                                                                         }, 'OpenILS::Reporter::SQLBuilder' ),
+                                                                                    '_columns' => [],
+                                                                                    '_join' => [
+                                                                                                 bless( {
+                                                                                                          '_join_type' => 'i',
+                                                                                                          '_left_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'},
+                                                                                                          '_left_col' => 'purchase_order',
+                                                                                                          '_right_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}{'_rels'}{'ba66ba1fd9b1b6f9764325301952d444'},
+                                                                                                          '_sql' => '
+	INNER JOIN acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444" ON ("8ca487ac32632172b9cad7a61be0214b"."purchase_order" = "ba66ba1fd9b1b6f9764325301952d444"."id")',
+                                                                                                          '_right_col' => 'id'
+                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                               ],
+                                                                                    '_table' => 'acq.lineitem',
+                                                                                    '_nullable' => undef,
+                                                                                    '_alias' => '8ca487ac32632172b9cad7a61be0214b',
+                                                                                    '_join_type' => 'inner'
+                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                  bless( {
+                                                           '_right_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}{'_rels'}{'6a0b60090a901efa0ba0307ab71d09c4'},
+                                                           '_sql' => '
+	INNER JOIN acq.cancel_reason AS "6a0b60090a901efa0ba0307ab71d09c4" ON ("488118d5f4356a27222fe6db353b8957"."cancel_reason" = "6a0b60090a901efa0ba0307ab71d09c4"."id")',
+                                                           '_right_col' => 'id',
+                                                           '_join_type' => 'i',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_left_col' => 'cancel_reason'
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                  bless( {
+                                                           '_join_type' => 'i',
+                                                           '_left_col' => 'owning_lib',
+                                                           '_left_rel' => $VAR1->{'_from'},
+                                                           '_right_rel' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}{'_rels'}{'696e242d5caead753e2983b179f90c85'},
+                                                           '_right_col' => 'id',
+                                                           '_sql' => '
+	INNER JOIN actor.org_unit AS "696e242d5caead753e2983b179f90c85" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "696e242d5caead753e2983b179f90c85"."id")'
+                                                         }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                ],
+                                     '_alias' => '488118d5f4356a27222fe6db353b8957',
+                                     '_table' => 'acq.lineitem_detail',
+                                     '_sql' => 'acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN acq.lineitem AS "8ca487ac32632172b9cad7a61be0214b" ON ("488118d5f4356a27222fe6db353b8957"."lineitem" = "8ca487ac32632172b9cad7a61be0214b"."id")
+	INNER JOIN acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444" ON ("8ca487ac32632172b9cad7a61be0214b"."purchase_order" = "ba66ba1fd9b1b6f9764325301952d444"."id")
+	INNER JOIN acq.cancel_reason AS "6a0b60090a901efa0ba0307ab71d09c4" ON ("488118d5f4356a27222fe6db353b8957"."cancel_reason" = "6a0b60090a901efa0ba0307ab71d09c4"."id")
+	INNER JOIN actor.org_unit AS "696e242d5caead753e2983b179f90c85" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "696e242d5caead753e2983b179f90c85"."id")',
+                                     '_nullable' => undef,
+                                     '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                     '_columns' => []
+                                   }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                 '_select' => [
+                                bless( {
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Lineitem ID',
+                                         '_relation' => '8ca487ac32632172b9cad7a61be0214b',
+                                         '_sql' => '"8ca487ac32632172b9cad7a61be0214b"."id" AS "Lineitem ID"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '696e242d5caead753e2983b179f90c85',
+                                         '_sql' => '"696e242d5caead753e2983b179f90c85"."shortname" AS "Branch"',
+                                         '_alias' => 'Branch',
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Item Detail ID',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_relation' => '488118d5f4356a27222fe6db353b8957',
+                                         '_sql' => '"488118d5f4356a27222fe6db353b8957"."id" AS "Item Detail ID"',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"6a0b60090a901efa0ba0307ab71d09c4"."label" AS "Cancel Reason"',
+                                         '_relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'label',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'}
+                                                      },
+                                         '_alias' => 'Cancel Reason'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Purchase Order',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'purchase_order'
+                                                      },
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"8ca487ac32632172b9cad7a61be0214b"."purchase_order" AS "Purchase Order"',
+                                         '_relation' => '8ca487ac32632172b9cad7a61be0214b',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'colname' => 'order_date',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'date',
+                                                        'transform_label' => 'Date'
+                                                      },
+                                         '_alias' => 'Order Date',
+                                         '_aggregate' => undef,
+                                         '_sql' => 'date("ba66ba1fd9b1b6f9764325301952d444"."order_date") AS "Order Date"',
+                                         '_relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                                         '_transform' => 'GenericTransform',
+                                         '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => [],
+                 '_order_by' => [
+                                  bless( {
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"8ca487ac32632172b9cad7a61be0214b"."id" ASC',
+                                           '_relation' => '8ca487ac32632172b9cad7a61be0214b',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"696e242d5caead753e2983b179f90c85"."shortname" ASC',
+                                           '_relation' => '696e242d5caead753e2983b179f90c85',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '488118d5f4356a27222fe6db353b8957',
+                                           '_sql' => '"488118d5f4356a27222fe6db353b8957"."id" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"6a0b60090a901efa0ba0307ab71d09c4"."label" ASC',
+                                           '_relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"8ca487ac32632172b9cad7a61be0214b"."purchase_order" ASC',
+                                           '_relation' => '8ca487ac32632172b9cad7a61be0214b',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                                           '_sql' => 'date("ba66ba1fd9b1b6f9764325301952d444"."order_date") ASC',
+                                           '_transform' => 'GenericTransform',
+                                           '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"8ca487ac32632172b9cad7a61be0214b"."id" AS "Lineitem ID",
+	"696e242d5caead753e2983b179f90c85"."shortname" AS "Branch",
+	"488118d5f4356a27222fe6db353b8957"."id" AS "Item Detail ID",
+	"6a0b60090a901efa0ba0307ab71d09c4"."label" AS "Cancel Reason",
+	"8ca487ac32632172b9cad7a61be0214b"."purchase_order" AS "Purchase Order",
+	date("ba66ba1fd9b1b6f9764325301952d444"."order_date") AS "Order Date"
+  FROM	acq.lineitem_detail AS "488118d5f4356a27222fe6db353b8957"
+	INNER JOIN acq.lineitem AS "8ca487ac32632172b9cad7a61be0214b" ON ("488118d5f4356a27222fe6db353b8957"."lineitem" = "8ca487ac32632172b9cad7a61be0214b"."id")
+	INNER JOIN acq.purchase_order AS "ba66ba1fd9b1b6f9764325301952d444" ON ("8ca487ac32632172b9cad7a61be0214b"."purchase_order" = "ba66ba1fd9b1b6f9764325301952d444"."id")
+	INNER JOIN acq.cancel_reason AS "6a0b60090a901efa0ba0307ab71d09c4" ON ("488118d5f4356a27222fe6db353b8957"."cancel_reason" = "6a0b60090a901efa0ba0307ab71d09c4"."id")
+	INNER JOIN actor.org_unit AS "696e242d5caead753e2983b179f90c85" ON ("488118d5f4356a27222fe6db353b8957"."owning_lib" = "696e242d5caead753e2983b179f90c85"."id")
+  WHERE	"6a0b60090a901efa0ba0307ab71d09c4"."label" LIKE $_37788$%Delayed%$_37788$
+	AND "ba66ba1fd9b1b6f9764325301952d444"."ordering_agency" IN ($_37788$65$_37788$,$_37788$67$_37788$,$_37788$373$_37788$,$_37788$66$_37788$,$_37788$394$_37788$)
+  GROUP BY 1, 2, 3, 4, 5, 6
+  ORDER BY "8ca487ac32632172b9cad7a61be0214b"."id" ASC, "696e242d5caead753e2983b179f90c85"."shortname" ASC, "488118d5f4356a27222fe6db353b8957"."id" ASC, "6a0b60090a901efa0ba0307ab71d09c4"."label" ASC, "8ca487ac32632172b9cad7a61be0214b"."purchase_order" ASC, date("ba66ba1fd9b1b6f9764325301952d444"."order_date") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'label',
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_condition' => {
+                                                          'like' => 'Delayed'
+                                                        },
+                                        '_sql' => '"6a0b60090a901efa0ba0307ab71d09c4"."label" LIKE $_37788$%Delayed%$_37788$',
+                                        '_relation' => '6a0b60090a901efa0ba0307ab71d09c4',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_sql' => '"ba66ba1fd9b1b6f9764325301952d444"."ordering_agency" IN ($_37788$65$_37788$,$_37788$67$_37788$,$_37788$373$_37788$,$_37788$66$_37788$,$_37788$394$_37788$)',
+                                        '_relation' => 'ba66ba1fd9b1b6f9764325301952d444',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_from'}{'_join'}[0]{'_right_rel'}{'_builder'},
+                                        '_transform' => 'Bare',
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'ordering_agency'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

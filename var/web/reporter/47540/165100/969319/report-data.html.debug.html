@@ -1,0 +1,690 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY19 OCRL Paid </title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") AS "Payment Year",
+	SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") AS "Amount",
+	"07c77ec900f7754b501294e96d5ab13e"."shortname" AS "Short (Policy) Name"
+  FROM	money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "f9a22709857cfa90faeab6fdd50a579c" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "f9a22709857cfa90faeab6fdd50a579c"."id")
+	INNER JOIN actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e" ON ("f9a22709857cfa90faeab6fdd50a579c"."owning_lib" = "07c77ec900f7754b501294e96d5ab13e"."id")
+  WHERE	"b5994e1ddb6ed2a83bcc82653f748593"."voided" = $_108082$f$_108082$
+	AND date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") BETWEEN $_108082$2018-07-01$_108082$ AND $_108082$2019-06-30$_108082$
+	AND "07c77ec900f7754b501294e96d5ab13e"."id" IN ($_108082$198$_108082$,$_108082$199$_108082$,$_108082$200$_108082$,$_108082$201$_108082$,$_108082$202$_108082$)
+  GROUP BY 1, 3
+  ORDER BY EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") ASC, SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") ASC, "07c77ec900f7754b501294e96d5ab13e"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'folder' => 1248,
+          'description' => '',
+          'create_time' => '2008-06-26 10:37:38.770316-04',
+          'data' => '{"version":2,"core_class":"mdp","select":[{"alias":"Payment Year","column":{"colname":"payment_ts","transform":"year_trunc","transform_label":"Year"},"path":"mdp-payment_ts","relation":"b5994e1ddb6ed2a83bcc82653f748593"},{"alias":"Amount","column":{"colname":"amount","transform":"sum","transform_label":"Sum"},"path":"mdp-amount","relation":"b5994e1ddb6ed2a83bcc82653f748593"},{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-cash_drawer-aws-owning_lib-aou-shortname","relation":"07c77ec900f7754b501294e96d5ab13e"}],"from":{"path":"mdp-cash_drawer","table":"money.desk_payment_view","label":"Payments: Desk","alias":"b5994e1ddb6ed2a83bcc82653f748593","idlclass":"mdp","template_path":"mdp","join":{"cash_drawer-b5994e1ddb6ed2a83bcc82653f748593":{"path":"mdp-cash_drawer-aws-owning_lib","table":"actor.workstation","key":"id","alias":"f9a22709857cfa90faeab6fdd50a579c","join":{"owning_lib-f9a22709857cfa90faeab6fdd50a579c":{"path":"mdp-cash_drawer-aws-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Payments: Desk -> Workstation :: Owning Library","alias":"07c77ec900f7754b501294e96d5ab13e","idlclass":"aou","template_path":"mdp-cash_drawer.aws-owning_lib"}}}}},"where":[{"alias":"Voided?","column":{"colname":"voided","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-voided","relation":"b5994e1ddb6ed2a83bcc82653f748593","condition":{"=":"f"}},{"alias":"Payment Date/Time","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mdp-payment_ts","relation":"b5994e1ddb6ed2a83bcc82653f748593","condition":{"between":"::P0"}},{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-cash_drawer-aws-owning_lib-aou-id","relation":"07c77ec900f7754b501294e96d5ab13e","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"b5994e1ddb6ed2a83bcc82653f748593":{"label":"Payments: Desk","alias":"b5994e1ddb6ed2a83bcc82653f748593","path":"mdp","reltype":"","idlclass":"mdp","table":"money.desk_payment_view","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"sum","aggregate":"true","params":"undefined","transform_label":"Sum","alias":"Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"payment_ts":{"colname":"payment_ts","transform":"year_trunc","aggregate":"undefined","params":"undefined","transform_label":"Year","alias":"Payment Year","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"voided":{"colname":"voided","transform":"Bare","transform_label":"Raw Data","alias":"Voided?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}},"payment_ts":{"colname":"payment_ts","transform":"date","transform_label":"Date","alias":"Payment Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"b5994e1ddb6ed2a83bcc82653f748593","field":"payment_ts"},{"relation":"b5994e1ddb6ed2a83bcc82653f748593","field":"amount"},{"relation":"07c77ec900f7754b501294e96d5ab13e","field":"shortname"}],"07c77ec900f7754b501294e96d5ab13e":{"label":"Payments: Desk -> Workstation :: Owning Library","alias":"07c77ec900f7754b501294e96d5ab13e","path":"mdp-cash_drawer.aws-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}',
+          'name' => 'Amount Paid BETWEEN DATE to Library',
+          'owner' => 2134611,
+          'id' => 47540
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'core_class' => 'mdp',
+          'from' => {
+                      'label' => 'Payments: Desk',
+                      'join' => {
+                                  'cash_drawer-b5994e1ddb6ed2a83bcc82653f748593' => {
+                                                                                      'table' => 'actor.workstation',
+                                                                                      'key' => 'id',
+                                                                                      'alias' => 'f9a22709857cfa90faeab6fdd50a579c',
+                                                                                      'path' => 'mdp-cash_drawer-aws-owning_lib',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-f9a22709857cfa90faeab6fdd50a579c' => {
+                                                                                                                                                     'idlclass' => 'aou',
+                                                                                                                                                     'alias' => '07c77ec900f7754b501294e96d5ab13e',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'template_path' => 'mdp-cash_drawer.aws-owning_lib',
+                                                                                                                                                     'label' => 'Payments: Desk -> Workstation :: Owning Library',
+                                                                                                                                                     'path' => 'mdp-cash_drawer-aws-owning_lib-aou'
+                                                                                                                                                   }
+                                                                                                }
+                                                                                    }
+                                },
+                      'template_path' => 'mdp',
+                      'path' => 'mdp-cash_drawer',
+                      'idlclass' => 'mdp',
+                      'table' => 'money.desk_payment_view',
+                      'alias' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                    },
+          'where' => [
+                       {
+                         'path' => 'mdp-voided',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'voided'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Voided?'
+                       },
+                       {
+                         'path' => 'mdp-payment_ts',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'colname' => 'payment_ts',
+                                       'transform_label' => 'Date'
+                                     },
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'alias' => 'Payment Date/Time'
+                       },
+                       {
+                         'path' => 'mdp-cash_drawer-aws-owning_lib-aou-id',
+                         'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform_label' => 'Year',
+                                        'colname' => 'payment_ts',
+                                        'transform' => 'year_trunc'
+                                      },
+                          'alias' => 'Payment Year',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_ts'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'column' => {
+                                        'colname' => 'amount',
+                                        'transform_label' => 'Sum',
+                                        'transform' => 'sum'
+                                      },
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-amount'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                          'path' => 'mdp-cash_drawer-aws-owning_lib-aou-shortname'
+                        }
+                      ],
+          'rel_cache' => {
+                           'b5994e1ddb6ed2a83bcc82653f748593' => {
+                                                                   'path' => 'mdp',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Sum',
+                                                                                                              'aggregate' => 'true',
+                                                                                                              'op' => '=',
+                                                                                                              'op_value' => {},
+                                                                                                              'datatype' => 'money',
+                                                                                                              'params' => 'undefined',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'transform' => 'sum',
+                                                                                                              'alias' => 'Amount'
+                                                                                                            },
+                                                                                                'payment_ts' => {
+                                                                                                                  'transform' => 'year_trunc',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'alias' => 'Payment Year',
+                                                                                                                  'transform_label' => 'Year',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'aggregate' => 'undefined'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'voided' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'voided',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'alias' => 'Voided?',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'value' => 'f',
+                                                                                                                                 'label' => 'False'
+                                                                                                                               }
+                                                                                                               },
+                                                                                                   'payment_ts' => {
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'alias' => 'Payment Date/Time'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Payments: Desk',
+                                                                   'table' => 'money.desk_payment_view',
+                                                                   'reltype' => '',
+                                                                   'alias' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                                                   'idlclass' => 'mdp'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'payment_ts',
+                                             'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                                           },
+                                           {
+                                             'field' => 'amount',
+                                             'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                                           },
+                                           {
+                                             'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                                             'field' => 'shortname'
+                                           }
+                                         ],
+                           '07c77ec900f7754b501294e96d5ab13e' => {
+                                                                   'label' => 'Payments: Desk -> Workstation :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform' => 'Bare'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'path' => 'mdp-cash_drawer.aws-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '07c77ec900f7754b501294e96d5ab13e',
+                                                                   'table' => 'actor.org_unit'
+                                                                 }
+                         },
+          'version' => 2,
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'folder' => 1248,
+                          'description' => '',
+                          'create_time' => '2008-06-26 10:37:38.770316-04',
+                          'data' => '{"version":2,"core_class":"mdp","select":[{"alias":"Payment Year","column":{"colname":"payment_ts","transform":"year_trunc","transform_label":"Year"},"path":"mdp-payment_ts","relation":"b5994e1ddb6ed2a83bcc82653f748593"},{"alias":"Amount","column":{"colname":"amount","transform":"sum","transform_label":"Sum"},"path":"mdp-amount","relation":"b5994e1ddb6ed2a83bcc82653f748593"},{"alias":"Short (Policy) Name","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-cash_drawer-aws-owning_lib-aou-shortname","relation":"07c77ec900f7754b501294e96d5ab13e"}],"from":{"path":"mdp-cash_drawer","table":"money.desk_payment_view","label":"Payments: Desk","alias":"b5994e1ddb6ed2a83bcc82653f748593","idlclass":"mdp","template_path":"mdp","join":{"cash_drawer-b5994e1ddb6ed2a83bcc82653f748593":{"path":"mdp-cash_drawer-aws-owning_lib","table":"actor.workstation","key":"id","alias":"f9a22709857cfa90faeab6fdd50a579c","join":{"owning_lib-f9a22709857cfa90faeab6fdd50a579c":{"path":"mdp-cash_drawer-aws-owning_lib-aou","table":"actor.org_unit","key":"id","label":"Payments: Desk -> Workstation :: Owning Library","alias":"07c77ec900f7754b501294e96d5ab13e","idlclass":"aou","template_path":"mdp-cash_drawer.aws-owning_lib"}}}}},"where":[{"alias":"Voided?","column":{"colname":"voided","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-voided","relation":"b5994e1ddb6ed2a83bcc82653f748593","condition":{"=":"f"}},{"alias":"Payment Date/Time","column":{"colname":"payment_ts","transform":"date","transform_label":"Date"},"path":"mdp-payment_ts","relation":"b5994e1ddb6ed2a83bcc82653f748593","condition":{"between":"::P0"}},{"alias":"Organizational Unit ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"mdp-cash_drawer-aws-owning_lib-aou-id","relation":"07c77ec900f7754b501294e96d5ab13e","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"b5994e1ddb6ed2a83bcc82653f748593":{"label":"Payments: Desk","alias":"b5994e1ddb6ed2a83bcc82653f748593","path":"mdp","reltype":"","idlclass":"mdp","table":"money.desk_payment_view","fields":{"dis_tab":{"amount":{"colname":"amount","transform":"sum","aggregate":"true","params":"undefined","transform_label":"Sum","alias":"Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"payment_ts":{"colname":"payment_ts","transform":"year_trunc","aggregate":"undefined","params":"undefined","transform_label":"Year","alias":"Payment Year","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"voided":{"colname":"voided","transform":"Bare","transform_label":"Raw Data","alias":"Voided?","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"f","label":"False"}},"payment_ts":{"colname":"payment_ts","transform":"date","transform_label":"Date","alias":"Payment Date/Time","datatype":"timestamp","op":"between","op_label":"Between","op_value":{}}},"aggfilter_tab":{}}},"order_by":[{"relation":"b5994e1ddb6ed2a83bcc82653f748593","field":"payment_ts"},{"relation":"b5994e1ddb6ed2a83bcc82653f748593","field":"amount"},{"relation":"07c77ec900f7754b501294e96d5ab13e","field":"shortname"}],"07c77ec900f7754b501294e96d5ab13e":{"label":"Payments: Desk -> Workstation :: Owning Library","alias":"07c77ec900f7754b501294e96d5ab13e","path":"mdp-cash_drawer.aws-owning_lib","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Short (Policy) Name","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"id":{"colname":"id","transform":"Bare","transform_label":"Raw Data","alias":"Organizational Unit ID","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}}}}',
+                          'name' => 'Amount Paid BETWEEN DATE to Library',
+                          'owner' => 2134611,
+                          'id' => 47540
+                        },
+          'recurrence' => '1 day',
+          'description' => '',
+          'id' => 165100,
+          'owner' => 2134611,
+          'recur' => 0,
+          'name' => 'FY19 OCRL Paid ',
+          'create_time' => '2019-08-16 09:09:06.45411-04',
+          'data' => '{"P0":["2018-07-01","2019-06-30"],"P1":["198","199","200","201","202"],"__pivot_label":"","__pivot_data":"2"}',
+          'folder' => 1296
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'core_class' => 'mdp',
+          'from' => {
+                      'label' => 'Payments: Desk',
+                      'join' => {
+                                  'cash_drawer-b5994e1ddb6ed2a83bcc82653f748593' => {
+                                                                                      'table' => 'actor.workstation',
+                                                                                      'key' => 'id',
+                                                                                      'alias' => 'f9a22709857cfa90faeab6fdd50a579c',
+                                                                                      'path' => 'mdp-cash_drawer-aws-owning_lib',
+                                                                                      'join' => {
+                                                                                                  'owning_lib-f9a22709857cfa90faeab6fdd50a579c' => {
+                                                                                                                                                     'idlclass' => 'aou',
+                                                                                                                                                     'alias' => '07c77ec900f7754b501294e96d5ab13e',
+                                                                                                                                                     'key' => 'id',
+                                                                                                                                                     'table' => 'actor.org_unit',
+                                                                                                                                                     'template_path' => 'mdp-cash_drawer.aws-owning_lib',
+                                                                                                                                                     'label' => 'Payments: Desk -> Workstation :: Owning Library',
+                                                                                                                                                     'path' => 'mdp-cash_drawer-aws-owning_lib-aou'
+                                                                                                                                                   }
+                                                                                                }
+                                                                                    }
+                                },
+                      'template_path' => 'mdp',
+                      'path' => 'mdp-cash_drawer',
+                      'idlclass' => 'mdp',
+                      'table' => 'money.desk_payment_view',
+                      'alias' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                    },
+          'where' => [
+                       {
+                         'path' => 'mdp-voided',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'voided'
+                                     },
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'alias' => 'Voided?'
+                       },
+                       {
+                         'path' => 'mdp-payment_ts',
+                         'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'colname' => 'payment_ts',
+                                       'transform_label' => 'Date'
+                                     },
+                         'condition' => {
+                                          'between' => '::P0'
+                                        },
+                         'alias' => 'Payment Date/Time'
+                       },
+                       {
+                         'path' => 'mdp-cash_drawer-aws-owning_lib-aou-id',
+                         'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                         'alias' => 'Organizational Unit ID',
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'column' => {
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     }
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform_label' => 'Year',
+                                        'colname' => 'payment_ts',
+                                        'transform' => 'year_trunc'
+                                      },
+                          'alias' => 'Payment Year',
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-payment_ts'
+                        },
+                        {
+                          'alias' => 'Amount',
+                          'column' => {
+                                        'colname' => 'amount',
+                                        'transform_label' => 'Sum',
+                                        'transform' => 'sum'
+                                      },
+                          'relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                          'path' => 'mdp-amount'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Short (Policy) Name',
+                          'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                          'path' => 'mdp-cash_drawer-aws-owning_lib-aou-shortname'
+                        }
+                      ],
+          'rel_cache' => {
+                           'b5994e1ddb6ed2a83bcc82653f748593' => {
+                                                                   'path' => 'mdp',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'amount' => {
+                                                                                                              'transform_label' => 'Sum',
+                                                                                                              'aggregate' => 'true',
+                                                                                                              'op' => '=',
+                                                                                                              'op_value' => {},
+                                                                                                              'datatype' => 'money',
+                                                                                                              'params' => 'undefined',
+                                                                                                              'op_label' => 'Equals',
+                                                                                                              'colname' => 'amount',
+                                                                                                              'transform' => 'sum',
+                                                                                                              'alias' => 'Amount'
+                                                                                                            },
+                                                                                                'payment_ts' => {
+                                                                                                                  'transform' => 'year_trunc',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'payment_ts',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'alias' => 'Payment Year',
+                                                                                                                  'transform_label' => 'Year',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'aggregate' => 'undefined'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'voided' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'voided',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'alias' => 'Voided?',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'value' => 'f',
+                                                                                                                                 'label' => 'False'
+                                                                                                                               }
+                                                                                                               },
+                                                                                                   'payment_ts' => {
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op' => 'between',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'op_label' => 'Between',
+                                                                                                                     'colname' => 'payment_ts',
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'alias' => 'Payment Date/Time'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Payments: Desk',
+                                                                   'table' => 'money.desk_payment_view',
+                                                                   'reltype' => '',
+                                                                   'alias' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                                                   'idlclass' => 'mdp'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'field' => 'payment_ts',
+                                             'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                                           },
+                                           {
+                                             'field' => 'amount',
+                                             'relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                                           },
+                                           {
+                                             'relation' => '07c77ec900f7754b501294e96d5ab13e',
+                                             'field' => 'shortname'
+                                           }
+                                         ],
+                           '07c77ec900f7754b501294e96d5ab13e' => {
+                                                                   'label' => 'Payments: Desk -> Workstation :: Owning Library',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'id' => {
+                                                                                                             'datatype' => 'org_unit',
+                                                                                                             'transform' => 'Bare',
+                                                                                                             'colname' => 'id',
+                                                                                                             'op_label' => 'In list',
+                                                                                                             'alias' => 'Organizational Unit ID',
+                                                                                                             'transform_label' => 'Raw Data',
+                                                                                                             'op_value' => {},
+                                                                                                             'op' => 'in'
+                                                                                                           }
+                                                                                                 },
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'alias' => 'Short (Policy) Name',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform' => 'Bare'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'path' => 'mdp-cash_drawer.aws-owning_lib',
+                                                                   'idlclass' => 'aou',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '07c77ec900f7754b501294e96d5ab13e',
+                                                                   'table' => 'actor.org_unit'
+                                                                 }
+                         },
+          'version' => 2,
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-08-16 09:09:06.45411-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_sql' => 'SELECT * FROM (SELECT	EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") AS "Payment Year",
+	SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") AS "Amount",
+	"07c77ec900f7754b501294e96d5ab13e"."shortname" AS "Short (Policy) Name"
+  FROM	money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "f9a22709857cfa90faeab6fdd50a579c" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "f9a22709857cfa90faeab6fdd50a579c"."id")
+	INNER JOIN actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e" ON ("f9a22709857cfa90faeab6fdd50a579c"."owning_lib" = "07c77ec900f7754b501294e96d5ab13e"."id")
+  WHERE	"b5994e1ddb6ed2a83bcc82653f748593"."voided" = $_108082$f$_108082$
+	AND date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") BETWEEN $_108082$2018-07-01$_108082$ AND $_108082$2019-06-30$_108082$
+	AND "07c77ec900f7754b501294e96d5ab13e"."id" IN ($_108082$198$_108082$,$_108082$199$_108082$,$_108082$200$_108082$,$_108082$201$_108082$,$_108082$202$_108082$)
+  GROUP BY 1, 3
+  ORDER BY EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") ASC, SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") ASC, "07c77ec900f7754b501294e96d5ab13e"."shortname" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_sql' => '"b5994e1ddb6ed2a83bcc82653f748593"."voided" = $_108082$f$_108082$',
+                                        '_transform' => 'Bare',
+                                        '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_builder' => bless( {
+                                                               '_resultset_limit' => 1048575,
+                                                               '_relative_time' => '2019-08-16 09:09:06.45411-04',
+                                                               '_pivot_data' => '2',
+                                                               '_sql' => undef,
+                                                               '_rels' => {
+                                                                            'f9a22709857cfa90faeab6fdd50a579c' => bless( {
+                                                                                                                           '_table' => 'actor.workstation',
+                                                                                                                           '_alias' => 'f9a22709857cfa90faeab6fdd50a579c',
+                                                                                                                           '_sql' => 'actor.workstation AS "f9a22709857cfa90faeab6fdd50a579c"',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_col' => 'owning_lib',
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_alias' => '07c77ec900f7754b501294e96d5ab13e',
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e"',
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_columns' => []
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e" ON ("f9a22709857cfa90faeab6fdd50a579c"."owning_lib" = "07c77ec900f7754b501294e96d5ab13e"."id")',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f9a22709857cfa90faeab6fdd50a579c'}
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_join_type' => 'inner'
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '07c77ec900f7754b501294e96d5ab13e' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f9a22709857cfa90faeab6fdd50a579c'}{'_join'}[0]{'_right_rel'},
+                                                                            'b5994e1ddb6ed2a83bcc82653f748593' => bless( {
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_alias' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_table' => 'money.desk_payment_view',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_sql' => 'money.desk_payment_view AS "b5994e1ddb6ed2a83bcc82653f748593"
+	INNER JOIN actor.workstation AS "f9a22709857cfa90faeab6fdd50a579c" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "f9a22709857cfa90faeab6fdd50a579c"."id")
+	INNER JOIN actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e" ON ("f9a22709857cfa90faeab6fdd50a579c"."owning_lib" = "07c77ec900f7754b501294e96d5ab13e"."id")',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'f9a22709857cfa90faeab6fdd50a579c'},
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.workstation AS "f9a22709857cfa90faeab6fdd50a579c" ON ("b5994e1ddb6ed2a83bcc82653f748593"."cash_drawer" = "f9a22709857cfa90faeab6fdd50a579c"."id")
+	INNER JOIN actor.org_unit AS "07c77ec900f7754b501294e96d5ab13e" ON ("f9a22709857cfa90faeab6fdd50a579c"."owning_lib" = "07c77ec900f7754b501294e96d5ab13e"."id")',
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'},
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'cash_drawer'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ]
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                          },
+                                                               '_params' => {
+                                                                              '__pivot_data' => '2',
+                                                                              '__pivot_label' => '',
+                                                                              'P0' => [
+                                                                                        '2018-07-01',
+                                                                                        '2019-06-30'
+                                                                                      ],
+                                                                              'P1' => [
+                                                                                        '198',
+                                                                                        '199',
+                                                                                        '200',
+                                                                                        '201',
+                                                                                        '202'
+                                                                                      ]
+                                                                            }
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'voided'
+                                                     },
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'between' => '::P0'
+                                                        },
+                                        '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                        '_transform' => 'GenericTransform',
+                                        '_sql' => 'date("b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") BETWEEN $_108082$2018-07-01$_108082$ AND $_108082$2019-06-30$_108082$',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_column' => {
+                                                       'transform' => 'date',
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'payment_ts'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_relation' => '07c77ec900f7754b501294e96d5ab13e',
+                                        '_sql' => '"07c77ec900f7754b501294e96d5ab13e"."id" IN ($_108082$198$_108082$,$_108082$199$_108082$,$_108082$200$_108082$,$_108082$201$_108082$,$_108082$202$_108082$)',
+                                        '_aggregate' => undef,
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'id',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'colname' => 'payment_ts',
+                                                        'transform_label' => 'Year',
+                                                        'transform' => 'year_trunc'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Payment Year',
+                                         '_transform' => 'year_trunc',
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_sql' => 'EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") AS "Payment Year"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Sum',
+                                                        'colname' => 'amount',
+                                                        'transform' => 'sum'
+                                                      },
+                                         '_alias' => 'Amount',
+                                         '_transform' => 'sum',
+                                         '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                         '_sql' => 'SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") AS "Amount"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Short (Policy) Name',
+                                         '_relation' => '07c77ec900f7754b501294e96d5ab13e',
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"07c77ec900f7754b501294e96d5ab13e"."shortname" AS "Short (Policy) Name"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => 'EXTRACT(YEAR FROM "b5994e1ddb6ed2a83bcc82653f748593"."payment_ts") ASC',
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'year_trunc'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => 'SUM("b5994e1ddb6ed2a83bcc82653f748593"."amount") ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'sum',
+                                           '_relation' => 'b5994e1ddb6ed2a83bcc82653f748593'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"07c77ec900f7754b501294e96d5ab13e"."shortname" ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => '07c77ec900f7754b501294e96d5ab13e'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'b5994e1ddb6ed2a83bcc82653f748593'}
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

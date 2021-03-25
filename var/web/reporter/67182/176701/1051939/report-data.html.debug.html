@@ -1,0 +1,1285 @@
+<html><head><meta charset='utf-8'><title>DEBUG: 2020 closeout-fund summary</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"9f1eda561fc47506116e8f32df732384"."shortname" AS "Org Unit",
+	"dbde73af0c32104dba5e376a44b1cf03"."year" AS "Year",
+	"dbde73af0c32104dba5e376a44b1cf03"."name" AS "Fund Name",
+	"dbde73af0c32104dba5e376a44b1cf03"."code" AS "Fund Code",
+	"dbde73af0c32104dba5e376a44b1cf03"."allocated_total" AS "Total Allocated",
+	"dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" AS "Total Encumbered",
+	"dbde73af0c32104dba5e376a44b1cf03"."spent_total" AS "Total Spent",
+	"dbde73af0c32104dba5e376a44b1cf03"."combined_balance" AS "Remaining Balance"
+  FROM	(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        ) AS "dbde73af0c32104dba5e376a44b1cf03"
+	INNER JOIN acq.fund AS "904d25fc43f4f14128686078e9275116" ON ("dbde73af0c32104dba5e376a44b1cf03"."id" = "904d25fc43f4f14128686078e9275116"."id")
+	INNER JOIN actor.org_unit AS "9f1eda561fc47506116e8f32df732384" ON ("dbde73af0c32104dba5e376a44b1cf03"."org" = "9f1eda561fc47506116e8f32df732384"."id")
+  WHERE	"dbde73af0c32104dba5e376a44b1cf03"."org" IN ($_45090$65$_45090$,$_45090$67$_45090$,$_45090$373$_45090$,$_45090$66$_45090$,$_45090$394$_45090$)
+	AND "dbde73af0c32104dba5e376a44b1cf03"."active" = $_45090$t$_45090$
+	AND "904d25fc43f4f14128686078e9275116"."year" = $_45090$2020$_45090$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+  ORDER BY "9f1eda561fc47506116e8f32df732384"."shortname" ASC, "dbde73af0c32104dba5e376a44b1cf03"."year" ASC, "dbde73af0c32104dba5e376a44b1cf03"."name" ASC, "dbde73af0c32104dba5e376a44b1cf03"."code" ASC, "dbde73af0c32104dba5e376a44b1cf03"."allocated_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."spent_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."combined_balance" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'create_time' => '2018-06-12 12:43:22.812063-04',
+          'id' => 67182,
+          'description' => 'Summary of Fund Totals by Org Unit and Fund Year.  
+Displays Org Name, Year, Fund Name, Fund Code, Total Allocated Amt, Encumbered Amt, Spent Amt and Balance; Filtered on Org Unit, Year and Is Active = T [ will not return results if parent org is selected ]',
+          'owner' => 4009295,
+          'name' => 'Fund Summary',
+          'data' => '{"version":4,"doc_url":"","core_class":"acqfsum","select":[{"alias":"Org Unit","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-org-aou-shortname","relation":"9f1eda561fc47506116e8f32df732384"},{"alias":"Year","field_doc":"","column":{"colname":"year","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-year","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Fund Name","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-name","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Fund Code","field_doc":"","column":{"colname":"code","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-code","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Allocated","field_doc":"","column":{"colname":"allocated_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-allocated_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Encumbered","field_doc":"","column":{"colname":"encumbrance_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-encumbrance_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Spent","field_doc":"","column":{"colname":"spent_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-spent_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Remaining Balance","field_doc":"","column":{"colname":"combined_balance","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-combined_balance","relation":"dbde73af0c32104dba5e376a44b1cf03"}],"from":{"path":"acqfsum-id","table":"(\\n            SELECT\\n                acqf.*,\\n                COALESCE(acqfat.amount, 0.00) AS allocated_total,\\n                COALESCE(acqfst.amount, 0.00) AS spent_total,\\n                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,\\n                COALESCE(acqfcb.amount, 0.00) AS combined_balance\\n            FROM\\n                acq.fund acqf\\n                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)\\n                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)\\n                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)\\n                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)\\n        )","label":"Fund Summary","alias":"dbde73af0c32104dba5e376a44b1cf03","idlclass":"acqfsum","template_path":"acqfsum","join":{"org-dbde73af0c32104dba5e376a44b1cf03":{"key":"id","path":"acqfsum-org-aou","table":"actor.org_unit","label":"Fund Summary :: Org Unit","alias":"9f1eda561fc47506116e8f32df732384","idlclass":"aou","template_path":"acqfsum-org"},"id-dbde73af0c32104dba5e376a44b1cf03":{"key":"id","path":"acqfsum-id-acqf","table":"acq.fund","label":"Fund Summary :: Fund ID","alias":"904d25fc43f4f14128686078e9275116","idlclass":"acqf","template_path":"acqfsum-id"}}},"where":[{"alias":"Org Unit","field_doc":"","column":{"colname":"org","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-org","relation":"dbde73af0c32104dba5e376a44b1cf03","condition":{"in":"::P0"}},{"alias":"Active","field_doc":"","column":{"colname":"active","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-active","relation":"dbde73af0c32104dba5e376a44b1cf03","condition":{"=":"t"}},{"alias":"Year","field_doc":"","column":{"colname":"year","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-id-acqf-year","relation":"904d25fc43f4f14128686078e9275116","condition":{"=":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"dbde73af0c32104dba5e376a44b1cf03":{"label":"Fund Summary","alias":"dbde73af0c32104dba5e376a44b1cf03","path":"acqfsum","join":"","reltype":"","idlclass":"acqfsum","table":"(\\n            SELECT\\n                acqf.*,\\n                COALESCE(acqfat.amount, 0.00) AS allocated_total,\\n                COALESCE(acqfst.amount, 0.00) AS spent_total,\\n                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,\\n                COALESCE(acqfcb.amount, 0.00) AS combined_balance\\n            FROM\\n                acq.fund acqf\\n                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)\\n                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)\\n                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)\\n                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)\\n        )","fields":{"dis_tab":{"year":{"colname":"year","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Year","join":"","datatype":"int","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Fund Name","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"code":{"colname":"code","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Fund Code","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"allocated_total":{"colname":"allocated_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Allocated","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"encumbrance_total":{"colname":"encumbrance_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Encumbered","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"spent_total":{"colname":"spent_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Spent","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"combined_balance":{"colname":"combined_balance","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Remaining Balance","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"org":{"colname":"org","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Org Unit","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""},"active":{"colname":"active","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Active","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"t","label":"True"},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"9f1eda561fc47506116e8f32df732384","field":"shortname"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"year"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"name"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"code"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"allocated_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"encumbrance_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"spent_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"combined_balance"}],"9f1eda561fc47506116e8f32df732384":{"label":"Fund Summary :: Org Unit","alias":"9f1eda561fc47506116e8f32df732384","path":"acqfsum-org","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Org Unit","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"904d25fc43f4f14128686078e9275116":{"label":"Fund Summary :: Fund ID","alias":"904d25fc43f4f14128686078e9275116","path":"acqfsum-id","join":"","reltype":"has_a","idlclass":"acqf","table":"acq.fund","fields":{"dis_tab":{},"filter_tab":{"year":{"colname":"year","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Year","join":"","datatype":"int","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"aggfilter_tab":{}}}}}',
+          'folder' => 3151
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'doc_url' => '',
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '9f1eda561fc47506116e8f32df732384'
+                                           },
+                                           {
+                                             'field' => 'year',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'code'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'allocated_total'
+                                           },
+                                           {
+                                             'field' => 'encumbrance_total',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'field' => 'spent_total',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'combined_balance'
+                                           }
+                                         ],
+                           '9f1eda561fc47506116e8f32df732384' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Fund Summary :: Org Unit',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'join' => '',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Org Unit',
+                                                                                                                 'params' => undef,
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform_label' => 'Raw Data'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'path' => 'acqfsum-org',
+                                                                   'join' => '',
+                                                                   'alias' => '9f1eda561fc47506116e8f32df732384'
+                                                                 },
+                           'dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                   'table' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        )',
+                                                                   'reltype' => '',
+                                                                   'idlclass' => 'acqfsum',
+                                                                   'label' => 'Fund Summary',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op_value' => {},
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'colname' => 'name',
+                                                                                                            'field_doc' => '',
+                                                                                                            'op' => '=',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'params' => undef,
+                                                                                                            'alias' => 'Fund Name',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare'
+                                                                                                          },
+                                                                                                'allocated_total' => {
+                                                                                                                       'op_value' => {},
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'colname' => 'allocated_total',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'op' => '=',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'alias' => 'Total Allocated',
+                                                                                                                       'params' => undef,
+                                                                                                                       'datatype' => 'money',
+                                                                                                                       'join' => '',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'aggregate' => undef
+                                                                                                                     },
+                                                                                                'encumbrance_total' => {
+                                                                                                                         'params' => undef,
+                                                                                                                         'alias' => 'Total Encumbered',
+                                                                                                                         'join' => '',
+                                                                                                                         'datatype' => 'money',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'op' => '=',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'encumbrance_total',
+                                                                                                                         'field_doc' => '',
+                                                                                                                         'op_value' => {},
+                                                                                                                         'transform_label' => 'Raw Data'
+                                                                                                                       },
+                                                                                                'combined_balance' => {
+                                                                                                                        'colname' => 'combined_balance',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'op_value' => {},
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'params' => undef,
+                                                                                                                        'alias' => 'Remaining Balance',
+                                                                                                                        'datatype' => 'money',
+                                                                                                                        'join' => '',
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'op' => '=',
+                                                                                                                        'op_label' => 'Equals'
+                                                                                                                      },
+                                                                                                'code' => {
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'params' => undef,
+                                                                                                            'alias' => 'Fund Code',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'field_doc' => '',
+                                                                                                            'colname' => 'code'
+                                                                                                          },
+                                                                                                'year' => {
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'int',
+                                                                                                            'alias' => 'Year',
+                                                                                                            'params' => undef,
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'field_doc' => '',
+                                                                                                            'colname' => 'year'
+                                                                                                          },
+                                                                                                'spent_total' => {
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'datatype' => 'money',
+                                                                                                                   'join' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'alias' => 'Total Spent',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'colname' => 'spent_total'
+                                                                                                                 }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'org' => {
+                                                                                                              'colname' => 'org',
+                                                                                                              'field_doc' => '',
+                                                                                                              'op_value' => {},
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'alias' => 'Org Unit',
+                                                                                                              'params' => undef,
+                                                                                                              'join' => '',
+                                                                                                              'datatype' => 'org_unit',
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'aggregate' => undef,
+                                                                                                              'op' => 'in',
+                                                                                                              'op_label' => 'In list'
+                                                                                                            },
+                                                                                                   'active' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'alias' => 'Active',
+                                                                                                                 'params' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'label' => 'True',
+                                                                                                                                 'value' => 't'
+                                                                                                                               },
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'colname' => 'active'
+                                                                                                               }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'acqfsum',
+                                                                   'join' => '',
+                                                                   'alias' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                                                 },
+                           '904d25fc43f4f14128686078e9275116' => {
+                                                                   'label' => 'Fund Summary :: Fund ID',
+                                                                   'idlclass' => 'acqf',
+                                                                   'alias' => '904d25fc43f4f14128686078e9275116',
+                                                                   'join' => '',
+                                                                   'path' => 'acqfsum-id',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'year' => {
+                                                                                                               'aggregate' => undef,
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'int',
+                                                                                                               'alias' => 'Year',
+                                                                                                               'params' => undef,
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'op' => '=',
+                                                                                                               'field_doc' => '',
+                                                                                                               'colname' => 'year',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_value' => {}
+                                                                                                             }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {}
+                                                                               },
+                                                                   'table' => 'acq.fund',
+                                                                   'reltype' => 'has_a'
+                                                                 }
+                         },
+          'having' => [],
+          'core_class' => 'acqfsum',
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-org-aou-shortname',
+                          'alias' => 'Org Unit',
+                          'relation' => '9f1eda561fc47506116e8f32df732384',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-year',
+                          'alias' => 'Year',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'year'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-name',
+                          'alias' => 'Fund Name',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'colname' => 'code',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'acqfsum-code',
+                          'alias' => 'Fund Code'
+                        },
+                        {
+                          'path' => 'acqfsum-allocated_total',
+                          'field_doc' => '',
+                          'alias' => 'Total Allocated',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'allocated_total',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'encumbrance_total',
+                                        'transform' => 'Bare'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'path' => 'acqfsum-encumbrance_total',
+                          'field_doc' => '',
+                          'alias' => 'Total Encumbered'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'spent_total',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'alias' => 'Total Spent',
+                          'path' => 'acqfsum-spent_total',
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'combined_balance',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'alias' => 'Remaining Balance',
+                          'path' => 'acqfsum-combined_balance',
+                          'field_doc' => ''
+                        }
+                      ],
+          'version' => 4,
+          'from' => {
+                      'alias' => 'dbde73af0c32104dba5e376a44b1cf03',
+                      'join' => {
+                                  'org-dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                              'label' => 'Fund Summary :: Org Unit',
+                                                                              'idlclass' => 'aou',
+                                                                              'table' => 'actor.org_unit',
+                                                                              'alias' => '9f1eda561fc47506116e8f32df732384',
+                                                                              'path' => 'acqfsum-org-aou',
+                                                                              'template_path' => 'acqfsum-org',
+                                                                              'key' => 'id'
+                                                                            },
+                                  'id-dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                             'table' => 'acq.fund',
+                                                                             'idlclass' => 'acqf',
+                                                                             'label' => 'Fund Summary :: Fund ID',
+                                                                             'key' => 'id',
+                                                                             'template_path' => 'acqfsum-id',
+                                                                             'path' => 'acqfsum-id-acqf',
+                                                                             'alias' => '904d25fc43f4f14128686078e9275116'
+                                                                           }
+                                },
+                      'template_path' => 'acqfsum',
+                      'path' => 'acqfsum-id',
+                      'label' => 'Fund Summary',
+                      'table' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        )',
+                      'idlclass' => 'acqfsum'
+                    },
+          'order_by' => [],
+          'where' => [
+                       {
+                         'alias' => 'Org Unit',
+                         'path' => 'acqfsum-org',
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'org',
+                                       'transform_label' => 'Raw Data'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                         'column' => {
+                                       'colname' => 'active',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'alias' => 'Active',
+                         'field_doc' => '',
+                         'path' => 'acqfsum-active'
+                       },
+                       {
+                         'relation' => '904d25fc43f4f14128686078e9275116',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'year',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '=' => '::P1'
+                                        },
+                         'field_doc' => '',
+                         'path' => 'acqfsum-id-acqf-year',
+                         'alias' => 'Year'
+                       }
+                     ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'folder' => 3869,
+          'data' => '{"P0":["65","67","373","66","394"],"P1":"2020"}',
+          'recurrence' => '1 day',
+          'id' => 176701,
+          'description' => '',
+          'name' => '2020 closeout-fund summary',
+          'create_time' => '2020-05-11 13:20:18.356356-04',
+          'owner' => 863206,
+          'recur' => 0,
+          'template' => {
+                          'create_time' => '2018-06-12 12:43:22.812063-04',
+                          'id' => 67182,
+                          'description' => 'Summary of Fund Totals by Org Unit and Fund Year.  
+Displays Org Name, Year, Fund Name, Fund Code, Total Allocated Amt, Encumbered Amt, Spent Amt and Balance; Filtered on Org Unit, Year and Is Active = T [ will not return results if parent org is selected ]',
+                          'owner' => 4009295,
+                          'name' => 'Fund Summary',
+                          'data' => '{"version":4,"doc_url":"","core_class":"acqfsum","select":[{"alias":"Org Unit","field_doc":"","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-org-aou-shortname","relation":"9f1eda561fc47506116e8f32df732384"},{"alias":"Year","field_doc":"","column":{"colname":"year","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-year","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Fund Name","field_doc":"","column":{"colname":"name","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-name","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Fund Code","field_doc":"","column":{"colname":"code","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-code","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Allocated","field_doc":"","column":{"colname":"allocated_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-allocated_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Encumbered","field_doc":"","column":{"colname":"encumbrance_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-encumbrance_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Total Spent","field_doc":"","column":{"colname":"spent_total","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-spent_total","relation":"dbde73af0c32104dba5e376a44b1cf03"},{"alias":"Remaining Balance","field_doc":"","column":{"colname":"combined_balance","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-combined_balance","relation":"dbde73af0c32104dba5e376a44b1cf03"}],"from":{"path":"acqfsum-id","table":"(\\n            SELECT\\n                acqf.*,\\n                COALESCE(acqfat.amount, 0.00) AS allocated_total,\\n                COALESCE(acqfst.amount, 0.00) AS spent_total,\\n                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,\\n                COALESCE(acqfcb.amount, 0.00) AS combined_balance\\n            FROM\\n                acq.fund acqf\\n                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)\\n                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)\\n                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)\\n                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)\\n        )","label":"Fund Summary","alias":"dbde73af0c32104dba5e376a44b1cf03","idlclass":"acqfsum","template_path":"acqfsum","join":{"org-dbde73af0c32104dba5e376a44b1cf03":{"key":"id","path":"acqfsum-org-aou","table":"actor.org_unit","label":"Fund Summary :: Org Unit","alias":"9f1eda561fc47506116e8f32df732384","idlclass":"aou","template_path":"acqfsum-org"},"id-dbde73af0c32104dba5e376a44b1cf03":{"key":"id","path":"acqfsum-id-acqf","table":"acq.fund","label":"Fund Summary :: Fund ID","alias":"904d25fc43f4f14128686078e9275116","idlclass":"acqf","template_path":"acqfsum-id"}}},"where":[{"alias":"Org Unit","field_doc":"","column":{"colname":"org","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-org","relation":"dbde73af0c32104dba5e376a44b1cf03","condition":{"in":"::P0"}},{"alias":"Active","field_doc":"","column":{"colname":"active","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-active","relation":"dbde73af0c32104dba5e376a44b1cf03","condition":{"=":"t"}},{"alias":"Year","field_doc":"","column":{"colname":"year","transform":"Bare","transform_label":"Raw Data"},"path":"acqfsum-id-acqf-year","relation":"904d25fc43f4f14128686078e9275116","condition":{"=":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"dbde73af0c32104dba5e376a44b1cf03":{"label":"Fund Summary","alias":"dbde73af0c32104dba5e376a44b1cf03","path":"acqfsum","join":"","reltype":"","idlclass":"acqfsum","table":"(\\n            SELECT\\n                acqf.*,\\n                COALESCE(acqfat.amount, 0.00) AS allocated_total,\\n                COALESCE(acqfst.amount, 0.00) AS spent_total,\\n                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,\\n                COALESCE(acqfcb.amount, 0.00) AS combined_balance\\n            FROM\\n                acq.fund acqf\\n                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)\\n                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)\\n                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)\\n                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)\\n        )","fields":{"dis_tab":{"year":{"colname":"year","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Year","join":"","datatype":"int","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"name":{"colname":"name","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Fund Name","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"code":{"colname":"code","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Fund Code","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"allocated_total":{"colname":"allocated_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Allocated","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"encumbrance_total":{"colname":"encumbrance_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Encumbered","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"spent_total":{"colname":"spent_total","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Total Spent","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""},"combined_balance":{"colname":"combined_balance","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Remaining Balance","join":"","datatype":"money","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{"org":{"colname":"org","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Org Unit","join":"","datatype":"org_unit","op":"in","op_label":"In list","op_value":{},"field_doc":""},"active":{"colname":"active","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Active","join":"","datatype":"bool","op":"=","op_label":"Equals","op_value":{"value":"t","label":"True"},"field_doc":""}},"aggfilter_tab":{}}},"order_by":[{"relation":"9f1eda561fc47506116e8f32df732384","field":"shortname"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"year"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"name"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"code"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"allocated_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"encumbrance_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"spent_total"},{"relation":"dbde73af0c32104dba5e376a44b1cf03","field":"combined_balance"}],"9f1eda561fc47506116e8f32df732384":{"label":"Fund Summary :: Org Unit","alias":"9f1eda561fc47506116e8f32df732384","path":"acqfsum-org","join":"","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Org Unit","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"filter_tab":{},"aggfilter_tab":{}}},"904d25fc43f4f14128686078e9275116":{"label":"Fund Summary :: Fund ID","alias":"904d25fc43f4f14128686078e9275116","path":"acqfsum-id","join":"","reltype":"has_a","idlclass":"acqf","table":"acq.fund","fields":{"dis_tab":{},"filter_tab":{"year":{"colname":"year","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Year","join":"","datatype":"int","op":"=","op_label":"Equals","op_value":{},"field_doc":""}},"aggfilter_tab":{}}}}}',
+                          'folder' => 3151
+                        }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'doc_url' => '',
+          'rel_cache' => {
+                           'order_by' => [
+                                           {
+                                             'field' => 'shortname',
+                                             'relation' => '9f1eda561fc47506116e8f32df732384'
+                                           },
+                                           {
+                                             'field' => 'year',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'field' => 'name',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'code'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'allocated_total'
+                                           },
+                                           {
+                                             'field' => 'encumbrance_total',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'field' => 'spent_total',
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                           },
+                                           {
+                                             'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                             'field' => 'combined_balance'
+                                           }
+                                         ],
+                           '9f1eda561fc47506116e8f32df732384' => {
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'idlclass' => 'aou',
+                                                                   'label' => 'Fund Summary :: Org Unit',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'join' => '',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'alias' => 'Org Unit',
+                                                                                                                 'params' => undef,
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'transform_label' => 'Raw Data'
+                                                                                                               }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {}
+                                                                               },
+                                                                   'path' => 'acqfsum-org',
+                                                                   'join' => '',
+                                                                   'alias' => '9f1eda561fc47506116e8f32df732384'
+                                                                 },
+                           'dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                   'table' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        )',
+                                                                   'reltype' => '',
+                                                                   'idlclass' => 'acqfsum',
+                                                                   'label' => 'Fund Summary',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'name' => {
+                                                                                                            'op_value' => {},
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'colname' => 'name',
+                                                                                                            'field_doc' => '',
+                                                                                                            'op' => '=',
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'params' => undef,
+                                                                                                            'alias' => 'Fund Name',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare'
+                                                                                                          },
+                                                                                                'allocated_total' => {
+                                                                                                                       'op_value' => {},
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'colname' => 'allocated_total',
+                                                                                                                       'field_doc' => '',
+                                                                                                                       'op' => '=',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'alias' => 'Total Allocated',
+                                                                                                                       'params' => undef,
+                                                                                                                       'datatype' => 'money',
+                                                                                                                       'join' => '',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'aggregate' => undef
+                                                                                                                     },
+                                                                                                'encumbrance_total' => {
+                                                                                                                         'params' => undef,
+                                                                                                                         'alias' => 'Total Encumbered',
+                                                                                                                         'join' => '',
+                                                                                                                         'datatype' => 'money',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'aggregate' => undef,
+                                                                                                                         'op' => '=',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'encumbrance_total',
+                                                                                                                         'field_doc' => '',
+                                                                                                                         'op_value' => {},
+                                                                                                                         'transform_label' => 'Raw Data'
+                                                                                                                       },
+                                                                                                'combined_balance' => {
+                                                                                                                        'colname' => 'combined_balance',
+                                                                                                                        'field_doc' => '',
+                                                                                                                        'op_value' => {},
+                                                                                                                        'transform_label' => 'Raw Data',
+                                                                                                                        'params' => undef,
+                                                                                                                        'alias' => 'Remaining Balance',
+                                                                                                                        'datatype' => 'money',
+                                                                                                                        'join' => '',
+                                                                                                                        'transform' => 'Bare',
+                                                                                                                        'aggregate' => undef,
+                                                                                                                        'op' => '=',
+                                                                                                                        'op_label' => 'Equals'
+                                                                                                                      },
+                                                                                                'code' => {
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'text',
+                                                                                                            'params' => undef,
+                                                                                                            'alias' => 'Fund Code',
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'field_doc' => '',
+                                                                                                            'colname' => 'code'
+                                                                                                          },
+                                                                                                'year' => {
+                                                                                                            'op_label' => 'Equals',
+                                                                                                            'op' => '=',
+                                                                                                            'aggregate' => undef,
+                                                                                                            'transform' => 'Bare',
+                                                                                                            'join' => '',
+                                                                                                            'datatype' => 'int',
+                                                                                                            'alias' => 'Year',
+                                                                                                            'params' => undef,
+                                                                                                            'transform_label' => 'Raw Data',
+                                                                                                            'op_value' => {},
+                                                                                                            'field_doc' => '',
+                                                                                                            'colname' => 'year'
+                                                                                                          },
+                                                                                                'spent_total' => {
+                                                                                                                   'op_label' => 'Equals',
+                                                                                                                   'op' => '=',
+                                                                                                                   'aggregate' => undef,
+                                                                                                                   'transform' => 'Bare',
+                                                                                                                   'datatype' => 'money',
+                                                                                                                   'join' => '',
+                                                                                                                   'params' => undef,
+                                                                                                                   'alias' => 'Total Spent',
+                                                                                                                   'transform_label' => 'Raw Data',
+                                                                                                                   'op_value' => {},
+                                                                                                                   'field_doc' => '',
+                                                                                                                   'colname' => 'spent_total'
+                                                                                                                 }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'org' => {
+                                                                                                              'colname' => 'org',
+                                                                                                              'field_doc' => '',
+                                                                                                              'op_value' => {},
+                                                                                                              'transform_label' => 'Raw Data',
+                                                                                                              'alias' => 'Org Unit',
+                                                                                                              'params' => undef,
+                                                                                                              'join' => '',
+                                                                                                              'datatype' => 'org_unit',
+                                                                                                              'transform' => 'Bare',
+                                                                                                              'aggregate' => undef,
+                                                                                                              'op' => 'in',
+                                                                                                              'op_label' => 'In list'
+                                                                                                            },
+                                                                                                   'active' => {
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'op' => '=',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'aggregate' => undef,
+                                                                                                                 'alias' => 'Active',
+                                                                                                                 'params' => undef,
+                                                                                                                 'join' => '',
+                                                                                                                 'datatype' => 'bool',
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {
+                                                                                                                                 'label' => 'True',
+                                                                                                                                 'value' => 't'
+                                                                                                                               },
+                                                                                                                 'field_doc' => '',
+                                                                                                                 'colname' => 'active'
+                                                                                                               }
+                                                                                                 }
+                                                                               },
+                                                                   'path' => 'acqfsum',
+                                                                   'join' => '',
+                                                                   'alias' => 'dbde73af0c32104dba5e376a44b1cf03'
+                                                                 },
+                           '904d25fc43f4f14128686078e9275116' => {
+                                                                   'label' => 'Fund Summary :: Fund ID',
+                                                                   'idlclass' => 'acqf',
+                                                                   'alias' => '904d25fc43f4f14128686078e9275116',
+                                                                   'join' => '',
+                                                                   'path' => 'acqfsum-id',
+                                                                   'fields' => {
+                                                                                 'filter_tab' => {
+                                                                                                   'year' => {
+                                                                                                               'aggregate' => undef,
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'join' => '',
+                                                                                                               'datatype' => 'int',
+                                                                                                               'alias' => 'Year',
+                                                                                                               'params' => undef,
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'op' => '=',
+                                                                                                               'field_doc' => '',
+                                                                                                               'colname' => 'year',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op_value' => {}
+                                                                                                             }
+                                                                                                 },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {}
+                                                                               },
+                                                                   'table' => 'acq.fund',
+                                                                   'reltype' => 'has_a'
+                                                                 }
+                         },
+          'having' => [],
+          'core_class' => 'acqfsum',
+          'select' => [
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-org-aou-shortname',
+                          'alias' => 'Org Unit',
+                          'relation' => '9f1eda561fc47506116e8f32df732384',
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-year',
+                          'alias' => 'Year',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'year'
+                                      }
+                        },
+                        {
+                          'field_doc' => '',
+                          'path' => 'acqfsum-name',
+                          'alias' => 'Fund Name',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'colname' => 'name',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'colname' => 'code',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'path' => 'acqfsum-code',
+                          'alias' => 'Fund Code'
+                        },
+                        {
+                          'path' => 'acqfsum-allocated_total',
+                          'field_doc' => '',
+                          'alias' => 'Total Allocated',
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'allocated_total',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'encumbrance_total',
+                                        'transform' => 'Bare'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'path' => 'acqfsum-encumbrance_total',
+                          'field_doc' => '',
+                          'alias' => 'Total Encumbered'
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'spent_total',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'alias' => 'Total Spent',
+                          'path' => 'acqfsum-spent_total',
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'combined_balance',
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                          'alias' => 'Remaining Balance',
+                          'path' => 'acqfsum-combined_balance',
+                          'field_doc' => ''
+                        }
+                      ],
+          'version' => 4,
+          'from' => {
+                      'alias' => 'dbde73af0c32104dba5e376a44b1cf03',
+                      'join' => {
+                                  'org-dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                              'label' => 'Fund Summary :: Org Unit',
+                                                                              'idlclass' => 'aou',
+                                                                              'table' => 'actor.org_unit',
+                                                                              'alias' => '9f1eda561fc47506116e8f32df732384',
+                                                                              'path' => 'acqfsum-org-aou',
+                                                                              'template_path' => 'acqfsum-org',
+                                                                              'key' => 'id'
+                                                                            },
+                                  'id-dbde73af0c32104dba5e376a44b1cf03' => {
+                                                                             'table' => 'acq.fund',
+                                                                             'idlclass' => 'acqf',
+                                                                             'label' => 'Fund Summary :: Fund ID',
+                                                                             'key' => 'id',
+                                                                             'template_path' => 'acqfsum-id',
+                                                                             'path' => 'acqfsum-id-acqf',
+                                                                             'alias' => '904d25fc43f4f14128686078e9275116'
+                                                                           }
+                                },
+                      'template_path' => 'acqfsum',
+                      'path' => 'acqfsum-id',
+                      'label' => 'Fund Summary',
+                      'table' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        )',
+                      'idlclass' => 'acqfsum'
+                    },
+          'order_by' => [],
+          'where' => [
+                       {
+                         'alias' => 'Org Unit',
+                         'path' => 'acqfsum-org',
+                         'field_doc' => '',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'org',
+                                       'transform_label' => 'Raw Data'
+                                     }
+                       },
+                       {
+                         'condition' => {
+                                          '=' => 't'
+                                        },
+                         'relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                         'column' => {
+                                       'colname' => 'active',
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'alias' => 'Active',
+                         'field_doc' => '',
+                         'path' => 'acqfsum-active'
+                       },
+                       {
+                         'relation' => '904d25fc43f4f14128686078e9275116',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'year',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '=' => '::P1'
+                                        },
+                         'field_doc' => '',
+                         'path' => 'acqfsum-id-acqf-year',
+                         'alias' => 'Year'
+                       }
+                     ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-05-11 13:20:18.356356-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_order_by' => [
+                                  bless( {
+                                           '_column' => {
+                                                          'colname' => 'shortname',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending',
+                                           '_aggregate' => undef,
+                                           '_relation' => '9f1eda561fc47506116e8f32df732384',
+                                           '_sql' => '"9f1eda561fc47506116e8f32df732384"."shortname" ASC',
+                                           '_transform' => 'Bare',
+                                           '_builder' => bless( {
+                                                                  '_resultset_limit' => 1048575,
+                                                                  '_params' => {
+                                                                                 'P1' => '2020',
+                                                                                 'P0' => [
+                                                                                           '65',
+                                                                                           '67',
+                                                                                           '373',
+                                                                                           '66',
+                                                                                           '394'
+                                                                                         ]
+                                                                               },
+                                                                  '_sql' => undef,
+                                                                  '_relative_time' => '2020-05-11 13:20:18.356356-04',
+                                                                  '_rels' => {
+                                                                               'dbde73af0c32104dba5e376a44b1cf03' => bless( {
+                                                                                                                              '_table' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        )',
+                                                                                                                              '_alias' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                                                                                                              '_join' => [
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN acq.fund AS "904d25fc43f4f14128686078e9275116" ON ("dbde73af0c32104dba5e376a44b1cf03"."id" = "904d25fc43f4f14128686078e9275116"."id")',
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_is_join' => 1,
+                                                                                                                                                                             '_sql' => 'acq.fund AS "904d25fc43f4f14128686078e9275116"',
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                             '_join' => [],
+                                                                                                                                                                             '_table' => 'acq.fund',
+                                                                                                                                                                             '_alias' => '904d25fc43f4f14128686078e9275116',
+                                                                                                                                                                             '_join_type' => 'inner'
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                    '_left_col' => 'id',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'dbde73af0c32104dba5e376a44b1cf03'},
+                                                                                                                                                    '_join_type' => 'i'
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                           bless( {
+                                                                                                                                                    '_right_rel' => bless( {
+                                                                                                                                                                             '_alias' => '9f1eda561fc47506116e8f32df732384',
+                                                                                                                                                                             '_join_type' => 'inner',
+                                                                                                                                                                             '_join' => [],
+                                                                                                                                                                             '_table' => 'actor.org_unit',
+                                                                                                                                                                             '_columns' => [],
+                                                                                                                                                                             '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                                                                             '_is_join' => 1,
+                                                                                                                                                                             '_sql' => 'actor.org_unit AS "9f1eda561fc47506116e8f32df732384"'
+                                                                                                                                                                           }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                    '_right_col' => 'id',
+                                                                                                                                                    '_sql' => '
+	INNER JOIN actor.org_unit AS "9f1eda561fc47506116e8f32df732384" ON ("dbde73af0c32104dba5e376a44b1cf03"."org" = "9f1eda561fc47506116e8f32df732384"."id")',
+                                                                                                                                                    '_join_type' => 'i',
+                                                                                                                                                    '_left_rel' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'dbde73af0c32104dba5e376a44b1cf03'},
+                                                                                                                                                    '_left_col' => 'org'
+                                                                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                         ],
+                                                                                                                              '_nullable' => undef,
+                                                                                                                              '_columns' => [],
+                                                                                                                              '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                                                                                                              '_sql' => '(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        ) AS "dbde73af0c32104dba5e376a44b1cf03"
+	INNER JOIN acq.fund AS "904d25fc43f4f14128686078e9275116" ON ("dbde73af0c32104dba5e376a44b1cf03"."id" = "904d25fc43f4f14128686078e9275116"."id")
+	INNER JOIN actor.org_unit AS "9f1eda561fc47506116e8f32df732384" ON ("dbde73af0c32104dba5e376a44b1cf03"."org" = "9f1eda561fc47506116e8f32df732384"."id")'
+                                                                                                                            }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                               '9f1eda561fc47506116e8f32df732384' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'dbde73af0c32104dba5e376a44b1cf03'}{'_join'}[1]{'_right_rel'},
+                                                                               '904d25fc43f4f14128686078e9275116' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'dbde73af0c32104dba5e376a44b1cf03'}{'_join'}[0]{'_right_rel'}
+                                                                             }
+                                                                }, 'OpenILS::Reporter::SQLBuilder' )
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'year'
+                                                        },
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."year" ASC',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."name" ASC',
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'colname' => 'name',
+                                                          'transform' => 'Bare'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."code" ASC',
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'code'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."allocated_total" ASC',
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'colname' => 'allocated_total',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        }
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_column' => {
+                                                          'colname' => 'encumbrance_total',
+                                                          'transform' => 'Bare',
+                                                          'transform_label' => 'Raw Data'
+                                                        },
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'spent_total'
+                                                        },
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."spent_total" ASC',
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => {
+                                                          'transform_label' => 'Raw Data',
+                                                          'transform' => 'Bare',
+                                                          'colname' => 'combined_balance'
+                                                        },
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                           '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."combined_balance" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                 '_sql' => 'SELECT * FROM (SELECT	"9f1eda561fc47506116e8f32df732384"."shortname" AS "Org Unit",
+	"dbde73af0c32104dba5e376a44b1cf03"."year" AS "Year",
+	"dbde73af0c32104dba5e376a44b1cf03"."name" AS "Fund Name",
+	"dbde73af0c32104dba5e376a44b1cf03"."code" AS "Fund Code",
+	"dbde73af0c32104dba5e376a44b1cf03"."allocated_total" AS "Total Allocated",
+	"dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" AS "Total Encumbered",
+	"dbde73af0c32104dba5e376a44b1cf03"."spent_total" AS "Total Spent",
+	"dbde73af0c32104dba5e376a44b1cf03"."combined_balance" AS "Remaining Balance"
+  FROM	(
+            SELECT
+                acqf.*,
+                COALESCE(acqfat.amount, 0.00) AS allocated_total,
+                COALESCE(acqfst.amount, 0.00) AS spent_total,
+                COALESCE(acqfet.amount, 0.00) AS encumbrance_total,
+                COALESCE(acqfcb.amount, 0.00) AS combined_balance
+            FROM
+                acq.fund acqf
+                LEFT JOIN acq.fund_allocation_total acqfat ON (acqfat.fund = acqf.id)
+                LEFT JOIN acq.fund_spent_total acqfst ON (acqfst.fund = acqf.id)
+                LEFT JOIN acq.fund_encumbrance_total acqfet ON (acqfet.fund = acqf.id)
+                LEFT JOIN acq.fund_combined_balance acqfcb ON (acqfcb.fund = acqf.id)
+        ) AS "dbde73af0c32104dba5e376a44b1cf03"
+	INNER JOIN acq.fund AS "904d25fc43f4f14128686078e9275116" ON ("dbde73af0c32104dba5e376a44b1cf03"."id" = "904d25fc43f4f14128686078e9275116"."id")
+	INNER JOIN actor.org_unit AS "9f1eda561fc47506116e8f32df732384" ON ("dbde73af0c32104dba5e376a44b1cf03"."org" = "9f1eda561fc47506116e8f32df732384"."id")
+  WHERE	"dbde73af0c32104dba5e376a44b1cf03"."org" IN ($_45090$65$_45090$,$_45090$67$_45090$,$_45090$373$_45090$,$_45090$66$_45090$,$_45090$394$_45090$)
+	AND "dbde73af0c32104dba5e376a44b1cf03"."active" = $_45090$t$_45090$
+	AND "904d25fc43f4f14128686078e9275116"."year" = $_45090$2020$_45090$
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8
+  ORDER BY "9f1eda561fc47506116e8f32df732384"."shortname" ASC, "dbde73af0c32104dba5e376a44b1cf03"."year" ASC, "dbde73af0c32104dba5e376a44b1cf03"."name" ASC, "dbde73af0c32104dba5e376a44b1cf03"."code" ASC, "dbde73af0c32104dba5e376a44b1cf03"."allocated_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."spent_total" ASC, "dbde73af0c32104dba5e376a44b1cf03"."combined_balance" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'colname' => 'org',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."org" IN ($_45090$65$_45090$,$_45090$67$_45090$,$_45090$373$_45090$,$_45090$66$_45090$,$_45090$394$_45090$)',
+                                        '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'active'
+                                                     },
+                                        '_condition' => {
+                                                          '=' => 't'
+                                                        },
+                                        '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                        '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."active" = $_45090$t$_45090$',
+                                        '_aggregate' => undef,
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_condition' => {
+                                                          '=' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'year',
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"904d25fc43f4f14128686078e9275116"."year" = $_45090$2020$_45090$',
+                                        '_relation' => '904d25fc43f4f14128686078e9275116'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_from' => $VAR1->{'_order_by'}[0]{'_builder'}{'_rels'}{'dbde73af0c32104dba5e376a44b1cf03'},
+                 '_select' => [
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => '9f1eda561fc47506116e8f32df732384',
+                                         '_sql' => '"9f1eda561fc47506116e8f32df732384"."shortname" AS "Org Unit"',
+                                         '_alias' => 'Org Unit',
+                                         '_column' => $VAR1->{'_order_by'}[0]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."year" AS "Year"',
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_alias' => 'Year',
+                                         '_column' => $VAR1->{'_order_by'}[1]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."name" AS "Fund Name"',
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_column' => $VAR1->{'_order_by'}[2]{'_column'},
+                                         '_alias' => 'Fund Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."code" AS "Fund Code"',
+                                         '_alias' => 'Fund Code',
+                                         '_column' => $VAR1->{'_order_by'}[3]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."allocated_total" AS "Total Allocated"',
+                                         '_alias' => 'Total Allocated',
+                                         '_column' => $VAR1->{'_order_by'}[4]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."encumbrance_total" AS "Total Encumbered"',
+                                         '_alias' => 'Total Encumbered',
+                                         '_column' => $VAR1->{'_order_by'}[5]{'_column'}
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => $VAR1->{'_order_by'}[6]{'_column'},
+                                         '_alias' => 'Total Spent',
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."spent_total" AS "Total Spent"',
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_sql' => '"dbde73af0c32104dba5e376a44b1cf03"."combined_balance" AS "Remaining Balance"',
+                                         '_relation' => 'dbde73af0c32104dba5e376a44b1cf03',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_order_by'}[0]{'_builder'},
+                                         '_column' => $VAR1->{'_order_by'}[7]{'_column'},
+                                         '_alias' => 'Remaining Balance'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

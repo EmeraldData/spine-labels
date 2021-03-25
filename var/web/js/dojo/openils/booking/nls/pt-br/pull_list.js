@@ -1,0 +1,21 @@
+{
+    "COPY_LOOKUP_NO_RESPONSE": "Sem resposta ao buscar exemplares por c\u00f3digo de barras",
+    "AUTO_th_call_number": "N\u00famero de chamada",
+    "FOR": "para",
+    "AUTO_th_copy_location": "Localiza\u00e7\u00e3o do exemplar",
+    "AUTO_owning_lib_selector": "Veja lista de retirada para a biblioteca:",
+    "AUTO_interval_in_days": "Gere lista por tantos dias assim: ",
+    "AUTO_th_title_or_name": "T\u00edtulo ou nome",
+    "AUTO_th_barcode": "C\u00f3digo de barras",
+    "PULL_LIST_NO_RESPONSE": "Sem resposta do servidor ao tentar obter lista de retirada!",
+    "COPY_MISSING": "Erro inesperado: Sem informa\u00e7\u00f5es para o exemplar: ",
+    "AUTO_ATTR_VALUE_fetch": "Buscar",
+    "PULL_LIST_ERROR": "Erro ao tentar buscar lista de retirada: ",
+    "AT": "em",
+    "AUTO_ATTR_VALUE_print": "Imprimir",
+    "AUTO_th_pickup_lib": "Biblioteca de retirada",
+    "AUTO_th_resv_details": "Detalhes da reserva",
+    "COPY_LOOKUP_ERROR": "Erro ao buscar exemplares por c\u00f3digo de barras: ",
+    "AUTO_no_results": "Sem resultados.",
+    "AUTO_pull_list_title": "Registrando Lista de Retiradas"
+}

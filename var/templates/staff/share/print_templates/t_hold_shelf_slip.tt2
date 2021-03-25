@@ -1,0 +1,40 @@
+<h1><span ng-if="patron.pref_family_name">{{patron.pref_family_name}}</span><span ng-if="!patron.pref_family_name">{{patron.family_name}}</span>, 
+  <span ng-if="patron.pref_first_given_name">{{patron.pref_first_given_name}}</span><span ng-if="!patron.pref_first_given_name">{{patron.first_given_name}}</span> 
+  <span ng-if="patron.pref_second_given_name">{{patron.pref_second_given_name}}</span><span ng-if="!patron.pref_second_given_name">{{patron.second_given_name}}</span></h1>
+<b>Available on {{today | date:"M/d/yyyy"}}</b>
+<div ng-switch on="hold.behind_desk">
+    <div ng-switch-when="t">
+      <strong>Private - Hold Behind Desk</strong>
+    </div>
+    <div ng-switch-when="f">
+      <strong>Public Holds Shelf</strong>
+    </div>
+</div>
+<br/>
+
+<table>
+  <tr><td valign="top"><b>Title:</b></td><td valign="top"><b>{{title}}</b></td></tr>
+  <tr><td valign="top">Barcode:</td><td valign="top">{{copy.barcode}}</td></tr>
+  <tr><td valign="top">Request Date: &nbsp;</td><td valign="top">{{hold.request_time | date:"M/d/yyyy"}}</td></tr>
+  <tr><td>&nbsp;</td><td></td></tr>
+  <tr><td valign="top"><b>Patron:</td><td valign="top"><b>{{patron.family_name}}, {{patron.first_given_name}} {{patron.second_given_name}}</b></tr>
+  <tr><td valign="top">Barcode:</td><td valign="top">{{patron.card.barcode}}</td></tr>
+  <tr><td>&nbsp;</td><td></td></tr>
+  <tr><td colspan="2" style="font-weight:bold;text-decoration:underline;">Notify By:</td></tr>
+  <tr ng-if="hold.phone_notify"><td  ng-if="hold.phone_notify" valign="top" style="font-weight:bold;">Phone: &nbsp;</td>
+        <td ng-if="hold.phone_notify" valign="top" style="font-weight:bold;">{{hold.phone_notify}}</td>
+  </tr>
+  <tr ng-if="hold.sms_notify"><td ng-if="hold.sms_notify" valign="top">Text:</td>
+        <td ng-if="hold.sms_notify" valign="top">{{hold.sms_notify}}</td>
+  </tr>
+  <tr ng-if="hold.email_notify == 't'"><td ng-if="hold.email_notify == 't'" valign="top">Email:</td>
+        <td ng-if="hold.email_notify == 't'" valign="top">{{patron.email}}</td>
+  </tr>
+</table>
+<ol>
+<li ng-repeat="note in hold_notes | filter: {slip : 't'}">
+<strong>{{note.title}}</strong><br/>
+{{note.body}}</li>
+</ol>
+<hr/>
+<div>{{current_location.shortname}} {{today | date:'short'}}</div>

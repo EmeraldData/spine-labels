@@ -1,0 +1,36 @@
+<div id="gold-links-holder">
+    <div id="gold-links">
+        <div id="header-links">
+            <a href="/eg/opac/home">
+                <img alt="[% l('PINES Home Page') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                [% l("Home") %]</a>
+            <a href="http://pines.georgialibraries.org/pinesLocator/locator.html">
+                <img alt="[% l('Library Locations') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                [% l('Library Locations') %]</a>
+            <a href="/eg/kpac/home">
+                <img alt="[% l('Kids Catalog') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                [% l("Kids Catalog") %]</a> 
+            <a href="https://pines.georgialibraries.org/app">
+                <img alt="[% l('PINES App') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                [% l("Download the PINES App") %]</a>
+            [% IF ctx.physical_loc;
+                # patron is at the branch, no redirect needed
+                gurl = 'http://www.galileo.usg.edu/express';
+            ELSE;
+                # send patron to galileo auth redirector
+                gurl = mkurl(ctx.opac_root _ '/galileo', {}, 1);
+            END %]
+            <a href="[% gurl %]">
+                <img alt="[% l('GALILEO') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                [% l('GALILEO Virtual Library') %]</a>
+            [% IF ctx.get_org_setting(
+                ctx.physical_loc || ctx.aou_tree.id, 'opac.allow_pending_user') %]
+                <a href="[% mkurl(ctx.opac_root _ '/register') %]">
+                    <img alt="[% l('Apply for a PINES Library Card') %]" src="[% ctx.media_prefix %]/images/pines-dot.png" />
+                    [% l('Apply for a PINES Library Card') %]</a>
+            [% END %]
+        </div>
+    </div>
+</div>
+
+<div style="clear:both;" />

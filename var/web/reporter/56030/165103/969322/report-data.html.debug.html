@@ -1,0 +1,1523 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY19 OCRL Open Bills</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"ba1a9513a9680a382990763c4fc3dead"."shortname" AS "Patron Home Lib",
+	"2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" AS "Billing Loc",
+	date("d62e212ba1005642b6889232cf682685"."xact_start") AS "Transaction Start Date/Time",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_ts" AS "Last Billing Date/Time",
+	"2d8788a00d701894e1d7076249a4e500"."balance_owed" AS "Balance Owed",
+	"2d8788a00d701894e1d7076249a4e500"."total_owed" AS "Total Billing Amount",
+	"2d8788a00d701894e1d7076249a4e500"."total_paid" AS "Total Paid Amount",
+	"9bd6ba6af242b35a24d6131eb6163bf4"."barcode" AS "Patron Barcode",
+	UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") AS "Transaction Type",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_type" AS "Last Billing Type",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_note" AS "Last Billing Note",
+	"2d8788a00d701894e1d7076249a4e500"."id" AS "Transaction ID"
+  FROM	reporter.classic_current_billing_summary AS "2d8788a00d701894e1d7076249a4e500"
+	INNER JOIN money.billable_xact AS "d62e212ba1005642b6889232cf682685" ON ("2d8788a00d701894e1d7076249a4e500"."id" = "d62e212ba1005642b6889232cf682685"."id")
+	INNER JOIN actor.usr AS "7cd255866694445e68d05d5ab6b6551c" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "7cd255866694445e68d05d5ab6b6551c"."id")
+	INNER JOIN actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead" ON ("7cd255866694445e68d05d5ab6b6551c"."home_ou" = "ba1a9513a9680a382990763c4fc3dead"."id")
+	INNER JOIN actor.usr AS "37ae72d054e3c24ed969fa9583cc1f0e" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "37ae72d054e3c24ed969fa9583cc1f0e"."id")
+	INNER JOIN actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4" ON ("37ae72d054e3c24ed969fa9583cc1f0e"."card" = "9bd6ba6af242b35a24d6131eb6163bf4"."id")
+  WHERE	date("2d8788a00d701894e1d7076249a4e500"."xact_start") < $_108224$2019-07-01$_108224$
+	AND "2d8788a00d701894e1d7076249a4e500"."balance_owed" > $_108224$0.00$_108224$
+	AND "2d8788a00d701894e1d7076249a4e500"."usr_home_ou" IN ($_108224$198$_108224$,$_108224$199$_108224$,$_108224$200$_108224$,$_108224$201$_108224$,$_108224$202$_108224$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+  ORDER BY "ba1a9513a9680a382990763c4fc3dead"."shortname" ASC, "2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" ASC, date("d62e212ba1005642b6889232cf682685"."xact_start") ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_ts" ASC, "2d8788a00d701894e1d7076249a4e500"."balance_owed" ASC, "2d8788a00d701894e1d7076249a4e500"."total_owed" ASC, "2d8788a00d701894e1d7076249a4e500"."total_paid" ASC, "9bd6ba6af242b35a24d6131eb6163bf4"."barcode" ASC, UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_type" ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_note" ASC, "2d8788a00d701894e1d7076249a4e500"."id" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'owner' => 2134611,
+          'id' => 56030,
+          'description' => 'Filters on: Transaction Start Date/Time (Between), Patron Home Lib.
+Displays:   Transaction Start Date/Time, Balance Owed, Total Billing Amount, Total Paid Amount, Patron Barcode, Patron Home Lib, Transaction Type, Billing Location, Transaction ID',
+          'folder' => 1248,
+          'name' => 'Open Grocery and Circulation by Patron Home Library on Transactions Created Before a Date FINAL!',
+          'data' => '{"version":3,"core_class":"rccbs","select":[{"alias":"Patron Home Lib","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr-au-home_ou-aou-shortname","relation":"ba1a9513a9680a382990763c4fc3dead"},{"alias":"Billing Loc","column":{"colname":"billing_location_shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-billing_location_shortname","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Transaction Start Date/Time","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccbs-id-mbt-xact_start","relation":"d62e212ba1005642b6889232cf682685"},{"alias":"Last Billing Date/Time","column":{"colname":"last_billing_ts","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_ts","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Balance Owed","column":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-balance_owed","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Total Billing Amount","column":{"colname":"total_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-total_owed","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Total Paid Amount","column":{"colname":"total_paid","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-total_paid","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Patron Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr-au-card-ac-barcode","relation":"9bd6ba6af242b35a24d6131eb6163bf4"},{"alias":"Transaction Type","column":{"colname":"xact_type","transform":"upper","transform_label":"Upper case"},"path":"rccbs-xact_type","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Last Billing Type","column":{"colname":"last_billing_type","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_type","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Last Billing Note","column":{"colname":"last_billing_note","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_note","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Transaction ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-id","relation":"2d8788a00d701894e1d7076249a4e500"}],"from":{"path":"rccbs-usr","table":"reporter.classic_current_billing_summary","alias":"2d8788a00d701894e1d7076249a4e500","join":{"usr-781c1b8b6571fe09258c248050b5c060":{"key":"id","path":"rccbs-usr-au-home_ou","table":"actor.usr","alias":"7cd255866694445e68d05d5ab6b6551c","join":{"home_ou-7cd255866694445e68d05d5ab6b6551c":{"key":"id","path":"rccbs-usr-au-home_ou-aou","table":"actor.org_unit","label":"Classic Open Transaction Summary -> ILS User :: Home Library","alias":"ba1a9513a9680a382990763c4fc3dead","idlclass":"aou","template_path":"rccbs-usr.au-home_ou"}}},"id-781c1b8b6571fe09258c248050b5c060":{"key":"id","path":"rccbs-id-mbt","table":"money.billable_xact","label":"Classic Open Transaction Summary :: Transaction ID","alias":"d62e212ba1005642b6889232cf682685","idlclass":"mbt","template_path":"rccbs-id"},"usr-2d8788a00d701894e1d7076249a4e500":{"key":"id","path":"rccbs-usr-au-card","table":"actor.usr","alias":"37ae72d054e3c24ed969fa9583cc1f0e","join":{"card-37ae72d054e3c24ed969fa9583cc1f0e":{"key":"id","path":"rccbs-usr-au-card-ac","table":"actor.card","label":"Classic Open Transaction Summary -> ILS User :: Current Library Card","alias":"9bd6ba6af242b35a24d6131eb6163bf4","idlclass":"ac","template_path":"rccbs-usr.au-card"}}}},"label":"Classic Open Transaction Summary","idlclass":"rccbs","template_path":"rccbs"},"where":[{"alias":"Transaction Start Date/Time","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccbs-xact_start","relation":"2d8788a00d701894e1d7076249a4e500","condition":{"<":"::P0"}},{"alias":"Balance Owed","column":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-balance_owed","relation":"2d8788a00d701894e1d7076249a4e500","condition":{">":"0.00"}},{"alias":"User Home Library Link","column":{"colname":"usr_home_ou","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr_home_ou","relation":"2d8788a00d701894e1d7076249a4e500","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"ba1a9513a9680a382990763c4fc3dead":{"label":"Classic Open Transaction Summary -> ILS User :: Home Library","alias":"ba1a9513a9680a382990763c4fc3dead","path":"rccbs-usr.au-home_ou","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Patron Home Lib","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"ba1a9513a9680a382990763c4fc3dead","field":"shortname"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"billing_location_shortname"},{"relation":"d62e212ba1005642b6889232cf682685","field":"xact_start"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_ts"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"balance_owed"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"total_owed"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"total_paid"},{"relation":"9bd6ba6af242b35a24d6131eb6163bf4","field":"barcode"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"xact_type"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_type"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_note"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"id"}],"d62e212ba1005642b6889232cf682685":{"label":"Classic Open Transaction Summary :: Transaction ID","alias":"d62e212ba1005642b6889232cf682685","path":"rccbs-id","reltype":"has_a","idlclass":"mbt","table":"money.billable_xact","fields":{"dis_tab":{"xact_start":{"colname":"xact_start","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Transaction Start Date/Time","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"2d8788a00d701894e1d7076249a4e500":{"label":"Classic Open Transaction Summary","alias":"2d8788a00d701894e1d7076249a4e500","path":"rccbs","reltype":"","idlclass":"rccbs","table":"reporter.classic_current_billing_summary","fields":{"dis_tab":{"balance_owed":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data","alias":"Balance Owed","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"total_owed":{"colname":"total_owed","transform":"Bare","transform_label":"Raw Data","alias":"Total Billing Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"total_paid":{"colname":"total_paid","transform":"Bare","transform_label":"Raw Data","alias":"Total Paid Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"xact_type":{"colname":"xact_type","transform":"upper","aggregate":"undefined","params":"undefined","transform_label":"Upper case","alias":"Transaction Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"id":{"colname":"id","transform":"Bare","aggregate":"undefined","params":"undefined","transform_label":"Raw Data","alias":"Transaction ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}},"last_billing_note":{"colname":"last_billing_note","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Note","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"last_billing_ts":{"colname":"last_billing_ts","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Date/Time","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"last_billing_type":{"colname":"last_billing_type","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"billing_location_shortname":{"colname":"billing_location_shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Billing Loc","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"xact_start":{"colname":"xact_start","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Transaction Start Date/Time","datatype":"timestamp","op":"<","op_label":"Before (Date/Time)","op_value":{}},"balance_owed":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data","alias":"Balance Owed","datatype":"money","op":">","op_label":"Greater than","op_value":{"value":"0.00","label":"\\"0.00\\""}},"usr_home_ou":{"colname":"usr_home_ou","transform":"Bare","transform_label":"Raw Data","alias":"User Home Library Link","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"9bd6ba6af242b35a24d6131eb6163bf4":{"label":"Classic Open Transaction Summary -> ILS User :: Current Library Card","alias":"9bd6ba6af242b35a24d6131eb6163bf4","path":"rccbs-usr.au-card","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Patron Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+          'create_time' => '2012-10-25 12:46:37.500424-04'
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'path' => 'rccbs-xact_start',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'xact_start'
+                                     },
+                         'alias' => 'Transaction Start Date/Time',
+                         'condition' => {
+                                          '<' => '::P0'
+                                        }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'balance_owed',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '>' => '0.00'
+                                        },
+                         'alias' => 'Balance Owed',
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'path' => 'rccbs-balance_owed'
+                       },
+                       {
+                         'path' => 'rccbs-usr_home_ou',
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'usr_home_ou'
+                                     },
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'alias' => 'User Home Library Link'
+                       }
+                     ],
+          'from' => {
+                      'template_path' => 'rccbs',
+                      'label' => 'Classic Open Transaction Summary',
+                      'join' => {
+                                  'usr-2d8788a00d701894e1d7076249a4e500' => {
+                                                                              'path' => 'rccbs-usr-au-card',
+                                                                              'join' => {
+                                                                                          'card-37ae72d054e3c24ed969fa9583cc1f0e' => {
+                                                                                                                                       'path' => 'rccbs-usr-au-card-ac',
+                                                                                                                                       'label' => 'Classic Open Transaction Summary -> ILS User :: Current Library Card',
+                                                                                                                                       'template_path' => 'rccbs-usr.au-card',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                                                                                                                       'idlclass' => 'ac'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'alias' => '37ae72d054e3c24ed969fa9583cc1f0e',
+                                                                              'table' => 'actor.usr',
+                                                                              'key' => 'id'
+                                                                            },
+                                  'usr-781c1b8b6571fe09258c248050b5c060' => {
+                                                                              'key' => 'id',
+                                                                              'table' => 'actor.usr',
+                                                                              'alias' => '7cd255866694445e68d05d5ab6b6551c',
+                                                                              'join' => {
+                                                                                          'home_ou-7cd255866694445e68d05d5ab6b6551c' => {
+                                                                                                                                          'path' => 'rccbs-usr-au-home_ou-aou',
+                                                                                                                                          'label' => 'Classic Open Transaction Summary -> ILS User :: Home Library',
+                                                                                                                                          'template_path' => 'rccbs-usr.au-home_ou',
+                                                                                                                                          'alias' => 'ba1a9513a9680a382990763c4fc3dead',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'table' => 'actor.org_unit',
+                                                                                                                                          'idlclass' => 'aou'
+                                                                                                                                        }
+                                                                                        },
+                                                                              'path' => 'rccbs-usr-au-home_ou'
+                                                                            },
+                                  'id-781c1b8b6571fe09258c248050b5c060' => {
+                                                                             'idlclass' => 'mbt',
+                                                                             'table' => 'money.billable_xact',
+                                                                             'key' => 'id',
+                                                                             'alias' => 'd62e212ba1005642b6889232cf682685',
+                                                                             'template_path' => 'rccbs-id',
+                                                                             'label' => 'Classic Open Transaction Summary :: Transaction ID',
+                                                                             'path' => 'rccbs-id-mbt'
+                                                                           }
+                                },
+                      'path' => 'rccbs-usr',
+                      'idlclass' => 'rccbs',
+                      'table' => 'reporter.classic_current_billing_summary',
+                      'alias' => '2d8788a00d701894e1d7076249a4e500'
+                    },
+          'core_class' => 'rccbs',
+          'order_by' => [],
+          'having' => [],
+          'version' => 3,
+          'rel_cache' => {
+                           'ba1a9513a9680a382990763c4fc3dead' => {
+                                                                   'path' => 'rccbs-usr.au-home_ou',
+                                                                   'label' => 'Classic Open Transaction Summary -> ILS User :: Home Library',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'alias' => 'Patron Home Lib'
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => 'ba1a9513a9680a382990763c4fc3dead',
+                                                                   'idlclass' => 'aou'
+                                                                 },
+                           'd62e212ba1005642b6889232cf682685' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => 'd62e212ba1005642b6889232cf682685',
+                                                                   'table' => 'money.billable_xact',
+                                                                   'idlclass' => 'mbt',
+                                                                   'path' => 'rccbs-id',
+                                                                   'label' => 'Classic Open Transaction Summary :: Transaction ID',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'xact_start' => {
+                                                                                                                  'alias' => 'Transaction Start Date/Time',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'xact_start',
+                                                                                                                  'transform' => 'date',
+                                                                                                                  'aggregate' => 'undefined',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'transform_label' => 'Date'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               }
+                                                                 },
+                           '2d8788a00d701894e1d7076249a4e500' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'params' => 'undefined',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => 'Transaction ID',
+                                                                                                          'transform_label' => 'Raw Data',
+                                                                                                          'op_value' => {},
+                                                                                                          'op' => '=',
+                                                                                                          'aggregate' => 'undefined'
+                                                                                                        },
+                                                                                                'billing_location_shortname' => {
+                                                                                                                                  'datatype' => 'text',
+                                                                                                                                  'params' => undef,
+                                                                                                                                  'join' => '',
+                                                                                                                                  'transform' => 'Bare',
+                                                                                                                                  'colname' => 'billing_location_shortname',
+                                                                                                                                  'op_label' => 'Equals',
+                                                                                                                                  'alias' => 'Billing Loc',
+                                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                                  'aggregate' => undef,
+                                                                                                                                  'op_value' => {},
+                                                                                                                                  'op' => '='
+                                                                                                                                },
+                                                                                                'total_paid' => {
+                                                                                                                  'alias' => 'Total Paid Amount',
+                                                                                                                  'datatype' => 'money',
+                                                                                                                  'colname' => 'total_paid',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'transform_label' => 'Raw Data'
+                                                                                                                },
+                                                                                                'last_billing_type' => {
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'last_billing_type',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'alias' => 'Last Billing Type',
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'op_value' => {},
+                                                                                                                         'op' => '='
+                                                                                                                       },
+                                                                                                'xact_type' => {
+                                                                                                                 'alias' => 'Transaction Type',
+                                                                                                                 'colname' => 'xact_type',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform' => 'upper',
+                                                                                                                 'params' => 'undefined',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'aggregate' => 'undefined',
+                                                                                                                 'transform_label' => 'Upper case'
+                                                                                                               },
+                                                                                                'last_billing_note' => {
+                                                                                                                         'op_value' => {},
+                                                                                                                         'op' => '=',
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'alias' => 'Last Billing Note',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'last_billing_note',
+                                                                                                                         'datatype' => 'text'
+                                                                                                                       },
+                                                                                                'total_owed' => {
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'alias' => 'Total Billing Amount',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'total_owed',
+                                                                                                                  'datatype' => 'money'
+                                                                                                                },
+                                                                                                'balance_owed' => {
+                                                                                                                    'datatype' => 'money',
+                                                                                                                    'colname' => 'balance_owed',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'alias' => 'Balance Owed',
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'op' => '=',
+                                                                                                                    'op_value' => {}
+                                                                                                                  },
+                                                                                                'last_billing_ts' => {
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op' => '=',
+                                                                                                                       'op_value' => {},
+                                                                                                                       'datatype' => 'timestamp',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'colname' => 'last_billing_ts',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'alias' => 'Last Billing Date/Time'
+                                                                                                                     }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'balance_owed' => {
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op' => '>',
+                                                                                                                       'op_value' => {
+                                                                                                                                       'value' => '0.00',
+                                                                                                                                       'label' => '"0.00"'
+                                                                                                                                     },
+                                                                                                                       'op_label' => 'Greater than',
+                                                                                                                       'colname' => 'balance_owed',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'datatype' => 'money',
+                                                                                                                       'alias' => 'Balance Owed'
+                                                                                                                     },
+                                                                                                   'usr_home_ou' => {
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'in',
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'alias' => 'User Home Library Link',
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'op_label' => 'In list',
+                                                                                                                      'colname' => 'usr_home_ou',
+                                                                                                                      'datatype' => 'org_unit'
+                                                                                                                    },
+                                                                                                   'xact_start' => {
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'op_label' => 'Before (Date/Time)',
+                                                                                                                     'colname' => 'xact_start',
+                                                                                                                     'params' => 'undefined',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Transaction Start Date/Time',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'op' => '<',
+                                                                                                                     'aggregate' => 'undefined'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Classic Open Transaction Summary',
+                                                                   'path' => 'rccbs',
+                                                                   'idlclass' => 'rccbs',
+                                                                   'table' => 'reporter.classic_current_billing_summary',
+                                                                   'reltype' => '',
+                                                                   'alias' => '2d8788a00d701894e1d7076249a4e500'
+                                                                 },
+                           '9bd6ba6af242b35a24d6131eb6163bf4' => {
+                                                                   'idlclass' => 'ac',
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'datatype' => 'text',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'alias' => 'Patron Barcode',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {}
+                                                                                                             }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Classic Open Transaction Summary -> ILS User :: Current Library Card',
+                                                                   'path' => 'rccbs-usr.au-card'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => 'ba1a9513a9680a382990763c4fc3dead',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'billing_location_shortname',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'field' => 'xact_start',
+                                             'relation' => 'd62e212ba1005642b6889232cf682685'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'last_billing_ts'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'balance_owed'
+                                           },
+                                           {
+                                             'field' => 'total_owed',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'total_paid'
+                                           },
+                                           {
+                                             'relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                             'field' => 'barcode'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'xact_type'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'last_billing_type'
+                                           },
+                                           {
+                                             'field' => 'last_billing_note',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'id'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Patron Home Lib',
+                          'path' => 'rccbs-usr-au-home_ou-aou-shortname',
+                          'relation' => 'ba1a9513a9680a382990763c4fc3dead'
+                        },
+                        {
+                          'path' => 'rccbs-billing_location_shortname',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'column' => {
+                                        'colname' => 'billing_location_shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Billing Loc'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'date',
+                                        'colname' => 'xact_start',
+                                        'transform_label' => 'Date'
+                                      },
+                          'alias' => 'Transaction Start Date/Time',
+                          'relation' => 'd62e212ba1005642b6889232cf682685',
+                          'path' => 'rccbs-id-mbt-xact_start'
+                        },
+                        {
+                          'path' => 'rccbs-last_billing_ts',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Last Billing Date/Time',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'last_billing_ts',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'path' => 'rccbs-balance_owed',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'balance_owed',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Balance Owed'
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-total_owed',
+                          'column' => {
+                                        'colname' => 'total_owed',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Total Billing Amount'
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-total_paid',
+                          'alias' => 'Total Paid Amount',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'total_paid',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Patron Barcode',
+                          'relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                          'path' => 'rccbs-usr-au-card-ac-barcode'
+                        },
+                        {
+                          'path' => 'rccbs-xact_type',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Transaction Type',
+                          'column' => {
+                                        'colname' => 'xact_type',
+                                        'transform_label' => 'Upper case',
+                                        'transform' => 'upper'
+                                      }
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-last_billing_type',
+                          'alias' => 'Last Billing Type',
+                          'column' => {
+                                        'colname' => 'last_billing_type',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'path' => 'rccbs-last_billing_note',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Last Billing Note',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'last_billing_note',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Transaction ID',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-id'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'folder' => 1296,
+          'data' => '{"P0":"2019-07-01","P1":["198","199","200","201","202"]}',
+          'create_time' => '2019-08-16 09:13:14.9988-04',
+          'recur' => 0,
+          'name' => 'FY19 OCRL Open Bills',
+          'description' => '',
+          'template' => {
+                          'owner' => 2134611,
+                          'id' => 56030,
+                          'description' => 'Filters on: Transaction Start Date/Time (Between), Patron Home Lib.
+Displays:   Transaction Start Date/Time, Balance Owed, Total Billing Amount, Total Paid Amount, Patron Barcode, Patron Home Lib, Transaction Type, Billing Location, Transaction ID',
+                          'folder' => 1248,
+                          'name' => 'Open Grocery and Circulation by Patron Home Library on Transactions Created Before a Date FINAL!',
+                          'data' => '{"version":3,"core_class":"rccbs","select":[{"alias":"Patron Home Lib","column":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr-au-home_ou-aou-shortname","relation":"ba1a9513a9680a382990763c4fc3dead"},{"alias":"Billing Loc","column":{"colname":"billing_location_shortname","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-billing_location_shortname","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Transaction Start Date/Time","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccbs-id-mbt-xact_start","relation":"d62e212ba1005642b6889232cf682685"},{"alias":"Last Billing Date/Time","column":{"colname":"last_billing_ts","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_ts","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Balance Owed","column":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-balance_owed","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Total Billing Amount","column":{"colname":"total_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-total_owed","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Total Paid Amount","column":{"colname":"total_paid","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-total_paid","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Patron Barcode","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr-au-card-ac-barcode","relation":"9bd6ba6af242b35a24d6131eb6163bf4"},{"alias":"Transaction Type","column":{"colname":"xact_type","transform":"upper","transform_label":"Upper case"},"path":"rccbs-xact_type","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Last Billing Type","column":{"colname":"last_billing_type","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_type","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Last Billing Note","column":{"colname":"last_billing_note","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-last_billing_note","relation":"2d8788a00d701894e1d7076249a4e500"},{"alias":"Transaction ID","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-id","relation":"2d8788a00d701894e1d7076249a4e500"}],"from":{"path":"rccbs-usr","table":"reporter.classic_current_billing_summary","alias":"2d8788a00d701894e1d7076249a4e500","join":{"usr-781c1b8b6571fe09258c248050b5c060":{"key":"id","path":"rccbs-usr-au-home_ou","table":"actor.usr","alias":"7cd255866694445e68d05d5ab6b6551c","join":{"home_ou-7cd255866694445e68d05d5ab6b6551c":{"key":"id","path":"rccbs-usr-au-home_ou-aou","table":"actor.org_unit","label":"Classic Open Transaction Summary -> ILS User :: Home Library","alias":"ba1a9513a9680a382990763c4fc3dead","idlclass":"aou","template_path":"rccbs-usr.au-home_ou"}}},"id-781c1b8b6571fe09258c248050b5c060":{"key":"id","path":"rccbs-id-mbt","table":"money.billable_xact","label":"Classic Open Transaction Summary :: Transaction ID","alias":"d62e212ba1005642b6889232cf682685","idlclass":"mbt","template_path":"rccbs-id"},"usr-2d8788a00d701894e1d7076249a4e500":{"key":"id","path":"rccbs-usr-au-card","table":"actor.usr","alias":"37ae72d054e3c24ed969fa9583cc1f0e","join":{"card-37ae72d054e3c24ed969fa9583cc1f0e":{"key":"id","path":"rccbs-usr-au-card-ac","table":"actor.card","label":"Classic Open Transaction Summary -> ILS User :: Current Library Card","alias":"9bd6ba6af242b35a24d6131eb6163bf4","idlclass":"ac","template_path":"rccbs-usr.au-card"}}}},"label":"Classic Open Transaction Summary","idlclass":"rccbs","template_path":"rccbs"},"where":[{"alias":"Transaction Start Date/Time","column":{"colname":"xact_start","transform":"date","transform_label":"Date"},"path":"rccbs-xact_start","relation":"2d8788a00d701894e1d7076249a4e500","condition":{"<":"::P0"}},{"alias":"Balance Owed","column":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-balance_owed","relation":"2d8788a00d701894e1d7076249a4e500","condition":{">":"0.00"}},{"alias":"User Home Library Link","column":{"colname":"usr_home_ou","transform":"Bare","transform_label":"Raw Data"},"path":"rccbs-usr_home_ou","relation":"2d8788a00d701894e1d7076249a4e500","condition":{"in":"::P1"}}],"having":[],"order_by":[],"rel_cache":{"ba1a9513a9680a382990763c4fc3dead":{"label":"Classic Open Transaction Summary -> ILS User :: Home Library","alias":"ba1a9513a9680a382990763c4fc3dead","path":"rccbs-usr.au-home_ou","reltype":"has_a","idlclass":"aou","table":"actor.org_unit","fields":{"dis_tab":{"shortname":{"colname":"shortname","transform":"Bare","transform_label":"Raw Data","alias":"Patron Home Lib","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"order_by":[{"relation":"ba1a9513a9680a382990763c4fc3dead","field":"shortname"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"billing_location_shortname"},{"relation":"d62e212ba1005642b6889232cf682685","field":"xact_start"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_ts"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"balance_owed"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"total_owed"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"total_paid"},{"relation":"9bd6ba6af242b35a24d6131eb6163bf4","field":"barcode"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"xact_type"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_type"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"last_billing_note"},{"relation":"2d8788a00d701894e1d7076249a4e500","field":"id"}],"d62e212ba1005642b6889232cf682685":{"label":"Classic Open Transaction Summary :: Transaction ID","alias":"d62e212ba1005642b6889232cf682685","path":"rccbs-id","reltype":"has_a","idlclass":"mbt","table":"money.billable_xact","fields":{"dis_tab":{"xact_start":{"colname":"xact_start","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Transaction Start Date/Time","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}},"2d8788a00d701894e1d7076249a4e500":{"label":"Classic Open Transaction Summary","alias":"2d8788a00d701894e1d7076249a4e500","path":"rccbs","reltype":"","idlclass":"rccbs","table":"reporter.classic_current_billing_summary","fields":{"dis_tab":{"balance_owed":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data","alias":"Balance Owed","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"total_owed":{"colname":"total_owed","transform":"Bare","transform_label":"Raw Data","alias":"Total Billing Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"total_paid":{"colname":"total_paid","transform":"Bare","transform_label":"Raw Data","alias":"Total Paid Amount","datatype":"money","op":"=","op_label":"Equals","op_value":{}},"xact_type":{"colname":"xact_type","transform":"upper","aggregate":"undefined","params":"undefined","transform_label":"Upper case","alias":"Transaction Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"id":{"colname":"id","transform":"Bare","aggregate":"undefined","params":"undefined","transform_label":"Raw Data","alias":"Transaction ID","datatype":"id","op":"=","op_label":"Equals","op_value":{}},"last_billing_note":{"colname":"last_billing_note","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Note","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"last_billing_ts":{"colname":"last_billing_ts","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Date/Time","datatype":"timestamp","op":"=","op_label":"Equals","op_value":{}},"last_billing_type":{"colname":"last_billing_type","transform":"Bare","transform_label":"Raw Data","alias":"Last Billing Type","datatype":"text","op":"=","op_label":"Equals","op_value":{}},"billing_location_shortname":{"colname":"billing_location_shortname","transform":"Bare","aggregate":null,"params":null,"transform_label":"Raw Data","alias":"Billing Loc","join":"","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{"xact_start":{"colname":"xact_start","transform":"date","aggregate":"undefined","params":"undefined","transform_label":"Date","alias":"Transaction Start Date/Time","datatype":"timestamp","op":"<","op_label":"Before (Date/Time)","op_value":{}},"balance_owed":{"colname":"balance_owed","transform":"Bare","transform_label":"Raw Data","alias":"Balance Owed","datatype":"money","op":">","op_label":"Greater than","op_value":{"value":"0.00","label":"\\"0.00\\""}},"usr_home_ou":{"colname":"usr_home_ou","transform":"Bare","transform_label":"Raw Data","alias":"User Home Library Link","datatype":"org_unit","op":"in","op_label":"In list","op_value":{}}},"aggfilter_tab":{}}},"9bd6ba6af242b35a24d6131eb6163bf4":{"label":"Classic Open Transaction Summary -> ILS User :: Current Library Card","alias":"9bd6ba6af242b35a24d6131eb6163bf4","path":"rccbs-usr.au-card","reltype":"has_a","idlclass":"ac","table":"actor.card","fields":{"dis_tab":{"barcode":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","alias":"Patron Barcode","datatype":"text","op":"=","op_label":"Equals","op_value":{}}},"filter_tab":{},"aggfilter_tab":{}}}}}',
+                          'create_time' => '2012-10-25 12:46:37.500424-04'
+                        },
+          'recurrence' => '1 day',
+          'owner' => 2134611,
+          'id' => 165103
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'where' => [
+                       {
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'path' => 'rccbs-xact_start',
+                         'column' => {
+                                       'transform' => 'date',
+                                       'transform_label' => 'Date',
+                                       'colname' => 'xact_start'
+                                     },
+                         'alias' => 'Transaction Start Date/Time',
+                         'condition' => {
+                                          '<' => '::P0'
+                                        }
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'colname' => 'balance_owed',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'condition' => {
+                                          '>' => '0.00'
+                                        },
+                         'alias' => 'Balance Owed',
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'path' => 'rccbs-balance_owed'
+                       },
+                       {
+                         'path' => 'rccbs-usr_home_ou',
+                         'relation' => '2d8788a00d701894e1d7076249a4e500',
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'colname' => 'usr_home_ou'
+                                     },
+                         'condition' => {
+                                          'in' => '::P1'
+                                        },
+                         'alias' => 'User Home Library Link'
+                       }
+                     ],
+          'from' => {
+                      'template_path' => 'rccbs',
+                      'label' => 'Classic Open Transaction Summary',
+                      'join' => {
+                                  'usr-2d8788a00d701894e1d7076249a4e500' => {
+                                                                              'path' => 'rccbs-usr-au-card',
+                                                                              'join' => {
+                                                                                          'card-37ae72d054e3c24ed969fa9583cc1f0e' => {
+                                                                                                                                       'path' => 'rccbs-usr-au-card-ac',
+                                                                                                                                       'label' => 'Classic Open Transaction Summary -> ILS User :: Current Library Card',
+                                                                                                                                       'template_path' => 'rccbs-usr.au-card',
+                                                                                                                                       'key' => 'id',
+                                                                                                                                       'table' => 'actor.card',
+                                                                                                                                       'alias' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                                                                                                                       'idlclass' => 'ac'
+                                                                                                                                     }
+                                                                                        },
+                                                                              'alias' => '37ae72d054e3c24ed969fa9583cc1f0e',
+                                                                              'table' => 'actor.usr',
+                                                                              'key' => 'id'
+                                                                            },
+                                  'usr-781c1b8b6571fe09258c248050b5c060' => {
+                                                                              'key' => 'id',
+                                                                              'table' => 'actor.usr',
+                                                                              'alias' => '7cd255866694445e68d05d5ab6b6551c',
+                                                                              'join' => {
+                                                                                          'home_ou-7cd255866694445e68d05d5ab6b6551c' => {
+                                                                                                                                          'path' => 'rccbs-usr-au-home_ou-aou',
+                                                                                                                                          'label' => 'Classic Open Transaction Summary -> ILS User :: Home Library',
+                                                                                                                                          'template_path' => 'rccbs-usr.au-home_ou',
+                                                                                                                                          'alias' => 'ba1a9513a9680a382990763c4fc3dead',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'table' => 'actor.org_unit',
+                                                                                                                                          'idlclass' => 'aou'
+                                                                                                                                        }
+                                                                                        },
+                                                                              'path' => 'rccbs-usr-au-home_ou'
+                                                                            },
+                                  'id-781c1b8b6571fe09258c248050b5c060' => {
+                                                                             'idlclass' => 'mbt',
+                                                                             'table' => 'money.billable_xact',
+                                                                             'key' => 'id',
+                                                                             'alias' => 'd62e212ba1005642b6889232cf682685',
+                                                                             'template_path' => 'rccbs-id',
+                                                                             'label' => 'Classic Open Transaction Summary :: Transaction ID',
+                                                                             'path' => 'rccbs-id-mbt'
+                                                                           }
+                                },
+                      'path' => 'rccbs-usr',
+                      'idlclass' => 'rccbs',
+                      'table' => 'reporter.classic_current_billing_summary',
+                      'alias' => '2d8788a00d701894e1d7076249a4e500'
+                    },
+          'core_class' => 'rccbs',
+          'order_by' => [],
+          'having' => [],
+          'version' => 3,
+          'rel_cache' => {
+                           'ba1a9513a9680a382990763c4fc3dead' => {
+                                                                   'path' => 'rccbs-usr.au-home_ou',
+                                                                   'label' => 'Classic Open Transaction Summary -> ILS User :: Home Library',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'shortname' => {
+                                                                                                                 'transform_label' => 'Raw Data',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'op' => '=',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'transform' => 'Bare',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'colname' => 'shortname',
+                                                                                                                 'alias' => 'Patron Home Lib'
+                                                                                                               }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'table' => 'actor.org_unit',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => 'ba1a9513a9680a382990763c4fc3dead',
+                                                                   'idlclass' => 'aou'
+                                                                 },
+                           'd62e212ba1005642b6889232cf682685' => {
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => 'd62e212ba1005642b6889232cf682685',
+                                                                   'table' => 'money.billable_xact',
+                                                                   'idlclass' => 'mbt',
+                                                                   'path' => 'rccbs-id',
+                                                                   'label' => 'Classic Open Transaction Summary :: Transaction ID',
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'xact_start' => {
+                                                                                                                  'alias' => 'Transaction Start Date/Time',
+                                                                                                                  'params' => 'undefined',
+                                                                                                                  'datatype' => 'timestamp',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'xact_start',
+                                                                                                                  'transform' => 'date',
+                                                                                                                  'aggregate' => 'undefined',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'transform_label' => 'Date'
+                                                                                                                }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {}
+                                                                               }
+                                                                 },
+                           '2d8788a00d701894e1d7076249a4e500' => {
+                                                                   'fields' => {
+                                                                                 'dis_tab' => {
+                                                                                                'id' => {
+                                                                                                          'transform' => 'Bare',
+                                                                                                          'colname' => 'id',
+                                                                                                          'op_label' => 'Equals',
+                                                                                                          'params' => 'undefined',
+                                                                                                          'datatype' => 'id',
+                                                                                                          'alias' => 'Transaction ID',
+                                                                                                          'transform_label' => 'Raw Data',
+                                                                                                          'op_value' => {},
+                                                                                                          'op' => '=',
+                                                                                                          'aggregate' => 'undefined'
+                                                                                                        },
+                                                                                                'billing_location_shortname' => {
+                                                                                                                                  'datatype' => 'text',
+                                                                                                                                  'params' => undef,
+                                                                                                                                  'join' => '',
+                                                                                                                                  'transform' => 'Bare',
+                                                                                                                                  'colname' => 'billing_location_shortname',
+                                                                                                                                  'op_label' => 'Equals',
+                                                                                                                                  'alias' => 'Billing Loc',
+                                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                                  'aggregate' => undef,
+                                                                                                                                  'op_value' => {},
+                                                                                                                                  'op' => '='
+                                                                                                                                },
+                                                                                                'total_paid' => {
+                                                                                                                  'alias' => 'Total Paid Amount',
+                                                                                                                  'datatype' => 'money',
+                                                                                                                  'colname' => 'total_paid',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op' => '=',
+                                                                                                                  'op_value' => {},
+                                                                                                                  'transform_label' => 'Raw Data'
+                                                                                                                },
+                                                                                                'last_billing_type' => {
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'last_billing_type',
+                                                                                                                         'datatype' => 'text',
+                                                                                                                         'alias' => 'Last Billing Type',
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'op_value' => {},
+                                                                                                                         'op' => '='
+                                                                                                                       },
+                                                                                                'xact_type' => {
+                                                                                                                 'alias' => 'Transaction Type',
+                                                                                                                 'colname' => 'xact_type',
+                                                                                                                 'op_label' => 'Equals',
+                                                                                                                 'transform' => 'upper',
+                                                                                                                 'params' => 'undefined',
+                                                                                                                 'datatype' => 'text',
+                                                                                                                 'op' => '=',
+                                                                                                                 'op_value' => {},
+                                                                                                                 'aggregate' => 'undefined',
+                                                                                                                 'transform_label' => 'Upper case'
+                                                                                                               },
+                                                                                                'last_billing_note' => {
+                                                                                                                         'op_value' => {},
+                                                                                                                         'op' => '=',
+                                                                                                                         'transform_label' => 'Raw Data',
+                                                                                                                         'alias' => 'Last Billing Note',
+                                                                                                                         'transform' => 'Bare',
+                                                                                                                         'op_label' => 'Equals',
+                                                                                                                         'colname' => 'last_billing_note',
+                                                                                                                         'datatype' => 'text'
+                                                                                                                       },
+                                                                                                'total_owed' => {
+                                                                                                                  'op_value' => {},
+                                                                                                                  'op' => '=',
+                                                                                                                  'transform_label' => 'Raw Data',
+                                                                                                                  'alias' => 'Total Billing Amount',
+                                                                                                                  'transform' => 'Bare',
+                                                                                                                  'op_label' => 'Equals',
+                                                                                                                  'colname' => 'total_owed',
+                                                                                                                  'datatype' => 'money'
+                                                                                                                },
+                                                                                                'balance_owed' => {
+                                                                                                                    'datatype' => 'money',
+                                                                                                                    'colname' => 'balance_owed',
+                                                                                                                    'op_label' => 'Equals',
+                                                                                                                    'transform' => 'Bare',
+                                                                                                                    'alias' => 'Balance Owed',
+                                                                                                                    'transform_label' => 'Raw Data',
+                                                                                                                    'op' => '=',
+                                                                                                                    'op_value' => {}
+                                                                                                                  },
+                                                                                                'last_billing_ts' => {
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op' => '=',
+                                                                                                                       'op_value' => {},
+                                                                                                                       'datatype' => 'timestamp',
+                                                                                                                       'op_label' => 'Equals',
+                                                                                                                       'colname' => 'last_billing_ts',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'alias' => 'Last Billing Date/Time'
+                                                                                                                     }
+                                                                                              },
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'filter_tab' => {
+                                                                                                   'balance_owed' => {
+                                                                                                                       'transform_label' => 'Raw Data',
+                                                                                                                       'op' => '>',
+                                                                                                                       'op_value' => {
+                                                                                                                                       'value' => '0.00',
+                                                                                                                                       'label' => '"0.00"'
+                                                                                                                                     },
+                                                                                                                       'op_label' => 'Greater than',
+                                                                                                                       'colname' => 'balance_owed',
+                                                                                                                       'transform' => 'Bare',
+                                                                                                                       'datatype' => 'money',
+                                                                                                                       'alias' => 'Balance Owed'
+                                                                                                                     },
+                                                                                                   'usr_home_ou' => {
+                                                                                                                      'op_value' => {},
+                                                                                                                      'op' => 'in',
+                                                                                                                      'transform_label' => 'Raw Data',
+                                                                                                                      'alias' => 'User Home Library Link',
+                                                                                                                      'transform' => 'Bare',
+                                                                                                                      'op_label' => 'In list',
+                                                                                                                      'colname' => 'usr_home_ou',
+                                                                                                                      'datatype' => 'org_unit'
+                                                                                                                    },
+                                                                                                   'xact_start' => {
+                                                                                                                     'transform' => 'date',
+                                                                                                                     'op_label' => 'Before (Date/Time)',
+                                                                                                                     'colname' => 'xact_start',
+                                                                                                                     'params' => 'undefined',
+                                                                                                                     'datatype' => 'timestamp',
+                                                                                                                     'alias' => 'Transaction Start Date/Time',
+                                                                                                                     'transform_label' => 'Date',
+                                                                                                                     'op_value' => {},
+                                                                                                                     'op' => '<',
+                                                                                                                     'aggregate' => 'undefined'
+                                                                                                                   }
+                                                                                                 }
+                                                                               },
+                                                                   'label' => 'Classic Open Transaction Summary',
+                                                                   'path' => 'rccbs',
+                                                                   'idlclass' => 'rccbs',
+                                                                   'table' => 'reporter.classic_current_billing_summary',
+                                                                   'reltype' => '',
+                                                                   'alias' => '2d8788a00d701894e1d7076249a4e500'
+                                                                 },
+                           '9bd6ba6af242b35a24d6131eb6163bf4' => {
+                                                                   'idlclass' => 'ac',
+                                                                   'table' => 'actor.card',
+                                                                   'reltype' => 'has_a',
+                                                                   'alias' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                                                   'fields' => {
+                                                                                 'aggfilter_tab' => {},
+                                                                                 'dis_tab' => {
+                                                                                                'barcode' => {
+                                                                                                               'datatype' => 'text',
+                                                                                                               'op_label' => 'Equals',
+                                                                                                               'colname' => 'barcode',
+                                                                                                               'transform' => 'Bare',
+                                                                                                               'alias' => 'Patron Barcode',
+                                                                                                               'transform_label' => 'Raw Data',
+                                                                                                               'op' => '=',
+                                                                                                               'op_value' => {}
+                                                                                                             }
+                                                                                              },
+                                                                                 'filter_tab' => {}
+                                                                               },
+                                                                   'label' => 'Classic Open Transaction Summary -> ILS User :: Current Library Card',
+                                                                   'path' => 'rccbs-usr.au-card'
+                                                                 },
+                           'order_by' => [
+                                           {
+                                             'relation' => 'ba1a9513a9680a382990763c4fc3dead',
+                                             'field' => 'shortname'
+                                           },
+                                           {
+                                             'field' => 'billing_location_shortname',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'field' => 'xact_start',
+                                             'relation' => 'd62e212ba1005642b6889232cf682685'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'last_billing_ts'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'balance_owed'
+                                           },
+                                           {
+                                             'field' => 'total_owed',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'total_paid'
+                                           },
+                                           {
+                                             'relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                             'field' => 'barcode'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'xact_type'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'last_billing_type'
+                                           },
+                                           {
+                                             'field' => 'last_billing_note',
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500'
+                                           },
+                                           {
+                                             'relation' => '2d8788a00d701894e1d7076249a4e500',
+                                             'field' => 'id'
+                                           }
+                                         ]
+                         },
+          'select' => [
+                        {
+                          'column' => {
+                                        'colname' => 'shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Patron Home Lib',
+                          'path' => 'rccbs-usr-au-home_ou-aou-shortname',
+                          'relation' => 'ba1a9513a9680a382990763c4fc3dead'
+                        },
+                        {
+                          'path' => 'rccbs-billing_location_shortname',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'column' => {
+                                        'colname' => 'billing_location_shortname',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Billing Loc'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'date',
+                                        'colname' => 'xact_start',
+                                        'transform_label' => 'Date'
+                                      },
+                          'alias' => 'Transaction Start Date/Time',
+                          'relation' => 'd62e212ba1005642b6889232cf682685',
+                          'path' => 'rccbs-id-mbt-xact_start'
+                        },
+                        {
+                          'path' => 'rccbs-last_billing_ts',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Last Billing Date/Time',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'last_billing_ts',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'path' => 'rccbs-balance_owed',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'balance_owed',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Balance Owed'
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-total_owed',
+                          'column' => {
+                                        'colname' => 'total_owed',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'alias' => 'Total Billing Amount'
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-total_paid',
+                          'alias' => 'Total Paid Amount',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'total_paid',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Patron Barcode',
+                          'relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                          'path' => 'rccbs-usr-au-card-ac-barcode'
+                        },
+                        {
+                          'path' => 'rccbs-xact_type',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Transaction Type',
+                          'column' => {
+                                        'colname' => 'xact_type',
+                                        'transform_label' => 'Upper case',
+                                        'transform' => 'upper'
+                                      }
+                        },
+                        {
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-last_billing_type',
+                          'alias' => 'Last Billing Type',
+                          'column' => {
+                                        'colname' => 'last_billing_type',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      }
+                        },
+                        {
+                          'path' => 'rccbs-last_billing_note',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'alias' => 'Last Billing Note',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'last_billing_note',
+                                        'transform_label' => 'Raw Data'
+                                      }
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'id',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Transaction ID',
+                          'relation' => '2d8788a00d701894e1d7076249a4e500',
+                          'path' => 'rccbs-id'
+                        }
+                      ]
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2019-08-16 09:13:14.9988-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_where' => [
+                               bless( {
+                                        '_sql' => 'date("2d8788a00d701894e1d7076249a4e500"."xact_start") < $_108224$2019-07-01$_108224$',
+                                        '_transform' => 'GenericTransform',
+                                        '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                        '_condition' => {
+                                                          '<' => '::P0'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Date',
+                                                       'colname' => 'xact_start',
+                                                       'transform' => 'date'
+                                                     },
+                                        '_builder' => bless( {
+                                                               '_sql' => undef,
+                                                               '_rels' => {
+                                                                            '7cd255866694445e68d05d5ab6b6551c' => bless( {
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7cd255866694445e68d05d5ab6b6551c'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_table' => 'actor.org_unit',
+                                                                                                                                                                          '_alias' => 'ba1a9513a9680a382990763c4fc3dead',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_sql' => 'actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead"',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead" ON ("7cd255866694445e68d05d5ab6b6551c"."home_ou" = "ba1a9513a9680a382990763c4fc3dead"."id")',
+                                                                                                                                                 '_left_col' => 'home_ou',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_sql' => 'actor.usr AS "7cd255866694445e68d05d5ab6b6551c"',
+                                                                                                                           '_alias' => '7cd255866694445e68d05d5ab6b6551c',
+                                                                                                                           '_table' => 'actor.usr',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_columns' => []
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '9bd6ba6af242b35a24d6131eb6163bf4' => bless( {
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_is_join' => 1,
+                                                                                                                           '_join_type' => 'inner',
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                           '_table' => 'actor.card',
+                                                                                                                           '_alias' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                                                                                                           '_sql' => 'actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4"',
+                                                                                                                           '_join' => []
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            '2d8788a00d701894e1d7076249a4e500' => bless( {
+                                                                                                                           '_sql' => 'reporter.classic_current_billing_summary AS "2d8788a00d701894e1d7076249a4e500"
+	INNER JOIN money.billable_xact AS "d62e212ba1005642b6889232cf682685" ON ("2d8788a00d701894e1d7076249a4e500"."id" = "d62e212ba1005642b6889232cf682685"."id")
+	INNER JOIN actor.usr AS "7cd255866694445e68d05d5ab6b6551c" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "7cd255866694445e68d05d5ab6b6551c"."id")
+	INNER JOIN actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead" ON ("7cd255866694445e68d05d5ab6b6551c"."home_ou" = "ba1a9513a9680a382990763c4fc3dead"."id")
+	INNER JOIN actor.usr AS "37ae72d054e3c24ed969fa9583cc1f0e" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "37ae72d054e3c24ed969fa9583cc1f0e"."id")
+	INNER JOIN actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4" ON ("37ae72d054e3c24ed969fa9583cc1f0e"."card" = "9bd6ba6af242b35a24d6131eb6163bf4"."id")',
+                                                                                                                           '_join' => [
+                                                                                                                                        bless( {
+                                                                                                                                                 '_sql' => '
+	INNER JOIN money.billable_xact AS "d62e212ba1005642b6889232cf682685" ON ("2d8788a00d701894e1d7076249a4e500"."id" = "d62e212ba1005642b6889232cf682685"."id")',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_alias' => 'd62e212ba1005642b6889232cf682685',
+                                                                                                                                                                          '_table' => 'money.billable_xact',
+                                                                                                                                                                          '_sql' => 'money.billable_xact AS "d62e212ba1005642b6889232cf682685"',
+                                                                                                                                                                          '_join' => [],
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                                                                                                                                                          '_columns' => []
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_col' => 'id',
+                                                                                                                                                 '_join_type' => 'i'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "7cd255866694445e68d05d5ab6b6551c" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "7cd255866694445e68d05d5ab6b6551c"."id")
+	INNER JOIN actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead" ON ("7cd255866694445e68d05d5ab6b6551c"."home_ou" = "ba1a9513a9680a382990763c4fc3dead"."id")',
+                                                                                                                                                 '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7cd255866694445e68d05d5ab6b6551c'},
+                                                                                                                                                 '_right_col' => 'id',
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'},
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'usr'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                        bless( {
+                                                                                                                                                 '_join_type' => 'i',
+                                                                                                                                                 '_left_col' => 'usr',
+                                                                                                                                                 '_sql' => '
+	INNER JOIN actor.usr AS "37ae72d054e3c24ed969fa9583cc1f0e" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "37ae72d054e3c24ed969fa9583cc1f0e"."id")
+	INNER JOIN actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4" ON ("37ae72d054e3c24ed969fa9583cc1f0e"."card" = "9bd6ba6af242b35a24d6131eb6163bf4"."id")',
+                                                                                                                                                 '_right_rel' => bless( {
+                                                                                                                                                                          '_join' => [
+                                                                                                                                                                                       bless( {
+                                                                                                                                                                                                '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'}{'_join'}[2]{'_right_rel'},
+                                                                                                                                                                                                '_right_col' => 'id',
+                                                                                                                                                                                                '_right_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'9bd6ba6af242b35a24d6131eb6163bf4'},
+                                                                                                                                                                                                '_sql' => '
+	INNER JOIN actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4" ON ("37ae72d054e3c24ed969fa9583cc1f0e"."card" = "9bd6ba6af242b35a24d6131eb6163bf4"."id")',
+                                                                                                                                                                                                '_left_col' => 'card',
+                                                                                                                                                                                                '_join_type' => 'i'
+                                                                                                                                                                                              }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                                                                     ],
+                                                                                                                                                                          '_sql' => 'actor.usr AS "37ae72d054e3c24ed969fa9583cc1f0e"',
+                                                                                                                                                                          '_table' => 'actor.usr',
+                                                                                                                                                                          '_alias' => '37ae72d054e3c24ed969fa9583cc1f0e',
+                                                                                                                                                                          '_columns' => [],
+                                                                                                                                                                          '_nullable' => undef,
+                                                                                                                                                                          '_join_type' => 'inner',
+                                                                                                                                                                          '_is_join' => 1,
+                                                                                                                                                                          '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                 '_left_rel' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'},
+                                                                                                                                                 '_right_col' => 'id'
+                                                                                                                                               }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                      ],
+                                                                                                                           '_table' => 'reporter.classic_current_billing_summary',
+                                                                                                                           '_columns' => [],
+                                                                                                                           '_alias' => '2d8788a00d701894e1d7076249a4e500',
+                                                                                                                           '_nullable' => undef,
+                                                                                                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                            'd62e212ba1005642b6889232cf682685' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'}{'_join'}[0]{'_right_rel'},
+                                                                            '37ae72d054e3c24ed969fa9583cc1f0e' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'}{'_join'}[2]{'_right_rel'},
+                                                                            'ba1a9513a9680a382990763c4fc3dead' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'7cd255866694445e68d05d5ab6b6551c'}{'_join'}[0]{'_right_rel'}
+                                                                          },
+                                                               '_params' => {
+                                                                              'P0' => '2019-07-01',
+                                                                              'P1' => [
+                                                                                        '198',
+                                                                                        '199',
+                                                                                        '200',
+                                                                                        '201',
+                                                                                        '202'
+                                                                                      ]
+                                                                            },
+                                                               '_resultset_limit' => 1048575,
+                                                               '_relative_time' => '2019-08-16 09:13:14.9988-04'
+                                                             }, 'OpenILS::Reporter::SQLBuilder' ),
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_aggregate' => undef,
+                                        '_column' => {
+                                                       'colname' => 'balance_owed',
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_condition' => {
+                                                          '>' => '0.00'
+                                                        },
+                                        '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"2d8788a00d701894e1d7076249a4e500"."balance_owed" > $_108224$0.00$_108224$'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'usr_home_ou',
+                                                       'transform_label' => 'Raw Data'
+                                                     },
+                                        '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_sql' => '"2d8788a00d701894e1d7076249a4e500"."usr_home_ou" IN ($_108224$198$_108224$,$_108224$199$_108224$,$_108224$200$_108224$,$_108224$201$_108224$,$_108224$202$_108224$)',
+                                        '_condition' => {
+                                                          'in' => '::P1'
+                                                        },
+                                        '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                        '_transform' => 'Bare'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_sql' => 'SELECT * FROM (SELECT	"ba1a9513a9680a382990763c4fc3dead"."shortname" AS "Patron Home Lib",
+	"2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" AS "Billing Loc",
+	date("d62e212ba1005642b6889232cf682685"."xact_start") AS "Transaction Start Date/Time",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_ts" AS "Last Billing Date/Time",
+	"2d8788a00d701894e1d7076249a4e500"."balance_owed" AS "Balance Owed",
+	"2d8788a00d701894e1d7076249a4e500"."total_owed" AS "Total Billing Amount",
+	"2d8788a00d701894e1d7076249a4e500"."total_paid" AS "Total Paid Amount",
+	"9bd6ba6af242b35a24d6131eb6163bf4"."barcode" AS "Patron Barcode",
+	UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") AS "Transaction Type",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_type" AS "Last Billing Type",
+	"2d8788a00d701894e1d7076249a4e500"."last_billing_note" AS "Last Billing Note",
+	"2d8788a00d701894e1d7076249a4e500"."id" AS "Transaction ID"
+  FROM	reporter.classic_current_billing_summary AS "2d8788a00d701894e1d7076249a4e500"
+	INNER JOIN money.billable_xact AS "d62e212ba1005642b6889232cf682685" ON ("2d8788a00d701894e1d7076249a4e500"."id" = "d62e212ba1005642b6889232cf682685"."id")
+	INNER JOIN actor.usr AS "7cd255866694445e68d05d5ab6b6551c" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "7cd255866694445e68d05d5ab6b6551c"."id")
+	INNER JOIN actor.org_unit AS "ba1a9513a9680a382990763c4fc3dead" ON ("7cd255866694445e68d05d5ab6b6551c"."home_ou" = "ba1a9513a9680a382990763c4fc3dead"."id")
+	INNER JOIN actor.usr AS "37ae72d054e3c24ed969fa9583cc1f0e" ON ("2d8788a00d701894e1d7076249a4e500"."usr" = "37ae72d054e3c24ed969fa9583cc1f0e"."id")
+	INNER JOIN actor.card AS "9bd6ba6af242b35a24d6131eb6163bf4" ON ("37ae72d054e3c24ed969fa9583cc1f0e"."card" = "9bd6ba6af242b35a24d6131eb6163bf4"."id")
+  WHERE	date("2d8788a00d701894e1d7076249a4e500"."xact_start") < $_108224$2019-07-01$_108224$
+	AND "2d8788a00d701894e1d7076249a4e500"."balance_owed" > $_108224$0.00$_108224$
+	AND "2d8788a00d701894e1d7076249a4e500"."usr_home_ou" IN ($_108224$198$_108224$,$_108224$199$_108224$,$_108224$200$_108224$,$_108224$201$_108224$,$_108224$202$_108224$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+  ORDER BY "ba1a9513a9680a382990763c4fc3dead"."shortname" ASC, "2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" ASC, date("d62e212ba1005642b6889232cf682685"."xact_start") ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_ts" ASC, "2d8788a00d701894e1d7076249a4e500"."balance_owed" ASC, "2d8788a00d701894e1d7076249a4e500"."total_owed" ASC, "2d8788a00d701894e1d7076249a4e500"."total_paid" ASC, "9bd6ba6af242b35a24d6131eb6163bf4"."barcode" ASC, UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_type" ASC, "2d8788a00d701894e1d7076249a4e500"."last_billing_note" ASC, "2d8788a00d701894e1d7076249a4e500"."id" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_having' => [],
+                 '_select' => [
+                                bless( {
+                                         '_sql' => '"ba1a9513a9680a382990763c4fc3dead"."shortname" AS "Patron Home Lib"',
+                                         '_relation' => 'ba1a9513a9680a382990763c4fc3dead',
+                                         '_transform' => 'Bare',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'shortname',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_alias' => 'Patron Home Lib',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" AS "Billing Loc"',
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Billing Loc',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'billing_location_shortname'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'date',
+                                                        'transform_label' => 'Date',
+                                                        'colname' => 'xact_start'
+                                                      },
+                                         '_alias' => 'Transaction Start Date/Time',
+                                         '_aggregate' => undef,
+                                         '_sql' => 'date("d62e212ba1005642b6889232cf682685"."xact_start") AS "Transaction Start Date/Time"',
+                                         '_relation' => 'd62e212ba1005642b6889232cf682685',
+                                         '_transform' => 'GenericTransform'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Last Billing Date/Time',
+                                         '_column' => {
+                                                        'colname' => 'last_billing_ts',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_ts" AS "Last Billing Date/Time"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."balance_owed" AS "Balance Owed"',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'balance_owed',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Balance Owed',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'total_owed',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Total Billing Amount',
+                                         '_aggregate' => undef,
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."total_owed" AS "Total Billing Amount"',
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Total Paid Amount',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'total_paid'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."total_paid" AS "Total Paid Amount"',
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"9bd6ba6af242b35a24d6131eb6163bf4"."barcode" AS "Patron Barcode"',
+                                         '_relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'barcode',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Patron Barcode',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Transaction Type',
+                                         '_column' => {
+                                                        'colname' => 'xact_type',
+                                                        'transform_label' => 'Upper case',
+                                                        'transform' => 'upper'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_transform' => 'upper',
+                                         '_sql' => 'UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") AS "Transaction Type"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Last Billing Type',
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'last_billing_type',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_type" AS "Last Billing Type"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'last_billing_note',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Last Billing Note',
+                                         '_transform' => 'Bare',
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_note" AS "Last Billing Note"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"2d8788a00d701894e1d7076249a4e500"."id" AS "Transaction ID"',
+                                         '_aggregate' => undef,
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'colname' => 'id',
+                                                        'transform_label' => 'Raw Data'
+                                                      },
+                                         '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                         '_alias' => 'Transaction ID'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_from' => $VAR1->{'_where'}[0]{'_builder'}{'_rels'}{'2d8788a00d701894e1d7076249a4e500'},
+                 '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                 '_order_by' => [
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => 'ba1a9513a9680a382990763c4fc3dead',
+                                           '_sql' => '"ba1a9513a9680a382990763c4fc3dead"."shortname" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."billing_location_shortname" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'GenericTransform',
+                                           '_relation' => 'd62e212ba1005642b6889232cf682685',
+                                           '_sql' => 'date("d62e212ba1005642b6889232cf682685"."xact_start") ASC',
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_ts" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."balance_owed" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."total_owed" ASC',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."total_paid" ASC',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[7]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '9bd6ba6af242b35a24d6131eb6163bf4',
+                                           '_sql' => '"9bd6ba6af242b35a24d6131eb6163bf4"."barcode" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[8]{'_column'},
+                                           '_aggregate' => undef,
+                                           '_sql' => 'UPPER("2d8788a00d701894e1d7076249a4e500"."xact_type") ASC',
+                                           '_transform' => 'upper',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_direction' => 'ascending',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_type" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[9]{'_column'}
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[10]{'_column'},
+                                           '_aggregate' => undef,
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."last_billing_note" ASC',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_sql' => '"2d8788a00d701894e1d7076249a4e500"."id" ASC',
+                                           '_relation' => '2d8788a00d701894e1d7076249a4e500',
+                                           '_direction' => 'ascending',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[11]{'_column'},
+                                           '_builder' => $VAR1->{'_where'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

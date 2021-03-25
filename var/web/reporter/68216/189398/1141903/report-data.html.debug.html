@@ -1,0 +1,1750 @@
+<html><head><meta charset='utf-8'><title>DEBUG: fRIDAY TEST 6</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Library",
+	"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name",
+	"6fcbe190ee6d2070a0690375868306c2"."owning_lib" AS "Shelving Location Owner",
+	"ffcaba321e8cae3469a746eab807d7ff"."call_number_label" AS "Call Number",
+	"ffcaba321e8cae3469a746eab807d7ff"."title" AS "Title",
+	"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Barcode",
+	"ffcaba321e8cae3469a746eab807d7ff"."create_date" AS "Create Date"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN asset.copy AS "ac894f4f7e2c39b13cd626965292e114" ON ("ffcaba321e8cae3469a746eab807d7ff"."id" = "ac894f4f7e2c39b13cd626965292e114"."id")
+	INNER JOIN asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2" ON ("ac894f4f7e2c39b13cd626965292e114"."location" = "6fcbe190ee6d2070a0690375868306c2"."id")
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_53333$f$_53333$
+	AND "93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_53333$278$_53333$)
+	AND "6fcbe190ee6d2070a0690375868306c2"."owning_lib" NOT IN ($_53333$278$_53333$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC, "ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC, "6fcbe190ee6d2070a0690375868306c2"."owning_lib" ASC, "ffcaba321e8cae3469a746eab807d7ff"."call_number_label" ASC, "ffcaba321e8cae3469a746eab807d7ff"."title" ASC, "ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC, "ffcaba321e8cae3469a746eab807d7ff"."create_date" ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'create_time' => '2019-04-03 15:29:00.968721-04',
+          'id' => 68216,
+          'name' => 'List to Identify Items with Incorrect Shelving Locations',
+          'folder' => 3046,
+          'data' => '{"version":5,"doc_url":"","core_class":"rocit","select":[{"alias":"Owning Library","path":"rocit-owning_lib_name","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"owning_lib_name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location Name","path":"rocit-shelving_location","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location Owner","path":"acpl-owning_lib","field_doc":"","relation":"6fcbe190ee6d2070a0690375868306c2","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Call Number","path":"rocit-call_number_label","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"call_number_label","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Title","path":"rocit-title","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"rocit-barcode","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Create Date","path":"rocit-create_date","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"create_date","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit-rocit","table":"reporter.classic_item_list","idlclass":"rocit","label":"Classic Item List","join":{"id-ac894f4f7e2c39b13cd626965292e114":{"type":"inner","key":"id","alias":"ac894f4f7e2c39b13cd626965292e114","path":"rocit-id","table":"asset.copy","idlclass":"acp","join":{"location-a04a6eb2278f649c4fa90aa9efac17af":{"type":"inner","key":"id","alias":"6fcbe190ee6d2070a0690375868306c2","path":"rocit-id-location","table":"asset.copy_location","idlclass":"acpl","label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)"}}},"owning_lib-fbff8dd11a0d5df575245396e57d64f5":{"type":"inner","key":"id","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Classic Item List :: Owning Lib"}}},"where":[{"alias":"Deleted","path":"rocit-deleted","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"93a33d246f9fc5d840a6330d99d2e850","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Owning Org Unit","path":"acpl-owning_lib","field_doc":"","relation":"6fcbe190ee6d2070a0690375868306c2","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"not in":"::P1"}}],"having":[],"display_cols":[{"name":"owning_lib_name","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":0,"label":"Owning Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"shelving_location","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":1,"label":"Shelving Location Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"owning_lib","label":"Shelving Location Owner","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":2,"path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Copy ID","from":"rocit","link":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"id":"rocit.acp","jtype":"inner","uplink":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Shelving Location","from":"rocit.acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"rocit.acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"path_label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"call_number_label","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":3,"label":"Call Number","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"title","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":4,"label":"Title","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"barcode","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":5,"label":"Barcode","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"create_date","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":6,"label":"Create Date","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"}],"filter_cols":[{"name":"deleted","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":0,"label":"Deleted","datatype":"bool","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List","value":"f"},{"name":"id","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Organizational Unit","from":"rocit","link":{"name":"owning_lib","label":"Owning Lib","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"link"},"id":"rocit.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Lib","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"link"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":1,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List :: Owning Lib"},{"name":"owning_lib","label":"Owning Org Unit","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":2,"path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Copy ID","from":"rocit","link":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"id":"rocit.acp","jtype":"inner","uplink":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Shelving Location","from":"rocit.acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"rocit.acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"path_label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)","operator":{"label":"Not in list","op":"not in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+          'description' => 'List of items whose owning library does not match their shelving location\'s owning library. 
+***Choose the same branch for BOTH branch dropdowns.***',
+          'owner' => 2923364
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'from' => {
+                      'table' => 'reporter.classic_item_list',
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'join' => {
+                                  'owning_lib-fbff8dd11a0d5df575245396e57d64f5' => {
+                                                                                     'idlclass' => 'aou',
+                                                                                     'label' => 'Classic Item List :: Owning Lib',
+                                                                                     'path' => 'rocit-owning_lib',
+                                                                                     'key' => 'id',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'type' => 'inner'
+                                                                                   },
+                                  'id-ac894f4f7e2c39b13cd626965292e114' => {
+                                                                             'table' => 'asset.copy',
+                                                                             'type' => 'inner',
+                                                                             'alias' => 'ac894f4f7e2c39b13cd626965292e114',
+                                                                             'join' => {
+                                                                                         'location-a04a6eb2278f649c4fa90aa9efac17af' => {
+                                                                                                                                          'table' => 'asset.copy_location',
+                                                                                                                                          'type' => 'inner',
+                                                                                                                                          'alias' => '6fcbe190ee6d2070a0690375868306c2',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'idlclass' => 'acpl',
+                                                                                                                                          'label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                                                                                                                                          'path' => 'rocit-id-location'
+                                                                                                                                        }
+                                                                                       },
+                                                                             'key' => 'id',
+                                                                             'idlclass' => 'acp',
+                                                                             'path' => 'rocit-id'
+                                                                           }
+                                },
+                      'label' => 'Classic Item List',
+                      'idlclass' => 'rocit',
+                      'path' => 'rocit-rocit'
+                    },
+          'select' => [
+                        {
+                          'alias' => 'Owning Library',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib_name',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'rocit-owning_lib_name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shelving_location',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Shelving Location Name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-shelving_location'
+                        },
+                        {
+                          'path' => 'acpl-owning_lib',
+                          'relation' => '6fcbe190ee6d2070a0690375868306c2',
+                          'alias' => 'Shelving Location Owner',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'owning_lib'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'call_number_label',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Call Number',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-call_number_label'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'title'
+                                      },
+                          'alias' => 'Title',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-title'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Barcode',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'create_date',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      },
+                          'alias' => 'Create Date',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-create_date'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'path_label' => 'Classic Item List',
+                               'datatype' => 'bool',
+                               'index' => 0,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'label' => 'Deleted',
+                               'path' => [
+                                           {
+                                             'label' => 'Classic Item List',
+                                             'id' => 'rocit',
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner',
+                                             'table' => 'reporter.classic_item_list',
+                                             'struct' => {
+                                                           'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                           'name' => 'rocit',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Classic Item List',
+                                                           'table' => 'reporter.classic_item_list',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'rocit'
+                                                         }
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'name' => 'deleted',
+                               'value' => 'f'
+                             },
+                             {
+                               'name' => 'id',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'label' => 'Organizational Unit ID',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'id' => 'rocit',
+                                             'label' => 'Classic Item List',
+                                             'struct' => {
+                                                           'label' => 'Classic Item List',
+                                                           'core_label' => 'Core sources',
+                                                           'name' => 'rocit',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'rocit',
+                                                           'pkey' => 'id',
+                                                           'table' => 'reporter.classic_item_list'
+                                                         },
+                                             'table' => 'reporter.classic_item_list',
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'class' => 'aou',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'owning_lib',
+                                                         'key' => 'id',
+                                                         'label' => 'Owning Lib'
+                                                       },
+                                             'id' => 'rocit.aou',
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'owning_lib',
+                                                           'label' => 'Owning Lib',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'label' => 'Organizational Unit',
+                                             'classname' => 'aou',
+                                             'from' => 'rocit'
+                                           }
+                                         ],
+                               'path_label' => 'Classic Item List :: Owning Lib',
+                               'datatype' => 'org_unit',
+                               'index' => 1,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             }
+                             },
+                             {
+                               'name' => 'owning_lib',
+                               'key' => 'id',
+                               'type' => 'link',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'class' => 'aou',
+                               'reltype' => 'has_a',
+                               'path' => [
+                                           {
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner',
+                                             'table' => 'reporter.classic_item_list',
+                                             'struct' => {
+                                                           'label' => 'Classic Item List',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'rocit',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'rocit',
+                                                           'table' => 'reporter.classic_item_list'
+                                                         },
+                                             'label' => 'Classic Item List',
+                                             'id' => 'rocit'
+                                           },
+                                           {
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'table' => 'asset.copy',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'classname' => 'acp',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Item'
+                                                         },
+                                             'uplink' => {
+                                                           'datatype' => 'id',
+                                                           'type' => 'link',
+                                                           'class' => 'acp',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'id',
+                                                           'label' => 'Copy ID'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'link' => {
+                                                         'label' => 'Copy ID',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'id',
+                                                         'class' => 'acp',
+                                                         'type' => 'link',
+                                                         'datatype' => 'id'
+                                                       },
+                                             'id' => 'rocit.acp',
+                                             'from' => 'rocit',
+                                             'classname' => 'acp',
+                                             'label' => 'Copy ID'
+                                           },
+                                           {
+                                             'classname' => 'acpl',
+                                             'from' => 'rocit.acp',
+                                             'label' => 'Shelving Location',
+                                             'jtype' => 'inner',
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'location',
+                                                           'key' => 'id',
+                                                           'label' => 'Shelving Location',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'class' => 'acpl'
+                                                         },
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Copy/Shelving Location',
+                                                           'name' => 'acpl',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'acpl',
+                                                           'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                           'table' => 'asset.copy_location'
+                                                         },
+                                             'table' => 'asset.copy_location',
+                                             'link' => {
+                                                         'class' => 'acpl',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'label' => 'Shelving Location',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'location',
+                                                         'key' => 'id'
+                                                       },
+                                             'id' => 'rocit.acp.acpl'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Owning Org Unit',
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                               'operator' => {
+                                               'op' => 'not in',
+                                               'label' => 'Not in list'
+                                             },
+                               'index' => 2
+                             }
+                           ],
+          'core_class' => 'rocit',
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'deleted'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'path' => 'rocit-deleted'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID',
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'alias' => 'Owning Org Unit',
+                         'column' => {
+                                       'colname' => 'owning_lib',
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'acpl-owning_lib',
+                         'condition' => {
+                                          'not in' => '::P1'
+                                        },
+                         'relation' => '6fcbe190ee6d2070a0690375868306c2'
+                       }
+                     ],
+          'version' => 5,
+          'doc_url' => '',
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'owning_lib_name',
+                                'index' => 0,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Classic Item List'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Owning Library'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'shelving_location',
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'index' => 1,
+                                'label' => 'Shelving Location Name',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'reporter.classic_item_list'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 2,
+                                'path_label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                                'datatype' => 'org_unit',
+                                'label' => 'Shelving Location Owner',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list'
+                                                          },
+                                              'table' => 'reporter.classic_item_list'
+                                            },
+                                            {
+                                              'id' => 'rocit.acp',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'id',
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'id',
+                                                          'key' => 'id',
+                                                          'label' => 'Copy ID'
+                                                        },
+                                              'uplink' => {
+                                                            'label' => 'Copy ID',
+                                                            'name' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'acp',
+                                                            'datatype' => 'id',
+                                                            'type' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'name' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Item',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'classname' => 'acp'
+                                                          },
+                                              'label' => 'Copy ID',
+                                              'classname' => 'acp',
+                                              'from' => 'rocit'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'name' => 'acpl',
+                                                            'label' => 'Copy/Shelving Location',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                            'table' => 'asset.copy_location',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acpl'
+                                                          },
+                                              'table' => 'asset.copy_location',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'location',
+                                                            'label' => 'Shelving Location',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'class' => 'acpl'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'id' => 'rocit.acp.acpl',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'acpl',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'location',
+                                                          'label' => 'Shelving Location'
+                                                        },
+                                              'from' => 'rocit.acp',
+                                              'classname' => 'acpl',
+                                              'label' => 'Shelving Location'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'class' => 'aou',
+                                'type' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'key' => 'id',
+                                'name' => 'owning_lib'
+                              },
+                              {
+                                'name' => 'call_number_label',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'label' => 'Call Number',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit',
+                                              'struct' => {
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'index' => 3,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text'
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef,
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'title',
+                                'index' => 4,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'table' => 'reporter.classic_item_list',
+                                              'struct' => {
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id'
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Title'
+                              },
+                              {
+                                'name' => 'barcode',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Barcode',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'name' => 'rocit',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Classic Item List',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'index' => 5,
+                                'datatype' => 'text',
+                                'path_label' => 'Classic Item List'
+                              },
+                              {
+                                'label' => 'Create Date',
+                                'path' => [
+                                            {
+                                              'id' => 'rocit',
+                                              'label' => 'Classic Item List',
+                                              'struct' => {
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Classic Item List',
+                                'index' => 6,
+                                'name' => 'create_date',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               }
+                              }
+                            ],
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'template' => {
+                          'create_time' => '2019-04-03 15:29:00.968721-04',
+                          'id' => 68216,
+                          'name' => 'List to Identify Items with Incorrect Shelving Locations',
+                          'folder' => 3046,
+                          'data' => '{"version":5,"doc_url":"","core_class":"rocit","select":[{"alias":"Owning Library","path":"rocit-owning_lib_name","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"owning_lib_name","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location Name","path":"rocit-shelving_location","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"shelving_location","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Shelving Location Owner","path":"acpl-owning_lib","field_doc":"","relation":"6fcbe190ee6d2070a0690375868306c2","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Call Number","path":"rocit-call_number_label","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"call_number_label","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Title","path":"rocit-title","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"title","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Barcode","path":"rocit-barcode","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"barcode","transform":"Bare","transform_label":"Raw Data","aggregate":false}},{"alias":"Create Date","path":"rocit-create_date","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"create_date","transform":"Bare","transform_label":"Raw Data","aggregate":false}}],"from":{"alias":"ffcaba321e8cae3469a746eab807d7ff","path":"rocit-rocit","table":"reporter.classic_item_list","idlclass":"rocit","label":"Classic Item List","join":{"id-ac894f4f7e2c39b13cd626965292e114":{"type":"inner","key":"id","alias":"ac894f4f7e2c39b13cd626965292e114","path":"rocit-id","table":"asset.copy","idlclass":"acp","join":{"location-a04a6eb2278f649c4fa90aa9efac17af":{"type":"inner","key":"id","alias":"6fcbe190ee6d2070a0690375868306c2","path":"rocit-id-location","table":"asset.copy_location","idlclass":"acpl","label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)"}}},"owning_lib-fbff8dd11a0d5df575245396e57d64f5":{"type":"inner","key":"id","alias":"93a33d246f9fc5d840a6330d99d2e850","path":"rocit-owning_lib","table":"actor.org_unit","idlclass":"aou","label":"Classic Item List :: Owning Lib"}}},"where":[{"alias":"Deleted","path":"rocit-deleted","field_doc":"","relation":"ffcaba321e8cae3469a746eab807d7ff","column":{"colname":"deleted","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"=":"f"}},{"alias":"Organizational Unit ID","path":"aou-id","field_doc":"","relation":"93a33d246f9fc5d840a6330d99d2e850","column":{"colname":"id","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"in":"::P0"}},{"alias":"Owning Org Unit","path":"acpl-owning_lib","field_doc":"","relation":"6fcbe190ee6d2070a0690375868306c2","column":{"colname":"owning_lib","transform":"Bare","transform_label":"Raw Data","aggregate":0},"condition":{"not in":"::P1"}}],"having":[],"display_cols":[{"name":"owning_lib_name","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":0,"label":"Owning Library","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"shelving_location","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":1,"label":"Shelving Location Name","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"owning_lib","label":"Shelving Location Owner","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":2,"path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Copy ID","from":"rocit","link":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"id":"rocit.acp","jtype":"inner","uplink":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Shelving Location","from":"rocit.acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"rocit.acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"path_label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)","transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""},{"name":"call_number_label","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":3,"label":"Call Number","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"title","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":4,"label":"Title","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"barcode","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":5,"label":"Barcode","datatype":"text","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"},{"name":"create_date","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":6,"label":"Create Date","datatype":"timestamp","doc_text":"","transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List"}],"filter_cols":[{"name":"deleted","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"}],"index":0,"label":"Deleted","datatype":"bool","doc_text":"","operator":{"op":"=","label":"Equals"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List","value":"f"},{"name":"id","path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Organizational Unit","from":"rocit","link":{"name":"owning_lib","label":"Owning Lib","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"link"},"id":"rocit.aou","jtype":"inner","uplink":{"name":"owning_lib","label":"Owning Lib","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"link"},"classname":"aou","struct":{"name":"aou","label":"Organizational Unit","table":"actor.org_unit","pkey":"id","pkey_sequence":"actor.org_unit_id_seq","core_label":"Non-core sources","classname":"aou"},"table":"actor.org_unit"}],"index":1,"label":"Organizational Unit ID","datatype":"org_unit","doc_text":"","operator":{"op":"in","label":"In list"},"transform":{"label":"Raw Data","transform":"Bare","aggregate":null},"path_label":"Classic Item List :: Owning Lib"},{"name":"owning_lib","label":"Owning Org Unit","type":"link","key":"id","class":"aou","reltype":"has_a","datatype":"org_unit","index":2,"path":[{"label":"Classic Item List","id":"rocit","jtype":"inner","classname":"rocit","struct":{"name":"rocit","label":"Classic Item List","table":"reporter.classic_item_list","core":true,"pkey":"id","core_label":"Core sources","classname":"rocit"},"table":"reporter.classic_item_list"},{"label":"Copy ID","from":"rocit","link":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"id":"rocit.acp","jtype":"inner","uplink":{"name":"id","label":"Copy ID","type":"link","key":"id","class":"acp","reltype":"has_a","datatype":"id"},"classname":"acp","struct":{"name":"acp","label":"Item","table":"asset.copy","core":true,"pkey":"id","pkey_sequence":"asset.copy_id_seq","core_label":"Core sources","classname":"acp"},"table":"asset.copy"},{"label":"Shelving Location","from":"rocit.acp","link":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"id":"rocit.acp.acpl","jtype":"inner","uplink":{"name":"location","label":"Shelving Location","type":"link","key":"id","class":"acpl","reltype":"has_a","datatype":"link"},"classname":"acpl","struct":{"name":"acpl","label":"Copy/Shelving Location","table":"asset.copy_location","pkey":"id","pkey_sequence":"asset.copy_location_id_seq","core_label":"Non-core sources","classname":"acpl"},"table":"asset.copy_location"}],"path_label":"Classic Item List -> Copy ID (inner) -> Shelving Location (inner)","operator":{"label":"Not in list","op":"not in"},"transform":{"transform":"Bare","label":"Raw Data","aggregate":false},"doc_text":""}]}',
+                          'description' => 'List of items whose owning library does not match their shelving location\'s owning library. 
+***Choose the same branch for BOTH branch dropdowns.***',
+                          'owner' => 2923364
+                        },
+          'data' => '{"P0":["278"],"P1":["278"]}',
+          'name' => 'fRIDAY TEST 6',
+          'folder' => 5527,
+          'create_time' => '2021-01-08 13:39:48.097348-05',
+          'id' => 189398,
+          'recurrence' => undef,
+          'recur' => 0,
+          'description' => '',
+          'owner' => 2923364
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'from' => {
+                      'table' => 'reporter.classic_item_list',
+                      'alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                      'join' => {
+                                  'owning_lib-fbff8dd11a0d5df575245396e57d64f5' => {
+                                                                                     'idlclass' => 'aou',
+                                                                                     'label' => 'Classic Item List :: Owning Lib',
+                                                                                     'path' => 'rocit-owning_lib',
+                                                                                     'key' => 'id',
+                                                                                     'alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                     'table' => 'actor.org_unit',
+                                                                                     'type' => 'inner'
+                                                                                   },
+                                  'id-ac894f4f7e2c39b13cd626965292e114' => {
+                                                                             'table' => 'asset.copy',
+                                                                             'type' => 'inner',
+                                                                             'alias' => 'ac894f4f7e2c39b13cd626965292e114',
+                                                                             'join' => {
+                                                                                         'location-a04a6eb2278f649c4fa90aa9efac17af' => {
+                                                                                                                                          'table' => 'asset.copy_location',
+                                                                                                                                          'type' => 'inner',
+                                                                                                                                          'alias' => '6fcbe190ee6d2070a0690375868306c2',
+                                                                                                                                          'key' => 'id',
+                                                                                                                                          'idlclass' => 'acpl',
+                                                                                                                                          'label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                                                                                                                                          'path' => 'rocit-id-location'
+                                                                                                                                        }
+                                                                                       },
+                                                                             'key' => 'id',
+                                                                             'idlclass' => 'acp',
+                                                                             'path' => 'rocit-id'
+                                                                           }
+                                },
+                      'label' => 'Classic Item List',
+                      'idlclass' => 'rocit',
+                      'path' => 'rocit-rocit'
+                    },
+          'select' => [
+                        {
+                          'alias' => 'Owning Library',
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'owning_lib_name',
+                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare'
+                                      },
+                          'path' => 'rocit-owning_lib_name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'shelving_location',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'alias' => 'Shelving Location Name',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-shelving_location'
+                        },
+                        {
+                          'path' => 'acpl-owning_lib',
+                          'relation' => '6fcbe190ee6d2070a0690375868306c2',
+                          'alias' => 'Shelving Location Owner',
+                          'column' => {
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'colname' => 'owning_lib'
+                                      },
+                          'field_doc' => ''
+                        },
+                        {
+                          'column' => {
+                                        'colname' => 'call_number_label',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data'
+                                      },
+                          'field_doc' => '',
+                          'alias' => 'Call Number',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-call_number_label'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'colname' => 'title'
+                                      },
+                          'alias' => 'Title',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-title'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'},
+                                        'transform' => 'Bare',
+                                        'transform_label' => 'Raw Data',
+                                        'colname' => 'barcode'
+                                      },
+                          'alias' => 'Barcode',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-barcode'
+                        },
+                        {
+                          'field_doc' => '',
+                          'column' => {
+                                        'colname' => 'create_date',
+                                        'transform_label' => 'Raw Data',
+                                        'transform' => 'Bare',
+                                        'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                      },
+                          'alias' => 'Create Date',
+                          'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                          'path' => 'rocit-create_date'
+                        }
+                      ],
+          'filter_cols' => [
+                             {
+                               'path_label' => 'Classic Item List',
+                               'datatype' => 'bool',
+                               'index' => 0,
+                               'operator' => {
+                                               'label' => 'Equals',
+                                               'op' => '='
+                                             },
+                               'label' => 'Deleted',
+                               'path' => [
+                                           {
+                                             'label' => 'Classic Item List',
+                                             'id' => 'rocit',
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner',
+                                             'table' => 'reporter.classic_item_list',
+                                             'struct' => {
+                                                           'core' => bless( do{\(my $o = 1)}, 'JSON::PP::Boolean' ),
+                                                           'name' => 'rocit',
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Classic Item List',
+                                                           'table' => 'reporter.classic_item_list',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'rocit'
+                                                         }
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'name' => 'deleted',
+                               'value' => 'f'
+                             },
+                             {
+                               'name' => 'id',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => undef
+                                              },
+                               'label' => 'Organizational Unit ID',
+                               'doc_text' => '',
+                               'path' => [
+                                           {
+                                             'id' => 'rocit',
+                                             'label' => 'Classic Item List',
+                                             'struct' => {
+                                                           'label' => 'Classic Item List',
+                                                           'core_label' => 'Core sources',
+                                                           'name' => 'rocit',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'classname' => 'rocit',
+                                                           'pkey' => 'id',
+                                                           'table' => 'reporter.classic_item_list'
+                                                         },
+                                             'table' => 'reporter.classic_item_list',
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner'
+                                           },
+                                           {
+                                             'link' => {
+                                                         'type' => 'link',
+                                                         'datatype' => 'link',
+                                                         'class' => 'aou',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'owning_lib',
+                                                         'key' => 'id',
+                                                         'label' => 'Owning Lib'
+                                                       },
+                                             'id' => 'rocit.aou',
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'owning_lib',
+                                                           'label' => 'Owning Lib',
+                                                           'datatype' => 'link',
+                                                           'type' => 'link',
+                                                           'class' => 'aou'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'table' => 'actor.org_unit',
+                                             'struct' => {
+                                                           'label' => 'Organizational Unit',
+                                                           'core_label' => 'Non-core sources',
+                                                           'name' => 'aou',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'aou',
+                                                           'pkey_sequence' => 'actor.org_unit_id_seq',
+                                                           'table' => 'actor.org_unit'
+                                                         },
+                                             'label' => 'Organizational Unit',
+                                             'classname' => 'aou',
+                                             'from' => 'rocit'
+                                           }
+                                         ],
+                               'path_label' => 'Classic Item List :: Owning Lib',
+                               'datatype' => 'org_unit',
+                               'index' => 1,
+                               'operator' => {
+                                               'label' => 'In list',
+                                               'op' => 'in'
+                                             }
+                             },
+                             {
+                               'name' => 'owning_lib',
+                               'key' => 'id',
+                               'type' => 'link',
+                               'transform' => {
+                                                'label' => 'Raw Data',
+                                                'transform' => 'Bare',
+                                                'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                              },
+                               'class' => 'aou',
+                               'reltype' => 'has_a',
+                               'path' => [
+                                           {
+                                             'classname' => 'rocit',
+                                             'jtype' => 'inner',
+                                             'table' => 'reporter.classic_item_list',
+                                             'struct' => {
+                                                           'label' => 'Classic Item List',
+                                                           'core_label' => 'Core sources',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'name' => 'rocit',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'rocit',
+                                                           'table' => 'reporter.classic_item_list'
+                                                         },
+                                             'label' => 'Classic Item List',
+                                             'id' => 'rocit'
+                                           },
+                                           {
+                                             'table' => 'asset.copy',
+                                             'struct' => {
+                                                           'table' => 'asset.copy',
+                                                           'pkey' => 'id',
+                                                           'name' => 'acp',
+                                                           'pkey_sequence' => 'asset.copy_id_seq',
+                                                           'classname' => 'acp',
+                                                           'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                           'core_label' => 'Core sources',
+                                                           'label' => 'Item'
+                                                         },
+                                             'uplink' => {
+                                                           'datatype' => 'id',
+                                                           'type' => 'link',
+                                                           'class' => 'acp',
+                                                           'reltype' => 'has_a',
+                                                           'key' => 'id',
+                                                           'name' => 'id',
+                                                           'label' => 'Copy ID'
+                                                         },
+                                             'jtype' => 'inner',
+                                             'link' => {
+                                                         'label' => 'Copy ID',
+                                                         'key' => 'id',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'id',
+                                                         'class' => 'acp',
+                                                         'type' => 'link',
+                                                         'datatype' => 'id'
+                                                       },
+                                             'id' => 'rocit.acp',
+                                             'from' => 'rocit',
+                                             'classname' => 'acp',
+                                             'label' => 'Copy ID'
+                                           },
+                                           {
+                                             'classname' => 'acpl',
+                                             'from' => 'rocit.acp',
+                                             'label' => 'Shelving Location',
+                                             'jtype' => 'inner',
+                                             'uplink' => {
+                                                           'reltype' => 'has_a',
+                                                           'name' => 'location',
+                                                           'key' => 'id',
+                                                           'label' => 'Shelving Location',
+                                                           'type' => 'link',
+                                                           'datatype' => 'link',
+                                                           'class' => 'acpl'
+                                                         },
+                                             'struct' => {
+                                                           'core_label' => 'Non-core sources',
+                                                           'label' => 'Copy/Shelving Location',
+                                                           'name' => 'acpl',
+                                                           'pkey' => 'id',
+                                                           'classname' => 'acpl',
+                                                           'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                           'table' => 'asset.copy_location'
+                                                         },
+                                             'table' => 'asset.copy_location',
+                                             'link' => {
+                                                         'class' => 'acpl',
+                                                         'datatype' => 'link',
+                                                         'type' => 'link',
+                                                         'label' => 'Shelving Location',
+                                                         'reltype' => 'has_a',
+                                                         'name' => 'location',
+                                                         'key' => 'id'
+                                                       },
+                                             'id' => 'rocit.acp.acpl'
+                                           }
+                                         ],
+                               'doc_text' => '',
+                               'label' => 'Owning Org Unit',
+                               'datatype' => 'org_unit',
+                               'path_label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                               'operator' => {
+                                               'op' => 'not in',
+                                               'label' => 'Not in list'
+                                             },
+                               'index' => 2
+                             }
+                           ],
+          'core_class' => 'rocit',
+          'where' => [
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'deleted'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Deleted',
+                         'condition' => {
+                                          '=' => 'f'
+                                        },
+                         'relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                         'path' => 'rocit-deleted'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data',
+                                       'aggregate' => 0,
+                                       'colname' => 'id'
+                                     },
+                         'field_doc' => '',
+                         'alias' => 'Organizational Unit ID',
+                         'relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                         'condition' => {
+                                          'in' => '::P0'
+                                        },
+                         'path' => 'aou-id'
+                       },
+                       {
+                         'alias' => 'Owning Org Unit',
+                         'column' => {
+                                       'colname' => 'owning_lib',
+                                       'aggregate' => 0,
+                                       'transform' => 'Bare',
+                                       'transform_label' => 'Raw Data'
+                                     },
+                         'field_doc' => '',
+                         'path' => 'acpl-owning_lib',
+                         'condition' => {
+                                          'not in' => '::P1'
+                                        },
+                         'relation' => '6fcbe190ee6d2070a0690375868306c2'
+                       }
+                     ],
+          'version' => 5,
+          'doc_url' => '',
+          'display_cols' => [
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'owning_lib_name',
+                                'index' => 0,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'path' => [
+                                            {
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Classic Item List'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'label' => 'Owning Library'
+                              },
+                              {
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef
+                                               },
+                                'name' => 'shelving_location',
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'index' => 1,
+                                'label' => 'Shelving Location Name',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources'
+                                                          },
+                                              'table' => 'reporter.classic_item_list'
+                                            }
+                                          ],
+                                'doc_text' => ''
+                              },
+                              {
+                                'index' => 2,
+                                'path_label' => 'Classic Item List -> Copy ID (inner) -> Shelving Location (inner)',
+                                'datatype' => 'org_unit',
+                                'label' => 'Shelving Location Owner',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'struct' => {
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list'
+                                                          },
+                                              'table' => 'reporter.classic_item_list'
+                                            },
+                                            {
+                                              'id' => 'rocit.acp',
+                                              'link' => {
+                                                          'type' => 'link',
+                                                          'datatype' => 'id',
+                                                          'class' => 'acp',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'id',
+                                                          'key' => 'id',
+                                                          'label' => 'Copy ID'
+                                                        },
+                                              'uplink' => {
+                                                            'label' => 'Copy ID',
+                                                            'name' => 'id',
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'class' => 'acp',
+                                                            'datatype' => 'id',
+                                                            'type' => 'link'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'table' => 'asset.copy',
+                                              'struct' => {
+                                                            'name' => 'acp',
+                                                            'table' => 'asset.copy',
+                                                            'pkey' => 'id',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Item',
+                                                            'core_label' => 'Core sources',
+                                                            'pkey_sequence' => 'asset.copy_id_seq',
+                                                            'classname' => 'acp'
+                                                          },
+                                              'label' => 'Copy ID',
+                                              'classname' => 'acp',
+                                              'from' => 'rocit'
+                                            },
+                                            {
+                                              'struct' => {
+                                                            'name' => 'acpl',
+                                                            'label' => 'Copy/Shelving Location',
+                                                            'core_label' => 'Non-core sources',
+                                                            'pkey_sequence' => 'asset.copy_location_id_seq',
+                                                            'table' => 'asset.copy_location',
+                                                            'pkey' => 'id',
+                                                            'classname' => 'acpl'
+                                                          },
+                                              'table' => 'asset.copy_location',
+                                              'uplink' => {
+                                                            'reltype' => 'has_a',
+                                                            'key' => 'id',
+                                                            'name' => 'location',
+                                                            'label' => 'Shelving Location',
+                                                            'type' => 'link',
+                                                            'datatype' => 'link',
+                                                            'class' => 'acpl'
+                                                          },
+                                              'jtype' => 'inner',
+                                              'id' => 'rocit.acp.acpl',
+                                              'link' => {
+                                                          'datatype' => 'link',
+                                                          'type' => 'link',
+                                                          'class' => 'acpl',
+                                                          'key' => 'id',
+                                                          'reltype' => 'has_a',
+                                                          'name' => 'location',
+                                                          'label' => 'Shelving Location'
+                                                        },
+                                              'from' => 'rocit.acp',
+                                              'classname' => 'acpl',
+                                              'label' => 'Shelving Location'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'reltype' => 'has_a',
+                                'class' => 'aou',
+                                'type' => 'link',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => $VAR1->{'select'}[0]{'column'}{'aggregate'}
+                                               },
+                                'key' => 'id',
+                                'name' => 'owning_lib'
+                              },
+                              {
+                                'name' => 'call_number_label',
+                                'transform' => {
+                                                 'label' => 'Raw Data',
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare'
+                                               },
+                                'label' => 'Call Number',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit',
+                                              'struct' => {
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'}
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'index' => 3,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text'
+                              },
+                              {
+                                'transform' => {
+                                                 'transform' => 'Bare',
+                                                 'aggregate' => undef,
+                                                 'label' => 'Raw Data'
+                                               },
+                                'name' => 'title',
+                                'index' => 4,
+                                'path_label' => 'Classic Item List',
+                                'datatype' => 'text',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit',
+                                              'classname' => 'rocit',
+                                              'jtype' => 'inner',
+                                              'table' => 'reporter.classic_item_list',
+                                              'struct' => {
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id'
+                                                          }
+                                            }
+                                          ],
+                                'label' => 'Title'
+                              },
+                              {
+                                'name' => 'barcode',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               },
+                                'label' => 'Barcode',
+                                'doc_text' => '',
+                                'path' => [
+                                            {
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit',
+                                              'struct' => {
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'name' => 'rocit',
+                                                            'core_label' => 'Core sources',
+                                                            'label' => 'Classic Item List',
+                                                            'table' => 'reporter.classic_item_list',
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'label' => 'Classic Item List',
+                                              'id' => 'rocit'
+                                            }
+                                          ],
+                                'index' => 5,
+                                'datatype' => 'text',
+                                'path_label' => 'Classic Item List'
+                              },
+                              {
+                                'label' => 'Create Date',
+                                'path' => [
+                                            {
+                                              'id' => 'rocit',
+                                              'label' => 'Classic Item List',
+                                              'struct' => {
+                                                            'label' => 'Classic Item List',
+                                                            'core_label' => 'Core sources',
+                                                            'name' => 'rocit',
+                                                            'core' => $VAR1->{'filter_cols'}[0]{'path'}[0]{'struct'}{'core'},
+                                                            'classname' => 'rocit',
+                                                            'pkey' => 'id',
+                                                            'table' => 'reporter.classic_item_list'
+                                                          },
+                                              'table' => 'reporter.classic_item_list',
+                                              'jtype' => 'inner',
+                                              'classname' => 'rocit'
+                                            }
+                                          ],
+                                'doc_text' => '',
+                                'datatype' => 'timestamp',
+                                'path_label' => 'Classic Item List',
+                                'index' => 6,
+                                'name' => 'create_date',
+                                'transform' => {
+                                                 'aggregate' => undef,
+                                                 'transform' => 'Bare',
+                                                 'label' => 'Raw Data'
+                                               }
+                              }
+                            ],
+          'having' => []
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2021-01-08 13:39:48.097348-05</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_select' => [
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_builder' => bless( {
+                                                                '_params' => {
+                                                                               'P0' => [
+                                                                                         '278'
+                                                                                       ],
+                                                                               'P1' => [
+                                                                                         '278'
+                                                                                       ]
+                                                                             },
+                                                                '_resultset_limit' => 1048575,
+                                                                '_sql' => undef,
+                                                                '_rels' => {
+                                                                             'ac894f4f7e2c39b13cd626965292e114' => bless( {
+                                                                                                                            '_sql' => 'asset.copy AS "ac894f4f7e2c39b13cd626965292e114"',
+                                                                                                                            '_join_type' => 'inner',
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_table' => 'asset.copy_location',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_sql' => 'asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2"',
+                                                                                                                                                                           '_join_type' => 'inner',
+                                                                                                                                                                           '_alias' => '6fcbe190ee6d2070a0690375868306c2',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'}
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2" ON ("ac894f4f7e2c39b13cd626965292e114"."location" = "6fcbe190ee6d2070a0690375868306c2"."id")',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ac894f4f7e2c39b13cd626965292e114'},
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_col' => 'location'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                       ],
+                                                                                                                            '_table' => 'asset.copy',
+                                                                                                                            '_is_join' => 1,
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_alias' => 'ac894f4f7e2c39b13cd626965292e114',
+                                                                                                                            '_nullable' => undef
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '6fcbe190ee6d2070a0690375868306c2' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ac894f4f7e2c39b13cd626965292e114'}{'_join'}[0]{'_right_rel'},
+                                                                             'ffcaba321e8cae3469a746eab807d7ff' => bless( {
+                                                                                                                            '_columns' => [],
+                                                                                                                            '_join' => [
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ac894f4f7e2c39b13cd626965292e114'},
+                                                                                                                                                  '_left_col' => 'id',
+                                                                                                                                                  '_join_type' => 'i',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN asset.copy AS "ac894f4f7e2c39b13cd626965292e114" ON ("ffcaba321e8cae3469a746eab807d7ff"."id" = "ac894f4f7e2c39b13cd626965292e114"."id")
+	INNER JOIN asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2" ON ("ac894f4f7e2c39b13cd626965292e114"."location" = "6fcbe190ee6d2070a0690375868306c2"."id")',
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'}
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                                         bless( {
+                                                                                                                                                  '_right_rel' => bless( {
+                                                                                                                                                                           '_alias' => '93a33d246f9fc5d840a6330d99d2e850',
+                                                                                                                                                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                                                                           '_columns' => [],
+                                                                                                                                                                           '_join' => [],
+                                                                                                                                                                           '_table' => 'actor.org_unit',
+                                                                                                                                                                           '_is_join' => 1,
+                                                                                                                                                                           '_sql' => 'actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850"',
+                                                                                                                                                                           '_join_type' => 'inner'
+                                                                                                                                                                         }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                                                                                                  '_left_col' => 'owning_lib',
+                                                                                                                                                  '_left_rel' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                                                                                                                                                  '_right_col' => 'id',
+                                                                                                                                                  '_sql' => '
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")',
+                                                                                                                                                  '_join_type' => 'i'
+                                                                                                                                                }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                                                       ],
+                                                                                                                            '_alias' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                                                                                                            '_table' => 'reporter.classic_item_list',
+                                                                                                                            '_nullable' => undef,
+                                                                                                                            '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                                                                                                            '_sql' => 'reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN asset.copy AS "ac894f4f7e2c39b13cd626965292e114" ON ("ffcaba321e8cae3469a746eab807d7ff"."id" = "ac894f4f7e2c39b13cd626965292e114"."id")
+	INNER JOIN asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2" ON ("ac894f4f7e2c39b13cd626965292e114"."location" = "6fcbe190ee6d2070a0690375868306c2"."id")
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")'
+                                                                                                                          }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                                             '93a33d246f9fc5d840a6330d99d2e850' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'}{'_join'}[1]{'_right_rel'}
+                                                                           },
+                                                                '_relative_time' => '2021-01-08 13:39:48.097348-05'
+                                                              }, 'OpenILS::Reporter::SQLBuilder' ),
+                                         '_aggregate' => undef,
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Library"',
+                                         '_alias' => 'Owning Library',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => bless( do{\(my $o = 0)}, 'JSON::PP::Boolean' ),
+                                                        'colname' => 'owning_lib_name'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name"',
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'shelving_location',
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'}
+                                                      },
+                                         '_alias' => 'Shelving Location Name'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"6fcbe190ee6d2070a0690375868306c2"."owning_lib" AS "Shelving Location Owner"',
+                                         '_relation' => '6fcbe190ee6d2070a0690375868306c2',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_alias' => 'Shelving Location Owner',
+                                         '_column' => {
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'owning_lib'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Call Number',
+                                         '_column' => {
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'colname' => 'call_number_label'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."call_number_label" AS "Call Number"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_alias' => 'Title',
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'title'
+                                                      },
+                                         '_transform' => 'Bare',
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."title" AS "Title"'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_column' => {
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform' => 'Bare',
+                                                        'transform_label' => 'Raw Data',
+                                                        'colname' => 'barcode'
+                                                      },
+                                         '_alias' => 'Barcode',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Barcode"',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_transform' => 'Bare'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                         '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                         '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."create_date" AS "Create Date"',
+                                         '_transform' => 'Bare',
+                                         '_column' => {
+                                                        'colname' => 'create_date',
+                                                        'aggregate' => $VAR1->{'_select'}[0]{'_column'}{'aggregate'},
+                                                        'transform_label' => 'Raw Data',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Create Date'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                 '_from' => $VAR1->{'_select'}[0]{'_builder'}{'_rels'}{'ffcaba321e8cae3469a746eab807d7ff'},
+                 '_sql' => 'SELECT * FROM (SELECT	"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" AS "Owning Library",
+	"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" AS "Shelving Location Name",
+	"6fcbe190ee6d2070a0690375868306c2"."owning_lib" AS "Shelving Location Owner",
+	"ffcaba321e8cae3469a746eab807d7ff"."call_number_label" AS "Call Number",
+	"ffcaba321e8cae3469a746eab807d7ff"."title" AS "Title",
+	"ffcaba321e8cae3469a746eab807d7ff"."barcode" AS "Barcode",
+	"ffcaba321e8cae3469a746eab807d7ff"."create_date" AS "Create Date"
+  FROM	reporter.classic_item_list AS "ffcaba321e8cae3469a746eab807d7ff"
+	INNER JOIN asset.copy AS "ac894f4f7e2c39b13cd626965292e114" ON ("ffcaba321e8cae3469a746eab807d7ff"."id" = "ac894f4f7e2c39b13cd626965292e114"."id")
+	INNER JOIN asset.copy_location AS "6fcbe190ee6d2070a0690375868306c2" ON ("ac894f4f7e2c39b13cd626965292e114"."location" = "6fcbe190ee6d2070a0690375868306c2"."id")
+	INNER JOIN actor.org_unit AS "93a33d246f9fc5d840a6330d99d2e850" ON ("ffcaba321e8cae3469a746eab807d7ff"."owning_lib" = "93a33d246f9fc5d840a6330d99d2e850"."id")
+  WHERE	"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_53333$f$_53333$
+	AND "93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_53333$278$_53333$)
+	AND "6fcbe190ee6d2070a0690375868306c2"."owning_lib" NOT IN ($_53333$278$_53333$)
+  GROUP BY 1, 2, 3, 4, 5, 6, 7
+  ORDER BY "ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC, "ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC, "6fcbe190ee6d2070a0690375868306c2"."owning_lib" ASC, "ffcaba321e8cae3469a746eab807d7ff"."call_number_label" ASC, "ffcaba321e8cae3469a746eab807d7ff"."title" ASC, "ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC, "ffcaba321e8cae3469a746eab807d7ff"."create_date" ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."deleted" = $_53333$f$_53333$',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                        '_transform' => 'Bare',
+                                        '_condition' => {
+                                                          '=' => 'f'
+                                                        },
+                                        '_column' => {
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare',
+                                                       'aggregate' => 0,
+                                                       'colname' => 'deleted'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'id',
+                                                       'aggregate' => 0,
+                                                       'transform_label' => 'Raw Data',
+                                                       'transform' => 'Bare'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P0'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_relation' => '93a33d246f9fc5d840a6330d99d2e850',
+                                        '_aggregate' => undef,
+                                        '_sql' => '"93a33d246f9fc5d840a6330d99d2e850"."id" IN ($_53333$278$_53333$)'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_transform' => 'Bare',
+                                        '_sql' => '"6fcbe190ee6d2070a0690375868306c2"."owning_lib" NOT IN ($_53333$278$_53333$)',
+                                        '_relation' => '6fcbe190ee6d2070a0690375868306c2',
+                                        '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_condition' => {
+                                                          'not in' => '::P1'
+                                                        },
+                                        '_column' => {
+                                                       'colname' => 'owning_lib',
+                                                       'aggregate' => 0,
+                                                       'transform' => 'Bare',
+                                                       'transform_label' => 'Raw Data'
+                                                     }
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."owning_lib_name" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."shelving_location" ASC',
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef,
+                                           '_relation' => '6fcbe190ee6d2070a0690375868306c2',
+                                           '_sql' => '"6fcbe190ee6d2070a0690375868306c2"."owning_lib" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_aggregate' => undef,
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."call_number_label" ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."title" ASC',
+                                           '_transform' => 'Bare',
+                                           '_column' => $VAR1->{'_select'}[4]{'_column'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_direction' => 'ascending',
+                                           '_column' => $VAR1->{'_select'}[5]{'_column'},
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."barcode" ASC',
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_aggregate' => undef
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_column' => $VAR1->{'_select'}[6]{'_column'},
+                                           '_direction' => 'ascending',
+                                           '_sql' => '"ffcaba321e8cae3469a746eab807d7ff"."create_date" ASC',
+                                           '_builder' => $VAR1->{'_select'}[0]{'_builder'},
+                                           '_relation' => 'ffcaba321e8cae3469a746eab807d7ff',
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ],
+                 '_having' => []
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

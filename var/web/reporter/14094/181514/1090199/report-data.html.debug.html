@@ -1,0 +1,420 @@
+<html><head><meta charset='utf-8'><title>DEBUG: FY20 OCRL Total Circ by Circ Mod</title></head><body><h1>Generated SQL</h1><pre>SELECT * FROM (SELECT	"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Library Short (Policy) Name",
+	(EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || '-' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,'0')) AS "Check Out Month",
+	"7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" AS "Circulation Modifier",
+	COUNT("fce458da5814089639960610c48d19d2"."id") AS "Count"
+  FROM	action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")
+  WHERE	"6b89db56fc7d830b621fe56999f87eba"."id" IN ($_127536$198$_127536$,$_127536$199$_127536$,$_127536$200$_127536$,$_127536$201$_127536$,$_127536$202$_127536$)
+	AND (EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || '-' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,'0')) BETWEEN $_127536$2019-07$_127536$ AND $_127536$2020-06$_127536$
+  GROUP BY 1, 2, 3
+  ORDER BY "6b89db56fc7d830b621fe56999f87eba"."shortname" ASC, (EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || '-' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,'0')) ASC, "7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" ASC, COUNT("fce458da5814089639960610c48d19d2"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template</h1><pre>$VAR1 = {
+          'name' => 'Master Monthly Circ by Circulation Modifier (DATE BETWEEN)',
+          'folder' => 1248,
+          'owner' => 2134611,
+          'create_time' => '2010-08-24 13:58:36.879497-04',
+          'data' => '{"select":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-xact_start","alias":"Check Out Month","column":{"transform":"month_trunc","colname":"xact_start"}},{"relation":"7fb66fd46f5581428d27fcd56ad5c85f","path":"circ-target_copy-acp-circ_modifier","alias":"Circulation Modifier","column":{"transform":"Bare","colname":"circ_modifier"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"action.circulation","path":"circ","alias":"fce458da5814089639960610c48d19d2","join":{"circ_lib":{"key":"id","table":"actor.org_unit","path":"circ-circ_lib-aou","alias":"6b89db56fc7d830b621fe56999f87eba"},"target_copy":{"key":"id","table":"asset.copy","path":"circ-target_copy-acp","alias":"7fb66fd46f5581428d27fcd56ad5c85f"}}},"where":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P3"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-xact_start","column":{"transform":"month_trunc","colname":"xact_start"},"condition":{"between":"::P4"}}],"having":[],"order_by":[]}',
+          'description' => 'Count of circulations at selected libraries by month, broken down by item stat cat and circ modifier (old item type).',
+          'id' => 14094
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Template Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'having' => [],
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     },
+                         'condition' => {
+                                          'in' => '::P3'
+                                        },
+                         'path' => 'circ-circ_lib-aou-id',
+                         'relation' => '6b89db56fc7d830b621fe56999f87eba'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'month_trunc',
+                                       'colname' => 'xact_start'
+                                     },
+                         'condition' => {
+                                          'between' => '::P4'
+                                        },
+                         'relation' => 'fce458da5814089639960610c48d19d2',
+                         'path' => 'circ-xact_start'
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'path' => 'circ-circ_lib-aou-shortname',
+                          'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                          'alias' => 'Library Short (Policy) Name'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'colname' => 'xact_start'
+                                      },
+                          'alias' => 'Check Out Month',
+                          'relation' => 'fce458da5814089639960610c48d19d2',
+                          'path' => 'circ-xact_start'
+                        },
+                        {
+                          'alias' => 'Circulation Modifier',
+                          'relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                          'path' => 'circ-target_copy-acp-circ_modifier',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'circ_modifier'
+                                      }
+                        },
+                        {
+                          'relation' => 'fce458da5814089639960610c48d19d2',
+                          'alias' => 'Count',
+                          'path' => 'circ-id',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'count'
+                                      }
+                        }
+                      ],
+          'from' => {
+                      'path' => 'circ',
+                      'alias' => 'fce458da5814089639960610c48d19d2',
+                      'join' => {
+                                  'circ_lib' => {
+                                                  'alias' => '6b89db56fc7d830b621fe56999f87eba',
+                                                  'path' => 'circ-circ_lib-aou',
+                                                  'table' => 'actor.org_unit',
+                                                  'key' => 'id'
+                                                },
+                                  'target_copy' => {
+                                                     'table' => 'asset.copy',
+                                                     'alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                     'path' => 'circ-target_copy-acp',
+                                                     'key' => 'id'
+                                                   }
+                                },
+                      'table' => 'action.circulation'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter</h1><pre>$VAR1 = {
+          'data' => '{"P3":["198","199","200","201","202"],"P4":["2019-07","2020-06"],"__pivot_label":"","__pivot_data":"4"}',
+          'recurrence' => '1 day',
+          'folder' => 1296,
+          'id' => 181514,
+          'template' => {
+                          'name' => 'Master Monthly Circ by Circulation Modifier (DATE BETWEEN)',
+                          'folder' => 1248,
+                          'owner' => 2134611,
+                          'create_time' => '2010-08-24 13:58:36.879497-04',
+                          'data' => '{"select":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-shortname","alias":"Library Short (Policy) Name","column":{"transform":"Bare","colname":"shortname"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-xact_start","alias":"Check Out Month","column":{"transform":"month_trunc","colname":"xact_start"}},{"relation":"7fb66fd46f5581428d27fcd56ad5c85f","path":"circ-target_copy-acp-circ_modifier","alias":"Circulation Modifier","column":{"transform":"Bare","colname":"circ_modifier"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-id","alias":"Count","column":{"transform":"count","colname":"id"}}],"from":{"table":"action.circulation","path":"circ","alias":"fce458da5814089639960610c48d19d2","join":{"circ_lib":{"key":"id","table":"actor.org_unit","path":"circ-circ_lib-aou","alias":"6b89db56fc7d830b621fe56999f87eba"},"target_copy":{"key":"id","table":"asset.copy","path":"circ-target_copy-acp","alias":"7fb66fd46f5581428d27fcd56ad5c85f"}}},"where":[{"relation":"6b89db56fc7d830b621fe56999f87eba","path":"circ-circ_lib-aou-id","column":{"transform":"Bare","colname":"id"},"condition":{"in":"::P3"}},{"relation":"fce458da5814089639960610c48d19d2","path":"circ-xact_start","column":{"transform":"month_trunc","colname":"xact_start"},"condition":{"between":"::P4"}}],"having":[],"order_by":[]}',
+                          'description' => 'Count of circulations at selected libraries by month, broken down by item stat cat and circ modifier (old item type).',
+                          'id' => 14094
+                        },
+          'create_time' => '2020-08-13 14:47:08.343873-04',
+          'description' => '',
+          'owner' => 2134611,
+          'name' => 'FY20 OCRL Total Circ by Circ Mod',
+          'recur' => 0
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Parameter Data</h1><pre>$VAR1 = {
+          'order_by' => [],
+          'having' => [],
+          'where' => [
+                       {
+                         'column' => {
+                                       'colname' => 'id',
+                                       'transform' => 'Bare'
+                                     },
+                         'condition' => {
+                                          'in' => '::P3'
+                                        },
+                         'path' => 'circ-circ_lib-aou-id',
+                         'relation' => '6b89db56fc7d830b621fe56999f87eba'
+                       },
+                       {
+                         'column' => {
+                                       'transform' => 'month_trunc',
+                                       'colname' => 'xact_start'
+                                     },
+                         'condition' => {
+                                          'between' => '::P4'
+                                        },
+                         'relation' => 'fce458da5814089639960610c48d19d2',
+                         'path' => 'circ-xact_start'
+                       }
+                     ],
+          'select' => [
+                        {
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'shortname'
+                                      },
+                          'path' => 'circ-circ_lib-aou-shortname',
+                          'relation' => '6b89db56fc7d830b621fe56999f87eba',
+                          'alias' => 'Library Short (Policy) Name'
+                        },
+                        {
+                          'column' => {
+                                        'transform' => 'month_trunc',
+                                        'colname' => 'xact_start'
+                                      },
+                          'alias' => 'Check Out Month',
+                          'relation' => 'fce458da5814089639960610c48d19d2',
+                          'path' => 'circ-xact_start'
+                        },
+                        {
+                          'alias' => 'Circulation Modifier',
+                          'relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                          'path' => 'circ-target_copy-acp-circ_modifier',
+                          'column' => {
+                                        'transform' => 'Bare',
+                                        'colname' => 'circ_modifier'
+                                      }
+                        },
+                        {
+                          'relation' => 'fce458da5814089639960610c48d19d2',
+                          'alias' => 'Count',
+                          'path' => 'circ-id',
+                          'column' => {
+                                        'colname' => 'id',
+                                        'transform' => 'count'
+                                      }
+                        }
+                      ],
+          'from' => {
+                      'path' => 'circ',
+                      'alias' => 'fce458da5814089639960610c48d19d2',
+                      'join' => {
+                                  'circ_lib' => {
+                                                  'alias' => '6b89db56fc7d830b621fe56999f87eba',
+                                                  'path' => 'circ-circ_lib-aou',
+                                                  'table' => 'actor.org_unit',
+                                                  'key' => 'id'
+                                                },
+                                  'target_copy' => {
+                                                     'table' => 'asset.copy',
+                                                     'alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                     'path' => 'circ-target_copy-acp',
+                                                     'key' => 'id'
+                                                   }
+                                },
+                      'table' => 'action.circulation'
+                    }
+        };
+</pre><a href='report-data.html'>Back to output index</a><hr/><h1>Report Run Time</h1><pre>2020-08-13 14:47:08.343873-04</pre><a href='report-data.html'>Back to output index</a><hr/><h1>OpenILS::Reporter::SQLBuilder::ResultSet Object</h1><pre>$VAR1 = bless( {
+                 '_having' => [],
+                 '_builder' => bless( {
+                                        '_sql' => undef,
+                                        '_resultset_limit' => 1048575,
+                                        '_relative_time' => '2020-08-13 14:47:08.343873-04',
+                                        '_rels' => {
+                                                     '7fb66fd46f5581428d27fcd56ad5c85f' => bless( {
+                                                                                                    '_join_type' => 'inner',
+                                                                                                    '_sql' => 'asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f"',
+                                                                                                    '_table' => 'asset.copy',
+                                                                                                    '_is_join' => 1,
+                                                                                                    '_alias' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [],
+                                                                                                    '_builder' => $VAR1->{'_builder'}
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     'fce458da5814089639960610c48d19d2' => bless( {
+                                                                                                    '_nullable' => undef,
+                                                                                                    '_sql' => 'action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")',
+                                                                                                    '_alias' => 'fce458da5814089639960610c48d19d2',
+                                                                                                    '_builder' => $VAR1->{'_builder'},
+                                                                                                    '_columns' => [],
+                                                                                                    '_join' => [
+                                                                                                                 bless( {
+                                                                                                                          '_right_rel' => $VAR1->{'_builder'}{'_rels'}{'7fb66fd46f5581428d27fcd56ad5c85f'},
+                                                                                                                          '_sql' => '
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_col' => 'target_copy',
+                                                                                                                          '_join_type' => 'i'
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' ),
+                                                                                                                 bless( {
+                                                                                                                          '_join_type' => 'i',
+                                                                                                                          '_left_col' => 'circ_lib',
+                                                                                                                          '_right_col' => 'id',
+                                                                                                                          '_left_rel' => $VAR1->{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                                                                                                                          '_sql' => '
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")',
+                                                                                                                          '_right_rel' => bless( {
+                                                                                                                                                   '_is_join' => 1,
+                                                                                                                                                   '_builder' => $VAR1->{'_builder'},
+                                                                                                                                                   '_columns' => [],
+                                                                                                                                                   '_join' => [],
+                                                                                                                                                   '_alias' => '6b89db56fc7d830b621fe56999f87eba',
+                                                                                                                                                   '_join_type' => 'inner',
+                                                                                                                                                   '_table' => 'actor.org_unit',
+                                                                                                                                                   '_sql' => 'actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba"'
+                                                                                                                                                 }, 'OpenILS::Reporter::SQLBuilder::Relation' )
+                                                                                                                        }, 'OpenILS::Reporter::SQLBuilder::Join::inner' )
+                                                                                                               ],
+                                                                                                    '_table' => 'action.circulation'
+                                                                                                  }, 'OpenILS::Reporter::SQLBuilder::Relation' ),
+                                                     '6b89db56fc7d830b621fe56999f87eba' => $VAR1->{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'}{'_join'}[1]{'_right_rel'}
+                                                   },
+                                        '_params' => {
+                                                       '__pivot_label' => '',
+                                                       '__pivot_data' => '4',
+                                                       'P4' => [
+                                                                 '2019-07',
+                                                                 '2020-06'
+                                                               ],
+                                                       'P3' => [
+                                                                 '198',
+                                                                 '199',
+                                                                 '200',
+                                                                 '201',
+                                                                 '202'
+                                                               ]
+                                                     },
+                                        '_pivot_data' => '4'
+                                      }, 'OpenILS::Reporter::SQLBuilder' ),
+                 '_sql' => 'SELECT * FROM (SELECT	"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Library Short (Policy) Name",
+	(EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) AS "Check Out Month",
+	"7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" AS "Circulation Modifier",
+	COUNT("fce458da5814089639960610c48d19d2"."id") AS "Count"
+  FROM	action.circulation AS "fce458da5814089639960610c48d19d2"
+	INNER JOIN asset.copy AS "7fb66fd46f5581428d27fcd56ad5c85f" ON ("fce458da5814089639960610c48d19d2"."target_copy" = "7fb66fd46f5581428d27fcd56ad5c85f"."id")
+	INNER JOIN actor.org_unit AS "6b89db56fc7d830b621fe56999f87eba" ON ("fce458da5814089639960610c48d19d2"."circ_lib" = "6b89db56fc7d830b621fe56999f87eba"."id")
+  WHERE	"6b89db56fc7d830b621fe56999f87eba"."id" IN ($_127536$198$_127536$,$_127536$199$_127536$,$_127536$200$_127536$,$_127536$201$_127536$,$_127536$202$_127536$)
+	AND (EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) BETWEEN $_127536$2019-07$_127536$ AND $_127536$2020-06$_127536$
+  GROUP BY 1, 2, 3
+  ORDER BY "6b89db56fc7d830b621fe56999f87eba"."shortname" ASC, (EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) ASC, "7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" ASC, COUNT("fce458da5814089639960610c48d19d2"."id") ASC
+) limited_to_1048575_hits LIMIT 1048575
+',
+                 '_where' => [
+                               bless( {
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."id" IN ($_127536$198$_127536$,$_127536$199$_127536$,$_127536$200$_127536$,$_127536$201$_127536$,$_127536$202$_127536$)',
+                                        '_relation' => '6b89db56fc7d830b621fe56999f87eba',
+                                        '_column' => {
+                                                       'transform' => 'Bare',
+                                                       'colname' => 'id'
+                                                     },
+                                        '_condition' => {
+                                                          'in' => '::P3'
+                                                        },
+                                        '_transform' => 'Bare',
+                                        '_aggregate' => undef
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' ),
+                               bless( {
+                                        '_column' => {
+                                                       'colname' => 'xact_start',
+                                                       'transform' => 'month_trunc'
+                                                     },
+                                        '_condition' => {
+                                                          'between' => '::P4'
+                                                        },
+                                        '_relation' => 'fce458da5814089639960610c48d19d2',
+                                        '_sql' => '(EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) BETWEEN $_127536$2019-07$_127536$ AND $_127536$2020-06$_127536$',
+                                        '_builder' => $VAR1->{'_builder'},
+                                        '_aggregate' => undef,
+                                        '_transform' => 'month_trunc'
+                                      }, 'OpenILS::Reporter::SQLBuilder::Column::Where' )
+                             ],
+                 '_from' => $VAR1->{'_builder'}{'_rels'}{'fce458da5814089639960610c48d19d2'},
+                 '_select' => [
+                                bless( {
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_relation' => '6b89db56fc7d830b621fe56999f87eba',
+                                         '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."shortname" AS "Library Short (Policy) Name"',
+                                         '_alias' => 'Library Short (Policy) Name',
+                                         '_column' => {
+                                                        'colname' => 'shortname',
+                                                        'transform' => 'Bare'
+                                                      }
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_transform' => 'month_trunc',
+                                         '_aggregate' => undef,
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_alias' => 'Check Out Month',
+                                         '_column' => {
+                                                        'transform' => 'month_trunc',
+                                                        'colname' => 'xact_start'
+                                                      },
+                                         '_sql' => '(EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) AS "Check Out Month"',
+                                         '_relation' => 'fce458da5814089639960610c48d19d2'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_sql' => '"7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" AS "Circulation Modifier"',
+                                         '_relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                         '_column' => {
+                                                        'colname' => 'circ_modifier',
+                                                        'transform' => 'Bare'
+                                                      },
+                                         '_alias' => 'Circulation Modifier',
+                                         '_transform' => 'Bare',
+                                         '_aggregate' => undef
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' ),
+                                bless( {
+                                         '_sql' => 'COUNT("fce458da5814089639960610c48d19d2"."id") AS "Count"',
+                                         '_relation' => 'fce458da5814089639960610c48d19d2',
+                                         '_alias' => 'Count',
+                                         '_column' => {
+                                                        'colname' => 'id',
+                                                        'transform' => 'count'
+                                                      },
+                                         '_builder' => $VAR1->{'_builder'},
+                                         '_aggregate' => undef,
+                                         '_transform' => 'count'
+                                       }, 'OpenILS::Reporter::SQLBuilder::Column::Select' )
+                              ],
+                 '_order_by' => [
+                                  bless( {
+                                           '_transform' => 'Bare',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[0]{'_column'},
+                                           '_sql' => '"6b89db56fc7d830b621fe56999f87eba"."shortname" ASC',
+                                           '_relation' => '6b89db56fc7d830b621fe56999f87eba'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'month_trunc',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[1]{'_column'},
+                                           '_sql' => '(EXTRACT(YEAR FROM "fce458da5814089639960610c48d19d2"."xact_start") || \'-\' || LPAD(EXTRACT(MONTH FROM "fce458da5814089639960610c48d19d2"."xact_start")::text,2,\'0\')) ASC',
+                                           '_relation' => 'fce458da5814089639960610c48d19d2'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_aggregate' => undef,
+                                           '_transform' => 'Bare',
+                                           '_sql' => '"7fb66fd46f5581428d27fcd56ad5c85f"."circ_modifier" ASC',
+                                           '_relation' => '7fb66fd46f5581428d27fcd56ad5c85f',
+                                           '_column' => $VAR1->{'_select'}[2]{'_column'},
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_direction' => 'ascending'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' ),
+                                  bless( {
+                                           '_transform' => 'count',
+                                           '_aggregate' => undef,
+                                           '_direction' => 'ascending',
+                                           '_builder' => $VAR1->{'_builder'},
+                                           '_column' => $VAR1->{'_select'}[3]{'_column'},
+                                           '_relation' => 'fce458da5814089639960610c48d19d2',
+                                           '_sql' => 'COUNT("fce458da5814089639960610c48d19d2"."id") ASC'
+                                         }, 'OpenILS::Reporter::SQLBuilder::Column::OrderBy' )
+                                ]
+               }, 'OpenILS::Reporter::SQLBuilder::ResultSet' );
+</pre><a href='report-data.html'>Back to output index</a></body></html>

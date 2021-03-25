@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-dark ">
+<!--Home-->
+  <a class="navbar-brand" href="/eg/opac/">[% INCLUDE "opac/parts/topnav_logo.tt2" %]</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+  <!--Left Links-->
+
+
+   <ul class="navbar-nav nav-fl px-3">
+      <li class="nav-item">
+        <a class="nav-link" href="http://pines.georgialibraries.org/pinesLocator/locator.html" target="_blank"><i class="fas fa-map-marker-alt" style="color:#8DC641;" aria-hidden="true"></i> [% l('Library Locations') %]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://pines.georgialibraries.org/app" target="_blank"><i class="fas fa-mobile-alt" style="color:#8DC641;" aria-hidden="true"></i> [% l('Download the PINES App') %]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://gapines.org/eg/kpac/home"><i class="fas fa-child" style="color:#8DC641;" aria-hidden="true"></i> [% l('Kids\' Catalog') %]</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://gapines.org/eg/opac/galileo"><i class="fas fa-globe-americas" style="color:#8DC641;" aria-hidden="true"></i> [% l('GALILEO Virtual Library') %]</a>
+      </li>
+      [% IF ctx.get_org_setting(ctx.physical_loc || ctx.aou_tree.id,  'opac.allow_pending_user') && !ctx.user %]
+        <li class="nav-item"><a class="nav-link" href="[% mkurl(ctx.opac_root _ '/register') %]"><i class="fas fa-id-card" style="color:#8DC641;" aria-hidden="true"></i> [% l('Apply for a PINES Library Card') %]</a></li>
+      [% END %]
+    </ul>
+    <!--Right Links-->
+    <ul class="navbar-nav ml-auto nav-fr px-3">
+      <!--If not signed in, show sign in button-->
+    [% IF !ctx.user %]
+        <li class="nav-item">
+           [% IF ctx.page != 'login' %]
+           <a href="#loginModal" data-toggle="modal" data-target="#loginModal" class="nav-link login">
+           [% ELSE %] <a href="/eg/opac/login" class="nav-link login">
+            [% END %]<i class="fas fa-user" style="color:#8DC641;" aria-hidden="true"></i> [% l('My Account') %] </a>
+        </li>
+      <!--User is signed in-->
+    [% ELSE %]
+    <li><div class="dropdown-divider"></div></li>
+        <!--My Account-->
+        <li class="nav-item">
+         <a class="nav-link" href="[% mkurl(ctx.opac_root _ '/myopac/main', {}, ['single', 'message_id', 'sort','sort_type']) %]"> <i class="fas fa-user" style="color:#8DC641;" aria-hidden="true"></i> [% l('My Account') %] ([% ctx.user.pref_first_given_name || ctx.user.first_given_name %])</a>
+        </li>
+
+    	<!--Messages with sup tag for # of messages-->
+      	<li class="nav-item">
+          <a class="nav-link  [% IF ctx.user_stats.messages.unread %] active [% END %]" href="[% mkurl(ctx.opac_root _ '/myopac/messages', {}, ['single', 'message_id']) %]">
+                      [% IF ctx.user_stats.messages.unread %]
+                          <span class="badge badge-danger" style="font-size:unset;">
+                              [%- ctx.user_stats.messages.unread -%]
+                              <span class="sr-only">[% l('unread') %]</span>
+                          </span>
+                      [% END %]
+                      <i class="fas fa-envelope" style="color:#8DC641;" aria-hidden="true"></i> [% l('Messages') %]
+            </a>
+        </li>
+        <!--Lists Link-->
+        <li class="nav-item">
+        <a class="nav-link" href="[% mkurl(ctx.opac_root _ '/myopac/lists', {}, ['single', 'message_id']) %]"><i class="fas fa-list" style="color:#8DC641;" aria-hidden="true"></i> [% l('My Lists') %]</a>
+        </li>
+        <!--Logout-->
+        <li class="nav-item">
+        <a class="nav-link" href="[% mkurl(ctx.opac_root _ '/logout', {}, 1) %]" id="logout_link"><i class="fas fa-sign-out-alt" style="color:#8DC641;" aria-hidden="true"></i> [% l('Logout') %]</a>
+        </li>
+      [% END %]
+      <!--must end ul and div no matter the user state-->
+    </ul>
+       </div>
+
+
+
+         </nav>
+
+
