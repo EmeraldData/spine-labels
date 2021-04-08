@@ -2078,12 +2078,19 @@ function($scope , $q , $window , $routeParams , $location , $timeout , egCore , 
             ).then(function(copy_ids) {
                 if (and_exit) {
                     $scope.dirty = false;
+                    !$scope.completedGridDataProvider.sort ? copy_ids.reverse() : $scope.completedGridDataProvider.sort.length === 0 ? copy_ids.reverse() : false;
+                    var cp_full = [];
+                    var i = 1;
+                    angular.forEach(copy_ids, function (copy) {
+                        cp_full.push({ id: i, target_copy: copy });
+                        i++;
+                    });
                     if ($scope.defaults.print_item_labels) {
                         egCore.net.request(
                             'open-ils.actor',
                             'open-ils.actor.anon_cache.set_value',
                             null, 'print-labels-these-copies', {
-                                copies : copy_ids
+                                copies : cp_full
                             }
                         ).then(function(key) {
                             if (key) {

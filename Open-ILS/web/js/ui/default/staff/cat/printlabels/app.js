@@ -725,7 +725,9 @@ function ($scope, $q, $window, $routeParams, $location, $timeout, egCore, egNet,
 
 .filter('cn_wrap', function () {
     return function (input, w, h, wrap_type) {
-        var names;
+        var addedElements = 0;
+        /* Pattern matches for LC ([0]) and non-LC ([1]) CNs */
+        var patterns = [/^([A-Z]{1,3})\s*(\d{1,4}(?:\.*\d{1,3})?)\s*(\d[A-Z0-9]{0,3})?(\.*[A-Z]\d{1,3})?(\d[A-Z0-9]{0,3})?([A-Z]\d{1,3})?(.*)?/i, /^([A-Z]+)?\s*(\d+(?:\.\d+)?)\s*(.*)?$/i];
         var prefix = input[0];
         var callnum = input[1];
         var suffix = input[2];
@@ -733,78 +735,70 @@ function ($scope, $q, $window, $routeParams, $location, $timeout, egCore, egNet,
         if (!w) { w = 8; }
         if (!h) { h = 9; }
 
-        /* handle spine labels differently if using LC */
-        if (wrap_type == 'lc' || wrap_type == 3) {
-            /* Establish a pattern where every return value should be isolated on its own line 
-               on the spine label: subclass letters, subclass numbers, cutter numbers, trailing stuff (date) */
-            var patt1 = /^([A-Z]{1,3})\s*(\d+(?:\.\d+)?)\s*(\.[A-Z]\d*)\s*([A-Z]\d*)?\s*(\d\d\d\d(?:-\d\d\d\d)?)?\s*(.*)$/i;
-            var result = callnum.match(patt1);
-            if (result) {
-                callnum = result.slice(1).join('\t');
-            } else {
-                callnum = callnum.split(/\s+/).join('\t');
-            }
-
-            /* If result is null, leave callnum alone. Can't parse this malformed call num */
+        var cn_patt; /* <- regex from patterns to use based on wrap_type */
+        var z = 3; /* <-Text match position in patterns for variable text (7th position in LC regex pattern); default to non-LC (3rd position in non-LC regex pattern) */
+        if (wrap_type === 3 || wrap_type === 'lc') {
+            cn_patt = patterns[0];
+            z = 7;
         } else {
-            callnum = callnum.split(/\s+/).join('\t');
+            cn_patt = patterns[1];
         }
 
-        if (prefix) {
-            callnum = prefix + '\t' + callnum;
+        callnum = callnum.replace(/^\s+|\s+$/, "");
+
+
+        var result = callnum.split(/\s+/);
+        if (!result) {
+            var hasDigits = /\d/;
+            var hasSpace = /\s/;
+            if (!hasDigits.test(callnum) && hasSpace.test(callnum)) {
+                result = callnum.split(/\s+/);
+            } else {
+                result = [];
+                divideOnCharLen(callnum, result, 0, 0);
+            }
         }
-        if (suffix) {
-            callnum += '\t' + suffix;
+        prefix ? result.splice(0, 0, prefix) : false;
+        suffix ? result.push(suffix) : false;
+
+        /* Give each line a final check and cleanup if it exceeds width of 'w' */
+        addedElements = 0;
+        for (var i = 0; i < result.length; i++) {
+            if (result[i]) {
+                var dec_test = /(\d+)\.(\d+)/;
+                if (dec_test.test(result[i])) {
+                    var dec_split = result[i].match(dec_test);
+                    result.splice(i, 1, dec_split[1], "." + dec_split[2]);
+                }
+                divideOnCharLen(result[i], result, i, addedElements);
+            }
         }
+        var output = [];
+        for (var j = 0; j < result.length; j++) {
+            result[j] ? result[j] = result[j].replace(/^\s*(.*?)\s*$/, "$1") : false;
+            result[j] ? output.push(result[j]) : false;
+        }
+        output = output.slice(0, h); /*Limit lines to height in org unit settings (or default) */
 
-        /* At this point, the call number pieces are separated by tab characters.  This allows
-        *  some space-containing constructs like "v. 1" to appear on one line
-        */
-        callnum = callnum.replace(/\t\t/g, '\t');  /* Squeeze out empties */
-        names = callnum.split('\t');
-        var j = 0; var tb = [];
-        while (j < h) {
+        return output.join('\n');
 
-            /* spine */
-            if (j < w) {
-
-                var name = names.shift();
-                if (name) {
-                    name = String(name);
-
-                    /* if the name is greater than the label width... */
-                    if (name.length > w) {
-                        /* then try to split it on periods */
-                        var sname = name.split(/\./);
-                        if (sname.length > 1) {
-                            /* if we can, then put the periods back in on each splitted element */
-                            if (name.match(/^\./)) sname[0] = '.' + sname[0];
-                            for (var k = 1; k < sname.length; k++) sname[k] = '.' + sname[k];
-                            /* and put all but the first one back into the names array */
-                            names = sname.slice(1).concat(names);
-                            /* if the name fragment is still greater than the label width... */
-                            if (sname[0].length > w) {
-                                /* then just truncate and throw the rest back into the names array */
-                                tb[j] = sname[0].substr(0, w);
-                                names = [sname[0].substr(w)].concat(names);
-                            } else {
-                                /* otherwise we're set */
-                                tb[j] = sname[0];
-                            }
-                        } else {
-                            /* if we can't split on periods, then just truncate and throw the rest back into the names array */
-                            tb[j] = name.substr(0, w);
-                            names = [name.substr(w)].concat(names);
-                        }
+        function divideOnCharLen(val, arr, index, incr) {
+            var x = 1;
+            while ((val.length / x) > w) {
+                x++;
+            }
+            var charMatch = val.match(new RegExp(".{1," + Math.ceil((val.length / x)) + "}", "g"));
+            if (charMatch) {
+                for (var t = 0; t < charMatch.length; t++) {
+                    if (t === 0) {
+                        arr[index] = charMatch[t];
                     } else {
-                        /* otherwise we're set */
-                        tb[j] = name;
+                        arr.splice((index + t), 0, charMatch[t]);
+                        incr++;
                     }
                 }
             }
-            j++;
         }
-        return tb.join('\n');
     }
 })
 
