@@ -988,20 +988,26 @@ function(egCore , egOrg , egCirc , $uibModal , $q , $timeout , $window , ngToast
     }
 
     service.print_spine_labels = function(copy_ids){
-        egCore.net.request(
-            'open-ils.actor',
-            'open-ils.actor.anon_cache.set_value',
-            null, 'print-labels-these-copies', {
-                copies : copy_ids
-            }
-        ).then(function(key) {
-            if (key) {
-                var url = egCore.env.basePath + 'cat/printlabels/' + key;
-                $timeout(function() { $window.open(url, '_blank') });
-            } else {
-                alert('Could not create anonymous cache key!');
-            }
-        });
+        var cp_list = gatherSelectedHoldingsIds();
+        !$scope.gridDataProvider.sort ? cp_list.reverse() : $scope.gridDataProvider.sort.length === 0 ? cp_list.reverse() : false;
+        if (cp_list.length > 0) {
+            egCore.net.request(
+                'open-ils.actor',
+                'open-ils.actor.anon_cache.set_value',
+                null, 'print-labels-these-copies', {
+                    copies : cp_list
+                }
+            ).then(function(key) {
+                if (key) {
+                    var url = egCore.env.basePath + 'cat/printlabels/' + key;
+                    $timeout(function() { $window.open(url, '_blank') });
+                } else {
+                    alert('Could not create anonymous cache key!');
+                }
+            });
+        } else {
+            alert('Could not generate print labels.');
+        }
     }
 
     service.show_in_catalog = function(copy_list){

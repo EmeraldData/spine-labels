@@ -712,20 +712,24 @@ function($scope , $q , $window , $location , $timeout , egCore , egNet , egGridD
     }
 
     $scope.print_labels = function() {
-        egCore.net.request(
-            'open-ils.actor',
-            'open-ils.actor.anon_cache.set_value',
-            null, 'print-labels-these-copies', {
-                copies : gatherSelectedHoldingsIds()
-            }
-        ).then(function(key) {
-            if (key) {
-                var url = egCore.env.basePath + 'cat/printlabels/' + key;
-                $timeout(function() { $window.open(url, '_blank') });
-            } else {
-                alert('Could not create anonymous cache key!');
-            }
-        });
+        var cp_list = gatherSelectedHoldingsIds();
+        !$scope.gridDataProvider.sort ? cp_list.reverse() : $scope.gridDataProvider.sort.length === 0 ? cp_list.reverse() : false;
+        if (cp_list.length > 0) {
+            egCore.net.request(
+                'open-ils.actor',
+                'open-ils.actor.anon_cache.set_value',
+                null, 'print-labels-these-copies', {
+                    copies : gatherSelectedHoldingsIds()
+                }
+            ).then(function(key) {
+                if (key) {
+                    var url = egCore.env.basePath + 'cat/printlabels/' + key;
+                    $timeout(function() { $window.open(url, '_blank') });
+                } else {
+                    alert('Could not create anonymous cache key!');
+                }
+            });
+        }
     }
 
     $scope.print_list = function() {

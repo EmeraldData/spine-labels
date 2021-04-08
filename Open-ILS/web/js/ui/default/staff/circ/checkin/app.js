@@ -442,6 +442,7 @@ function($scope , $q , $window , $location , $timeout , egCore , checkinSvc , eg
         angular.forEach(items, function(item) {
             if (item.acp) copy_ids.push(item.acp.id());
         });
+        !$scope.gridDataProvider.sort ? copy_ids.reverse() : $scope.gridDataProvider.sort.length === 0 ? copy_ids.reverse() : false;
         itemSvc.print_spine_labels(copy_ids);
     }
 
