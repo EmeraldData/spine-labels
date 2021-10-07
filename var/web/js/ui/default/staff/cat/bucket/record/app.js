@@ -496,7 +496,7 @@ function($scope,  $routeParams,  egCore , bucketSvc) {
         egCore.net.request(
             'open-ils.search',
             'open-ils.search.biblio.multiclass.query.staff', {   
-                limit : 2000 // meh
+                limit : 5000 // meh
             }, bucketSvc.queryString, true
         ).then(function(resp) {
             bucketSvc.queryRecords = 

@@ -151,11 +151,11 @@ function disable_submit() {
         [% END %]
 
         [% IF any_failures OR ctx.general_hold_error %]
-        <span><a class="btn btn-confirm" href="[% CGI.param('redirect_to') || CGI.referer | html %]"><i class="fas fa-arrow-circle-left" aria-hidden="true"></i> [% l('Back To Search') %]</a></span>
-        <a class="btn btn-deny" href="[% CGI.param('redirect_to') || CGI.referer | html %]"><i class="fas fa-times" aria-hidden="true"></i> [% l('Cancel') %]</a>
+        <span><a class="btn btn-confirm" href="javascript:history.go(-2);"><i class="fas fa-arrow-circle-left" aria-hidden="true"></i> [% l('Back To Search') %]</a></span>
+        <a class="btn btn-deny" href="javascript:history.go(-2);"><i class="fas fa-times" aria-hidden="true"></i> [% l('Cancel') %]</a>
         [% ELSE %]
         <div class='hold_success_links'>
-          <span><a class="btn btn-confirm" href="[% CGI.param('redirect_to') || CGI.referer | html %]"><i class="fas fa-arrow-circle-left" aria-hidden="true"></i> [% l('Back To Search') %]</a></span>
+          <span><a class="btn btn-confirm" href="javascript:history.go(-2);"><i class="fas fa-arrow-circle-left" aria-hidden="true"></i> [% l('Back To Search') %]</a></span>
            [% IF ctx.is_staff %]
              [% IF CGI.param('hold_type') == 'C';
                   hold_type_label = l('copy');

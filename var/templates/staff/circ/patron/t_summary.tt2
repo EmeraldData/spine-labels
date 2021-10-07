@@ -46,7 +46,18 @@
     <div class="row" 
       ng-class="{'patron-summary-divider' : alert_penalties().length || patron().alert_message()}">
       <div class="col-md-5">[% l('Profile') %]</div>
-      <div class="col-md-7">{{patron().profile().name()}}</div>
+      <div class="col-md-7">
+            <!-- PINES Customization -->
+            <div ng-if="patron().profile().id() == '61'">
+                <span style='font-weight:bold; color:red;'>
+                {{patron().profile().name()}}</span>
+                <eg-help-popover help-text="[% l('PLAY Card accounts should not be edited by the library. Students may log in to the OPAC to change their passwords, hold preferences, and email address, but other updates should be referred to the school.') %]">
+            </div>
+            <div ng-if="patron().profile().id() != '61'">
+                {{patron().profile().name()}}
+            </div>
+            <!-- End Customization -->
+      </div>
     </div>
     <div class="row" ng-if="show_name()">
       <div class="col-md-5">[% l('ID') %]</div>

@@ -66,18 +66,27 @@
                                 record_url_path = ctx.opac_root _ '/results';
                                 add_parms = {metarecord => rec.mmr_id};
                                 del_parms = ['page'];
+                                #PINES for more info link:
+                                    add_parms_info = {metarecord => rec.mmr_id};
+                                    del_parms_info = ['page'];
                             ELSE;
                                 # for MR, bre_id refers to the master and in
                                 # this case, only, record
                                     record_url_path = ctx.opac_root _ '/record/' _ attrs.mr_constituent_ids.0;
                                 add_parms = { badges => rec.badges.join(',') };
                                 del_parms = ['quux'];
+                                #PINES for more info link:
+                                    add_parms_info = {metarecord => rec.mmr_id};
+                                    del_parms_info = ['page'];
                             END;
                             hold_type = 'M';
                         ELSE;
                         record_url_path = ctx.opac_root _ '/record/' _ rec.bre_id;
                         add_parms = { badges => rec.badges.join(',') };
                         del_parms = ['quux'];
+                        #PINES for more info link:
+                            add_parms_info = {metarecord => rec.mmr_id};
+                            del_parms_info = ['page'];
                         hold_type = 'T';
                         END; -%]
 
@@ -97,9 +106,8 @@
                         </div>
                         <!--Cover Image-->
                         <div class='col-sm-auto text-center' id="result[% rec.bre_id %]">
-                            <a href="[% mkurl(record_url_path, add_parms, del_parms); %]"><img alt="[% attrs.title | html;%]"
-                            id='item_jacket[% rec.bre_id %]' class='my-2'
-                            src='[% ctx.media_prefix %]/opac/extras/ac/jacket/large/r/[% rec.bre_id | uri %]' style="max-height:150px;" /></a><br />
+                            <a href="[% mkurl(record_url_path, add_parms, del_parms); %]"><img alt="" id='item_jacket[% rec.bre_id %]' class='my-2'
+src='[% ctx.media_prefix %]/opac/extras/ac/jacket/large/r/[% rec.bre_id | uri %]' style="width:120px;" /></a><br />
                         </div>
                             <!--Info-->
                         <div class='result_table_title_cell col'>
@@ -370,15 +378,24 @@
 
 
                                         <!--Place Hold Button -->
-                                       
+                                        [% IF !ctx.is_staff %]
                                         <a role="button" href="[% mkurl(ctx.opac_root _ '/place_hold', add_parms, del_parms) %]"
                                             [% html_text_attr('title', l('Place Hold on [_1]', attrs.title)) %]
                                             class="btn btn-action" rel="nofollow" vocab="">
                                             <i class="fas fa-check" aria-hidden="true"></i>
                                             <span class="result_place_hold">[% l('Place Hold') %]</span>
                                         </a>
+                                         [% END %]
+                                         <!-- PINES WORKAROUND FOR TRADITIONAL CATALOG -->
+                                         [% IF ctx.is_staff %]
+                                             <a class="btn btn-action" role="button" href="/eg2/en-US/staff/catalog/hold/T?target=[%- rec.bre_id -%]"
+                                                 class="no-dec" target="_blank">
+                                                 <span class="place_hold"><i class="fas fa-check" aria-hidden="true"></i> [% l('Place Hold (Staff Function)') %]</span></a>
+                                         [% END %]
                                        
                                         [%- END -%]
+
+
 
                                         <!-- eBook Buttons -->
                                         [%- IF ebook_api.enabled == 'true' && args.ebook %]
@@ -388,8 +405,7 @@
                                                 ['query','tag','subfield','term','_special','sort','page']) %]"
                                                 [% html_text_attr('title', l('Check Out [_1]', attrs.title)) %]
                                                     class="btn btn-action" role="button" rel="nofollow" vocab=""><i class="fas fa-atlas" aria-hidden="true"></i> <span class="result_place_hold">[% l('Check Out E-Item') %]</span></a>
-                                       
-                                       
+
                                             <a href="[% mkurl(ctx.opac_root _ '/myopac/ebook_place_hold',
                                                 {title => args.ebook.ebook_id, vendor => args.ebook.vendor, action => 'place_hold'},
                                                 ['query','tag','subfield','term','_special','sort','page']) %]"
@@ -430,6 +446,12 @@
                                                 %]
                                                 [% END %]
                                         [% END %]
+                                        
+                                        <!-- More info button -->
+                                            <a href="[% mkurl(record_url_path, add_parms_info, del_parms_info); %]" role="button" class="btn btn-action" title="[% l("More Info") %]" rel="nofollow" vocab="">
+                                                    <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+                                                    [% l("More Info") %]
+                                             </a>
 
                                         <!--Added Content - Content Cafe -->
                                         [% IF ENV.OILS_CONTENT_CAFE_USER %]

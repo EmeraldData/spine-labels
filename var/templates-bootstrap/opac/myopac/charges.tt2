@@ -13,6 +13,11 @@
 <form action="[% ctx.opac_root %]/myopac/main_payment_form#payment" method="get" id="selected_fines">
 [% END %]
 
+        <h3>
+                [% l("Charges On Your Account") %]
+        </h3>
+        <div style="padding-bottom:10px;">[% l("PINES Account Tips") %]</div>
+
     [% IF ctx.fines.circulation.size > 0 %]
     <div id='myopac_circ_trans_div'>
         <div class="header_middle">
@@ -24,30 +29,26 @@
                 [% l("Circulation Charges") %]
              [% END %]
            </span>
-           
         </div>
-
      
     
-        <table id="acct_fines_main_header" class="table table-hover table-responsive table-bordered miniTable chargesMainTable" title="[% l('Items Checked Out') %]">
+        <table id="acct_fines_main_header" class="table table-hover table-bordered miniTable chargesMainTable" title="[% l('Items Checked Out') %]">
             <thead>
                
                 <tr>
-
-                   [% IF myopac_cc_allowed %]
-                    <th style="white-space:nowrap;">
-                        <input id="pay_fines_box1" checked="checked"
+                    <th style="white-space:nowrap;text-align:">
+                        [% IF myopac_cc_allowed %]
+                            <input id="pay_fines_box1" checked="checked"
                             type="checkbox" onclick="select_all_checkboxes('xact', this.checked)"
                             title="[% l('Click to (un)select all charges') %]" />
+                        [% END %]
                     </th> 
-                    [% END %]
                     <th>[% l("Owed") %]</th>
                     <th>[% l("Billing Type") %]</th>
                     <th>[% l("Title") %]</th>
                     <th>[% l("Checkout") %]</th> 
                     <th>[% l("Due ") %]</th> 
                     <th>[% l("Returned/Renewed") %]</th>
-                    
                 </tr>
             </thead>
             <tbody id='myopac_circ_trans_tbody'>
@@ -59,15 +60,16 @@
                         attrs.title = f.xact.reservation.target_resource_type.name;
                     END %]
                 <tr id='myopac_circ_trans_row'>
-                    [% IF myopac_cc_allowed %]
+
                     <td class="checkCell">
-                        <input type="checkbox" checked="checked" 
+                        [% IF myopac_cc_allowed %]                    
+                            <input type="checkbox" checked="checked" 
                             title="[% l('Pay this fine') %]" name="xact"
                             value="[% f.xact.id %]" class="fineCheck"/>
+                        [% END %]
                     </td>
-                    [% END %]
                     
-                    <td>
+                    <td class="danger">
                         <strong>
                             [% money(f.xact.balance_owed) %]
                         </strong>
@@ -114,7 +116,6 @@
                             <span class="danger">[% l('(fines accruing)') %]</span>
                         [%  END %]
                     </td>
-                   
                 </tr>
                 [% END %]
             </tbody>
@@ -127,10 +128,16 @@
     [% IF ctx.fines.grocery.size > 0 %]
     <!-- Table for all non-circulation transactions -->
     <div id='myopac_trans_div'>
-        <h3>
-                [% l("Charges On Your Account") %]
-        </h3>
-        <div style="padding-bottom:10px;">[% l("PINES Account Tips") %]</div>
+        <div class="header_middle">
+           <span class="acct_fines_header">
+           <!-- Different heading when not able to pay -->
+             [% IF myopac_cc_allowed %]
+                [% l("Pay Other Selected Charges") %]
+            [% ELSE %] 
+                [% l("Other Charges") %]
+             [% END %]
+           </span>
+        </div>
 
         [% IF myopac_cc_allowed %]
         <div class="d-block d-md-none">
@@ -144,14 +151,13 @@
          <table id="acct_fees_main_header" class="table table-hover table-bordered miniTable chargesTable my-3" title="[% l('Other Fines and Fees') %]">
             <thead>
                 <tr>
-                
-                     [% IF myopac_cc_allowed %]
                     <th style="white-space:nowrap;">
+                        [% IF myopac_cc_allowed %]
                         <input id="pay_fines_box2" checked="checked"
                             type="checkbox" onclick="select_all_checkboxes('xact_misc', this.checked)"
                             aria-label="[% l('Check/Uncheck All') %]" />
+                        [% END %]
                     </th>
-                    [% END %]
                     <th >[% l("Owed") %]</th>
                     <th >[% l("Billing Type") %]</th>
                     <th >[% l("Note") %]</th>
@@ -165,12 +171,12 @@
                 [% FOR f IN ctx.fines.grocery %]
                 <tr class ='myopac_trans_row'>
                 [% c = c + 1; %]
-                    [% IF myopac_cc_allowed %]
                     <td class="checkCell">
+                        [% IF myopac_cc_allowed %]
                         <label class="sr-only">Billing Number [% c %]</label>
                         <input aria-label="Pay This Bill" class="fineCheck" type="checkbox" name="xact_misc" value="[% f.xact.id %]" checked="checked" />
+                        [% END %]
                     </td>
-                    [% END %]
                     
                     <td class="danger">
                         <span class="sr-only">Amount Owed</span>

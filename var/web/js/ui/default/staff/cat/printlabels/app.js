@@ -290,7 +290,8 @@ function ($scope, $q, $window, $routeParams, $location, $timeout, egCore, egNet,
 
                     $q.all(promises2).then(function () {
                         // today, staff, current_location, etc.
-                        egCore.print.fleshPrintScope($scope.preview_scope);
+                        $scope.preview_scope.copies.sort((a, b) => (data.copies.indexOf(a.id) > data.copies.indexOf(b.id)) ? 1 : ((data.copies.indexOf(b.id) > data.copies.indexOf(a.id)) ? -1 : 0));
+			egCore.print.fleshPrintScope($scope.preview_scope);
                         $scope.template_changed(); // load the default
                         $scope.rebuild_cn_set();
                     });

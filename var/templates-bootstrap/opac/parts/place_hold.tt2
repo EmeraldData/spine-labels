@@ -151,9 +151,9 @@ function maybeToggleNumCopies(obj) {
                         [% IF hdata.parts.size > 0 %]
                         <div class='hold-div'>
                             [% IF enable.radio.parts == 'true' %]
-                                <span class='hold-span'><label for='select_hold_part'>[%
+                               <span class='hold-span'><b><label for='select_hold_part'>[%
                                l('Select a Part:')
-                               %]</label></span>
+                               %]</b></label></span>
                              <div class='radio-parts-selection'>
                              [% IF !hdata.part_required %]
                                 <span class='parts-radio-option'>
@@ -207,6 +207,7 @@ function maybeToggleNumCopies(obj) {
         <p class="w-50">
             [%- org_select_id = 'pickup_lib'; -%]
             <label for="[% org_select_id %]" class="font-weight-bold">[%l('Pickup location:') %]</label>
+            <a title="" data-toggle="tooltip" data-original-title="You can set and save your preferred hold pickup location at My Account &gt; Preferences &gt; Search & History."><i class="fas fa-question-circle" aria-hidden="true"></i></a>
             [% PROCESS "opac/parts/org_selector.tt2";
                 INCLUDE build_org_selector name='pickup_lib'
                     value=ctx.default_pickup_lib id=org_select_id
@@ -214,6 +215,7 @@ function maybeToggleNumCopies(obj) {
         </p>
 
             <span class="font-weight-bold">[% l('Notify when hold is ready for pickup?') %]</span>
+            <a title="" data-toggle="tooltip" data-original-title="You can set and save your preferred hold notification settings at My Account &gt; Preferences &gt; Notification Preferences."><i class="fas fa-question-circle" aria-hidden="true"></i></a>
             <p>
              <div class="form-check m-2">
                 <input class="form-check-input" type="checkbox" value="t" id="email_notify" name="email_notify" [% IF !ctx.user.email %]disabled="true"[% ELSIF ctx.default_email_notify %]checked="checked"[% END %]>
@@ -322,7 +324,7 @@ function maybeToggleNumCopies(obj) {
         <div class="py-3">
         <button id="place_hold_submit" type="submit" name="submit"  class="btn btn-confirm" ><i class="fas fa-check"></i> [% l('Submit') %]</button>
         [% END # some_holds_allowed %]
-        <button type="reset" name="cancel" onclick="window.location='[% redirect | html %]'" id="holds_cancel" class="btn btn-deny"><i class="fas fa-ban" aria-hidden="true"></i> [% l('Cancel') %]</button>
+        <button type="reset" name="cancel" onclick="javascript:history.go(-1);" id="holds_cancel" class="btn btn-deny"><i class="fas fa-ban" aria-hidden="true"></i> [% l('Cancel') %]</button>
         </div>
     </form>
 </div>

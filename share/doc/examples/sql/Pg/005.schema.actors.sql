@@ -368,6 +368,8 @@ CREATE TABLE actor.org_unit (
 	name		TEXT	NOT NULL UNIQUE,
 	email		TEXT,
 	phone		TEXT,
+	fscskey		TEXT,
+	fscs_seq    TEXT,
 	opac_visible	BOOL	NOT NULL DEFAULT TRUE,
 	fiscal_calendar INT     NOT NULL DEFAULT 1   -- foreign key constraint to be added later
 );

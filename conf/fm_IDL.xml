@@ -7056,6 +7056,8 @@ SELECT  usr,
 			<field reporter:label="Resource Attributes" name="rsrc_attrs" oils_persist:virtual="true" reporter:datatype="link"/>
 			<field reporter:label="Attribute Values" name="attr_vals" oils_persist:virtual="true" reporter:datatype="link"/>
 			<field reporter:label="Hours of Operation" name="hours_of_operation" oils_persist:virtual="true" reporter:datatype="link"/>
+			<field name="fscskey" reporter:label="FSCSKEY" reporter:datatype="text"/>
+			<field name="fscs_seq" reporter:label="FSCS_SEQ" reporter:datatype="text"/>
 		</fields>
 		<links>
 			<link field="billing_address" reltype="has_a" key="id" map="" class="aoa"/>
@@ -10722,6 +10724,7 @@ SELECT  usr,
 			<field reporter:label="User ID" name="id" reporter:datatype="id" />
 			<field reporter:label="Date of Birth" name="dob" reporter:datatype="timestamp"/>
 			<field reporter:label="General Demographic Division" name="general_division" reporter:datatype="text"/>
+			<field reporter:label="Detailed Age Division" name="age_division" reporter:datatype="text"/>
 		</fields>
 		<links>
 			<link field="id" reltype="might_have" key="id" map="" class="au"/>
@@ -13621,6 +13624,48 @@ SELECT  usr,
 		</permacrud>
 	</class>
 
+    <class id="qred" controller="open-ils.cstore open-ils.pcrud" oils_obj:fieldmapper="quick_reports::executive_reports_data" oils_persist:tablename="quick_reports.executive_reports_data" reporter:label="Quick Reports Executive Data">
+        <fields oils_persist:primary="id">
+            <field reporter:label="ID" name="id" reporter:datatype="id"/>
+            <field reporter:label="Report Run Time" name="create_time" reporter:datatype="timestamp" oils_obj:required="true"/>
+            <field reporter:label="Report Year + Month" name="year_month" reporter:datatype="int" oils_obj:required="true"/>
+            <field reporter:label="Org Unit" name="org_unit" reporter:datatype="org_unit" oils_obj:required="true"/>
+            <field reporter:label="Patrons: Active" name="p1" reporter:datatype="text"/>
+            <field reporter:label="Patrons: New" name="p2" reporter:datatype="text"/>
+            <field reporter:label="Patrons: Circulated" name="p3" reporter:datatype="text"/>
+            <field reporter:label="Patrons: Holds" name="p4" reporter:datatype="text"/>
+            <field reporter:label="Bills: Total Owed" name="b1" reporter:datatype="number"/>
+            <field reporter:label="Bills: Billed" name="b2" reporter:datatype="number"/>
+            <field reporter:label="Bills: Collected" name="b3" reporter:datatype="number"/>
+            <field reporter:label="Circs: Circulations" name="c1" reporter:datatype="int"/>
+            <field reporter:label="Circs: By Circ Mod" name="c2" reporter:datatype="text"/>
+            <field reporter:label="Circs: By MARC Type" name="c3" reporter:datatype="text"/>
+            <field reporter:label="Circs: Non-Cat" name="c4" reporter:datatype="text"/>
+            <field reporter:label="Circs: In-House" name="c5" reporter:datatype="int"/>
+            <field reporter:label="Holds: Sent" name="h1" reporter:datatype="int"/>
+            <field reporter:label="Holds: Received" name="h2" reporter:datatype="int"/>
+            <field reporter:label="Holds: Internal" name="h3" reporter:datatype="int"/>
+            <field reporter:label="Transits: Received" name="h4" reporter:datatype="int"/>
+            <field reporter:label="Transits: Sent" name="h5" reporter:datatype="int"/>
+            <field reporter:label="Transits: Intersystem Sent" name="h6" reporter:datatype="int"/>
+            <field reporter:label="Transits: Intersystem Received" name="h7" reporter:datatype="int"/>
+            <field reporter:label="Items: Total" name="i1" reporter:datatype="int"/>
+            <field reporter:label="Items: Value" name="i2" reporter:datatype="number"/>
+            <field reporter:label="Items: Added" name="i3" reporter:datatype="int"/>
+            <field reporter:label="Items: Deleted" name="i4" reporter:datatype="int"/>
+        </fields>
+        <links>
+            <link field="org_unit" reltype="has_a" key="id" class="aou"/>
+        </links>
+        <permacrud xmlns="http://open-ils.org/spec/opensrf/IDL/permacrud/v1">
+            <actions>
+                <create   permission="RUN_REPORTS" owning_user="owner" global_required="true"/>
+                <retrieve permission="RUN_REPORTS" owning_user="owner" global_required="true"/>
+                <update   permission="RUN_REPORTS" owning_user="owner" global_required="true"/>
+                <delete   permission="RUN_REPORTS" owning_user="owner" global_required="true"/>
+            </actions>
+        </permacrud>
+    </class>
 	<!-- ********************************************************************************************************************* -->
 </IDL>
 

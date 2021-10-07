@@ -67,7 +67,7 @@ END;
         <div class="col-sm-12 col-md">
         <label id="search_qtype_label" for="qtype" class="w-100">
         [%-
-            l('Search by:');
+            l('Search by:');"<a title=\"\" data-toggle=\"tooltip\" data-original-title=\"Keyword will search the title, author, description, and other catalog fields.\"><i class=\"fas fa-question-circle\" aria-hidden=\"true\"></i></a>";
             INCLUDE "opac/parts/qtype_selector.tt2" id="qtype";
         -%]
         </label>
@@ -102,11 +102,12 @@ END;
         <div class="col-sm-12 col-md">
         <label id="search_locg_label" for="search_org_selector" class="w-100">
         [%-
-            l('Search within:');
+            l('Search within:');"<a title=\"\" data-toggle=\"tooltip\" data-original-title=\"Select &quot;PINES&quot; to search all libraries. Set and save your search preferences at My Account &gt; Preferences &gt; Search & History.\"><i class=\"fas fa-question-circle\" aria-hidden=\"true\"></i></a>";
             select_lib_label = l("Search within:");
             INCLUDE build_org_selector arialabel=select_lib_label
               id='search_org_selector' show_loc_groups=1
         -%]
+
         </label>
         </div>
 
@@ -171,16 +172,11 @@ END;
         [% END %]
         </form>
     [% END %]
-    [% IF fcount > 0 %]
-      <div class="refine_search result_block_visible">
-        <span id="filter_hits">[ <a href="#" onclick="getAdvLimits();return false;">[% l('[quant,_1,filter,filters] applied', fcount) %]</a> ]</span>
-      </div>
-    [% END %]
-    [% IF ctx.query_struct.filters.size > 0 %]
+    [% IF fcount > 2 %]
         [% stuff = INCLUDE 'opac/parts/result/adv_filter.tt2' %]
         [% IF stuff %]
             <h3 class="sr-only">[% l('Search Results filters') %]</h3>
-            <div id="adv_filter_results_block" class="adv_filter_results_hide">
+            <div id="adv_filter_results_block">
                 <div class="adv_filter_results_block_label" style="text-align:left;">[% l('Filtered by:') %]</div>
                 [% stuff %]
             </div>

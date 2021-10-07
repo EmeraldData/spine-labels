@@ -15,18 +15,36 @@
 
     <h2>[% ctx.library.name | html %]</h2>
 
-    [%- IF ctx.library.mailing_address; %]
+    [%- IF ctx.billing_address; %]
+    <div class="my-3" id="addresses">
+        <div id="billing" property="location address" typeof="PostalAddress">
+            <h3 property="contactType">[% l('Address') %]</h3>
+            [% IF ctx.mailing_address.street1 != ctx.billing_address.street1; %]
+                <h4 style="font-weight:bold;font-size:1em;" property="contactType">[% l('Building Location') %]</h4>
+            [% END %]
+
+            <span property="streetAddress">[% ctx.billing_address.street1 | html %]
+            [%- IF ctx.billing_address.street2; "<br />"; ctx.billing_address.street2 | html; END; %]
+            </span><br />
+            <span property="addressLocality">[% ctx.billing_address.city | html %]</span>, 
+            <span property="addressRegion">[% ctx.billing_address.state | html %]</span> 
+            <span property="postalCode">[% ctx.billing_address.post_code | html %]</span><br/>
+            <a href="http://www.google.com/maps/place/[% ctx.billing_address.street1 | html %]+[% ctx.billing_address.street2 | html %]+[% ctx.billing_address.city | html %]+[% ctx.billing_address.state | html %]+[% ctx.billing_address.post_code | html %]"><i class="fas fa-map-marker-alt" style="color:#28A745;" aria-hidden="true"></i> Map / Directions</a>
+        </div>
+    </div>
+    [%- END; %]
+
+
+    [%- IF ctx.mailing_address AND (ctx.mailing_address.street1 != ctx.billing_address.street1); %]
     <div class="my-3" id="addresses">
         <div id="mailing" property="location address" typeof="PostalAddress">
-            <h3 property="contactType">[% l('Location') %]</h3>
+            <h4 style="font-weight:bold;font-size:1em;" property="contactType">[% l('Mailing Address') %]</h4>
             <span property="streetAddress">[% ctx.mailing_address.street1 | html %]
             [%- IF ctx.mailing_address.street2; "<br />"; ctx.mailing_address.street2 | html; END; %]
             </span><br />
             <span property="addressLocality">[% ctx.mailing_address.city | html %]</span>, 
             <span property="addressRegion">[% ctx.mailing_address.state | html %]</span> 
             <span property="postalCode">[% ctx.mailing_address.post_code | html %]</span><br/>
-            <br />
-            <a href="http://www.google.com/maps/place/[% ctx.mailing_address.street1 | html %]+[% ctx.mailing_address.street2 | html %]+[% ctx.mailing_address.city | html %]+[% ctx.mailing_address.state | html %]+[% ctx.mailing_address.post_code | html %]"><i class="fas fa-map-marker-alt" style="color:#28A745;" aria-hidden="true"></i> Map / Directions</a>    
         </div>
     </div>
     [%- END; %]
